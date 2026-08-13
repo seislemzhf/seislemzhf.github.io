@@ -4,16 +4,195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saif El Islem Zahaf | Portfolio PRO</title>
-    <!-- Font Awesome (الأيقونات) -->
+    
+    <!-- الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (خط عربي احترافي) -->
+    <!-- الخط العربي -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <!-- ربط ملف التنسيق style.css -->
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ====== إعدادات عامة ====== */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Cairo', sans-serif; background-color: #F8FAFC; color: #0F172A; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ====== الألوان ====== */
+        :root {
+            --primary-dark: #0F172A;
+            --secondary-dark: #1E293B;
+            --accent-green: #10B981;
+            --bg-light: #F8FAFC;
+            --text-white: #ffffff;
+        }
+
+        /* ====== الشريط العلوي ====== */
+        header {
+            background: var(--primary-dark);
+            height: 80px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--text-white); }
+        .logo span { color: var(--accent-green); }
+
+        nav ul { display: flex; gap: 30px; }
+        nav ul li a {
+            color: #94a3b8;
+            font-weight: 600;
+            transition: color 0.3s, transform 0.2s;
+            display: inline-block;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+        .hamburger { display: none; color: var(--text-white); font-size: 1.5rem; cursor: pointer; }
+
+        /* ====== قسم الترحيب (Hero) ====== */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, #F8FAFC 0%, #e2e8f0 100%);
+        }
+        .hero-content { display: flex; align-items: center; justify-content: space-between; gap: 50px; }
+        .hero-text { flex: 1; }
+        .hero-text .badge {
+            background: #d1fae5; color: #065f46; padding: 8px 18px; border-radius: 50px;
+            font-size: 0.9rem; font-weight: 700; display: inline-block; margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(16,185,129,0.2);
+        }
+        .hero-text h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; color: var(--secondary-dark); }
+        .hero-text h1 .highlight { color: var(--accent-green); }
+        .subtitle { font-size: 1.1rem; color: #475569; margin-bottom: 30px; max-width: 500px; line-height: 1.6; }
+        
+        .hero-buttons { display: flex; gap: 15px; margin-bottom: 25px; }
+        .btn-primary {
+            background: var(--accent-green); color: white; padding: 14px 30px; border-radius: 50px;
+            font-weight: 700; transition: all 0.3s; box-shadow: 0 5px 15px rgba(16,185,129,0.3);
+        }
+        .btn-primary:hover { background: #059669; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(16,185,129,0.4); }
+        
+        .btn-outline { border: 2px solid var(--secondary-dark); padding: 12px 28px; border-radius: 50px; font-weight: 700; transition: 0.3s; }
+        .btn-outline:hover { background: var(--secondary-dark); color: white; }
+
+        .social-hero a { color: var(--secondary-dark); font-size: 1.3rem; margin-left: 15px; transition: 0.3s; }
+        .social-hero a:hover { color: var(--accent-green); transform: translateY(-3px); display: inline-block; }
+
+        .hero-image { flex: 1; display: flex; justify-content: center; position: relative; }
+        .profile-wrapper { position: relative; padding: 10px; }
+        .profile-wrapper img {
+            width: 350px; height: 350px; border-radius: 50%; border: 6px solid var(--accent-green);
+            object-fit: cover; box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            animation: float 4s ease-in-out infinite; background: #fff;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* ====== قسم الإحصائيات ====== */
+        .stats { background: var(--primary-dark); padding: 60px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; }
+        .stat-box i { font-size: 2.2rem; color: var(--accent-green); margin-bottom: 15px; }
+        .stat-box h3 { font-size: 2.8rem; color: var(--text-white); font-weight: 900; }
+        .stat-box p { color: #94a3b8; font-weight: 600; font-size: 1.1rem; }
+
+        /* ====== عناوين الأقسام ====== */
+        section { padding: 90px 0; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 10px; color: var(--secondary-dark); font-weight: 900; }
+        .section-header .line { width: 60px; height: 4px; background: var(--accent-green); margin: 0 auto 15px; border-radius: 2px; }
+        .section-header p { color: #64748b; font-weight: 500; }
+
+        /* ====== عني ====== */
+        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .about-text h3 { font-size: 2rem; margin-bottom: 20px; color: var(--secondary-dark); }
+        .about-text p { color: #475569; line-height: 1.8; margin-bottom: 30px; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; text-align: right; }
+        .info-item { background: #f8fafc; padding: 10px; border-radius: 8px; }
+        .info-item span { font-weight: 700; color: var(--accent-green); }
+
+        /* ====== الخدمات ====== */
+        .services { background: #f1f5f9; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card { background: white; padding: 40px 20px; border-radius: 20px; text-align: center; transition: 0.4s; border: 1px solid transparent; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--accent-green); }
+        .service-card i { font-size: 2.8rem; color: var(--accent-green); margin-bottom: 20px; background: #d1fae5; padding: 20px; border-radius: 50%; transition: 0.3s; }
+        .service-card:hover i { background: var(--accent-green); color: white; }
+        .service-card h3 { margin-bottom: 12px; color: var(--secondary-dark); }
+        .service-card p { color: #64748b; font-size: 0.95rem; line-height: 1.6; }
+
+        /* ====== المشاريع ====== */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 30px; }
+        .project-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.04); transition: 0.4s; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .project-image img { width: 100%; height: 220px; object-fit: cover; }
+        .project-info { padding: 25px; }
+        .project-info h3 { color: var(--secondary-dark); margin-bottom: 10px; }
+        .project-info p { color: #64748b; font-size: 0.9rem; margin-bottom: 15px; line-height: 1.5; }
+        .project-tech span { display: inline-block; background: #e2e8f0; padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-left: 5px; margin-bottom: 5px; color: var(--secondary-dark); }
+        .btn-outline-small { display: inline-block; margin-top: 15px; border: 1px solid var(--secondary-dark); padding: 8px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; transition: 0.3s; }
+        .btn-outline-small:hover { background: var(--secondary-dark); color: white; }
+
+        /* ====== المهارات ====== */
+        .skills-container { max-width: 800px; margin: 0 auto; }
+        .skill-box { margin-bottom: 25px; }
+        .skill-name { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 700; color: var(--secondary-dark); }
+        .progress-bar { height: 12px; background: #e2e8f0; border-radius: 20px; overflow: hidden; }
+        .progress { height: 100%; background: var(--accent-green); width: 0%; border-radius: 20px; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); }
+
+        /* ====== التواصل ====== */
+        .contact { background: #f1f5f9; }
+        .contact-content { display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); width: 100%; gap: 20px; }
+        .contact-card { background: white; padding: 30px 20px; text-align: center; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); transition: 0.3s; }
+        .contact-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        .contact-card i { font-size: 2.2rem; color: var(--accent-green); margin-bottom: 15px; }
+        .contact-card h4 { color: var(--secondary-dark); }
+        .contact-card p { color: #64748b; font-size: 0.95rem; font-weight: 500; }
+
+        .whatsapp-btn { background: #25D366; color: white; padding: 18px 45px; border-radius: 50px; font-weight: 800; font-size: 1.2rem; display: inline-flex; align-items: center; gap: 12px; transition: 0.3s; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); }
+        .whatsapp-btn:hover { transform: scale(1.05); background: #128C7E; color: white; }
+
+        /* ====== الفوتر ====== */
+        footer { background: var(--primary-dark); color: #94a3b8; padding: 40px 0; text-align: center; }
+        footer .footer-links { margin-top: 15px; }
+        footer .footer-links a { color: #94a3b8; font-size: 1.3rem; margin: 0 12px; transition: 0.3s; display: inline-block; }
+        footer .footer-links a:hover { color: var(--accent-green); transform: translateY(-3px); }
+
+        /* ====== الموبايل ====== */
+        @media (max-width: 900px) {
+            .hero-content { flex-direction: column-reverse; text-align: center; }
+            .hero-text h1 { font-size: 2.8rem; }
+            .subtitle { margin: 0 auto 30px; }
+            .hero-buttons { justify-content: center; }
+            .social-hero { display: flex; justify-content: center; gap: 15px; }
+            .social-hero a { margin: 0; }
+        }
+        @media (max-width: 700px) {
+            nav ul { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: var(--primary-dark); padding: 20px; text-align: center; gap: 15px; border-bottom: 2px solid var(--accent-green); }
+            nav ul.active { display: flex; }
+            .hamburger { display: block; }
+            .info-grid { grid-template-columns: 1fr; text-align: center; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .hero-text h1 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- ====== 1. شريط التنقل (Navbar) ====== -->
+    <!-- ====== الشريط العلوي ====== -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -35,7 +214,7 @@
         </div>
     </header>
 
-    <!-- ====== 2. قسم الترحيب (Hero) ====== -->
+    <!-- ====== قسم الترحيب ====== -->
     <section class="hero" id="home">
         <div class="container hero-content">
             <div class="hero-text">
@@ -54,15 +233,14 @@
             </div>
             <div class="hero-image">
                 <div class="profile-wrapper">
-                    <!-- غيّر الرابط هنا إذا كان عندك صورة شخصية -->
+                    <!-- غير هذا الرابط إذا كانت عندك صورة شخصية حقيقية -->
                     <img src="https://ui-avatars.com/api/?name=Saif+Zahaf&size=400&background=1E293B&color=10B981&bold=true" alt="Saif Zahaf">
-                    <div class="status-dot"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ====== 3. قسم الإحصائيات (Stats) ====== -->
+    <!-- ====== قسم الإحصائيات ====== -->
     <section class="stats">
         <div class="container stats-grid">
             <div class="stat-box">
@@ -83,7 +261,7 @@
         </div>
     </section>
 
-    <!-- ====== 4. قسم عني (About) ====== -->
+    <!-- ====== قسم عني ====== -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-header">
@@ -107,7 +285,7 @@
         </div>
     </section>
 
-    <!-- ====== 5. قسم الخدمات (Services) ====== -->
+    <!-- ====== قسم الخدمات ====== -->
     <section class="services" id="services">
         <div class="container">
             <div class="section-header">
@@ -135,7 +313,7 @@
         </div>
     </section>
 
-    <!-- ====== 6. قسم المشاريع (Projects) ====== -->
+    <!-- ====== قسم المشاريع ====== -->
     <section class="projects" id="projects">
         <div class="container">
             <div class="section-header">
@@ -144,38 +322,41 @@
                 <p>نظرة على أعمالي الأخيرة</p>
             </div>
             <div class="projects-grid">
+                <!-- مشروع 1 -->
                 <div class="project-card">
                     <div class="project-image"><img src="https://placehold.co/600x400/1E293B/10B981?text=Minsaj+Fix" alt="Minsaj Fix"></div>
                     <div class="project-info">
                         <h3>Minsaj Fix</h3>
                         <p>نظام متكامل لإدارة ورشات الصيانة وتتبع حالة الإصلاحات.</p>
                         <div class="project-tech"><span>C#</span> <span>WPF</span> <span>SQLite</span></div>
-                        <a href="https://github.com/seislemzhf" target="_blank" class="btn-outline-small"><i class="fab fa-github"></i> زر الاستكشاف</a>
+                        <a href="https://github.com/seislemzhf" target="_blank" class="btn-outline-small"><i class="fab fa-github"></i> استكشاف الكود</a>
                     </div>
                 </div>
+                <!-- مشروع 2 -->
                 <div class="project-card">
                     <div class="project-image"><img src="https://placehold.co/600x400/1E293B/10B981?text=Minsaj+Barcode" alt="Minsaj Barcode"></div>
                     <div class="project-info">
                         <h3>Minsaj Barcode</h3>
                         <p>أداة احترافية لطباعة ملصقات المنتجات والباركود مع تخصيص كامل.</p>
                         <div class="project-tech"><span>WPF</span> <span>UI/UX</span> <span>Printing</span></div>
-                        <a href="https://github.com/seislemzhf" target="_blank" class="btn-outline-small"><i class="fab fa-github"></i> زر الاستكشاف</a>
+                        <a href="https://github.com/seislemzhf" target="_blank" class="btn-outline-small"><i class="fab fa-github"></i> استكشاف الكود</a>
                     </div>
                 </div>
+                <!-- مشروع 3 -->
                 <div class="project-card">
                     <div class="project-image"><img src="https://placehold.co/600x400/1E293B/10B981?text=Minsaj+DZ" alt="Minsaj DZ"></div>
                     <div class="project-info">
                         <h3>Minsaj DZ</h3>
                         <p>مركز متقدم لإدارة وتوليد التراخيص البرمجية لحماية تطبيقاتك.</p>
                         <div class="project-tech"><span>Security</span> <span>API</span> <span>WinForms</span></div>
-                        <a href="https://github.com/seislemzhf" target="_blank" class="btn-outline-small"><i class="fab fa-github"></i> زر الاستكشاف</a>
+                        <a href="https://github.com/seislemzhf" target="_blank" class="btn-outline-small"><i class="fab fa-github"></i> استكشاف الكود</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ====== 7. قسم المهارات (Skills) ====== -->
+    <!-- ====== قسم المهارات ====== -->
     <section class="skills" id="skills">
         <div class="container">
             <div class="section-header">
@@ -204,7 +385,7 @@
         </div>
     </section>
 
-    <!-- ====== 8. قسم التواصل (Contact) ====== -->
+    <!-- ====== قسم التواصل ====== -->
     <section class="contact" id="contact">
         <div class="container">
             <div class="section-header">
@@ -239,7 +420,7 @@
         </div>
     </section>
 
-    <!-- ====== 9. التذييل (Footer) ====== -->
+    <!-- ====== الفوتر ====== -->
     <footer>
         <div class="container">
             <p>&copy; 2026 <strong>Saif El Islem Zahaf</strong>. جميع الحقوق محفوظة.</p>
@@ -251,7 +432,75 @@
         </div>
     </footer>
 
-    <!-- ربط ملف الحركات (Script) -->
-    <script src="script.js"></script>
+    <!-- ====== كود الحركات (JavaScript) ====== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. تشغيل القائمة (موبايل)
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+            if(hamburger) {
+                hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); });
+            }
+            document.querySelectorAll('#nav-links a').forEach(link => {
+                link.addEventListener('click', () => { navLinks.classList.remove('active'); });
+            });
+
+            // 2. تمييز الرابط النشط
+            const sections = document.querySelectorAll('section[id]');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    if (scrollY >= sectionTop) { current = section.getAttribute('id'); }
+                });
+                document.querySelectorAll('#nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) { link.classList.add('active'); }
+                });
+            });
+
+            // 3. أنيميشن الأرقام
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+            const runCounter = (counter) => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else { counter.innerText = target; }
+                };
+                updateCount();
+            };
+            const observerOptions = { threshold: 0.5 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        runCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            counters.forEach(counter => { observer.observe(counter); });
+
+            // 4. أنيميشن المهارات
+            const skillBars = document.querySelectorAll('.progress');
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        bar.style.width = bar.getAttribute('data-width') + '%';
+                        skillObserver.unobserve(bar);
+                    }
+                });
+            }, { threshold: 0.3 });
+            skillBars.forEach(bar => {
+                bar.style.width = '0%';
+                skillObserver.observe(bar);
+            });
+        });
+    </script>
 </body>
 </html>
