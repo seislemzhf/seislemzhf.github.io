@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minsaj Barcode - تحميل التطبيق</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* نفس ألوان موقعك الأساسي */
+        :root { --primary: #0F172A; --secondary: #1E293B; --accent: #10B981; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background: var(--primary); color: #fff; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 30px; }
+        
+        /* رأس الصفحة */
+        .header { text-align: center; padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .header h1 { font-size: 3rem; color: var(--accent); margin-bottom: 10px; }
+        .header p { color: #94a3b8; font-size: 1.2rem; }
+
+        /* صور التطبيق (الغرافيك) */
+        .app-visuals { margin: 40px 0; }
+        .screenshots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .screenshot-box { background: var(--secondary); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(16,185,129,0.2); transition: 0.3s; }
+        .screenshot-box:hover { transform: scale(1.02); border-color: var(--accent); }
+        .screenshot-box img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .screenshot-box h3 { margin-top: 15px; color: #fff; }
+
+        /* المميزات */
+        .features { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 20px; margin: 40px 0; backdrop-filter: blur(5px); }
+        .features h2 { text-align: center; font-size: 2rem; margin-bottom: 30px; }
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .feature-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px; border-left: 4px solid var(--accent); }
+        .feature-item i { color: var(--accent); font-size: 1.5rem; }
+
+        /* زر التحميل */
+        .download-section { text-align: center; margin: 60px 0; padding: 40px; background: rgba(16,185,129,0.1); border-radius: 30px; border: 1px solid rgba(16,185,129,0.2); }
+        .download-btn {
+            display: inline-flex; align-items: center; gap: 15px;
+            background: linear-gradient(135deg, #10B981, #059669); color: white;
+            padding: 20px 50px; border-radius: 60px; font-size: 1.5rem; font-weight: 900;
+            text-decoration: none; box-shadow: 0 10px 30px rgba(16,185,129,0.4);
+            transition: 0.3s;
+        }
+        .download-btn:hover { transform: scale(1.05); box-shadow: 0 15px 50px rgba(16,185,129,0.6); }
+        .back-home { display: inline-block; margin-top: 20px; color: #94a3b8; text-decoration: none; }
+        .back-home:hover { color: var(--accent); }
+
+        @media (max-width: 700px) {
+            .features-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- القسم 1: العنوان -->
+    <div class="header">
+        <h1>Minsaj Barcode</h1>
+        <p>نظام طباعة الملصقات والباركود الاحترافي</p>
+    </div>
+
+    <!-- القسم 2: الصور (حط هنا مسارات الصور تاعك) -->
+    <div class="app-visuals">
+        <h2 style="text-align:center; margin-bottom:20px;">لقطة شاشة للتطبيق</h2>
+        <div class="screenshots-grid">
+            <div class="screenshot-box">
+                <!-- غير الرابط هذا بـ: src="images/barcode-main.jpg" -->
+                <img src="https://placehold.co/600x350/1E293B/10B981?text=Screenshot+Main" alt="الواجهة الرئيسية">
+                <h3>الواجهة الرئيسية</h3>
+            </div>
+            <div class="screenshot-box">
+                <img src="https://placehold.co/600x350/1E293B/10B981?text=Screenshot+Print" alt="واجهة الطباعة">
+                <h3>خيارات الطباعة والتخصيص</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- القسم 3: المميزات -->
+    <div class="features">
+        <h2>✨ مميزات التطبيق</h2>
+        <div class="features-grid">
+            <div class="feature-item"><i class="fas fa-check-circle"></i> دعم الباركود EAN-13 و Code 128</div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i> تخصيص حجم الورق والملصقات</div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i> إضافة اسم المنتج والسعر</div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i> حفظ البيانات في قاعدة بيانات SQLite</div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i> واجهة مستخدم عصرية و Dark Mode</div>
+            <div class="feature-item"><i class="fas fa-check-circle"></i> طباعة مباشرة مع معاينة فورية</div>
+        </div>
+    </div>
+
+    <!-- القسم 4: زر التحميل -->
+    <div class="download-section">
+        <h2 style="margin-bottom: 20px;">هل أنت مستعد لاستخدامه؟</h2>
+        <a href="https://drive.google.com/file/d/..." target="_blank" class="download-btn">
+            <i class="fas fa-download"></i> تحميل التطبيق (Setup.exe)
+        </a>
+        <br>
+        <a href="index.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية</a>
+    </div>
+
+</div>
+
+</body>
+</html>
