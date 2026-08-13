@@ -3,174 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minsaj Barcode - عرض التطبيق</title>
+    <title>Minsaj Barcode | وفّر وقتك وفلوسك</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-dark: #0F172A;
-            --bg-secondary: #1E293B;
-            --green: #10B981;
-            --orange: #F59E0B;
-            --red: #EF4444;
-            --blue: #3B82F6;
-            --white: #F8FAFC;
-            --text-muted: #94a3b8;
+        /* ====== إعدادات عامة ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cairo', sans-serif; background: var(--bg-dark); color: var(--white); line-height: 1.6; }
-        .container { max-width: 1000px; margin: auto; padding: 30px; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #0F172A;
+            color: #F8FAFC;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a { text-decoration: none; color: inherit; }
         
-        /* Header */
-        .app-header { text-align: center; padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .app-header img { width: 80px; margin-bottom: 15px; }
-        .app-header h1 { font-size: 3rem; color: var(--orange); margin-bottom: 10px; }
-        .app-header p { color: var(--text-muted); font-size: 1.2rem; }
-
-        /* Screenshots */
-        .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 40px 0; }
-        .gallery img { width: 100%; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
-        @media(max-width:700px){ .gallery { grid-template-columns: 1fr; } }
-
-        /* Feature Grid */
-        .feature-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
-            background: var(--bg-secondary); padding: 30px; border-radius: 20px; margin: 40px 0;
+        /* ====== الألوان ====== */
+        :root {
+            --primary: #0F172A;
+            --secondary: #1E293B;
+            --accent: #10B981;
+            --gold: #F59E0B;
+            --light: #F8FAFC;
+            --muted: #94a3b8;
         }
-        .feature-item { display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 10px; }
-        .feature-item i { color: var(--green); }
-        @media(max-width:700px){ .feature-grid { grid-template-columns: 1fr; } }
 
-        /* Color Palette */
-        .color-palette { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 30px 0; }
-        .color-box { width: 100px; height: 100px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; text-align: center; padding: 5px; }
-
-        /* Details Table */
-        .info-section { background: var(--bg-secondary); padding: 30px; border-radius: 20px; margin: 30px 0; }
-        .info-section h2 { color: var(--orange); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
-        table { width: 100%; border-collapse: collapse; }
-        td, th { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: right; }
-        th { color: var(--text-muted); font-weight: 600; width: 30%; }
-
-        /* Download Button */
-        .download-area { text-align: center; margin: 50px 0; padding: 40px; background: rgba(16,185,129,0.1); border-radius: 30px; border: 1px solid rgba(16,185,129,0.2); }
-        .btn-download {
-            display: inline-block; background: linear-gradient(135deg, var(--green), #059669);
-            color: white; padding: 18px 50px; border-radius: 60px; font-size: 1.5rem; font-weight: 800;
-            text-decoration: none; box-shadow: 0 10px 30px rgba(16,185,129,0.4); transition: 0.3s;
+        /* ====== الشريط العلوي (Header) ====== */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .btn-download:hover { transform: scale(1.05); }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+        .logo span { color: var(--gold); }
+        .cta-small {
+            background: var(--accent);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        .cta-small:hover {
+            background: #059669;
+            transform: scale(1.05);
+        }
 
-        /* Footer */
-        .footer { text-align: center; padding: 30px 0; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
+        /* ====== قسم البطل (Hero) ====== */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 30%, rgba(16,185,129,0.1), #0F172A 60%);
+        }
+        .hero .badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--gold);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        .hero h1 span { color: var(--gold); }
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .hero .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+            transition: 0.3s;
+        }
+        .hero .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5);
+        }
+
+        /* ====== الأقسام العامة ====== */
+        section { padding: 70px 0; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        .section-header h2 span { color: var(--gold); }
+        .section-header p {
+            color: var(--muted);
+            font-size: 1.2rem;
+        }
+
+        /* ====== قسم المميزات (Features) ====== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .feature-card {
+            background: var(--secondary);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+            text-align: center;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            background: rgba(245, 158, 11, 0.1);
+            padding: 15px;
+            border-radius: 50%;
+        }
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        /* ====== قسم مثالي لـ (Target) ====== */
+        .target-section {
+            background: var(--secondary);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .target-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .target-item {
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 4px solid var(--accent);
+            font-weight: 700;
+        }
+
+        /* ====== جدول المقارنة (Comparison) ====== */
+        .compare-section {
+            background: radial-gradient(circle at 80% 50%, rgba(16,185,129,0.05), transparent);
+        }
+        .compare-table-wrap {
+            overflow-x: auto;
+            background: var(--secondary);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 400px;
+        }
+        th, td {
+            padding: 18px 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        th {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        td:first-child { text-align: right; font-weight: 700; }
+        .badge-success { background: rgba(16,185,129,0.2); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+        .badge-danger { background: rgba(239,68,68,0.2); color: #ef4444; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+
+        /* ====== زر الشراء (Why Buy) ====== */
+        .why-buy {
+            text-align: center;
+            background: rgba(245, 158, 11, 0.05);
+            padding: 60px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(245, 158, 11, 0.1);
+        }
+        .why-buy h2 { font-size: 2.2rem; margin-bottom: 20px; }
+        .why-buy ul {
+            display: inline-block;
+            text-align: right;
+            margin: 0 auto 30px;
+            list-style: none;
+            color: var(--muted);
+        }
+        .why-buy ul li { margin: 10px 0; font-size: 1.1rem; }
+        .why-buy ul li i { color: var(--accent); margin-left: 10px; }
+
+        /* ====== التواصل ====== */
+        .contact-box {
+            background: var(--secondary);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-box h3 { font-size: 1.8rem; margin-bottom: 15px; }
+        .contact-box .info { color: var(--muted); margin: 10px 0; font-size: 1.1rem; }
+        .contact-box .info i { color: var(--gold); margin-left: 10px; }
+
+        /* ====== الفوتر ====== */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--muted);
+            margin-top: 50px;
+        }
+
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2rem; }
+            .compare-table-wrap { padding: 10px; }
+            th, td { padding: 12px 8px; font-size: 0.9rem; }
+            .why-buy ul { text-align: center; }
+        }
     </style>
 </head>
 <body>
-<div class="container">
 
-    <!-- الشعار والعنوان -->
-    <div class="app-header">
-        <i class="fas fa-qrcode" style="font-size: 4rem; color: var(--orange);"></i>
-        <h1>Minsaj Barcode</h1>
-        <p>نظام طباعة الملصقات والباركود الاحترافي (v1.0)</p>
-    </div>
-
-    <!-- الصور -->
-    <div class="gallery">
-        <img src="https://placehold.co/600x350/1E293B/F59E0B?text=Splash+Screen" alt="Splash Screen">
-        <img src="https://placehold.co/600x350/1E293B/F59E0B?text=Main+Interface" alt="Main Interface">
-        <img src="https://placehold.co/600x350/1E293B/F59E0B?text=Barcode+Generator" alt="Barcode">
-        <img src="https://placehold.co/600x350/1E293B/F59E0B?text=Label+Designer" alt="Label Designer">
-    </div>
-
-    <!-- المميزات (15 ميزة) -->
-    <h2 style="color: var(--orange); margin-top: 20px;">✨ المميزات الرئيسية</h2>
-    <div class="feature-grid">
-        <div class="feature-item"><i class="fas fa-check-circle"></i> شاشة بداية احترافية (Splash Screen)</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> واجهة عصرية داكنة مع لمسات ذهبية</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> إدارة منتجات كاملة (إضافة، تعديل، حذف)</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> بحث ذكي فوري في الاسم والباركود</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> توليد باركود EAN-13 (بدعم 613)</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> توليد باركود Code 128 للنصوص</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> توليد تلقائي بضغطة زر واحدة</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> مصمم ملصقات متكامل مع مقاسات جاهزة</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> معاينة حية وتحديث فوري</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> دعم الطابعات الحرارية</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> أرشيف الطباعة مع التاريخ والكمية</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> إحصائيات يومية، أسبوعية، شهرية</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> نظام ترخيص (7 أيام تجربة + مدى الحياة)</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> نوافذ حوار مخصصة بتصميم MINSAJ</div>
-        <div class="feature-item"><i class="fas fa-check-circle"></i> توجيه عمودي وأفقي للطباعة</div>
-    </div>
-
-    <!-- الألوان -->
-    <h2 style="color: var(--orange);">🎨 الهوية البصرية</h2>
-    <div class="color-palette">
-        <div class="color-box" style="background: #0F172A; border:1px solid #fff;">#0F172A</div>
-        <div class="color-box" style="background: #1E293B; border:1px solid #fff;">#1E293B</div>
-        <div class="color-box" style="background: #10B981;">#10B981</div>
-        <div class="color-box" style="background: #F59E0B;">#F59E0B</div>
-        <div class="color-box" style="background: #EF4444;">#EF4444</div>
-        <div class="color-box" style="background: #3B82F6;">#3B82F6</div>
-        <div class="color-box" style="background: #F8FAFC; color:black;">#F8FAFC</div>
-    </div>
-
-    <!-- التفاصيل التقنية -->
-    <div class="info-section">
-        <h2>📦 محتويات الحزمة & نظام الترخيص</h2>
-        <table>
-            <tr><th>المثبت</th><td>MinsajBarcode_Setup_v1.0.exe</td></tr>
-            <tr><th>الدليل</th><td>README.txt (دليل الاستخدام)</td></tr>
-            <tr><th>التثبيت</th><td>تلقائي في Program Files + اختصار سطح المكتب</td></tr>
-            <tr><th>حالة الترخيص</th><td>تجريبي (7 أيام) / مفعّل (مدى الحياة)</td></tr>
-            <tr><th>الحماية</th><td>مفتاح مرتبط بمعرف الجهاز</td></tr>
-        </table>
-    </div>
-
-    <div class="info-section">
-        <h2>🖨️ دعم الطباعة & الإحصائيات</h2>
-        <table>
-            <tr><th>الطابعات</th><td>حرارية + مقاسات مخصصة</td></tr>
-            <tr><th>الاتجاه</th><td>عمودي وأفقي</td></tr>
-            <tr><th>الإحصائيات</th><td>عدد الملصقات، العمليات، القيمة الإجمالية</td></tr>
-        </table>
-    </div>
-
-    <div class="info-section">
-        <h2>💻 متطلبات التشغيل</h2>
-        <table>
-            <tr><th>نظام التشغيل</th><td>Windows 10/11 (64-bit)</td></tr>
-            <tr><th>الرام</th><td>4 جيجا بايت</td></tr>
-            <tr><th>المساحة</th><td>500 ميجا بايت</td></tr>
-            <tr><th>الاتصال</th><td>لا يحتاج إنترنت</td></tr>
-        </table>
-    </div>
-
-    <!-- زر التحميل -->
-    <div class="download-area">
-        <h2 style="margin-bottom: 15px;">🚀 حمل النسخة الآن!</h2>
-        <!-- غير الرابط برابط التحميل الحقيقي -->
-        <a href="#" class="btn-download"><i class="fas fa-download"></i> تحميل Minsaj Barcode v1.0</a>
-    </div>
-
-    <!-- معلومات التواصل -->
-    <div class="info-section">
-        <h2>📞 معلومات الاتصال</h2>
-        <table>
-            <tr><th>المطور</th><td>Saif El Islem Zahaf</td></tr>
-            <tr><th>الهاتف</th><td>0657299758</td></tr>
-            <tr><th>البريد</th><td>seislemzhf@gmail.com</td></tr>
-            <tr><th>العنوان</th><td>Belgaid, Bir El Djir, Oran, Algeria</td></tr>
-        </table>
-        <div style="text-align: center; margin-top: 20px; color: var(--text-muted);">
-            🇩🇿 Made in Algeria with ❤️ <br> © 2026 Minsaj DZ - جميع الحقوق محفوظة
+    <!-- ====== الشريط العلوي ====== -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">Minsaj <span>Barcode</span></div>
+            <a href="#contact" class="cta-small"><i class="fas fa-shopping-cart"></i> اطلبه الآن</a>
         </div>
-    </div>
+    </header>
 
-    <div style="text-align:center; margin: 20px 0;">
-        <a href="index.html" style="color: var(--text-muted);"><i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية</a>
-    </div>
+    <!-- ====== قسم البطل ====== -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge"><i class="fas fa-star"></i> صنع في الجزائر 🇩🇿</div>
+            <h1>وفّر <span>فلوسك ووقتك</span> <br> مع Minsaj Barcode</h1>
+            <p>وداعاً للكتابة اليدوية والأخطاء. اطبع ملصقات احترافية في دقائق ورفع قيمة محلك.</p>
+            <a href="#contact" class="btn-primary"><i class="fas fa-download"></i> ابدأ تجربتك المجانية 7 أيام</a>
+        </div>
+    </section>
 
-</div>
+    <!-- ====== قسم المميزات (الـ 10 نقاط) ====== -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2>شنو <span>يقدملك</span>؟</h2>
+                <p>10 أسباب تخلّيك تقول "وداعاً" للقلم والورق</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-pen-fancy"></i>
+                    <h3>وداعاً للكتابة اليدوية ✍️❌</h3>
+                    <p>ما تحتاجش تكتب الأسعار بيدك. البرنامج يطبعلك ملصقات جاهزة ولاصقة.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-store"></i>
+                    <h3>ملصقات احترافية ⭐</h3>
+                    <p>شكل منظم ومرتب. اسم محلك على كل منتج، وأسعار واضحة وكبيرة.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>سرعة في الخدمة ⚡</h3>
+                    <p>اطبع 100 ملصق في دقائق بدون تعب ولا أخطاء.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-qrcode"></i>
+                    <h3>الباركود يقراه أي سكانير 📊</h3>
+                    <p>متوافق مع كل أجهزة القراءة. باركود جزائري يبدأ بـ 613.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-simple"></i>
+                    <h3>تتبع كل شيء 📋</h3>
+                    <p>عرف شحال طبعت اليوم، هذا الأسبوع، وهذا الشهر بإحصائيات دقيقة.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-wifi-slash"></i>
+                    <h3>يخدم بدون إنترنت 📡❌</h3>
+                    <p>كل شيء في جهازك. ما يحتاجش اتصال ولا سحابة.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-face-smile"></i>
+                    <h3>سهل الاستخدام 👌</h3>
+                    <p>واجهة بسيطة بالعربية. أي واحد يقدر يتعلمها في دقائق.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-print"></i>
+                    <h3>يشتغل على أي طابعة حرارية 🖨️</h3>
+                    <p>متوافق مع الطابعات الرخيصة. مقاسات متعددة جاهزة.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>أمان كامل 🔒</h3>
+                    <p>بياناتك في جهازك فقط. ما تروحش للسحاب ولا لأحد.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-gift"></i>
+                    <h3>تجربة مجانية 7 أيام 🎁</h3>
+                    <p>جرب قبل ما تشري. كل المميزات متاحة في النسخة التجريبية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== قسم "مثالي لـ" ====== -->
+    <section class="target-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🏪 <span>مثالي لـ</span></h2>
+                <p>أي محل يبيع منتجات ويحتاج ملصقات احترافية</p>
+            </div>
+            <div class="target-grid">
+                <div class="target-item"><i class="fas fa-apple-whole"></i> محلات المواد الغذائية</div>
+                <div class="target-item"><i class="fas fa-warehouse"></i> المخازن</div>
+                <div class="target-item"><i class="fas fa-tshirt"></i> محلات الملابس</div>
+                <div class="target-item"><i class="fas fa-pills"></i> الصيدليات</div>
+                <div class="target-item"><i class="fas fa-laptop"></i> محلات الأجهزة</div>
+                <div class="target-item"><i class="fas fa-store"></i> أي محل يبيع منتجات</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== قسم المقارنة (كم يوفّرلك) ====== -->
+    <section class="compare-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>💰 كم <span>يوفّرلك</span>؟</h2>
+                <p>الفرق بين الطريقة التقليدية و Minsaj Barcode</p>
+            </div>
+            <div class="compare-table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>المقارنة</th>
+                            <th>بدون البرنامج</th>
+                            <th>مع Minsaj Barcode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>الوقت</td>
+                            <td><span class="badge-danger">كتابة يدوية = وقت كثير</span></td>
+                            <td><span class="badge-success">طباعة فورية ⚡</span></td>
+                        </tr>
+                        <tr>
+                            <td>الدقة</td>
+                            <td><span class="badge-danger">أخطاء في الأسعار</span></td>
+                            <td><span class="badge-success">دقة 100% ✅</span></td>
+                        </tr>
+                        <tr>
+                            <td>المظهر</td>
+                            <td><span class="badge-danger">ملصقات غير مرتبة</span></td>
+                            <td><span class="badge-success">شكل احترافي ⭐</span></td>
+                        </tr>
+                        <tr>
+                            <td>الإحصائيات</td>
+                            <td><span class="badge-danger">ما تعرفش شحال طبعت</span></td>
+                            <td><span class="badge-success">إحصائيات دقيقة 📊</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== قسم ليش تشريه ====== -->
+    <section>
+        <div class="container">
+            <div class="why-buy">
+                <h2>⭐ ليش <span>تشتريه</span>؟</h2>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> صنع في الجزائر 🇩🇿</li>
+                    <li><i class="fas fa-check-circle"></i> دعم فني مباشر من المطور</li>
+                    <li><i class="fas fa-check-circle"></i> سعر مناسب للمحلات</li>
+                    <li><i class="fas fa-check-circle"></i> تحديثات مجانية مدى الحياة</li>
+                </ul>
+                <a href="#contact" class="hero .btn-primary" style="background: var(--gold); color: #0F172A; padding: 15px 40px; border-radius: 50px; font-weight: 900; display:inline-block; box-shadow: 0 10px 30px rgba(245,158,11,0.3); transition:0.3s;">
+                    <i class="fas fa-cart-shopping"></i> اطلب البرنامج الآن
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== قسم التواصل ====== -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>📞 <span>للطلب أو الاستفسار</span></h2>
+                <p>تواصل معي مباشرة</p>
+            </div>
+            <div class="contact-box">
+                <h3>Saif El Islem Zahaf</h3>
+                <div class="info"><i class="fas fa-phone"></i> 0657200758</div>
+                <div class="info"><i class="fas fa-envelope"></i> seislemzhf@gmail.com</div>
+                <div class="info"><i class="fas fa-location-dot"></i> Belgaid, Bir El Djir, Oran, Algeria</div>
+                <div style="margin-top: 25px;">
+                    <a href="https://wa.me/2130657200758" target="_blank" style="background: #25D366; color: white; padding: 15px 35px; border-radius: 50px; font-weight: 800; display: inline-block; transition:0.3s;">
+                        <i class="fab fa-whatsapp"></i> راسلني على واتساب
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== الفوتر ====== -->
+    <footer>
+        <div class="container">
+            <p>🇩🇿 Made in Algeria with ❤️ <br> © 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
 </body>
 </html>
