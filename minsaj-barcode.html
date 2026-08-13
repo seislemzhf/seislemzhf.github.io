@@ -3,105 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minsaj Barcode - تحميل التطبيق</title>
+    <title>Minsaj Barcode - عرض التطبيق</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* نفس ألوان موقعك الأساسي */
-        :root { --primary: #0F172A; --secondary: #1E293B; --accent: #10B981; }
+        :root {
+            --bg-dark: #0F172A;
+            --bg-secondary: #1E293B;
+            --green: #10B981;
+            --orange: #F59E0B;
+            --red: #EF4444;
+            --blue: #3B82F6;
+            --white: #F8FAFC;
+            --text-muted: #94a3b8;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Cairo', sans-serif; background: var(--primary); color: #fff; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 30px; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg-dark); color: var(--white); line-height: 1.6; }
+        .container { max-width: 1000px; margin: auto; padding: 30px; }
         
-        /* رأس الصفحة */
-        .header { text-align: center; padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .header h1 { font-size: 3rem; color: var(--accent); margin-bottom: 10px; }
-        .header p { color: #94a3b8; font-size: 1.2rem; }
+        /* Header */
+        .app-header { text-align: center; padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .app-header img { width: 80px; margin-bottom: 15px; }
+        .app-header h1 { font-size: 3rem; color: var(--orange); margin-bottom: 10px; }
+        .app-header p { color: var(--text-muted); font-size: 1.2rem; }
 
-        /* صور التطبيق (الغرافيك) */
-        .app-visuals { margin: 40px 0; }
-        .screenshots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .screenshot-box { background: var(--secondary); border-radius: 15px; padding: 20px; text-align: center; border: 1px solid rgba(16,185,129,0.2); transition: 0.3s; }
-        .screenshot-box:hover { transform: scale(1.02); border-color: var(--accent); }
-        .screenshot-box img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .screenshot-box h3 { margin-top: 15px; color: #fff; }
+        /* Screenshots */
+        .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 40px 0; }
+        .gallery img { width: 100%; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        @media(max-width:700px){ .gallery { grid-template-columns: 1fr; } }
 
-        /* المميزات */
-        .features { background: rgba(255,255,255,0.03); padding: 40px; border-radius: 20px; margin: 40px 0; backdrop-filter: blur(5px); }
-        .features h2 { text-align: center; font-size: 2rem; margin-bottom: 30px; }
-        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .feature-item { display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px; border-left: 4px solid var(--accent); }
-        .feature-item i { color: var(--accent); font-size: 1.5rem; }
-
-        /* زر التحميل */
-        .download-section { text-align: center; margin: 60px 0; padding: 40px; background: rgba(16,185,129,0.1); border-radius: 30px; border: 1px solid rgba(16,185,129,0.2); }
-        .download-btn {
-            display: inline-flex; align-items: center; gap: 15px;
-            background: linear-gradient(135deg, #10B981, #059669); color: white;
-            padding: 20px 50px; border-radius: 60px; font-size: 1.5rem; font-weight: 900;
-            text-decoration: none; box-shadow: 0 10px 30px rgba(16,185,129,0.4);
-            transition: 0.3s;
+        /* Feature Grid */
+        .feature-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
+            background: var(--bg-secondary); padding: 30px; border-radius: 20px; margin: 40px 0;
         }
-        .download-btn:hover { transform: scale(1.05); box-shadow: 0 15px 50px rgba(16,185,129,0.6); }
-        .back-home { display: inline-block; margin-top: 20px; color: #94a3b8; text-decoration: none; }
-        .back-home:hover { color: var(--accent); }
+        .feature-item { display: flex; align-items: center; gap: 12px; padding: 8px; border-radius: 10px; }
+        .feature-item i { color: var(--green); }
+        @media(max-width:700px){ .feature-grid { grid-template-columns: 1fr; } }
 
-        @media (max-width: 700px) {
-            .features-grid { grid-template-columns: 1fr; }
-            .header h1 { font-size: 2rem; }
+        /* Color Palette */
+        .color-palette { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 30px 0; }
+        .color-box { width: 100px; height: 100px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8rem; text-align: center; padding: 5px; }
+
+        /* Details Table */
+        .info-section { background: var(--bg-secondary); padding: 30px; border-radius: 20px; margin: 30px 0; }
+        .info-section h2 { color: var(--orange); margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; }
+        td, th { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: right; }
+        th { color: var(--text-muted); font-weight: 600; width: 30%; }
+
+        /* Download Button */
+        .download-area { text-align: center; margin: 50px 0; padding: 40px; background: rgba(16,185,129,0.1); border-radius: 30px; border: 1px solid rgba(16,185,129,0.2); }
+        .btn-download {
+            display: inline-block; background: linear-gradient(135deg, var(--green), #059669);
+            color: white; padding: 18px 50px; border-radius: 60px; font-size: 1.5rem; font-weight: 800;
+            text-decoration: none; box-shadow: 0 10px 30px rgba(16,185,129,0.4); transition: 0.3s;
         }
+        .btn-download:hover { transform: scale(1.05); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 30px 0; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
     </style>
 </head>
 <body>
-
 <div class="container">
 
-    <!-- القسم 1: العنوان -->
-    <div class="header">
+    <!-- الشعار والعنوان -->
+    <div class="app-header">
+        <i class="fas fa-qrcode" style="font-size: 4rem; color: var(--orange);"></i>
         <h1>Minsaj Barcode</h1>
-        <p>نظام طباعة الملصقات والباركود الاحترافي</p>
+        <p>نظام طباعة الملصقات والباركود الاحترافي (v1.0)</p>
     </div>
 
-    <!-- القسم 2: الصور (حط هنا مسارات الصور تاعك) -->
-    <div class="app-visuals">
-        <h2 style="text-align:center; margin-bottom:20px;">لقطة شاشة للتطبيق</h2>
-        <div class="screenshots-grid">
-            <div class="screenshot-box">
-                <!-- غير الرابط هذا بـ: src="images/barcode-main.jpg" -->
-                <img src="https://placehold.co/600x350/1E293B/10B981?text=Screenshot+Main" alt="الواجهة الرئيسية">
-                <h3>الواجهة الرئيسية</h3>
-            </div>
-            <div class="screenshot-box">
-                <img src="https://placehold.co/600x350/1E293B/10B981?text=Screenshot+Print" alt="واجهة الطباعة">
-                <h3>خيارات الطباعة والتخصيص</h3>
-            </div>
+    <!-- الصور -->
+    <div class="gallery">
+        <img src="https://placehold.co/600x350/1E293B/F59E0B?text=Splash+Screen" alt="Splash Screen">
+        <img src="https://placehold.co/600x350/1E293B/F59E0B?text=Main+Interface" alt="Main Interface">
+        <img src="https://placehold.co/600x350/1E293B/F59E0B?text=Barcode+Generator" alt="Barcode">
+        <img src="https://placehold.co/600x350/1E293B/F59E0B?text=Label+Designer" alt="Label Designer">
+    </div>
+
+    <!-- المميزات (15 ميزة) -->
+    <h2 style="color: var(--orange); margin-top: 20px;">✨ المميزات الرئيسية</h2>
+    <div class="feature-grid">
+        <div class="feature-item"><i class="fas fa-check-circle"></i> شاشة بداية احترافية (Splash Screen)</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> واجهة عصرية داكنة مع لمسات ذهبية</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> إدارة منتجات كاملة (إضافة، تعديل، حذف)</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> بحث ذكي فوري في الاسم والباركود</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> توليد باركود EAN-13 (بدعم 613)</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> توليد باركود Code 128 للنصوص</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> توليد تلقائي بضغطة زر واحدة</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> مصمم ملصقات متكامل مع مقاسات جاهزة</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> معاينة حية وتحديث فوري</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> دعم الطابعات الحرارية</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> أرشيف الطباعة مع التاريخ والكمية</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> إحصائيات يومية، أسبوعية، شهرية</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> نظام ترخيص (7 أيام تجربة + مدى الحياة)</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> نوافذ حوار مخصصة بتصميم MINSAJ</div>
+        <div class="feature-item"><i class="fas fa-check-circle"></i> توجيه عمودي وأفقي للطباعة</div>
+    </div>
+
+    <!-- الألوان -->
+    <h2 style="color: var(--orange);">🎨 الهوية البصرية</h2>
+    <div class="color-palette">
+        <div class="color-box" style="background: #0F172A; border:1px solid #fff;">#0F172A</div>
+        <div class="color-box" style="background: #1E293B; border:1px solid #fff;">#1E293B</div>
+        <div class="color-box" style="background: #10B981;">#10B981</div>
+        <div class="color-box" style="background: #F59E0B;">#F59E0B</div>
+        <div class="color-box" style="background: #EF4444;">#EF4444</div>
+        <div class="color-box" style="background: #3B82F6;">#3B82F6</div>
+        <div class="color-box" style="background: #F8FAFC; color:black;">#F8FAFC</div>
+    </div>
+
+    <!-- التفاصيل التقنية -->
+    <div class="info-section">
+        <h2>📦 محتويات الحزمة & نظام الترخيص</h2>
+        <table>
+            <tr><th>المثبت</th><td>MinsajBarcode_Setup_v1.0.exe</td></tr>
+            <tr><th>الدليل</th><td>README.txt (دليل الاستخدام)</td></tr>
+            <tr><th>التثبيت</th><td>تلقائي في Program Files + اختصار سطح المكتب</td></tr>
+            <tr><th>حالة الترخيص</th><td>تجريبي (7 أيام) / مفعّل (مدى الحياة)</td></tr>
+            <tr><th>الحماية</th><td>مفتاح مرتبط بمعرف الجهاز</td></tr>
+        </table>
+    </div>
+
+    <div class="info-section">
+        <h2>🖨️ دعم الطباعة & الإحصائيات</h2>
+        <table>
+            <tr><th>الطابعات</th><td>حرارية + مقاسات مخصصة</td></tr>
+            <tr><th>الاتجاه</th><td>عمودي وأفقي</td></tr>
+            <tr><th>الإحصائيات</th><td>عدد الملصقات، العمليات، القيمة الإجمالية</td></tr>
+        </table>
+    </div>
+
+    <div class="info-section">
+        <h2>💻 متطلبات التشغيل</h2>
+        <table>
+            <tr><th>نظام التشغيل</th><td>Windows 10/11 (64-bit)</td></tr>
+            <tr><th>الرام</th><td>4 جيجا بايت</td></tr>
+            <tr><th>المساحة</th><td>500 ميجا بايت</td></tr>
+            <tr><th>الاتصال</th><td>لا يحتاج إنترنت</td></tr>
+        </table>
+    </div>
+
+    <!-- زر التحميل -->
+    <div class="download-area">
+        <h2 style="margin-bottom: 15px;">🚀 حمل النسخة الآن!</h2>
+        <!-- غير الرابط برابط التحميل الحقيقي -->
+        <a href="#" class="btn-download"><i class="fas fa-download"></i> تحميل Minsaj Barcode v1.0</a>
+    </div>
+
+    <!-- معلومات التواصل -->
+    <div class="info-section">
+        <h2>📞 معلومات الاتصال</h2>
+        <table>
+            <tr><th>المطور</th><td>Saif El Islem Zahaf</td></tr>
+            <tr><th>الهاتف</th><td>0657299758</td></tr>
+            <tr><th>البريد</th><td>seislemzhf@gmail.com</td></tr>
+            <tr><th>العنوان</th><td>Belgaid, Bir El Djir, Oran, Algeria</td></tr>
+        </table>
+        <div style="text-align: center; margin-top: 20px; color: var(--text-muted);">
+            🇩🇿 Made in Algeria with ❤️ <br> © 2026 Minsaj DZ - جميع الحقوق محفوظة
         </div>
     </div>
 
-    <!-- القسم 3: المميزات -->
-    <div class="features">
-        <h2>✨ مميزات التطبيق</h2>
-        <div class="features-grid">
-            <div class="feature-item"><i class="fas fa-check-circle"></i> دعم الباركود EAN-13 و Code 128</div>
-            <div class="feature-item"><i class="fas fa-check-circle"></i> تخصيص حجم الورق والملصقات</div>
-            <div class="feature-item"><i class="fas fa-check-circle"></i> إضافة اسم المنتج والسعر</div>
-            <div class="feature-item"><i class="fas fa-check-circle"></i> حفظ البيانات في قاعدة بيانات SQLite</div>
-            <div class="feature-item"><i class="fas fa-check-circle"></i> واجهة مستخدم عصرية و Dark Mode</div>
-            <div class="feature-item"><i class="fas fa-check-circle"></i> طباعة مباشرة مع معاينة فورية</div>
-        </div>
-    </div>
-
-    <!-- القسم 4: زر التحميل -->
-    <div class="download-section">
-        <h2 style="margin-bottom: 20px;">هل أنت مستعد لاستخدامه؟</h2>
-        <a href="https://drive.google.com/file/d/..." target="_blank" class="download-btn">
-            <i class="fas fa-download"></i> تحميل التطبيق (Setup.exe)
-        </a>
-        <br>
-        <a href="index.html" class="back-home"><i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية</a>
+    <div style="text-align:center; margin: 20px 0;">
+        <a href="index.html" style="color: var(--text-muted);"><i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية</a>
     </div>
 
 </div>
-
 </body>
 </html>
