@@ -3,121 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saif El Islem Zahaf | Software Developer</title>
+    <title>Saif El Islem Zahaf | Portfolio PRO</title>
+    <!-- Font Awesome (الأيقونات) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (خط عربي احترافي) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- ربط ملف التنسيق style.css -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <header class="header">
+
+    <!-- ====== 1. شريط التنقل (Navbar) ====== -->
+    <header>
         <div class="container">
-            <div class="logo">MINSAJ DZ</div>
-            <nav>
-                <a href="#home">الرئيسية</a>
-                <a href="#projects">المشاريع</a>
-                <a href="#skills">المهارات</a>
-                <a href="#contact">اتصل بي</a>
-            </nav>
+            <div class="header-content">
+                <div class="logo">Seislem<span>Dev</span></div>
+                <nav>
+                    <ul id="nav-links">
+                        <li><a href="#home" class="active">الرئيسية</a></li>
+                        <li><a href="#about">عني</a></li>
+                        <li><a href="#services">خدماتي</a></li>
+                        <li><a href="#projects">مشاريعي</a></li>
+                        <li><a href="#skills">مهاراتي</a></li>
+                        <li><a href="#contact">اتصل بي</a></li>
+                    </ul>
+                    <div class="hamburger" id="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </nav>
+            </div>
         </div>
     </header>
-    
+
+    <!-- ====== 2. قسم الترحيب (Hero) ====== -->
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <div class="avatar">S</div>
-                <h1>Saif El Islem Zahaf</h1>
-                <h2>Software Developer</h2>
-                <p>مطور تطبيقات سطح المكتب بخبرة في C# و WPF</p>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="badge"><i class="fas fa-code"></i> مطور برمجيات محترف</span>
+                <h1>مرحباً، أنا <span class="highlight">سيف الإسلام زحاف</span></h1>
+                <p class="subtitle">أبني تطبيقات سطح مكتب عالية الأداء وتجارب مستخدم استثنائية باستخدام تقنيات .NET و WPF.</p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">مشاريعي</a>
-                    <a href="#contact" class="btn btn-secondary">تواصل معي</a>
+                    <a href="#projects" class="btn btn-primary">تصفح أعمالي <i class="fas fa-arrow-left"></i></a>
+                    <a href="#contact" class="btn btn-outline">تواصل معي</a>
+                </div>
+                <div class="social-hero">
+                    <a href="https://github.com/seislemzhf" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:seislemzhf@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/213657299758" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-wrapper">
+                    <!-- غيّر الرابط هنا إذا كان عندك صورة شخصية -->
+                    <img src="https://ui-avatars.com/api/?name=Saif+Zahaf&size=400&background=1E293B&color=10B981&bold=true" alt="Saif Zahaf">
+                    <div class="status-dot"></div>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- ====== 3. قسم الإحصائيات (Stats) ====== -->
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-box">
+                <i class="fas fa-calendar-check"></i>
+                <h3 class="counter" data-target="4">0</h3>
+                <p>سنوات الخبرة</p>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-project-diagram"></i>
+                <h3 class="counter" data-target="15">0</h3>
+                <p>مشاريع مكتملة</p>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-smile"></i>
+                <h3 class="counter" data-target="25">0</h3>
+                <p>عملاء راضون</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== 4. قسم عني (About) ====== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>من أنا؟</h2>
+                <div class="line"></div>
+                <p>تعرف علي أكثر</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>مطور برمجيات شغوف من الجزائر 🇩🇿</h3>
+                    <p>أنا سيف الإسلام، مختص في تصميم وتطوير تطبيقات سطح المكتب (Desktop Applications) باستخدام WPF و C#. أحول الأفكار المعقدة إلى برامج سهلة وبواجهات مستخدم عصرية.</p>
+                    <div class="info-grid">
+                        <div class="info-item"><span><i class="fas fa-user"></i> الاسم:</span> Saif El Islem Zahaf</div>
+                        <div class="info-item"><span><i class="fas fa-briefcase"></i> المهنة:</span> Software Developer</div>
+                        <div class="info-item"><span><i class="fas fa-envelope"></i> البريد:</span> seislemzhf@gmail.com</div>
+                        <div class="info-item"><span><i class="fas fa-map-marker-alt"></i> العنوان:</span> Oran, Algeria</div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">تواصل معي <i class="fas fa-paper-plane"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== 5. قسم الخدمات (Services) ====== -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>خدماتي</h2>
+                <div class="line"></div>
+                <p>ماذا يمكنني أن أقدم لك</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>تطوير WPF & .NET</h3>
+                    <p>بناء تطبيقات سطح مكتب قوية، سريعة، ومؤمنة باستخدام أحدث تقنيات مايكروسوفت.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>تصميم UI/UX</h3>
+                    <p>واجهات مستخدم عصرية واحترافية تجعل المستخدم يحب التعامل مع برنامجك.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-database"></i>
+                    <h3>إدارة قواعد البيانات</h3>
+                    <p>دمج قواعد بيانات SQLite و SQL Server باحترافية مع أنظمة المعاملات (EF Core).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== 6. قسم المشاريع (Projects) ====== -->
     <section class="projects" id="projects">
         <div class="container">
-            <h2 class="section-title">📦 مشاريعي</h2>
+            <div class="section-header">
+                <h2>أحدث مشاريعي</h2>
+                <div class="line"></div>
+                <p>نظرة على أعمالي الأخيرة</p>
+            </div>
             <div class="projects-grid">
-                
                 <div class="project-card">
-                    <div class="project-icon">🔧</div>
-                    <h3>Minsaj Fix</h3>
-                    <p>نظام إدارة ورشات صيانة الهواتف والحواسيب</p>
-                    <div class="project-tags">
-                        <span>C#</span>
-                        <span>WPF</span>
-                        <span>SQLite</span>
+                    <div class="project-image"><img src="https://placehold.co/600x400/1E293B/10B981?text=Minsaj+Fix" alt="Minsaj Fix"></div>
+                    <div class="project-info">
+                        <h3>Minsaj Fix</h3>
+                        <p>نظام متكامل لإدارة ورشات الصيانة وتتبع حالة الإصلاحات.</p>
+                        <div class="project-tech"><span>C#</span> <span>WPF</span> <span>SQLite</span></div>
+                        <a href="https://github.com/seislemzhf" target="_blank" class="btn-outline-small"><i class="fab fa-github"></i> زر الاستكشاف</a>
                     </div>
                 </div>
-                
                 <div class="project-card">
-                    <div class="project-icon">🏷️</div>
-                    <h3>Minsaj Barcode</h3>
-                    <p>نظام طباعة ملصقات الباركود للمحلات والمخازن</p>
-                    <div class="project-tags">
-                        <span>C#</span>
-                        <span>WPF</span>
-                        <span>EAN-13</span>
+                    <div class="project-image"><img src="https://placehold.co/600x400/1E293B/10B981?text=Minsaj+Barcode" alt="Minsaj Barcode"></div>
+                    <div class="project-info">
+                        <h3>Minsaj Barcode</h3>
+                        <p>أداة احترافية لطباعة ملصقات المنتجات والباركود مع تخصيص كامل.</p>
+                        <div class="project-tech"><span>WPF</span> <span>UI/UX</span> <span>Printing</span></div>
+                        <a href="https://github.com/seislemzhf" target="_blank" class="btn-outline-small"><i class="fab fa-github"></i> زر الاستكشاف</a>
                     </div>
                 </div>
-                
                 <div class="project-card">
-                    <div class="project-icon">🔐</div>
-                    <h3>Minsaj DZ</h3>
-                    <p>مركز إدارة التراخيص والعملاء والمبيعات</p>
-                    <div class="project-tags">
-                        <span>C#</span>
-                        <span>WPF</span>
-                        <span>SQLite</span>
+                    <div class="project-image"><img src="https://placehold.co/600x400/1E293B/10B981?text=Minsaj+DZ" alt="Minsaj DZ"></div>
+                    <div class="project-info">
+                        <h3>Minsaj DZ</h3>
+                        <p>مركز متقدم لإدارة وتوليد التراخيص البرمجية لحماية تطبيقاتك.</p>
+                        <div class="project-tech"><span>Security</span> <span>API</span> <span>WinForms</span></div>
+                        <a href="https://github.com/seislemzhf" target="_blank" class="btn-outline-small"><i class="fab fa-github"></i> زر الاستكشاف</a>
                     </div>
                 </div>
-                
             </div>
         </div>
     </section>
-    
+
+    <!-- ====== 7. قسم المهارات (Skills) ====== -->
     <section class="skills" id="skills">
         <div class="container">
-            <h2 class="section-title">💻 مهاراتي</h2>
-            <div class="skills-grid">
-                <div class="skill-item">C#</div>
-                <div class="skill-item">WPF</div>
-                <div class="skill-item">.NET</div>
-                <div class="skill-item">SQLite</div>
-                <div class="skill-item">Entity Framework</div>
-                <div class="skill-item">UI/UX Design</div>
-                <div class="skill-item">Git</div>
-                <div class="skill-item">Inno Setup</div>
+            <div class="section-header">
+                <h2>المهارات التقنية</h2>
+                <div class="line"></div>
+                <p>قدراتي التقنية ومدى إتقاني</p>
+            </div>
+            <div class="skills-container">
+                <div class="skill-box">
+                    <div class="skill-name"><span>C# & .NET</span><span>95%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="95"></div></div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-name"><span>WPF (UI/UX)</span><span>90%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="90"></div></div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-name"><span>Entity Framework Core</span><span>85%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="85"></div></div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-name"><span>SQLite / SQL Server</span><span>80%</span></div>
+                    <div class="progress-bar"><div class="progress" data-width="80"></div></div>
+                </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- ====== 8. قسم التواصل (Contact) ====== -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">📞 اتصل بي</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span>📱</span>
-                    <p>0657 29 97 58</p>
+            <div class="section-header">
+                <h2>تواصل معي</h2>
+                <div class="line"></div>
+                <p>لنعمل معاً على مشروعك القادم</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>العنوان</h4>
+                        <p>Belgaid, Bir El Djir, Oran</p>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h4>البريد الإلكتروني</h4>
+                        <p>seislemzhf@gmail.com</p>
+                    </div>
+                    <div class="contact-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h4>رقم الهاتف</h4>
+                        <p>0657299758</p>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <span>📧</span>
-                    <p>seislemzhf@gmail.com</p>
-                </div>
-                <div class="contact-item">
-                    <span>📍</span>
-                    <p>Belgaid, Bir El Djir, Oran, Algeria</p>
+                <div class="whatsapp-container">
+                    <a href="https://wa.me/213657299758" target="_blank" class="whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> راسلني فوراً عبر WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-    
-    <footer class="footer">
-        <p>© 2026 Saif El Islem Zahaf - All Rights Reserved</p>
-        <p>Made in Algeria 🇩🇿 with ❤️</p>
+
+    <!-- ====== 9. التذييل (Footer) ====== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <strong>Saif El Islem Zahaf</strong>. جميع الحقوق محفوظة.</p>
+            <div class="footer-links">
+                <a href="https://github.com/seislemzhf" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:seislemzhf@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://wa.me/213657299758" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
     </footer>
-    
+
+    <!-- ربط ملف الحركات (Script) -->
     <script src="script.js"></script>
 </body>
 </html>
