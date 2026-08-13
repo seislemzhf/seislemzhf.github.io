@@ -1,74 +1,94 @@
-// Smooth scroll for navigation
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+document.addEventListener('DOMContentLoaded', () => {
 
-// Scroll animation
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+    // 1. تشغيل وإغلاق القائمة في الموبايل
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe project cards
-document.querySelectorAll('.project-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.5s, transform 0.5s';
-    observer.observe(card);
-});
-
-// Observe skill items
-document.querySelectorAll('.skill-item').forEach(item => {
-    item.style.opacity = '0';
-    item.style.transform = 'translateY(20px)';
-    item.style.transition = 'opacity 0.5s, transform 0.5s';
-    observer.observe(item);
-});
-
-// Year in footer
-document.addEventListener('DOMContentLoaded', function() {
-    const year = new Date().getFullYear();
-    const footer = document.querySelector('.footer p');
-    if (footer) {
-        footer.innerHTML = footer.innerHTML.replace('2026', year);
+    if(hamburger) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
     }
+
+    // إغلاق القائمة عند الضغط على أي رابط
+    document.querySelectorAll('#nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // 2. تمييز الرابط النشط عند التمرير (Scroll)
+    const sections = document.querySelectorAll('section[id]');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 150;
+            if (scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        document.querySelectorAll('#nav-links a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // 3. أنيميشن الأرقام (Counter) في قسم الإحصائيات
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
+
+    const runCounter = (counter) => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const inc = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 20);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    };
+
+    // مراقب (IntersectionObserver) عشان الأرقام تتحرك غير ملي يوصلها الزائر
+    const observerOptions = { threshold: 0.5 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                runCounter(counter);
+                observer.unobserve(counter); // تشتغل مرة وحدة
+            }
+        });
+    }, observerOptions);
+
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+
+    // 4. أنيميشن أشرطة المهارات (Skill Bars)
+    const skillBars = document.querySelectorAll('.progress');
+    const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+                skillObserver.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    skillBars.forEach(bar => {
+        bar.style.width = '0%'; // ترجع للصفر قبل ما تتحرك
+        skillObserver.observe(bar);
+    });
+
 });
-
-// Typing effect
-const heroText = "مطور تطبيقات سطح المكتب بخبرة في C# و WPF";
-const heroElement = document.querySelector('.hero p');
-
-if (heroElement) {
-    let charIndex = 0;
-    heroElement.textContent = '';
-    
-    function typeText() {
-        if (charIndex < heroText.length) {
-            heroElement.textContent += heroText.charAt(charIndex);
-            charIndex++;
-            setTimeout(typeText, 50);
-        }
-    }
-    
-    setTimeout(typeText, 1000);
-}
