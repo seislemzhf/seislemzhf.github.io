@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saif El Islem Zahaf | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -12,7 +12,6 @@
             --primary-dark: #0F172A;
             --secondary-dark: #1E293B;
             --accent-green: #10B981;
-            --accent-glow: rgba(16, 185, 129, 0.6);
             --text-white: #ffffff;
             --text-muted: #94a3b8;
         }
@@ -26,9 +25,11 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background: #0F172A;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 35%, #0F172A 70%, #1E293B 100%);
+            background-attachment: fixed;
             color: var(--text-white);
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .container {
@@ -37,7 +38,7 @@
             padding: 0 25px;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.4s ease; }
+        a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
 
         section { padding: 80px 0; }
@@ -45,12 +46,7 @@
         .section-header {
             text-align: center;
             margin-bottom: 50px;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
         }
-
-        .section-header.visible { opacity: 1; transform: translateY(0); }
 
         .section-header h2 {
             font-size: 2.8rem;
@@ -80,15 +76,8 @@
             padding: 15px 0;
             z-index: 10000;
             background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-            transition: 0.4s;
-        }
-
-        header.scrolled {
-            padding: 10px 0;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            border-bottom: 1px solid rgba(16, 185, 129, 0.3);
         }
 
         .header-content {
@@ -108,7 +97,6 @@
             font-size: 0.95rem;
             position: relative;
             padding: 5px 0;
-            transition: 0.3s;
         }
 
         nav ul li a::after {
@@ -116,13 +104,11 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 0;
+            width: 100%;
             height: 2px;
             background: var(--accent-green);
-            transition: 0.4s ease;
         }
 
-        nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
         nav ul li a:hover, nav ul li a.active { color: var(--text-white); }
 
         .hamburger { display: none; font-size: 2rem; cursor: pointer; }
@@ -158,10 +144,7 @@
         .hero-text h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: 20px; font-weight: 900; }
         .hero-text h1 .highlight { color: var(--accent-green); }
 
-        .typing-container { font-size: 1.8rem; color: var(--text-muted); font-weight: 600; margin-bottom: 25px; min-height: 50px; }
-        .typing-container .typing-text { color: var(--accent-green); border-right: 3px solid var(--accent-green); padding-left: 5px; animation: blink-caret 0.75s step-end infinite; }
-
-        @keyframes blink-caret { 50% { border-color: transparent; } }
+        .typing-container { font-size: 1.8rem; color: var(--accent-green); font-weight: 600; margin-bottom: 25px; }
 
         .hero-text p { font-size: 1.1rem; color: #cbd5e1; line-height: 1.8; margin-bottom: 30px; max-width: 500px; }
 
@@ -174,14 +157,10 @@
             border-radius: 50px;
             font-weight: 800;
             font-size: 1rem;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
-            transition: 0.4s;
             display: inline-flex;
             align-items: center;
             gap: 10px;
         }
-
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 15px 45px rgba(16, 185, 129, 0.6); }
 
         .btn-outline {
             background: transparent;
@@ -191,13 +170,6 @@
             font-weight: 700;
             font-size: 1rem;
             color: var(--text-white);
-            transition: 0.4s;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent-green);
-            background: rgba(16, 185, 129, 0.1);
-            transform: translateY(-3px);
         }
 
         .social-hero { display: flex; gap: 15px; }
@@ -213,14 +185,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-muted);
             font-size: 1.2rem;
-            transition: 0.4s;
-        }
-
-        .social-hero a:hover {
-            background: var(--accent-green);
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
         }
 
         .hero-image { flex: 1; display: flex; justify-content: center; }
@@ -234,29 +198,6 @@
             object-fit: cover;
             border: 4px solid rgba(16, 185, 129, 0.5);
             box-shadow: 0 0 50px rgba(16, 185, 129, 0.2);
-            animation: float-3d 6s infinite ease-in-out;
-        }
-
-        @keyframes float-3d {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .glow-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 110%;
-            height: 110%;
-            border-radius: 50%;
-            border: 2px dashed rgba(16, 185, 129, 0.2);
-            animation: spin-ring 20s linear infinite;
-        }
-
-        @keyframes spin-ring {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
         .stats {
@@ -272,9 +213,6 @@
             gap: 30px;
             text-align: center;
         }
-
-        .stat-box { opacity: 0; transform: scale(0.8); transition: 0.8s; }
-        .stat-box.visible { opacity: 1; transform: scale(1); }
 
         .stat-box i { font-size: 2.5rem; color: var(--accent-green); margin-bottom: 15px; }
         .stat-box h3 { font-size: 3rem; font-weight: 900; }
@@ -321,16 +259,6 @@
             border-radius: 20px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.4s;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .service-card.visible { opacity: 1; transform: translateY(0); }
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(16, 185, 129, 0.3);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
         .service-card i {
@@ -340,10 +268,7 @@
             background: rgba(16, 185, 129, 0.1);
             padding: 18px;
             border-radius: 50%;
-            transition: 0.4s;
         }
-
-        .service-card:hover i { background: var(--accent-green); color: white; }
 
         .service-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
         .service-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
@@ -359,16 +284,6 @@
             border-radius: 20px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.4s;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .project-card.visible { opacity: 1; transform: translateY(0); }
-        .project-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(16, 185, 129, 0.3);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
         .project-image { overflow: hidden; height: 220px; }
@@ -376,9 +291,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.6s;
         }
-        .project-card:hover .project-image img { transform: scale(1.1); }
 
         .project-info { padding: 20px; }
 
@@ -408,13 +321,6 @@
             border-radius: 50px;
             font-weight: 700;
             font-size: 0.85rem;
-            transition: 0.4s;
-        }
-
-        .btn-outline-small:hover {
-            border-color: var(--accent-green);
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--accent-green);
         }
 
         .skills-container {
@@ -448,9 +354,7 @@
         .progress {
             height: 100%;
             background: linear-gradient(90deg, #059669, var(--accent-green));
-            width: 0%;
             border-radius: 20px;
-            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .contact-grid {
@@ -466,12 +370,6 @@
             text-align: center;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.4s;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(16, 185, 129, 0.3);
         }
 
         .contact-card i { font-size: 2.2rem; color: var(--accent-green); margin-bottom: 15px; }
@@ -486,13 +384,6 @@
             border-radius: 60px;
             font-weight: 900;
             font-size: 1.2rem;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
-            transition: 0.4s;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
         }
 
         footer {
@@ -506,8 +397,7 @@
         footer p strong { color: var(--text-white); }
 
         .footer-links { display: flex; justify-content: center; gap: 20px; }
-        .footer-links a { color: var(--text-muted); font-size: 1.4rem; transition: 0.4s; }
-        .footer-links a:hover { color: var(--accent-green); transform: translateY(-5px); }
+        .footer-links a { color: var(--text-muted); font-size: 1.4rem; }
 
         @media (max-width: 900px) {
             .hero-content { flex-direction: column-reverse; text-align: center; }
@@ -544,10 +434,10 @@
 
 <body>
 
-    <header id="navbar">
+    <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">Seislem<span>Dev</span></div>
+                <div class="logo">Minsaj<span>DZ</span></div>
                 <nav>
                     <ul id="nav-links">
                         <li><a href="#home" class="active">الرئيسية</a></li>
@@ -568,7 +458,7 @@
             <div class="hero-text">
                 <span class="badge"><i class="fas fa-rocket"></i> مطور برمجيات</span>
                 <h1>مرحباً، أنا <span class="highlight">سيف الإسلام زحاف</span></h1>
-                <div class="typing-container"><span class="typing-text" id="typing-text"></span></div>
+                <div class="typing-container">مطور .NET & WPF | خبير UI/UX</div>
                 <p>أبني تطبيقات سطح مكتب عالية الأداء باستخدام .NET و WPF، وأصمم تجارب مستخدم مستقبلية.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary"><i class="fas fa-crown"></i> اكتشف مشاريعي</a>
@@ -582,7 +472,6 @@
             </div>
             <div class="hero-image">
                 <div class="profile-wrapper">
-                    <div class="glow-ring"></div>
                     <img src="images/my-photo.jpg" alt="Saif El Islem Zahaf">
                 </div>
             </div>
@@ -591,9 +480,9 @@
 
     <section class="stats">
         <div class="container stats-grid">
-            <div class="stat-box"><i class="fas fa-calendar-alt"></i><h3 class="counter" data-target="4">0</h3><p>سنوات الخبرة</p></div>
-            <div class="stat-box"><i class="fas fa-layer-group"></i><h3 class="counter" data-target="15">0</h3><p>مشاريع مكتملة</p></div>
-            <div class="stat-box"><i class="fas fa-users-gear"></i><h3 class="counter" data-target="25">0</h3><p>عملاء راضون</p></div>
+            <div class="stat-box"><i class="fas fa-calendar-alt"></i><h3>4</h3><p>سنوات الخبرة</p></div>
+            <div class="stat-box"><i class="fas fa-layer-group"></i><h3>15</h3><p>مشاريع مكتملة</p></div>
+            <div class="stat-box"><i class="fas fa-users-gear"></i><h3>25</h3><p>عملاء راضون</p></div>
         </div>
     </section>
 
@@ -631,7 +520,6 @@
             <div class="section-header"><h2>روائع مشاريعي</h2><p>أقوى أعمالي التقنية</p></div>
             <div class="projects-grid">
                 
-                <!-- Minsaj Fix -->
                 <div class="project-card">
                     <div class="project-image"><img src="images/fix.jpg" alt="Minsaj Fix"></div>
                     <div class="project-info">
@@ -642,7 +530,6 @@
                     </div>
                 </div>
 
-                <!-- Minsaj Barcode -->
                 <div class="project-card">
                     <div class="project-image"><img src="images/barcode.jpg" alt="Minsaj Barcode"></div>
                     <div class="project-info">
@@ -653,7 +540,6 @@
                     </div>
                 </div>
 
-                <!-- Minsaj Fard -->
                 <div class="project-card">
                     <div class="project-image"><img src="images/fard.jpg" alt="Minsaj Fard"></div>
                     <div class="project-info">
@@ -675,10 +561,10 @@
         <div class="container">
             <div class="section-header"><h2>المهارات</h2><p>دقة وإتقان</p></div>
             <div class="skills-container">
-                <div class="skill-box"><div class="skill-name"><span>C# & .NET</span><span>95%</span></div><div class="progress-bar"><div class="progress" data-width="95"></div></div></div>
-                <div class="skill-box"><div class="skill-name"><span>WPF (UI/UX)</span><span>90%</span></div><div class="progress-bar"><div class="progress" data-width="90"></div></div></div>
-                <div class="skill-box"><div class="skill-name"><span>Entity Framework Core</span><span>85%</span></div><div class="progress-bar"><div class="progress" data-width="85"></div></div></div>
-                <div class="skill-box"><div class="skill-name"><span>SQLite / SQL Server</span><span>80%</span></div><div class="progress-bar"><div class="progress" data-width="80"></div></div></div>
+                <div class="skill-box"><div class="skill-name"><span>C# & .NET</span><span>95%</span></div><div class="progress-bar"><div class="progress" style="width: 95%;"></div></div></div>
+                <div class="skill-box"><div class="skill-name"><span>WPF (UI/UX)</span><span>90%</span></div><div class="progress-bar"><div class="progress" style="width: 90%;"></div></div></div>
+                <div class="skill-box"><div class="skill-name"><span>Entity Framework Core</span><span>85%</span></div><div class="progress-bar"><div class="progress" style="width: 85%;"></div></div></div>
+                <div class="skill-box"><div class="skill-name"><span>SQLite / SQL Server</span><span>80%</span></div><div class="progress-bar"><div class="progress" style="width: 80%;"></div></div></div>
             </div>
         </div>
     </section>
@@ -712,81 +598,13 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Typing
-            const typingElement = document.getElementById('typing-text');
-            const roles = ['مطور .NET & WPF', 'خبير UI/UX', 'صانع برامج سطح المكتب'];
-            let roleIndex = 0, charIndex = 0, isDeleting = false;
-
-            function typeEffect() {
-                const currentRole = roles[roleIndex];
-                typingElement.textContent = isDeleting
-                    ? currentRole.substring(0, charIndex - 1)
-                    : currentRole.substring(0, charIndex + 1);
-                charIndex += isDeleting ? -1 : 1;
-                let speed = isDeleting ? 50 : 120;
-                if (!isDeleting && charIndex === currentRole.length) { speed = 2000; isDeleting = true; }
-                else if (isDeleting && charIndex === 0) { isDeleting = false; roleIndex = (roleIndex + 1) % roles.length; speed = 500; }
-                setTimeout(typeEffect, speed);
-            }
-            typeEffect();
-
-            // Navbar
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                navbar.classList.toggle('scrolled', window.scrollY > 50);
-            });
-
-            // Mobile menu
+            // القائمة الجانبية للجوال
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('nav-links');
             hamburger.addEventListener('click', () => navLinks.classList.toggle('active'));
             document.querySelectorAll('#nav-links a').forEach(link => {
                 link.addEventListener('click', () => navLinks.classList.remove('active'));
             });
-
-            // Counters
-            const counters = document.querySelectorAll('.counter');
-            const counterObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const counter = entry.target;
-                        const target = +counter.getAttribute('data-target');
-                        let count = 0;
-                        const update = () => {
-                            count += target / 100;
-                            if (count < target) { counter.innerText = Math.ceil(count); setTimeout(update, 15); }
-                            else counter.innerText = target;
-                        };
-                        update();
-                        counterObserver.unobserve(counter);
-                    }
-                });
-            }, { threshold: 0.5 });
-            counters.forEach(c => counterObserver.observe(c));
-
-            // Skill bars
-            const skillBars = document.querySelectorAll('.progress');
-            const skillObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.width = entry.target.getAttribute('data-width') + '%';
-                        skillObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.3 });
-            skillBars.forEach(bar => { bar.style.width = '0%'; skillObserver.observe(bar); });
-
-            // Reveal
-            const revealElements = document.querySelectorAll('.service-card, .project-card, .section-header, .stat-box');
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            revealElements.forEach(el => revealObserver.observe(el));
         });
     </script>
 </body>
