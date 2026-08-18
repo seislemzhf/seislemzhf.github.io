@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل استخدام Minsaj Fard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #0F172A;
+            color: #F8FAFC;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a { text-decoration: none; color: inherit; }
+        :root {
+            --primary: #0F172A;
+            --secondary: #1E293B;
+            --accent: #10B981;
+            --gold: #F59E0B;
+            --red: #EF4444;
+            --muted: #94a3b8;
+        }
+
+        /* الشريط العلوي */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .logo { font-size: 1.6rem; font-weight: 900; }
+        .logo span { color: var(--accent); }
+        .btn-back {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            transition: 0.3s;
+        }
+        .btn-back:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* البطل */
+        .hero {
+            padding: 60px 0 30px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 30%, rgba(16,185,129,0.1), #0F172A 60%);
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p { color: var(--muted); font-size: 1.1rem; }
+
+        /* فهرس المحتويات */
+        .toc {
+            background: var(--secondary);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .toc h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        .toc ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+        .toc ul li a {
+            display: block;
+            padding: 12px 18px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            transition: 0.3s;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .toc ul li a:hover {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            transform: translateX(-5px);
+        }
+        .toc ul li a i {
+            color: var(--accent);
+            margin-left: 8px;
+        }
+
+        /* الأقسام */
+        section {
+            padding: 40px 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(16, 185, 129, 0.3);
+        }
+        .section-title i {
+            color: var(--accent);
+            margin-left: 10px;
+        }
+
+        /* بطاقات الشرح */
+        .step-card {
+            background: var(--secondary);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .step-card:hover {
+            border-color: var(--accent);
+        }
+        .step-card h4 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        .step-card p, .step-card li {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+        .step-card ul {
+            list-style: none;
+            padding-right: 20px;
+        }
+        .step-card ul li::before {
+            content: '✅ ';
+            color: var(--accent);
+        }
+
+        /* تحذيرات */
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        .warning-box i {
+            color: var(--gold);
+            margin-left: 8px;
+        }
+        .warning-box p {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .danger-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        .danger-box i {
+            color: var(--red);
+            margin-left: 8px;
+        }
+        .danger-box p {
+            color: var(--red);
+            font-weight: 600;
+        }
+
+        .info-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        .info-box i {
+            color: var(--accent);
+            margin-left: 8px;
+        }
+        .info-box p {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* جدول */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        th {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            font-weight: 700;
+        }
+        td {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        /* الفوتر */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--muted);
+            margin-top: 40px;
+        }
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+        .btn-whatsapp:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
+        }
+
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2rem; }
+            .section-title { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">Minsaj <span>Fard</span> - الدليل الشامل</div>
+            <a href="minsaj-fard.html" class="btn-back">
+                <i class="fas fa-arrow-right"></i> العودة لصفحة البرنامج
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>📖 دليل استخدام <span>Minsaj Fard</span></h1>
+            <p>كل ما تحتاج معرفته لاستخدام النظام - خطوة بخطوة</p>
+        </div>
+    </section>
+
+    <!-- فهرس -->
+    <div class="container">
+        <div class="toc">
+            <h3><i class="fas fa-list"></i> فهرس المحتويات</h3>
+            <ul>
+                <li><a href="#install"><i class="fas fa-download"></i> 1. التثبيت والتشغيل</a></li>
+                <li><a href="#login"><i class="fas fa-key"></i> 2. تسجيل الدخول</a></li>
+                <li><a href="#license"><i class="fas fa-shield"></i> 3. تفعيل الترخيص</a></li>
+                <li><a href="#departments"><i class="fas fa-building"></i> 4. الأقسام والورديات</a></li>
+                <li><a href="#employees"><i class="fas fa-users"></i> 5. إدارة الموظفين</a></li>
+                <li><a href="#attendance"><i class="fas fa-fingerprint"></i> 6. سجل الحضور + ZKTeco</a></li>
+                <li><a href="#leaves"><i class="fas fa-calendar"></i> 7. الإجازات</a></li>
+                <li><a href="#payroll"><i class="fas fa-coins"></i> 8. الرواتب والضرائب</a></li>
+                <li><a href="#documents"><i class="fas fa-file"></i> 9. شهادة العمل والعقد</a></li>
+                <li><a href="#reports"><i class="fas fa-chart"></i> 10. التقارير والتصدير</a></li>
+                <li><a href="#settings"><i class="fas fa-gear"></i> 11. الإعدادات</a></li>
+                <li><a href="#backup"><i class="fas fa-database"></i> 12. النسخ الاحتياطي</a></li>
+                <li><a href="#faq"><i class="fas fa-question"></i> 13. الأسئلة الشائعة</a></li>
+                <li><a href="#support"><i class="fab fa-whatsapp"></i> 14. الدعم الفني</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 1. التثبيت -->
+    <section id="install">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-download"></i> 1. التثبيت والتشغيل</h2>
+            
+            <div class="step-card">
+                <h4>الخطوة 1: تحميل البرنامج</h4>
+                <p>حمّل ملف <strong>Setup.exe</strong> من رابط التحميل في صفحة البرنامج.</p>
+            </div>
+            
+            <div class="step-card">
+                <h4>الخطوة 2: التثبيت</h4>
+                <ul>
+                    <li>انقر مرتين على ملف Setup.exe</li>
+                    <li>اتبع خطوات معالج التثبيت</li>
+                    <li>اختر مجلد التثبيت (أو اترك الافتراضي)</li>
+                    <li>انتظر حتى يكتمل</li>
+                </ul>
+            </div>
+            
+            <div class="step-card">
+                <h4>الخطوة 3: أول تشغيل</h4>
+                <p>عند أول تشغيل، البرنامج سيقوم تلقائياً بـ:</p>
+                <ul>
+                    <li>تشغيل قاعدة البيانات PostgreSQL المحمولة</li>
+                    <li>إنشاء قاعدة البيانات</li>
+                    <li>إنشاء المستخدم الافتراضي</li>
+                    <li>إنشاء الأقسام والورديات الافتراضية</li>
+                </ul>
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p>كل هذا يحدث تلقائياً - لا تحتاج لفعل أي شيء</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. تسجيل الدخول -->
+    <section id="login">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-key"></i> 2. تسجيل الدخول</h2>
+            
+            <div class="step-card">
+                <h4>بيانات الدخول الافتراضية</h4>
+                <table>
+                    <tr>
+                        <th>اسم المستخدم</th>
+                        <td>admin</td>
+                    </tr>
+                    <tr>
+                        <th>كلمة المرور</th>
+                        <td>admin123</td>
+                    </tr>
+                </table>
+                <div class="danger-box">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>غيّر كلمة المرور فوراً بعد أول دخول من قسم "المستخدمون"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. الترخيص -->
+    <section id="license">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-shield"></i> 3. تفعيل الترخيص</h2>
+            
+            <div class="step-card">
+                <h4>الفترة التجريبية</h4>
+                <p>البرنامج يعمل مجاناً لمدة <strong>30 يوم</strong> كاملة بكل المميزات.</p>
+            </div>
+            
+            <div class="step-card">
+                <h4>خطوات التفعيل</h4>
+                <ol style="padding-right: 20px; color: #cbd5e1;">
+                    <li>افتح <strong>الإعدادات</strong> من القائمة الجانبية</li>
+                    <li>انسخ <strong>معرف الجهاز (Machine ID)</strong></li>
+                    <li>أرسله لي عبر واتساب</li>
+                    <li>استلم <strong>مفتاح التفعيل</strong></li>
+                    <li>الصقه في حقل "مفتاح التفعيل"</li>
+                    <li>اضغط "تفعيل الترخيص"</li>
+                </ol>
+            </div>
+            
+            <div class="step-card">
+                <h4>أنواع التراخيص</h4>
+                <table>
+                    <tr><th>النوع</th><th>المدة</th></tr>
+                    <tr><td>شهري</td><td>30 يوم</td></tr>
+                    <tr><td>ربع سنوي</td><td>3 أشهر</td></tr>
+                    <tr><td>نصف سنوي</td><td>6 أشهر</td></tr>
+                    <tr><td>سنوي</td><td>12 شهر</td></tr>
+                    <tr><td>مدى الحياة</td><td>لا ينتهي</td></tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. الأقسام والورديات -->
+    <section id="departments">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-building"></i> 4. الأقسام والورديات</h2>
+            
+            <div class="step-card">
+                <h4>إدارة الأقسام</h4>
+                <ul>
+                    <li>من القائمة الجانبية: <strong>الأقسام</strong></li>
+                    <li>اضغط "إضافة" لإنشاء قسم جديد</li>
+                    <li>أدخل الاسم والوصف</li>
+                    <li>حدد إذا كان نشطاً</li>
+                    <li>اضغط "حفظ"</li>
+                </ul>
+            </div>
+            
+            <div class="step-card">
+                <h4>إدارة الورديات</h4>
+                <ul>
+                    <li>من القائمة الجانبية: <strong>الورديات</strong></li>
+                    <li>الورديات الافتراضية: صباحية، مسائية، ليلية</li>
+                    <li>حدد أيام العمل لكل وردية</li>
+                    <li>يمكن تفعيل "نظام أسبوعي" (أسبوع عمل / أسبوع راحة)</li>
+                </ul>
+            </div>
+            
+            <div class="step-card">
+                <h4>المناصب</h4>
+                <ul>
+                    <li>من القائمة الجانبية: <strong>المناصب</strong></li>
+                    <li>مناصب افتراضية جاهزة</li>
+                    <li>حدد الحد الأدنى والأقصى للراتب</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. الموظفين -->
+    <section id="employees">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-users"></i> 5. إدارة الموظفين</h2>
+            
+            <div class="step-card">
+                <h4>إضافة موظف جديد</h4>
+                <ol style="padding-right: 20px; color: #cbd5e1;">
+                    <li>من القائمة الجانبية: <strong>الموظفون</strong></li>
+                    <li>اضغط "إضافة موظف"</li>
+                    <li>الكود يتولد تلقائياً</li>
+                    <li>أدخل الاسم الأول واسم العائلة</li>
+                    <li>اختر القسم والوردية والمنصب</li>
+                    <li>أدخل الراتب والعلاوات والخصومات</li>
+                    <li>اضغط "حفظ"</li>
+                </ol>
+            </div>
+            
+            <div class="step-card">
+                <h4>بحث وتعديل</h4>
+                <ul>
+                    <li>استعمل حقل البحث للبحث بالاسم أو الكود أو المنصب</li>
+                    <li>انقر مرتين على الموظف لعرض تفاصيله</li>
+                    <li>أزرار: عرض / تعديل / حذف</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. الحضور -->
+    <section id="attendance">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-fingerprint"></i> 6. سجل الحضور + ZKTeco</h2>
+            
+            <div class="step-card">
+                <h4>إدخال يدوي</h4>
+                <ul>
+                    <li>من القائمة: <strong>سجل الحضور</strong></li>
+                    <li>اضغط "إضافة يدوي"</li>
+                    <li>اختر الموظف والتاريخ والأوقات</li>
+                    <li>حدد الحالة (حاضر/غائب/متأخر...)</li>
+                </ul>
+            </div>
+            
+            <div class="step-card">
+                <h4>جلب من جهاز ZKTeco</h4>
+                <ol style="padding-right: 20px; color: #cbd5e1;">
+                    <li>اضغط "جلب من ZKTeco"</li>
+                    <li>أدخل عنوان IP للجهاز</li>
+                    <li>المنفذ الافتراضي: 4370</li>
+                    <li>اضغط "فحص الاتصال"</li>
+                    <li>ثم "جلب سجلات الحضور"</li>
+                </ol>
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p>الجهاز والكمبيوتر يجب أن يكونا على نفس الشبكة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. الإجازات -->
+    <section id="leaves">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-calendar"></i> 7. الإجازات</h2>
+            
+            <div class="step-card">
+                <h4>طلب إجازة</h4>
+                <ul>
+                    <li>من القائمة: <strong>الإجازات</strong></li>
+                    <li>اضغط "طلب إجازة"</li>
+                    <li>اختر الموظف ونوع الإجازة</li>
+                    <li>حدد تاريخ البداية والنهاية</li>
+                    <li>اضغط "حفظ"</li>
+                </ul>
+            </div>
+            
+            <div class="step-card">
+                <h4>الموافقة أو الرفض</h4>
+                <ul>
+                    <li>انقر على زر "عرض" بجانب الطلب</li>
+                    <li>اضغط "موافقة" أو "رفض"</li>
+                    <li>سيظهر تأكيد قبل التنفيذ</li>
+                </ul>
+            </div>
+            
+            <div class="step-card">
+                <h4>أنواع الإجازات</h4>
+                <table>
+                    <tr><th>النوع</th><th>الوصف</th></tr>
+                    <tr><td>سنوية</td><td>إجازة مدفوعة سنوية</td></tr>
+                    <tr><td>مرضية</td><td>إجازة لأسباب صحية</td></tr>
+                    <tr><td>غير مدفوعة</td><td>بدون أجر</td></tr>
+                    <tr><td>أمومة</td><td>14 أسبوع حسب القانون الجزائري</td></tr>
+                    <tr><td>أبوة</td><td>إجازة الأب</td></tr>
+                    <tr><td>طارئة</td><td>حالات طارئة</td></tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. الرواتب -->
+    <section id="payroll">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-coins"></i> 8. الرواتب والضرائب</h2>
+            
+            <div class="step-card">
+                <h4>حساب الرواتب</h4>
+                <ol style="padding-right: 20px; color: #cbd5e1;">
+                    <li>من القائمة: <strong>الرواتب</strong></li>
+                    <li>اختر الشهر والسنة</li>
+                    <li>اضغط "حساب الرواتب"</li>
+                    <li>البرنامج يحسب تلقائياً لكل الموظفين</li>
+                </ol>
+            </div>
+            
+            <div class="step-card">
+                <h4>الضرائب الجزائرية</h4>
+                <table>
+                    <tr><th>الاقتطاع</th><th>النسبة</th></tr>
+                    <tr><td>CNAS (الموظف)</td><td>9%</td></tr>
+                    <tr><td>CNAS (رب العمل)</td><td>26%</td></tr>
+                    <tr><td>IRG</td><td>حسب الجدول الرسمي</td></tr>
+                </table>
+            </div>
+            
+            <div class="step-card">
+                <h4>عرض قسيمة الراتب</h4>
+                <ul>
+                    <li>انقر على زر "عرض" بجانب الموظف</li>
+                    <li>شاهد كل التفاصيل: الإيرادات، الخصومات، CNAS، IRG</li>
+                    <li>صدّر PDF للطباعة</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. الوثائق -->
+    <section id="documents">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-file"></i> 9. شهادة العمل والعقد</h2>
+            
+            <div class="step-card">
+                <h4>شهادة عمل</h4>
+                <ul>
+                    <li>افتح تفاصيل الموظف</li>
+                    <li>اضغط "شهادة عمل PDF"</li>
+                    <li>اختر مكان الحفظ</li>
+                    <li>الشهادة جاهزة للطباعة</li>
+                </ul>
+            </div>
+            
+            <div class="step-card">
+                <h4>عقد عمل</h4>
+                <ul>
+                    <li>افتح تفاصيل الموظف</li>
+                    <li>اضغط "عقد عمل PDF"</li>
+                    <li>اختر: CDD (محدد) أو CDI (غير محدد)</li>
+                    <li>العقد يولد تلقائياً</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. التقارير -->
+    <section id="reports">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-chart"></i> 10. التقارير والتصدير</h2>
+            
+            <div class="step-card">
+                <h4>أنواع التقارير</h4>
+                <ul>
+                    <li>تقرير شامل</li>
+                    <li>تقرير الموظفين</li>
+                    <li>تقرير الحضور</li>
+                    <li>تقرير الإجازات</li>
+                    <li>تقرير الرواتب</li>
+                </ul>
+            </div>
+            
+            <div class="step-card">
+                <h4>التصدير</h4>
+                <ul>
+                    <li>Excel: من أزرار "تصدير Excel" في كل قسم</li>
+                    <li>PDF: من قسيمة الراتب والتقارير</li>
+                    <li>TXT: من نافذة التقارير</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. الإعدادات -->
+    <section id="settings">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-gear"></i> 11. الإعدادات</h2>
+            
+            <div class="step-card">
+                <h4>الإعدادات المتاحة</h4>
+                <ul>
+                    <li>أوقات العمل (بداية/نهاية/غداء)</li>
+                    <li>معاملات الرواتب (إضافي/تأخير)</li>
+                    <li>قاعدة البيانات</li>
+                    <li>جهاز ZKTeco</li>
+                    <li>اللغة (عربي/فرنسي/إنجليزي)</li>
+                    <li>الترخيص والتفعيل</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. النسخ الاحتياطي -->
+    <section id="backup">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-database"></i> 12. النسخ الاحتياطي</h2>
+            
+            <div class="step-card">
+                <h4>إنشاء نسخة احتياطية</h4>
+                <ul>
+                    <li>من القائمة: <strong>نسخ احتياطي</strong></li>
+                    <li>اضغط "نعم" للتأكيد</li>
+                    <li>النسخة تحفظ تلقائياً</li>
+                </ul>
+                <div class="info-box">
+                    <i class="fas fa-info-circle"></i>
+                    <p>ننصح بعمل نسخة احتياطية أسبوعياً</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. الأسئلة الشائعة -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-question"></i> 13. الأسئلة الشائعة</h2>
+            
+            <div class="step-card">
+                <h4>هل البرنامج يعمل بدون إنترنت؟</h4>
+                <p>نعم، البرنامج يعمل بالكامل على جهازك بدون إنترنت.</p>
+            </div>
+            
+            <div class="step-card">
+                <h4>كيف أسترد كلمة المرور؟</h4>
+                <p>تواصل معي عبر واتساب وسأساعدك في استعادتها.</p>
+            </div>
+            
+            <div class="step-card">
+                <h4>هل يمكن نقل البرنامج لجهاز آخر؟</h4>
+                <p>نعم، لكن ستحتاج مفتاح تفعيل جديد مرتبط بالجهاز الجديد.</p>
+            </div>
+            
+            <div class="step-card">
+                <h4>ماذا يحدث بعد انتهاء التجربة؟</h4>
+                <p>البرنامج يتوقف عن العمل حتى تفعّل الترخيص. بياناتك تبقى محفوظة.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. الدعم -->
+    <section id="support">
+        <div class="container">
+            <h2 class="section-title"><i class="fab fa-whatsapp"></i> 14. الدعم الفني</h2>
+            
+            <div class="step-card" style="text-align: center;">
+                <h4>تحتاج مساعدة؟</h4>
+                <p style="margin-bottom: 20px;">أنا هنا لمساعدتك في أي مشكلة</p>
+                <a href="https://wa.me/2130657200758" target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> تواصل معي واتساب
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Made in Algeria 🇩🇿, with ❤️<br> © 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
+            <a href="minsaj-fard.html" style="display: inline-block; margin-top: 20px; color: #10B981; font-weight: 700;">
+                <i class="fas fa-arrow-right"></i> العودة لصفحة البرنامج
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
