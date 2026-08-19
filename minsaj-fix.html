@@ -16,7 +16,7 @@
         }
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #0F172A;
+            background-color: #0A1F14; /* خلفية داكنة مخضرة */
             color: #F8FAFC;
             line-height: 1.6;
         }
@@ -27,21 +27,21 @@
         }
         a { text-decoration: none; color: inherit; }
 
-        /* ====== الألوان ====== */
+        /* ====== الألوان – تم تحويلها للون الأخضر ====== */
         :root {
-            --primary: #0F172A;
-            --secondary: #1E293B;
-            --accent: #3B82F6; /* أزرق خاص بالصيانة */
-            --gold: #F59E0B;
+            --primary: #0A1F14;
+            --secondary: #14301F;
+            --accent: #10B981;   /* أخضر زمردي */
+            --gold: #34D399;     /* أخضر فاتح للتوهج */
             --light: #F8FAFC;
-            --muted: #94a3b8;
+            --muted: #a7c4b5;
         }
 
         /* ====== الشريط العلوي ====== */
         header {
             padding: 20px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+            background: rgba(10, 31, 20, 0.85);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
@@ -55,6 +55,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 900;
+            color: #fff;
         }
         .logo span { color: var(--accent); }
 
@@ -62,16 +63,16 @@
         .hero {
             padding: 80px 0 40px;
             text-align: center;
-            background: radial-gradient(circle at 50% 30%, rgba(59,130,246,0.1), #0F172A 60%);
+            background: radial-gradient(circle at 50% 30%, rgba(16,185,129,0.12), #0A1F14 65%);
         }
         .hero .badge {
             display: inline-block;
-            background: rgba(59,130,246,0.15);
+            background: rgba(16,185,129,0.18);
             color: var(--accent);
             padding: 8px 20px;
             border-radius: 50px;
             font-weight: 700;
-            border: 1px solid rgba(59,130,246,0.2);
+            border: 1px solid rgba(16,185,129,0.3);
             margin-bottom: 20px;
         }
         .hero h1 {
@@ -79,6 +80,7 @@
             font-weight: 900;
             margin-bottom: 15px;
             line-height: 1.3;
+            color: #F0FDF4;
         }
         .hero h1 span { color: var(--accent); }
         .hero .subtitle {
@@ -88,22 +90,22 @@
             margin: 0 auto 30px;
         }
 
-        /* ====== زر التحميل (Google Drive) ====== */
+        /* ====== زر التحميل (MediaFire) ====== */
         .btn-download {
             display: inline-block;
-            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            background: linear-gradient(135deg, #10B981, #059669);
             color: white;
             padding: 18px 50px;
             border-radius: 50px;
             font-size: 1.3rem;
             font-weight: 800;
-            box-shadow: 0 10px 30px rgba(59,130,246,0.4);
+            box-shadow: 0 10px 30px rgba(16,185,129,0.5);
             transition: 0.3s;
             margin-bottom: 15px;
         }
         .btn-download:hover {
             transform: scale(1.05);
-            box-shadow: 0 15px 50px rgba(59,130,246,0.6);
+            box-shadow: 0 15px 50px rgba(16,185,129,0.7);
         }
 
         /* ====== الأقسام العامة ====== */
@@ -116,6 +118,7 @@
             font-size: 2.2rem;
             font-weight: 900;
             margin-bottom: 10px;
+            color: #F0FDF4;
         }
         .section-header h2 span { color: var(--accent); }
         .section-header p { color: var(--muted); font-size: 1.1rem; }
@@ -130,23 +133,24 @@
             background: var(--secondary);
             padding: 25px;
             border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(16,185,129,0.15);
             transition: 0.4s;
             text-align: center;
         }
         .feature-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(16,185,129,0.1);
         }
         .feature-card i {
             font-size: 2rem;
             color: var(--accent);
             margin-bottom: 12px;
-            background: rgba(59,130,246,0.1);
+            background: rgba(16,185,129,0.15);
             padding: 15px;
             border-radius: 50%;
         }
-        .feature-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+        .feature-card h3 { font-size: 1.2rem; margin-bottom: 8px; color: #E5F7ED; }
         .feature-card p { color: var(--muted); font-size: 0.9rem; }
 
         /* ====== قسم الترخيص ====== */
@@ -155,7 +159,7 @@
             padding: 40px;
             border-radius: 20px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(16,185,129,0.2);
             max-width: 700px;
             margin: 0 auto;
         }
@@ -168,11 +172,12 @@
             margin-bottom: 25px;
         }
         .license-item {
-            background: rgba(255,255,255,0.03);
+            background: rgba(16,185,129,0.05);
             padding: 15px 25px;
             border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(16,185,129,0.25);
             font-weight: 700;
+            color: #F0FDF4;
         }
         .license-item span { color: var(--accent); }
 
@@ -185,21 +190,39 @@
             border-radius: 50px;
             font-weight: 800;
             font-size: 1.2rem;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
             transition: 0.3s;
             margin-top: 10px;
         }
         .btn-whatsapp:hover {
             transform: scale(1.05);
-            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
+            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.8);
         }
 
         /* ====== الفوتر ====== */
         footer {
             padding: 40px 0;
             text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            border-top: 1px solid rgba(16,185,129,0.2);
             color: var(--muted);
+        }
+
+        /* زر العودة للصفحة */
+        .back-button {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background: #059669;
+            transform: scale(1.02);
         }
 
         @media (max-width: 700px) {
@@ -224,7 +247,7 @@
             <h1>Minsaj <span>Fix</span></h1>
             <p class="subtitle">نظام إدارة ورشات الصيانة. نظم ورشتك، سجل الأجهزة، واطبع وصل استلام احترافي في ثواني.</p>
             
-            <!-- زر تحميل جوجل درايف -->
+            <!-- زر تحميل MediaFire (الرابط محدث) -->
             <a href="https://www.mediafire.com/file/a0u55hzp7bm6gbm/Minsaj+Fix.zip/file" target="_blank" class="btn-download">
                 <i class="fas fa-download"></i> حمل البرنامج (ZIP)
             </a>
@@ -277,17 +300,19 @@
         </div>
     </section>
 
+    <!-- ====== زر العودة للصفحة الرئيسية ====== -->
+    <div style="text-align: center; margin-top: 30px; padding-bottom: 30px;">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
+        </a>
+    </div>
+
     <!-- ====== الفوتر ====== -->
     <footer>
         <div class="container">
             <p>Made in Algeria 🇩🇿, with ❤️<br> © 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
         </div>
     </footer>
-<div style="text-align: center; margin-top: 30px; padding-bottom: 30px;">
-    <a href="index.html" style="display: inline-block; background: #10B981; color: white; padding: 12px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s;">
-        <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
-    </a>
-</div>
 
 </body>
 </html>
