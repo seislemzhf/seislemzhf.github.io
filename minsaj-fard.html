@@ -7,42 +7,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* ====== إعدادات عامة ====== */
+        :root {
+            --primary: #0F172A;
+            --secondary: #1E293B;
+            --accent: #10B981;
+            --accent2: #06B6D4;
+            --gold: #F59E0B;
+            --red: #EF4444;
+            --muted: #94a3b8;
+            --light: #F8FAFC;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             scroll-behavior: smooth;
         }
+
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #0F172A;
-            color: #F8FAFC;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 35%, #0F172A 70%, #1E293B 100%);
+            background-attachment: fixed;
+            color: var(--light);
+            line-height: 1.7;
         }
+
         .container {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        a { text-decoration: none; color: inherit; }
 
-        /* ====== الألوان ====== */
-        :root {
-            --primary: #0F172A;
-            --secondary: #1E293B;
-            --accent: #10B981;
-            --gold: #F59E0B;
-            --light: #F8FAFC;
-            --muted: #94a3b8;
-        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
 
         /* ====== الشريط العلوي ====== */
         header {
-            padding: 20px 0;
+            padding: 18px 0;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(15px);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -51,19 +55,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .logo {
             font-size: 1.8rem;
             font-weight: 900;
+            letter-spacing: 1px;
         }
         .logo span { color: var(--accent); }
         .header-buttons {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
-        .btn-manual {
+        .btn-manual, .btn-home {
             display: inline-block;
-            background: rgba(16, 185, 129, 0.15);
+            background: rgba(16, 185, 129, 0.12);
             color: var(--accent);
             padding: 10px 22px;
             border-radius: 50px;
@@ -72,185 +80,297 @@
             border: 1px solid rgba(16, 185, 129, 0.3);
             transition: 0.3s;
         }
-        .btn-manual:hover {
+        .btn-manual:hover, .btn-home:hover {
             background: var(--accent);
             color: white;
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
         }
 
-        /* ====== قسم البطل ====== */
+        /* ====== البطل ====== */
         .hero {
-            padding: 80px 0 40px;
+            padding: 80px 0 50px;
             text-align: center;
-            background: radial-gradient(circle at 50% 30%, rgba(16,185,129,0.1), #0F172A 60%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(16,185,129,0.08), transparent 70%);
+            pointer-events: none;
         }
         .hero .badge {
             display: inline-block;
             background: rgba(16,185,129,0.15);
             color: var(--accent);
-            padding: 8px 20px;
+            padding: 10px 25px;
             border-radius: 50px;
             font-weight: 700;
-            border: 1px solid rgba(16,185,129,0.2);
-            margin-bottom: 20px;
+            border: 1px solid rgba(16,185,129,0.25);
+            margin-bottom: 25px;
+            position: relative;
         }
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 900;
             margin-bottom: 15px;
-            line-height: 1.3;
+            line-height: 1.2;
+            position: relative;
         }
-        .hero h1 span { color: var(--accent); }
+        .hero h1 span {
+            color: var(--accent);
+            text-shadow: 0 0 30px rgba(16,185,129,0.4);
+        }
         .hero .subtitle {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--muted);
-            max-width: 700px;
-            margin: 0 auto 30px;
+            max-width: 750px;
+            margin: 0 auto 35px;
+            position: relative;
+        }
+        .hero .version-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(6,182,212,0.15);
+            color: var(--accent2);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
         }
 
         /* ====== زر التحميل ====== */
         .btn-download {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
             background: linear-gradient(135deg, #10B981, #059669);
             color: white;
-            padding: 18px 50px;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 800;
-            box-shadow: 0 10px 30px rgba(16,185,129,0.4);
+            padding: 20px 55px;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            box-shadow: 0 15px 40px rgba(16,185,129,0.5);
             transition: 0.3s;
             margin-bottom: 15px;
+            position: relative;
         }
         .btn-download:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 50px rgba(16,185,129,0.6);
+            transform: scale(1.06) translateY(-3px);
+            box-shadow: 0 20px 60px rgba(16,185,129,0.7);
+        }
+        .file-size {
+            color: var(--muted);
+            font-size: 0.9rem;
+            position: relative;
         }
 
-        /* ====== الأقسام العامة ====== */
-        section { padding: 60px 0; }
+        /* ====== الأقسام ====== */
+        section { padding: 70px 0; }
         .section-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
         }
         .section-header h2 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 900;
             margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            border-radius: 2px;
         }
         .section-header h2 span { color: var(--accent); }
-        .section-header p { color: var(--muted); font-size: 1.1rem; }
+        .section-header p { color: var(--muted); font-size: 1.1rem; margin-top: 15px; }
 
-        /* ====== قسم المميزات ====== */
+        /* ====== المميزات ====== */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 20px;
         }
         .feature-card {
             background: var(--secondary);
-            padding: 25px;
+            padding: 30px 25px;
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.05);
             transition: 0.4s;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .feature-card:hover::before { opacity: 1; }
         .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-            box-shadow: 0 15px 40px rgba(16,185,129,0.15);
+            transform: translateY(-8px);
+            border-color: rgba(16,185,129,0.4);
+            box-shadow: 0 20px 50px rgba(16,185,129,0.15);
+        }
+        .feature-card .icon-wrapper {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 18px;
+            background: rgba(16,185,129,0.12);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.4s;
+        }
+        .feature-card:hover .icon-wrapper {
+            background: var(--accent);
+            transform: rotateY(180deg);
         }
         .feature-card i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent);
-            margin-bottom: 12px;
-            background: rgba(16,185,129,0.1);
-            padding: 15px;
-            border-radius: 50%;
+            transition: 0.4s;
         }
-        .feature-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
-        .feature-card p { color: var(--muted); font-size: 0.9rem; }
+        .feature-card:hover i { color: white; }
+        .feature-card h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; }
+        .feature-card p { color: var(--muted); font-size: 0.88rem; }
 
-        /* ====== قسم الترخيص ====== */
+        /* ====== الترخيص ====== */
         .license-box {
             background: var(--secondary);
-            padding: 40px;
-            border-radius: 20px;
+            padding: 45px 40px;
+            border-radius: 25px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
-            max-width: 700px;
+            border: 1px solid rgba(255,255,255,0.08);
+            max-width: 750px;
             margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
         }
-        .license-box h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--gold); }
+        .license-box h3 {
+            font-size: 1.9rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            color: var(--gold);
+        }
         .license-items {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
             flex-wrap: wrap;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         .license-item {
-            background: rgba(255,255,255,0.03);
-            padding: 15px 25px;
+            background: rgba(255,255,255,0.04);
+            padding: 18px 25px;
             border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
             font-weight: 700;
+            transition: 0.3s;
         }
+        .license-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .license-item i { color: var(--accent); margin-left: 8px; }
         .license-item span { color: var(--accent); }
 
-        /* ====== زر واتساب ====== */
+        /* ====== واتساب ====== */
         .btn-whatsapp {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             background: #25D366;
             color: white;
-            padding: 16px 45px;
-            border-radius: 50px;
-            font-weight: 800;
+            padding: 18px 50px;
+            border-radius: 60px;
+            font-weight: 900;
             font-size: 1.2rem;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
             transition: 0.3s;
             margin-top: 10px;
         }
         .btn-whatsapp:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
+            transform: scale(1.06);
+            box-shadow: 0 15px 60px rgba(37, 211, 102, 0.7);
         }
 
         /* ====== الفوتر ====== */
         footer {
-            padding: 40px 0;
+            padding: 50px 0;
             text-align: center;
             border-top: 1px solid rgba(255,255,255,0.05);
             color: var(--muted);
+            background: rgba(15,23,42,0.8);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .footer-links a {
+            color: var(--muted);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
         }
 
         /* ====== زر العودة ====== */
+        .back-section {
+            text-align: center;
+            padding: 20px 0 40px;
+        }
         .back-btn {
-            display: inline-block;
-            background: #10B981;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #10B981, #059669);
             color: white;
-            padding: 12px 35px;
+            padding: 14px 40px;
             border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
+            font-weight: 800;
             transition: 0.3s;
-            margin-top: 30px;
         }
         .back-btn:hover {
-            background: #059669;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(16,185,129,0.4);
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(16,185,129,0.5);
         }
 
         @media (max-width: 700px) {
-            .hero h1 { font-size: 2.2rem; }
-            .license-items { flex-direction: column; gap: 15px; }
+            .hero h1 { font-size: 2.3rem; }
+            .btn-download { padding: 16px 35px; font-size: 1.1rem; }
+            .license-items { flex-direction: column; gap: 12px; }
+            .section-header h2 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ====== الشريط العلوي ====== -->
     <header>
         <div class="container header-content">
             <div class="logo">Minsaj <span>Fard</span></div>
@@ -258,29 +378,27 @@
                 <a href="minsaj-fard-manual.html" class="btn-manual">
                     <i class="fas fa-book"></i> دليل الاستخدام
                 </a>
-                <a href="index.html" class="btn-manual">
+                <a href="index.html" class="btn-home">
                     <i class="fas fa-home"></i> الرئيسية
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- ====== قسم الترحيب والتحميل ====== -->
     <section class="hero">
         <div class="container">
             <div class="badge"><i class="fas fa-star"></i> صنع في الجزائر 🇩🇿</div>
             <h1>Minsaj <span>Fard</span></h1>
-            <p class="subtitle">نظام متكامل لإدارة الموارد البشرية (HR ERP). رواتب بالضرائب الجزائرية، حضور ببصمة ZKTeco، إجازات، تقارير Excel و PDF، وترخيص محكم.</p>
+            <div class="version-badge"><i class="fas fa-check-circle"></i> v1.0.0 - النسخة الكاملة</div>
+            <p class="subtitle">نظام متكامل لإدارة الموارد البشرية (HR ERP) مصمم خصيصاً للشركات الجزائرية. رواتب بالضرائب الجزائرية، حضور ببصمة ZKTeco، إجازات، تقارير Excel و PDF، وترخيص محكم.</p>
             
-            <!-- زر تحميل -->
             <a href="https://www.mediafire.com/file/hizaa0vhco5iouq/Minsaj_Fard.zip/file" target="_blank" class="btn-download">
                 <i class="fas fa-download"></i> حمل البرنامج (ZIP)
             </a>
-            <p style="color: var(--muted); font-size: 0.9rem; margin-top: 5px;">249.56 ميغابايت</p>
+            <p class="file-size"><i class="fas fa-hdd"></i> 249.56 ميغابايت</p>
         </div>
     </section>
 
-    <!-- ====== قسم المميزات (16 ميزة) ====== -->
     <section>
         <div class="container">
             <div class="section-header">
@@ -288,27 +406,90 @@
                 <p>16 سبباً يجعله أفضل نظام HR في الجزائر</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card"><i class="fas fa-users"></i><h3>إدارة الموظفين</h3><p>ملف شامل لكل موظف: بيانات، وردية، منصب، راتب، وصورة.</p></div>
-                <div class="feature-card"><i class="fas fa-fingerprint"></i><h3>جهاز البصمة ZKTeco</h3><p>جلب سجلات الحضور تلقائياً من جهاز البصمة عبر الشبكة.</p></div>
-                <div class="feature-card"><i class="fas fa-coins"></i><h3>رواتب بالضرائب الجزائرية</h3><p>حساب تلقائي: CNAS (9%) + IRG حسب الجدول الرسمي.</p></div>
-                <div class="feature-card"><i class="fas fa-calendar-check"></i><h3>إدارة الإجازات</h3><p>طلبات إجازة، موافقة/رفض، وتتبع رصيد كل موظف.</p></div>
-                <div class="feature-card"><i class="fas fa-rotate"></i><h3>نظام الورديات</h3><p>ورديات صباحية/مسائية/ليلية مع أيام عمل ونظام أسبوعي.</p></div>
-                <div class="feature-card"><i class="fas fa-building"></i><h3>الأقسام والمناصب</h3><p>تنظيم هيكلي كامل للشركة.</p></div>
-                <div class="feature-card"><i class="fas fa-chart-column"></i><h3>لوحة تحكم بالرسوم</h3><p>رسم دائري لتوزيع الموظفين وأعمدة للحضور الأسبوعي.</p></div>
-                <div class="feature-card"><i class="fas fa-star"></i><h3>تقييم الأداء</h3><p>تقييم دوري للموظفين بخمس معايير.</p></div>
-                <div class="feature-card"><i class="fas fa-book-open"></i><h3>إدارة التدريب</h3><p>دورات تدريبية مع متابعة المشاركين.</p></div>
-                <div class="feature-card"><i class="fas fa-file-pdf"></i><h3>شهادة عمل + عقد CDD/CDI</h3><p>توليد PDF احترافي فوري.</p></div>
-                <div class="feature-card"><i class="fas fa-file-excel"></i><h3>تصدير Excel</h3><p>تصدير الموظفين والحضور والرواتب بنقرة واحدة.</p></div>
-                <div class="feature-card"><i class="fas fa-language"></i><h3>3 لغات</h3><p>عربي / Français / English - تتغير كل النوافذ فوراً.</p></div>
-                <div class="feature-card"><i class="fas fa-shield-halved"></i><h3>ترخيص محكم</h3><p>نظام ترخيص مرتبط بالجهاز مع تشفير الملفات.</p></div>
-                <div class="feature-card"><i class="fas fa-clock-rotate-left"></i><h3>سجل الأحداث</h3><p>تتبع كل عملية: من فعل ماذا ومتى.</p></div>
-                <div class="feature-card"><i class="fas fa-database"></i><h3>نسخ احتياطي</h3><p>نسخة احتياطية بنقرة واحدة.</p></div>
-                <div class="feature-card"><i class="fas fa-gift"></i><h3>تجربة مجانية</h3><p>جرب كل المميزات لمدة 30 يوم مجاناً.</p></div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-users"></i></div>
+                    <h3>إدارة الموظفين</h3>
+                    <p>ملف شامل لكل موظف: بيانات، وردية، منصب، راتب.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-fingerprint"></i></div>
+                    <h3>جهاز البصمة ZKTeco</h3>
+                    <p>جلب سجلات الحضور تلقائياً عبر الشبكة.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-coins"></i></div>
+                    <h3>رواتب بالضرائب الجزائرية</h3>
+                    <p>CNAS (9%) + IRG حسب الجدول الرسمي.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-calendar-check"></i></div>
+                    <h3>إدارة الإجازات</h3>
+                    <p>طلبات، موافقة/رفض، تتبع الرصيد.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-rotate"></i></div>
+                    <h3>نظام الورديات</h3>
+                    <p>صباحية/مسائية/ليلية مع أيام عمل.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-building"></i></div>
+                    <h3>الأقسام والمناصب</h3>
+                    <p>تنظيم هيكلي كامل للشركة.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-chart-column"></i></div>
+                    <h3>لوحة تحكم بالرسوم</h3>
+                    <p>رسم دائري وأعمدة للحضور الأسبوعي.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-star"></i></div>
+                    <h3>تقييم الأداء</h3>
+                    <p>تقييم دوري بخمس معايير.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-book-open"></i></div>
+                    <h3>إدارة التدريب</h3>
+                    <p>دورات تدريبية مع متابعة.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-file-pdf"></i></div>
+                    <h3>شهادة عمل + عقد</h3>
+                    <p>CDD/CDI بصيغة PDF احترافية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-file-excel"></i></div>
+                    <h3>تصدير Excel</h3>
+                    <p>بنقرة واحدة لكل الأقسام.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-language"></i></div>
+                    <h3>3 لغات</h3>
+                    <p>عربي / Français / English.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-shield-halved"></i></div>
+                    <h3>ترخيص محكم</h3>
+                    <p>مرتبط بالجهاز مع تشفير.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-clock-rotate-left"></i></div>
+                    <h3>سجل الأحداث</h3>
+                    <p>تتبع كل عملية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-database"></i></div>
+                    <h3>نسخ احتياطي</h3>
+                    <p>بنقرة واحدة.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper"><i class="fas fa-gift"></i></div>
+                    <h3>تجربة مجانية</h3>
+                    <p>30 يوم كاملة بكل المميزات.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ====== قسم الترخيص ====== -->
     <section>
         <div class="container">
             <div class="section-header">
@@ -319,10 +500,9 @@
                 <h3>جرب الآن مجاناً</h3>
                 <div class="license-items">
                     <div class="license-item"><i class="fas fa-check-circle"></i> 30 يوم <span>تجربة مجانية</span> كاملة</div>
-                    <div class="license-item"><i class="fas fa-check-circle"></i> أنواع الترخيص: <span>شهر / 3 أشهر / 6 أشهر / سنة / مدى الحياة</span></div>
+                    <div class="license-item"><i class="fas fa-check-circle"></i> <span>شهر / 3 أشهر / 6 أشهر / سنة / مدى الحياة</span></div>
                 </div>
-                <p style="color: var(--muted); margin-bottom: 15px;">للحصول على رمز التفعيل، راسلني مباشرة:</p>
-                <!-- زر واتساب -->
+                <p style="color: var(--muted); margin-bottom: 20px;">للحصول على رمز التفعيل، راسلني مباشرة:</p>
                 <a href="https://wa.me/2130657200758" target="_blank" class="btn-whatsapp">
                     <i class="fab fa-whatsapp"></i> راسلني على واتساب لطلب رمز التفعيل
                 </a>
@@ -330,14 +510,19 @@
         </div>
     </section>
 
-    <!-- ====== الفوتر ====== -->
     <footer>
         <div class="container">
-            <p>Made in Algeria 🇩🇿, with ❤️<br> © 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
+            <p>Made in Algeria 🇩🇿, with ❤️</p>
+            <p>© 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
+            <div class="footer-links">
+                <a href="https://github.com/seislemzhf" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:seislemzhf@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="https://wa.me/2130657200758" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
         </div>
     </footer>
 
-    <div style="text-align: center; padding-bottom: 30px;">
+    <div class="back-section">
         <a href="index.html" class="back-btn">
             <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
         </a>
