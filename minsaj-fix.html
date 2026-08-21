@@ -16,9 +16,13 @@
         }
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #0F172A; /* الخلفية الأصلية الزرقاء الداكنة */
+            background-color: #0F172A;
             color: #F8FAFC;
             line-height: 1.6;
+            transition: 0.3s;
+        }
+        body.en, body.fr {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .container {
             max-width: 1100px;
@@ -27,11 +31,11 @@
         }
         a { text-decoration: none; color: inherit; }
 
-        /* ====== الألوان – الخلفية زرقاء داكنة مع لمسات خضراء ====== */
+        /* ====== الألوان ====== */
         :root {
             --primary: #0F172A;
             --secondary: #1E293B;
-            --accent: #10B981; /* أخضر زمردي بدل الأزرق */
+            --accent: #10B981;
             --gold: #34D399;
             --light: #F8FAFC;
             --muted: #94a3b8;
@@ -51,12 +55,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .logo {
             font-size: 1.8rem;
             font-weight: 900;
         }
         .logo span { color: var(--accent); }
+
+        /* ====== زر تغيير اللغة ====== */
+        .lang-switcher {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            color: var(--muted);
+            padding: 5px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.75rem;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
 
         /* ====== قسم البطل ====== */
         .hero {
@@ -88,7 +122,7 @@
             margin: 0 auto 30px;
         }
 
-        /* ====== زر التحميل (MediaFire) ====== */
+        /* ====== زر التحميل ====== */
         .btn-download {
             display: inline-block;
             background: linear-gradient(135deg, #10B981, #059669);
@@ -210,6 +244,11 @@
             background: #059669;
             transform: scale(1.02);
         }
+        .back-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 30px;
+        }
 
         /* ====== الفوتر ====== */
         footer {
@@ -222,6 +261,8 @@
         @media (max-width: 700px) {
             .hero h1 { font-size: 2.2rem; }
             .license-items { flex-direction: column; gap: 15px; }
+            .lang-switcher { width: 100%; justify-content: center; }
+            .header-content { justify-content: center; }
         }
     </style>
 </head>
@@ -231,21 +272,25 @@
     <header>
         <div class="container header-content">
             <div class="logo">Minsaj <span>Fix</span></div>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="ar">🇩🇿 عربي</button>
+                <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+                <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+            </div>
         </div>
     </header>
 
     <!-- ====== قسم الترحيب والتحميل ====== -->
     <section class="hero">
         <div class="container">
-            <div class="badge"><i class="fas fa-star"></i> صنع في الجزائر 🇩🇿</div>
+            <div class="badge"><i class="fas fa-star"></i> <span data-key="hero-badge">صنع في الجزائر 🇩🇿</span></div>
             <h1>Minsaj <span>Fix</span></h1>
-            <p class="subtitle">نظام إدارة ورشات الصيانة. نظم ورشتك، سجل الأجهزة، واطبع وصل استلام احترافي في ثواني.</p>
+            <p class="subtitle" data-key="hero-desc">نظام إدارة ورشات الصيانة. نظم ورشتك، سجل الأجهزة، واطبع وصل استلام احترافي في ثواني.</p>
             
-            <!-- زر تحميل MediaFire -->
             <a href="https://www.mediafire.com/file/a0u55hzp7bm6gbm/Minsaj+Fix.zip/file" target="_blank" class="btn-download">
-                <i class="fas fa-download"></i> حمل البرنامج (ZIP)
+                <i class="fas fa-download"></i> <span data-key="download-btn">حمل البرنامج (ZIP)</span>
             </a>
-            <p style="color: var(--muted); font-size: 0.9rem; margin-top: 5px;">58.3 ميغابايت</p>
+            <p style="color: var(--muted); font-size: 0.9rem; margin-top: 5px;" data-key="file-size">58.3 ميغابايت</p>
         </div>
     </section>
 
@@ -253,20 +298,20 @@
     <section>
         <div class="container">
             <div class="section-header">
-                <h2>✨ لماذا <span>Minsaj Fix</span>؟</h2>
-                <p>10 أسباب تجعله أفضل حل لورشتك</p>
+                <h2>✨ <span data-key="features-title">لماذا Minsaj Fix</span>؟</h2>
+                <p data-key="features-sub">10 أسباب تجعله أفضل حل لورشتك</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card"><i class="fas fa-file-pen"></i><h3>وداعاً للدفاتر</h3><p>سجل كل جهاز تلقائياً، ما تبقاش تكتب في دفاتر.</p></div>
-                <div class="feature-card"><i class="fas fa-bolt"></i><h3>استقبال في ثواني</h3><p>سجل زبون وجهاز في أقل من دقيقة. بحث فوري بالهاتف.</p></div>
-                <div class="feature-card"><i class="fas fa-receipt"></i><h3>وصل احترافي</h3><p>اطبع وصل A4 للزبون وتيكي للجهاز مع باركود.</p></div>
-                <div class="feature-card"><i class="fas fa-search"></i><h3>تتبع دقيق</h3><p>تعرف حالة كل جهاز: تشخيص، قطع، جاهز، تسليم.</p></div>
-                <div class="feature-card"><i class="fas fa-boxes-stacked"></i><h3>إدارة القطع</h3><p>اعرف شحال عندك في المخزون وتنبيهات لما تنقص.</p></div>
-                <div class="feature-card"><i class="fas fa-coins"></i><h3>الصندوق والإيرادات</h3><p>حساب تلقائي للفاتورة، كشف يومي بالإيرادات.</p></div>
-                <div class="feature-card"><i class="fas fa-chart-pie"></i><h3>إحصائيات دقيقة</h3><p>عرف شحال جهاز دخل، سلمت، وربحت هذا الشهر.</p></div>
-                <div class="feature-card"><i class="fas fa-archive"></i><h3>أرشيف رقمي</h3><p>كل زبون له ملف خاص، تصدير Excel، نسخ احتياطي.</p></div>
-                <div class="feature-card"><i class="fas fa-wifi-slash"></i><h3>بدون إنترنت</h3><p>يخدم في جهازك، قاعدة بيانات مشفرة.</p></div>
-                <div class="feature-card"><i class="fas fa-gift"></i><h3>تجربة مجانية</h3><p>جرب كل المميزات لمدة 30 يوم مجاناً.</p></div>
+                <div class="feature-card"><i class="fas fa-file-pen"></i><h3 data-key="f1-title">وداعاً للدفاتر</h3><p data-key="f1-desc">سجل كل جهاز تلقائياً، ما تبقاش تكتب في دفاتر.</p></div>
+                <div class="feature-card"><i class="fas fa-bolt"></i><h3 data-key="f2-title">استقبال في ثواني</h3><p data-key="f2-desc">سجل زبون وجهاز في أقل من دقيقة. بحث فوري بالهاتف.</p></div>
+                <div class="feature-card"><i class="fas fa-receipt"></i><h3 data-key="f3-title">وصل احترافي</h3><p data-key="f3-desc">اطبع وصل A4 للزبون وتيكي للجهاز مع باركود.</p></div>
+                <div class="feature-card"><i class="fas fa-search"></i><h3 data-key="f4-title">تتبع دقيق</h3><p data-key="f4-desc">تعرف حالة كل جهاز: تشخيص، قطع، جاهز، تسليم.</p></div>
+                <div class="feature-card"><i class="fas fa-boxes-stacked"></i><h3 data-key="f5-title">إدارة القطع</h3><p data-key="f5-desc">اعرف شحال عندك في المخزون وتنبيهات لما تنقص.</p></div>
+                <div class="feature-card"><i class="fas fa-coins"></i><h3 data-key="f6-title">الصندوق والإيرادات</h3><p data-key="f6-desc">حساب تلقائي للفاتورة، كشف يومي بالإيرادات.</p></div>
+                <div class="feature-card"><i class="fas fa-chart-pie"></i><h3 data-key="f7-title">إحصائيات دقيقة</h3><p data-key="f7-desc">عرف شحال جهاز دخل، سلمت، وربحت هذا الشهر.</p></div>
+                <div class="feature-card"><i class="fas fa-archive"></i><h3 data-key="f8-title">أرشيف رقمي</h3><p data-key="f8-desc">كل زبون له ملف خاص، تصدير Excel، نسخ احتياطي.</p></div>
+                <div class="feature-card"><i class="fas fa-wifi-slash"></i><h3 data-key="f9-title">بدون إنترنت</h3><p data-key="f9-desc">يخدم في جهازك، قاعدة بيانات مشفرة.</p></div>
+                <div class="feature-card"><i class="fas fa-gift"></i><h3 data-key="f10-title">تجربة مجانية</h3><p data-key="f10-desc">جرب كل المميزات لمدة 30 يوم مجاناً.</p></div>
             </div>
         </div>
     </section>
@@ -275,38 +320,209 @@
     <section>
         <div class="container">
             <div class="section-header">
-                <h2>🔐 <span>نظام الترخيص</span></h2>
-                <p>ابدأ مجاناً ثم فعّل مدى الحياة</p>
+                <h2>🔐 <span data-key="license-title">نظام الترخيص</span></h2>
+                <p data-key="license-sub">ابدأ مجاناً ثم فعّل مدى الحياة</p>
             </div>
             <div class="license-box">
-                <h3>جرب الآن مجاناً</h3>
+                <h3 data-key="license-head">جرب الآن مجاناً</h3>
                 <div class="license-items">
-                    <div class="license-item"><i class="fas fa-check-circle"></i> 30 يوم <span>تجربة مجانية</span> كاملة</div>
-                    <div class="license-item"><i class="fas fa-check-circle"></i> بعد التجربة: <span>اطلب رمز التفعيل</span></div>
-                    <div class="license-item"><i class="fas fa-infinity"></i> رمز التفعيل = <span>مدى الحياة</span></div>
+                    <div class="license-item"><i class="fas fa-check-circle"></i> <span data-key="license1">30 يوم تجربة مجانية كاملة</span></div>
+                    <div class="license-item"><i class="fas fa-check-circle"></i> <span data-key="license2">بعد التجربة: اطلب رمز التفعيل</span></div>
+                    <div class="license-item"><i class="fas fa-infinity"></i> <span data-key="license3">رمز التفعيل = مدى الحياة</span></div>
                 </div>
-                <p style="color: var(--muted); margin-bottom: 15px;">للحصول على رمز التفعيل، راسلني مباشرة:</p>
-                <!-- زر واتساب -->
+                <p style="color: var(--muted); margin-bottom: 15px;" data-key="license-msg">للحصول على رمز التفعيل، راسلني مباشرة:</p>
                 <a href="https://wa.me/2130657200758" target="_blank" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> راسلني على واتساب لطلب رمز التفعيل
+                    <i class="fab fa-whatsapp"></i> <span data-key="whatsapp-btn">راسلني على واتساب لطلب رمز التفعيل</span>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- ====== زر العودة للصفحة الرئيسية ====== -->
-    <div style="text-align: center; margin-top: 30px; padding-bottom: 30px;">
+    <div class="back-section">
         <a href="index.html" class="back-button">
-            <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
+            <i class="fas fa-arrow-right"></i> <span data-key="back-btn">العودة للصفحة الرئيسية</span>
         </a>
     </div>
 
     <!-- ====== الفوتر ====== -->
     <footer>
         <div class="container">
-            <p>Made in Algeria 🇩🇿, with ❤️<br> © 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
+            <p data-key="footer-made">Made in Algeria 🇩🇿, with ❤️</p>
+            <p data-key="footer-rights">© 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
         </div>
     </footer>
 
+    <script>
+        // ====== البيانات متعددة اللغات ======
+        const translations = {
+            ar: {
+                'hero-badge': 'صنع في الجزائر 🇩🇿',
+                'hero-desc': 'نظام إدارة ورشات الصيانة. نظم ورشتك، سجل الأجهزة، واطبع وصل استلام احترافي في ثواني.',
+                'download-btn': 'حمل البرنامج (ZIP)',
+                'file-size': '58.3 ميغابايت',
+                'features-title': 'لماذا Minsaj Fix',
+                'features-sub': '10 أسباب تجعله أفضل حل لورشتك',
+                'f1-title': 'وداعاً للدفاتر',
+                'f1-desc': 'سجل كل جهاز تلقائياً، ما تبقاش تكتب في دفاتر.',
+                'f2-title': 'استقبال في ثواني',
+                'f2-desc': 'سجل زبون وجهاز في أقل من دقيقة. بحث فوري بالهاتف.',
+                'f3-title': 'وصل احترافي',
+                'f3-desc': 'اطبع وصل A4 للزبون وتيكي للجهاز مع باركود.',
+                'f4-title': 'تتبع دقيق',
+                'f4-desc': 'تعرف حالة كل جهاز: تشخيص، قطع، جاهز، تسليم.',
+                'f5-title': 'إدارة القطع',
+                'f5-desc': 'اعرف شحال عندك في المخزون وتنبيهات لما تنقص.',
+                'f6-title': 'الصندوق والإيرادات',
+                'f6-desc': 'حساب تلقائي للفاتورة، كشف يومي بالإيرادات.',
+                'f7-title': 'إحصائيات دقيقة',
+                'f7-desc': 'عرف شحال جهاز دخل، سلمت، وربحت هذا الشهر.',
+                'f8-title': 'أرشيف رقمي',
+                'f8-desc': 'كل زبون له ملف خاص، تصدير Excel، نسخ احتياطي.',
+                'f9-title': 'بدون إنترنت',
+                'f9-desc': 'يخدم في جهازك، قاعدة بيانات مشفرة.',
+                'f10-title': 'تجربة مجانية',
+                'f10-desc': 'جرب كل المميزات لمدة 30 يوم مجاناً.',
+                'license-title': 'نظام الترخيص',
+                'license-sub': 'ابدأ مجاناً ثم فعّل مدى الحياة',
+                'license-head': 'جرب الآن مجاناً',
+                'license1': '30 يوم تجربة مجانية كاملة',
+                'license2': 'بعد التجربة: اطلب رمز التفعيل',
+                'license3': 'رمز التفعيل = مدى الحياة',
+                'license-msg': 'للحصول على رمز التفعيل، راسلني مباشرة:',
+                'whatsapp-btn': 'راسلني على واتساب لطلب رمز التفعيل',
+                'back-btn': 'العودة للصفحة الرئيسية',
+                'footer-made': 'Made in Algeria 🇩🇿, with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - جميع الحقوق محفوظة'
+            },
+            fr: {
+                'hero-badge': 'Fabriqué en Algérie 🇩🇿',
+                'hero-desc': "Système de gestion d'ateliers de réparation. Organisez votre atelier, enregistrez les appareils et imprimez un reçu professionnel en quelques secondes.",
+                'download-btn': 'Télécharger (ZIP)',
+                'file-size': '58.3 Mo',
+                'features-title': 'Pourquoi Minsaj Fix',
+                'features-sub': "10 raisons qui en font la meilleure solution pour votre atelier",
+                'f1-title': 'Adieu les carnets',
+                'f1-desc': "Enregistrez chaque appareil automatiquement, plus besoin d'écrire dans des carnets.",
+                'f2-title': 'Accueil en secondes',
+                'f2-desc': "Enregistrez un client et un appareil en moins d'une minute. Recherche instantanée par téléphone.",
+                'f3-title': 'Reçu professionnel',
+                'f3-desc': 'Imprimez un reçu A4 pour le client et une étiquette pour l\'appareil avec code-barres.',
+                'f4-title': 'Suivi précis',
+                'f4-desc': 'Connaissez l\'état de chaque appareil: diagnostic, pièces, prêt, livré.',
+                'f5-title': 'Gestion des pièces',
+                'f5-desc': 'Sachez combien vous avez en stock et alertes quand le stock est bas.',
+                'f6-title': 'Caisse et revenus',
+                'f6-desc': 'Calcul automatique de la facture, relevé quotidien des revenus.',
+                'f7-title': 'Statistiques précises',
+                'f7-desc': 'Sachez combien d\'appareils sont entrés, livrés et combien vous avez gagné ce mois-ci.',
+                'f8-title': 'Archives numériques',
+                'f8-desc': 'Chaque client a son propre dossier, export Excel, sauvegarde.',
+                'f9-title': 'Sans Internet',
+                'f9-desc': 'Fonctionne sur votre ordinateur, base de données cryptée.',
+                'f10-title': 'Essai gratuit',
+                'f10-desc': 'Testez toutes les fonctionnalités gratuitement pendant 30 jours.',
+                'license-title': 'Système de licence',
+                'license-sub': 'Commencez gratuitement puis activez à vie',
+                'license-head': 'Essayez maintenant gratuitement',
+                'license1': '30 jours d\'essai gratuit complet',
+                'license2': 'Après l\'essai: demandez le code d\'activation',
+                'license3': 'Code d\'activation = à vie',
+                'license-msg': 'Pour obtenir le code d\'activation, contactez-moi directement:',
+                'whatsapp-btn': 'Contactez-moi sur WhatsApp pour le code d\'activation',
+                'back-btn': 'Retour à la page d\'accueil',
+                'footer-made': 'Made in Algeria 🇩🇿, with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - Tous droits réservés'
+            },
+            en: {
+                'hero-badge': 'Made in Algeria 🇩🇿',
+                'hero-desc': 'Workshop management system. Organize your workshop, register devices, and print professional receipts in seconds.',
+                'download-btn': 'Download (ZIP)',
+                'file-size': '58.3 MB',
+                'features-title': 'Why Minsaj Fix',
+                'features-sub': '10 reasons why it\'s the best solution for your workshop',
+                'f1-title': 'Goodbye to notebooks',
+                'f1-desc': 'Automatically register every device, no more manual writing in notebooks.',
+                'f2-title': 'Reception in seconds',
+                'f2-desc': 'Register a client and device in under a minute. Instant phone search.',
+                'f3-title': 'Professional receipt',
+                'f3-desc': 'Print A4 receipt for the client and a tag for the device with barcode.',
+                'f4-title': 'Accurate tracking',
+                'f4-desc': 'Know the status of each device: diagnosis, parts, ready, delivered.',
+                'f5-title': 'Parts management',
+                'f5-desc': 'Know your stock levels and get alerts when stock runs low.',
+                'f6-title': 'Cashier & Revenue',
+                'f6-desc': 'Automatic invoice calculation, daily revenue report.',
+                'f7-title': 'Accurate Statistics',
+                'f7-desc': 'Know how many devices entered, delivered, and how much you earned this month.',
+                'f8-title': 'Digital Archive',
+                'f8-desc': 'Each client has their own file, Excel export, backup.',
+                'f9-title': 'No Internet',
+                'f9-desc': 'Works on your device, encrypted database.',
+                'f10-title': 'Free Trial',
+                'f10-desc': 'Try all features for free for 30 days.',
+                'license-title': 'Licensing System',
+                'license-sub': 'Start free then activate for life',
+                'license-head': 'Try it now for free',
+                'license1': '30-day full free trial',
+                'license2': 'After trial: request activation code',
+                'license3': 'Activation code = lifetime',
+                'license-msg': 'To get the activation code, contact me directly:',
+                'whatsapp-btn': 'Contact me on WhatsApp for activation code',
+                'back-btn': 'Back to Homepage',
+                'footer-made': 'Made in Algeria 🇩🇿, with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - All rights reserved'
+            }
+        };
+
+        // ====== تغيير اللغة ======
+        let currentLang = 'ar';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const html = document.documentElement;
+            if (lang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                document.body.className = '';
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', lang);
+                document.body.className = lang;
+            }
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.dataset.key;
+                if (translations[lang][key] !== undefined) {
+                    if (key === 'hero-desc' || key === 'footer-made' || key === 'footer-rights') {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            localStorage.setItem('preferred-lang-fix', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeLanguage(btn.dataset.lang);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang-fix') || 'ar';
+            changeLanguage(savedLang);
+        });
+    </script>
 </body>
 </html>
