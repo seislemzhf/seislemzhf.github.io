@@ -18,7 +18,7 @@
             font-family: 'Tajawal', sans-serif;
             background: #0a0a0a;
             color: #f0ece6;
-            line-height: 1.8;
+            line-height: 1.9;
             transition: 0.3s;
         }
         body.en, body.fr {
@@ -141,7 +141,7 @@
 
         /* ====== HERO ====== */
         .hero {
-            padding: 40px 0 30px;
+            padding: 40px 0 20px;
             text-align: center;
         }
         .hero .ornament {
@@ -183,75 +183,53 @@
             display: flex;
             gap: 50px;
             align-items: flex-start;
-            padding: 30px 0 40px;
+            padding: 20px 0 30px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
+        /* ====== COVER LARGE ====== */
         .cover-large {
-            width: 168px;
-            height: 252px;
+            width: 220px;
+            height: 330px;
             background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
-            border-radius: 8px;
-            border: 1px solid rgba(108, 139, 158, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(108, 139, 158, 0.12);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 10px;
             flex-shrink: 0;
             transition: 0.4s;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
         }
         .cover-large:hover {
-            transform: scale(1.02);
-            border-color: rgba(108, 139, 158, 0.2);
-            box-shadow: 0 10px 50px rgba(108, 139, 158, 0.04);
+            transform: scale(1.03);
+            border-color: rgba(108, 139, 158, 0.25);
+            box-shadow: 0 15px 60px rgba(108, 139, 158, 0.06);
         }
         .cover-large .badge-copy {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 10px;
+            right: 12px;
             background: var(--accent);
             color: var(--bg-primary);
-            font-size: 0.4rem;
-            padding: 2px 10px;
+            font-size: 0.45rem;
+            padding: 2px 12px;
             border-radius: 30px;
             font-weight: 800;
             letter-spacing: 0.5px;
             box-shadow: 0 2px 10px rgba(108, 139, 158, 0.2);
+            z-index: 2;
         }
-        .cover-large .cover-icon {
-            font-size: 3.5rem;
-            color: var(--accent);
-            opacity: 0.3;
-            margin-bottom: 10px;
-        }
-        .cover-large .cover-title {
-            font-family: 'Amiri', serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-align: center;
-            line-height: 1.3;
-        }
-        .cover-large .cover-title span { color: var(--accent); }
-        .cover-large .cover-author {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 5px;
-        }
-        .cover-large .cover-part {
-            font-size: 0.6rem;
-            color: var(--accent);
-            background: rgba(108, 139, 158, 0.06);
-            padding: 4px 16px;
-            border-radius: 30px;
-            margin-top: 10px;
-            border: 1px solid rgba(108, 139, 158, 0.06);
-            letter-spacing: 1px;
+        .cover-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
         .book-info {
@@ -294,6 +272,7 @@
             line-height: 1.9;
         }
 
+        /* ====== BUTTONS ====== */
         .btn-group {
             display: flex;
             flex-direction: column;
@@ -310,10 +289,10 @@
             gap: 10px;
             background: var(--accent);
             color: var(--bg-primary);
-            padding: 12px 32px;
+            padding: 10px 22px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             transition: 0.3s;
             border: none;
             cursor: pointer;
@@ -323,7 +302,7 @@
             transform: scale(1.02);
             box-shadow: 0 10px 40px rgba(108, 139, 158, 0.2);
         }
-        .btn-primary i { font-size: 1rem; }
+        .btn-primary i { font-size: 0.9rem; }
 
         .btn-outline {
             display: flex;
@@ -365,6 +344,62 @@
         .btn-whatsapp:hover {
             transform: scale(1.02);
             box-shadow: 0 15px 50px rgba(37, 211, 102, 0.3);
+        }
+
+        /* ====== CHAPTER 1 ====== */
+        .chapter-section {
+            padding: 30px 0 40px;
+        }
+        .chapter-wrapper {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 35px 45px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+        .chapter-wrapper .chapter-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .chapter-wrapper .chapter-sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+        .chapter-wrapper .chapter-divider {
+            text-align: center;
+            color: var(--accent-dark);
+            opacity: 0.3;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            margin: 20px 0;
+        }
+        .chapter-wrapper .chapter-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 2;
+            text-align: justify;
+        }
+        .chapter-wrapper .chapter-text strong {
+            color: var(--accent);
+        }
+        .chapter-wrapper .chapter-text .highlight {
+            color: var(--accent-light);
+            font-weight: 700;
+        }
+        .chapter-wrapper .chapter-text .quote {
+            display: block;
+            background: rgba(108, 139, 158, 0.04);
+            border-right: 3px solid var(--accent);
+            padding: 12px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-style: italic;
         }
 
         /* ====== FORM ====== */
@@ -523,19 +558,18 @@
             .lang-switcher { width: 100%; justify-content: center; }
             .header-content { justify-content: center; }
             .header-buttons { justify-content: center; }
-            .cover-large { width: 140px; height: 210px; }
-            .cover-large .cover-icon { font-size: 2.8rem; }
-            .cover-large .cover-title { font-size: 1.1rem; }
+            .cover-large { width: 180px; height: 270px; }
+            .chapter-wrapper { padding: 20px; }
             .form-wrapper { padding: 20px; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 2rem; }
             .container { padding: 0 16px; }
-            .cover-large { width: 112px; height: 168px; padding: 14px; }
-            .cover-large .cover-icon { font-size: 2rem; }
-            .cover-large .cover-title { font-size: 0.85rem; }
+            .cover-large { width: 150px; height: 225px; }
             .book-info h2 { font-size: 1.6rem; }
             .form-wrapper { padding: 16px; }
+            .chapter-wrapper { padding: 16px; }
+            .chapter-wrapper .chapter-title { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -576,12 +610,11 @@
         <div class="container">
             <div class="book-display">
 
-                <!-- COVER -->
-                <!-- COVER -->
-<div class="cover-large">
-    <div class="badge-copy">©</div>
-    <img src="images/chifret-anabd.jpg" alt="شيفرة النبض" style="width:100%; height:100%; object-fit:cover; border-radius:6px;">
-</div>
+                <!-- COVER (MEGA LARGE) -->
+                <div class="cover-large">
+                    <div class="badge-copy">©</div>
+                    <img src="images/chifret-anabd.jpg" alt="شيفرة النبض" loading="lazy">
+                </div>
 
                 <!-- INFO -->
                 <div class="book-info">
@@ -601,7 +634,7 @@
 
                     <div class="btn-group">
                         <div class="btn-wrap">
-                            <a href="https://www.mediafire.com/file/9nhanejr62z6mpx/%25D8%25B1%25D9%2588%25D8%25A7%25D9%258A%25D8%25A9_%25D8%25B4%25D9%258A%25D9%2581%25D8%25B1%25D8%25A9_%25D8%25A7%25D9%2584%25D9%2586%25D8%25A8%25D8%25B6.pdf/file" target="_blank" class="btn-primary">
+                            <a href="https://www.mediafire.com/file/9nhanejr62z6mpx/%25D8%25B1%25D9%2588%25D8%25A7%25D9%258A%25D8%25A9_%25D8%25B4%25D9%258A%25D9%2581%25D8%25B1%25D8%25A9_%25D8%25A7%25D9%2584%25D9%2586%25D8%25A8%25D8%25B6.pdf/file" target="_blank" class="btn-primary" style="font-size:0.8rem; padding:8px 18px;">
                                 <i class="fas fa-download"></i> <span data-key="download-btn">تحميل 5 فصول الأولى (PDF)</span>
                             </a>
                         </div>
@@ -618,6 +651,40 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CHAPTER 1 FULL ====== -->
+    <section class="chapter-section" id="chapter1">
+        <div class="container">
+            <div class="chapter-wrapper">
+                <div class="chapter-title">📖 <span data-key="chapter1-title">الفصل الأول</span></div>
+                <div class="chapter-sub" data-key="chapter1-sub">— إشعار منتصف الليل —</div>
+                <div class="chapter-divider">✦ ✦ ✦</div>
+
+                <div class="chapter-text" data-key="chapter1-text">
+                    <p>إشعاع مفاجئ من تطبيق <strong>"تليغرام"</strong> في الثانية صباحاً كان كافياً لقلب حياة <span class="highlight">"ليلى بن عودة"</span> رأساً على عقب. في غرفتها الهادئة بحي <strong>"كاستور"</strong> بوهران، انكسر صمت الليل برنين الهاتف فوق الطاولة الخشبية، لينبئ عن وصول ملف مرئي من مستخدم مجهول. ليلى، تلك الفتاة التي عُرفت برزانتها وتفوقها في هندسة العمارة بجامعة <strong>"إيسطو"</strong>، فتحت الرسالة بقلب يرتجف، لتجد فيديو مدته دقيقتان.. دقيقتان كانت كفيلة بإعدام سمعتها قبل أن يرتد إليها طرفها.</p>
+
+                    <p>تسمرت عيناها على الشاشة، ولم يكن ما تراه مجرد <em>"تركيب"</em> وجوه ساذج، بل كان <span class="highlight">"اغتيالاً رقمياً"</span> فائق الدقة. الفيديو يعرضها في وضعيات مخلة بالحياء، بجودة عالية تجعل من المستحيل على العين البشرية المجردة اكتشاف التزييف. صرخت صرخة صامتة وهي تتحسس وجهها؛ نفس الملامح، نفس طريقة رمش العين، وحتى تلك الشامة الصغيرة التي كانت تخفيها خلف أذنها، كانت موجودة بدقة متناهية في الفيديو المزور.</p>
+
+                    <p>عادت ليلى إلى سنوات دراستها؛ لم تكن تختار تخصصاً إلّا لـــ "الجبر" و"الخوارزميات". فجأة، أضاءت في عقلها شرارة تقنية؛ تذكرت محاضرات عن <strong>شبكات الخصومة التوليدية (GANs)</strong> وكيف يمكن لآلة أن تخلق واقعاً مزيفاً لا يمكن تمييزه عن الحقيقة. كان المبتز قد استخدم تقنية <span class="highlight">"تبادل الوجوه" (Face Swapping)</span> المتطورة، المعتمدة على <strong>نماذج الانتشار</strong> (Diffusion Models)، حيث يتم تدريب الخوارزمية على آلاف الصور والفيديوهات للضحية حتى يتقن النظام إعادة بناء ملامحها في أي سيناريو يرغب فيه المهاجم.</p>
+
+                    <div class="quote">
+                        <p><em>"لم يكن كافياً أن تستنسخ الخوارزمية وجهي.. لقد سرقت 'نبضي'.. حركة عيني، طريقة كلامي، وحتى ارتعاشة جفني حين أخاف. هذا ليس فيديو.. هذا 'بتر' لروحي."</em></p>
+                    </div>
+
+                    <p>كانت ليلى ضحية لـ <span class="highlight">"بتر الهوية"</span>، حيث تم استنساخ بصرها وبصيرتها رقمياً لضرب عائلتها المحافظة في مقتل. هي التي لم تخرج يوماً عن طوع والدها، الرجل الذي أمضى عمره وهو يرفع رأسه فخراً بـ <em>"بنت بن عودة"</em>، تجد نفسها الآن رهينة <strong>"بكسلات ميتة"</strong> ولكنها تتنفس فضيحة.</p>
+
+                    <p>أغلق المبتز رسالته بطلب جاف: <span class="highlight">"2.0 إيثيريوم في ظرف 24 ساعة، أو سيتم بث الفيديو في صفحات (فضيحة وهران) ومجموعات الحي"</span>. نظرت ليلى إلى مرآتها وكرهت وجهها لأول مرة؛ ففي عصر الذكاء الاصطناعي، لم يعد العفاف يحتاج لشهود، بل أصبح يحتاج <strong>لخوارزمية مضادة</strong> تطهر الوجه من رجس الكود.</p>
+
+                    <div style="text-align:center; margin-top:25px; color:var(--accent-dark); opacity:0.3; font-size:1.5rem; letter-spacing:10px;">
+                        ✦ ✦ ✦
+                    </div>
+                    <div style="text-align:center; margin-top:10px; color:var(--text-muted); font-size:0.85rem;">
+                        <span data-key="chapter1-end">— يتبع في الفصل الثاني —</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -688,7 +755,7 @@
     </footer>
 
     <script>
-        // ====== الترجمات ======
+        // ====== الترجمة ======
         const translations = {
             ar: {
                 'logo-title': 'المكتبة',
@@ -698,7 +765,6 @@
                 'hero-badge': 'الجزء الثاني من الثلاثية',
                 'hero-title': 'شيفرة النبض',
                 'hero-author': 'سيف الإسلام زحاف',
-                'cover-part': 'الجزء الثاني',
                 'novel-title': 'شيفرة النبض',
                 'pages': '160 صفحة',
                 'year': '2026',
@@ -708,6 +774,9 @@
                 'download-btn': 'تحميل 5 فصول الأولى (PDF)',
                 'request-btn': 'طلب الرواية كاملة',
                 'whatsapp-btn': 'طلب عبر واتساب',
+                'chapter1-title': 'الفصل الأول',
+                'chapter1-sub': '— إشعار منتصف الليل —',
+                'chapter1-end': '— يتبع في الفصل الثاني —',
                 'form-title': '📖 طلب الرواية كاملة',
                 'form-sub': 'املأ النموذج وسيتم إرسال الرواية كاملة إلى بريدك الإلكتروني',
                 'form-name': 'الاسم الكامل',
@@ -734,7 +803,6 @@
                 'hero-badge': 'Deuxième partie de la trilogie',
                 'hero-title': 'Code du pouls',
                 'hero-author': 'Saif El Islem Zahaf',
-                'cover-part': 'Deuxième partie',
                 'novel-title': 'Code du pouls',
                 'pages': '160 pages',
                 'year': '2026',
@@ -744,6 +812,9 @@
                 'download-btn': 'Télécharger 5 premiers chapitres (PDF)',
                 'request-btn': 'Demander le roman complet',
                 'whatsapp-btn': 'Demander via WhatsApp',
+                'chapter1-title': 'Chapitre Premier',
+                'chapter1-sub': '— Notification de minuit —',
+                'chapter1-end': '— À suivre au chapitre deux —',
                 'form-title': '📖 Demander le roman complet',
                 'form-sub': 'Remplissez le formulaire et le roman complet vous sera envoyé par email',
                 'form-name': 'Nom complet',
@@ -770,7 +841,6 @@
                 'hero-badge': 'Part Two of the trilogy',
                 'hero-title': 'Pulse Code',
                 'hero-author': 'Saif El Islem Zahaf',
-                'cover-part': 'Part Two',
                 'novel-title': 'Pulse Code',
                 'pages': '160 pages',
                 'year': '2026',
@@ -780,6 +850,9 @@
                 'download-btn': 'Download first 5 chapters (PDF)',
                 'request-btn': 'Request full novel',
                 'whatsapp-btn': 'Request via WhatsApp',
+                'chapter1-title': 'Chapter One',
+                'chapter1-sub': '— Midnight Notification —',
+                'chapter1-end': '— To be continued in chapter two —',
                 'form-title': '📖 Request full novel',
                 'form-sub': 'Fill out the form and the full novel will be sent to your email',
                 'form-name': 'Full Name',
@@ -821,7 +894,7 @@
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.dataset.key;
                 if (translations[lang][key] !== undefined) {
-                    if (key === 'summary-text' || key === 'footer-made' || key === 'footer-rights' || key === 'footer-legal' || key === 'form-sub') {
+                    if (key === 'summary-text' || key === 'footer-made' || key === 'footer-rights' || key === 'footer-legal' || key === 'form-sub' || key === 'chapter1-text') {
                         el.innerHTML = translations[lang][key];
                     } else {
                         el.textContent = translations[lang][key];
