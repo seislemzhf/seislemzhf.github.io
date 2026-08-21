@@ -20,7 +20,6 @@
             background-color: #0F172A;
             color: #F8FAFC;
             line-height: 1.6;
-            overflow-x: hidden;
         }
         .container {
             max-width: 1100px;
@@ -29,6 +28,7 @@
         }
         a { text-decoration: none; color: inherit; }
 
+        /* ====== الألوان ====== */
         :root {
             --primary: #0F172A;
             --secondary: #1E293B;
@@ -36,15 +36,13 @@
             --gold: #F59E0B;
             --light: #F8FAFC;
             --muted: #94a3b8;
-            --danger: #EF4444;
-            --purple: #8B5CF6;
         }
 
         /* ====== الشريط العلوي ====== */
         header {
             padding: 20px 0;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
@@ -75,20 +73,6 @@
             font-weight: 700;
             font-size: 0.95rem;
             transition: 0.3s;
-            position: relative;
-        }
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent);
-            transition: 0.3s;
-        }
-        nav ul li a:hover::after {
-            width: 100%;
         }
         nav ul li a:hover {
             color: var(--accent);
@@ -105,22 +89,6 @@
             padding: 80px 0 40px;
             text-align: center;
             background: radial-gradient(circle at 50% 30%, rgba(16,185,129,0.1), #0F172A 60%);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 40%, rgba(16,185,129,0.03), transparent 70%);
-            animation: rotate 30s linear infinite;
-        }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
         .hero .badge {
             display: inline-block;
@@ -131,14 +99,12 @@
             font-weight: 700;
             border: 1px solid rgba(16,185,129,0.2);
             margin-bottom: 20px;
-            animation: fadeInDown 0.8s ease;
         }
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 900;
             margin-bottom: 15px;
             line-height: 1.3;
-            animation: fadeInUp 0.8s ease;
         }
         .hero h1 span { color: var(--accent); }
         .hero .subtitle {
@@ -146,7 +112,6 @@
             color: var(--muted);
             max-width: 600px;
             margin: 0 auto 30px;
-            animation: fadeInUp 1s ease;
         }
         .hero-buttons {
             display: flex;
@@ -154,7 +119,6 @@
             gap: 15px;
             flex-wrap: wrap;
             margin-bottom: 25px;
-            animation: fadeInUp 1.2s ease;
         }
         .btn-primary {
             display: inline-block;
@@ -186,24 +150,14 @@
             color: var(--accent);
         }
 
-        /* ====== Animations ====== */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         /* ====== الأقسام العامة ====== */
-        section { padding: 80px 0; }
+        section { padding: 60px 0; }
         .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
         .section-header h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 900;
             margin-bottom: 10px;
         }
@@ -219,7 +173,7 @@
         }
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             text-align: center;
         }
@@ -279,32 +233,6 @@
         .info-item i { color: var(--accent); }
         .info-item span { font-weight: 700; color: var(--accent); }
 
-        /* ====== قسم الشهادات ====== */
-        .certificates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .cert-card {
-            background: var(--secondary);
-            padding: 30px 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
-            transition: 0.3s;
-        }
-        .cert-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold);
-        }
-        .cert-card i {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 15px;
-        }
-        .cert-card h4 { font-size: 1.1rem; font-weight: 800; margin-bottom: 5px; }
-        .cert-card p { color: var(--muted); font-size: 0.85rem; }
-
         /* ====== قسم الخدمات ====== */
         .services-grid {
             display: grid;
@@ -346,7 +274,6 @@
             overflow: hidden;
             border: 1px solid rgba(255,255,255,0.05);
             transition: 0.3s;
-            cursor: pointer;
         }
         .project-card:hover {
             transform: translateY(-8px);
@@ -408,66 +335,6 @@
             color: var(--accent);
         }
 
-        /* ====== Modal ====== */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.3s ease;
-        }
-        .modal.active { display: flex; }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .modal-content {
-            background: var(--secondary);
-            padding: 40px;
-            border-radius: 25px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-            border: 1px solid rgba(255,255,255,0.1);
-            animation: slideUp 0.3s ease;
-        }
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--muted);
-            transition: 0.3s;
-        }
-        .modal-close:hover { color: var(--danger); }
-        .modal-content h2 { font-size: 1.8rem; margin-bottom: 15px; }
-        .modal-content h2 span { color: var(--accent); }
-        .modal-content p { color: var(--muted); line-height: 1.8; }
-        .modal-content ul { list-style: none; padding: 0; margin: 15px 0; }
-        .modal-content ul li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #cbd5e1;
-        }
-        .modal-content ul li i { color: var(--accent); }
-
         /* ====== قسم المهارات ====== */
         .skills-container {
             max-width: 700px;
@@ -503,38 +370,6 @@
             height: 100%;
             background: linear-gradient(90deg, #059669, var(--accent));
             border-radius: 20px;
-            transition: width 1.5s ease;
-        }
-
-        /* ====== قسم الأدوات ====== */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 15px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .tool-item {
-            background: var(--secondary);
-            padding: 20px 10px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: 0.3s;
-        }
-        .tool-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-        .tool-item i {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-        .tool-item span {
-            display: block;
-            font-size: 0.75rem;
-            color: var(--muted);
         }
 
         /* ====== قسم التواصل ====== */
@@ -570,51 +405,6 @@
             color: var(--muted);
             font-size: 0.9rem;
         }
-
-        /* ====== نموذج التواصل ====== */
-        .contact-form {
-            max-width: 600px;
-            margin: 30px auto 0;
-        }
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px 20px;
-            margin-bottom: 15px;
-            background: var(--secondary);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px;
-            color: var(--light);
-            font-family: inherit;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-        .contact-form textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        .contact-form button {
-            background: linear-gradient(135deg, #10B981, #059669);
-            color: white;
-            padding: 16px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.3s;
-            width: 100%;
-        }
-        .contact-form button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(16,185,129,0.4);
-        }
-
         .whatsapp-btn {
             display: inline-block;
             background: #25D366;
@@ -629,35 +419,6 @@
         .whatsapp-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 15px 50px rgba(37, 211, 102, 0.6);
-        }
-
-        /* ====== Scroll to Top ====== */
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--accent);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(16,185,129,0.4);
-            transition: 0.3s;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 999;
-        }
-        .scroll-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        .scroll-top:hover {
-            transform: scale(1.1);
         }
 
         /* ====== الفوتر ====== */
@@ -680,7 +441,6 @@
         }
         .footer-links a:hover {
             color: var(--accent);
-            transform: translateY(-3px);
         }
 
         /* ====== استجابة الجوال ====== */
@@ -702,14 +462,8 @@
             .hamburger { display: block; }
             .hero h1 { font-size: 2.2rem; }
             .info-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .modal-content { padding: 25px; }
-            section { padding: 50px 0; }
-        }
-        @media (max-width: 450px) {
             .stats-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 1.8rem; }
+            .projects-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -723,7 +477,6 @@
                 <ul id="nav-links">
                     <li><a href="#home">الرئيسية</a></li>
                     <li><a href="#about">عني</a></li>
-                    <li><a href="#certificates">الشهادات</a></li>
                     <li><a href="#services">خدماتي</a></li>
                     <li><a href="#projects">مشاريعي</a></li>
                     <li><a href="#skills">مهاراتي</a></li>
@@ -737,7 +490,7 @@
     <!-- ====== قسم البطل ====== -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="badge"><i class="fas fa-rocket"></i> مطور برمجيات محترف</div>
+            <div class="badge"><i class="fas fa-rocket"></i> مطور برمجيات</div>
             <h1>سيف الإسلام <span>زحاف</span></h1>
             <p class="subtitle">أبني تطبيقات سطح مكتب عالية الأداء باستخدام .NET و WPF، وأصمم تجارب مستخدم مستقبلية.</p>
             <div class="hero-buttons">
@@ -753,7 +506,6 @@
             <div class="stat-box"><i class="fas fa-calendar-alt"></i><h3>4</h3><p>سنوات الخبرة</p></div>
             <div class="stat-box"><i class="fas fa-layer-group"></i><h3>15</h3><p>مشاريع مكتملة</p></div>
             <div class="stat-box"><i class="fas fa-users-gear"></i><h3>25</h3><p>عملاء راضون</p></div>
-            <div class="stat-box"><i class="fas fa-code"></i><h3>50K+</h3><p>سطر كود</p></div>
         </div>
     </section>
 
@@ -764,42 +516,13 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>أنا <span>سيف الإسلام</span>، مهندس برمجيات من الجزائر 🇩🇿</h3>
-                    <p>متخصص في تطوير تطبيقات سطح المكتب القوية بواجهات جذابة، أركز على تجربة المستخدم النهائية وأعمل على حلول تقنية مبتكرة تلبي احتياجات السوق الجزائري والعربي.</p>
+                    <p>متخصص في تطوير تطبيقات سطح المكتب القوية بواجهات جذابة، أركز على تجربة المستخدم النهائية.</p>
                     <div class="info-grid">
                         <div class="info-item"><i class="fas fa-user"></i> <span>الاسم:</span> Saif El Islem Zahaf</div>
                         <div class="info-item"><i class="fas fa-briefcase"></i> <span>المهنة:</span> Software Developer</div>
                         <div class="info-item"><i class="fas fa-envelope"></i> <span>البريد:</span> seislemzhf@gmail.com</div>
                         <div class="info-item"><i class="fas fa-map-location-dot"></i> <span>العنوان:</span> Oran, Algeria</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== الشهادات ====== -->
-    <section class="certificates" id="certificates" style="background: var(--secondary);">
-        <div class="container">
-            <div class="section-header"><h2>الشهادات <span>والإنجازات</span></h2><p>ما حصلت عليه من تقدير</p></div>
-            <div class="certificates-grid">
-                <div class="cert-card">
-                    <i class="fas fa-certificate"></i>
-                    <h4>Microsoft .NET Certified</h4>
-                    <p>تطوير تطبيقات سطح المكتب</p>
-                </div>
-                <div class="cert-card">
-                    <i class="fas fa-trophy"></i>
-                    <h4>أفضل مشروع جزائري 2025</h4>
-                    <p>تطبيق Minsaj Fard</p>
-                </div>
-                <div class="cert-card">
-                    <i class="fas fa-award"></i>
-                    <h4>خبير WPF</h4>
-                    <p>تصميم واجهات متقدمة</p>
-                </div>
-                <div class="cert-card">
-                    <i class="fas fa-star"></i>
-                    <h4>5 نجوم من العملاء</h4>
-                    <p>خدمة ممتازة</p>
                 </div>
             </div>
         </div>
@@ -813,40 +536,37 @@
                 <div class="service-card"><i class="fas fa-crown"></i><h3>تطوير WPF & .NET</h3><p>تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.</p></div>
                 <div class="service-card"><i class="fas fa-palette"></i><h3>تصميم UI/UX</h3><p>واجهات مستخدم تفاعلية وعصرية.</p></div>
                 <div class="service-card"><i class="fas fa-database"></i><h3>قواعد البيانات</h3><p>تكامل مثالي مع SQLite و SQL Server.</p></div>
-                <div class="service-card"><i class="fas fa-shield-alt"></i><h3>الأمن السيبراني</h3><p>تشفير وحماية البيانات.</p></div>
-                <div class="service-card"><i class="fas fa-print"></i><h3>أنظمة الطباعة</h3><p>طباعة الفواتير والملصقات.</p></div>
-                <div class="service-card"><i class="fas fa-chart-line"></i><h3>تحليل البيانات</h3><p>تقارير وإحصائيات دقيقة.</p></div>
             </div>
         </div>
     </section>
 
     <!-- ====== المشاريع ====== -->
-    <section class="projects" id="projects" style="background: var(--secondary);">
+    <section class="projects" id="projects">
         <div class="container">
             <div class="section-header"><h2>روائع <span>مشاريعي</span></h2><p>أقوى أعمالي التقنية</p></div>
             <div class="projects-grid">
                 
-                <div class="project-card" onclick="openModal('fix')">
+                <div class="project-card">
                     <div class="project-image"><img src="images/fix.jpg" alt="Minsaj Fix"></div>
                     <div class="project-info">
                         <h3>Minsaj Fix</h3>
                         <p>نظام ذكي متكامل لإدارة ورشات صيانة السيارات وتتبع قطع الغيار.</p>
                         <div class="project-tech"><span>C#</span><span>WPF</span><span>SQLite</span></div>
-                        <a href="#" class="btn-outline-small"><i class="fas fa-eye"></i> تفاصيل المشروع</a>
+                        <a href="minsaj-fix.html" class="btn-outline-small"><i class="fas fa-eye"></i> اكتشف المميزات</a>
                     </div>
                 </div>
 
-                <div class="project-card" onclick="openModal('barcode')">
+                <div class="project-card">
                     <div class="project-image"><img src="images/barcode.jpg" alt="Minsaj Barcode"></div>
                     <div class="project-info">
                         <h3>Minsaj Barcode</h3>
                         <p>أداة فاخرة لطباعة ملصقات المنتجات والباركود مع تخصيص لانهائي.</p>
                         <div class="project-tech"><span>WPF</span><span>UI/UX</span><span>Printing</span></div>
-                        <a href="#" class="btn-outline-small"><i class="fas fa-eye"></i> تفاصيل المشروع</a>
+                        <a href="minsaj-barcode.html" class="btn-outline-small"><i class="fas fa-eye"></i> عرض المميزات</a>
                     </div>
                 </div>
 
-                <div class="project-card" onclick="openModal('fard')">
+                <div class="project-card">
                     <div class="project-image"><img src="images/fard.jpg" alt="Minsaj Fard"></div>
                     <div class="project-info">
                         <h3>Minsaj Fard</h3>
@@ -855,24 +575,13 @@
                             <span>C#</span><span>WPF</span><span>PostgreSQL</span><span>EF Core</span>
                             <span>RSA</span><span>PDF</span><span>Excel</span><span>3 لغات</span>
                         </div>
-                        <a href="#" class="btn-outline-small"><i class="fas fa-eye"></i> تفاصيل المشروع</a>
+                        <a href="minsaj-fard.html" class="btn-outline-small"><i class="fas fa-eye"></i> عرض المميزات</a>
                     </div>
                 </div>
 
             </div>
         </div>
     </section>
-
-    <!-- ====== Modal ====== -->
-    <div class="modal" id="projectModal">
-        <div class="modal-content">
-            <div class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></div>
-            <h2 id="modalTitle">تفاصيل <span>المشروع</span></h2>
-            <div id="modalBody">
-                <p>معلومات تفصيلية عن المشروع ستظهر هنا...</p>
-            </div>
-        </div>
-    </div>
 
     <!-- ====== المهارات ====== -->
     <section class="skills" id="skills">
@@ -899,27 +608,6 @@
         </div>
     </section>
 
-    <!-- ====== الأدوات ====== -->
-    <section class="tools" id="tools" style="background: var(--secondary);">
-        <div class="container">
-            <div class="section-header"><h2><span>الأدوات</span> والتقنيات</h2><p>الترسانة التقنية</p></div>
-            <div class="tools-grid">
-                <div class="tool-item"><i class="fab fa-microsoft"></i><span>.NET</span></div>
-                <div class="tool-item"><i class="fas fa-code"></i><span>C#</span></div>
-                <div class="tool-item"><i class="fas fa-paint-brush"></i><span>WPF</span></div>
-                <div class="tool-item"><i class="fas fa-database"></i><span>SQLite</span></div>
-                <div class="tool-item"><i class="fas fa-database"></i><span>SQL Server</span></div>
-                <div class="tool-item"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
-                <div class="tool-item"><i class="fas fa-file-pdf"></i><span>PDF</span></div>
-                <div class="tool-item"><i class="fas fa-file-excel"></i><span>Excel</span></div>
-                <div class="tool-item"><i class="fas fa-print"></i><span>Printing</span></div>
-                <div class="tool-item"><i class="fas fa-lock"></i><span>RSA</span></div>
-                <div class="tool-item"><i class="fas fa-cubes"></i><span>EF Core</span></div>
-                <div class="tool-item"><i class="fas fa-mobile-alt"></i><span>Responsive</span></div>
-            </div>
-        </div>
-    </section>
-
     <!-- ====== التواصل ====== -->
     <section class="contact" id="contact">
         <div class="container">
@@ -930,27 +618,12 @@
                     <div class="contact-card"><i class="fas fa-envelope"></i><h4>البريد</h4><p>seislemzhf@gmail.com</p></div>
                     <div class="contact-card"><i class="fas fa-phone"></i><h4>الهاتف</h4><p>0657200758</p></div>
                 </div>
-                
-                <!-- نموذج التواصل -->
-                <form class="contact-form" id="contactForm">
-                    <input type="text" placeholder="الاسم الكامل" required>
-                    <input type="email" placeholder="البريد الإلكتروني" required>
-                    <input type="text" placeholder="الموضوع">
-                    <textarea placeholder="رسالتك..." required></textarea>
-                    <button type="submit"><i class="fas fa-paper-plane"></i> إرسال الرسالة</button>
-                </form>
-
-                <div style="margin-top: 30px;">
-                    <a href="https://wa.me/2130657200758" target="_blank" class="whatsapp-btn">
-                        <i class="fab fa-whatsapp"></i> راسلني عبر واتساب
-                    </a>
-                </div>
+                <a href="https://wa.me/2130657200758" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> راسلني عبر واتساب
+                </a>
             </div>
         </div>
     </section>
-
-    <!-- ====== Scroll to Top ====== -->
-    <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
 
     <!-- ====== الفوتر ====== -->
     <footer>
@@ -960,14 +633,12 @@
                 <a href="https://github.com/seislemzhf" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="mailto:seislemzhf@gmail.com"><i class="fas fa-envelope"></i></a>
                 <a href="https://wa.me/2130657200758" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </footer>
 
     <script>
-        // ====== القائمة الجانبية ======
+        // القائمة الجانبية للجوال
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('nav-links');
@@ -976,131 +647,6 @@
                 link.addEventListener('click', () => navLinks.classList.remove('active'));
             });
         });
-
-        // ====== Scroll to Top ======
-        const scrollTop = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
-        });
-        scrollTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // ====== Modal ======
-        const modal = document.getElementById('projectModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalBody = document.getElementById('modalBody');
-
-        const projectData = {
-            fix: {
-                title: 'Minsaj Fix',
-                body: `
-                    <p><strong>نظام متكامل لإدارة ورشات صيانة السيارات</strong></p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> إدارة العملاء والمركبات</li>
-                        <li><i class="fas fa-check-circle"></i> تتبع قطع الغيار والمخزون</li>
-                        <li><i class="fas fa-check-circle"></i> نظام الفواتير والتقارير</li>
-                        <li><i class="fas fa-check-circle"></i> واجهة عربية احترافية</li>
-                        <li><i class="fas fa-check-circle"></i> قاعدة بيانات SQLite</li>
-                    </ul>
-                    <p style="margin-top:15px;"><strong>التقنيات:</strong> C#, WPF, SQLite, Material Design</p>
-                `
-            },
-            barcode: {
-                title: 'Minsaj Barcode',
-                body: `
-                    <p><strong>أداة متطورة لطباعة الباركود والملصقات</strong></p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> تصميم ملصقات مخصص</li>
-                        <li><i class="fas fa-check-circle"></i> طباعة مباشرة من التطبيق</li>
-                        <li><i class="fas fa-check-circle"></i> دعم جميع أنواع الباركود</li>
-                        <li><i class="fas fa-check-circle"></i> واجهة جذابة وسهلة</li>
-                    </ul>
-                    <p style="margin-top:15px;"><strong>التقنيات:</strong> WPF, PrintDocument, BarcodeLib</p>
-                `
-            },
-            fard: {
-                title: 'Minsaj Fard',
-                body: `
-                    <p><strong>نظام ERP لإدارة الموارد البشرية مع ضرائب جزائرية</strong></p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> إدارة الموظفين والرواتب</li>
-                        <li><i class="fas fa-check-circle"></i> نظام الحضور والانصراف ZKTeco</li>
-                        <li><i class="fas fa-check-circle"></i> حساب الضرائب الجزائرية</li>
-                        <li><i class="fas fa-check-circle"></i> تقارير PDF و Excel</li>
-                        <li><i class="fas fa-check-circle"></i> دعم 3 لغات (عربية، فرنسية، إنجليزية)</li>
-                        <li><i class="fas fa-check-circle"></i> تشفير RSA للبيانات</li>
-                    </ul>
-                    <p style="margin-top:15px;"><strong>التقنيات:</strong> C#, WPF, PostgreSQL, EF Core, RSA, PDF, Excel</p>
-                `
-            }
-        };
-
-        function openModal(projectId) {
-            const data = projectData[projectId];
-            if (data) {
-                modalTitle.innerHTML = `تفاصيل <span>${data.title}</span>`;
-                modalBody.innerHTML = data.body;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // إغلاق المودال عند الضغط خارج المحتوى
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        // إغلاق المودال بالضغط على ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // ====== نموذج التواصل ======
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-check"></i> تم الإرسال!';
-                btn.style.background = '#10B981';
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                    btn.style.background = '';
-                    this.reset();
-                }, 2000);
-            }, 1500);
-        });
-
-        // ====== تأثير ظهور المهارات ======
-        const progressBars = document.querySelectorAll('.progress');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const bar = entry.target;
-                    const width = bar.style.width;
-                    bar.style.width = '0%';
-                    setTimeout(() => {
-                        bar.style.width = width;
-                    }, 100);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        progressBars.forEach(bar => observer.observe(bar));
     </script>
 </body>
 </html>
