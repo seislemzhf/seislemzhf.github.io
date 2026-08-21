@@ -18,7 +18,7 @@
             font-family: 'Tajawal', sans-serif;
             background: #0a0a0a;
             color: #f0ece6;
-            line-height: 1.8;
+            line-height: 1.9;
             transition: 0.3s;
         }
         body.en, body.fr {
@@ -141,7 +141,7 @@
 
         /* ====== HERO ====== */
         .hero {
-            padding: 40px 0 30px;
+            padding: 40px 0 20px;
             text-align: center;
         }
         .hero .ornament {
@@ -183,75 +183,53 @@
             display: flex;
             gap: 50px;
             align-items: flex-start;
-            padding: 30px 0 40px;
+            padding: 20px 0 30px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
+        /* ====== COVER LARGE ====== */
         .cover-large {
-            width: 168px;
-            height: 252px;
+            width: 220px;
+            height: 330px;
             background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
-            border-radius: 8px;
-            border: 1px solid rgba(108, 139, 158, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(108, 139, 158, 0.12);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 10px;
             flex-shrink: 0;
             transition: 0.4s;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
         }
         .cover-large:hover {
-            transform: scale(1.02);
-            border-color: rgba(108, 139, 158, 0.2);
-            box-shadow: 0 10px 50px rgba(108, 139, 158, 0.04);
+            transform: scale(1.03);
+            border-color: rgba(108, 139, 158, 0.25);
+            box-shadow: 0 15px 60px rgba(108, 139, 158, 0.06);
         }
         .cover-large .badge-copy {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 10px;
+            right: 12px;
             background: var(--accent);
             color: var(--bg-primary);
-            font-size: 0.4rem;
-            padding: 2px 10px;
+            font-size: 0.45rem;
+            padding: 2px 12px;
             border-radius: 30px;
             font-weight: 800;
             letter-spacing: 0.5px;
             box-shadow: 0 2px 10px rgba(108, 139, 158, 0.2);
+            z-index: 2;
         }
-        .cover-large .cover-icon {
-            font-size: 3.5rem;
-            color: var(--accent);
-            opacity: 0.3;
-            margin-bottom: 10px;
-        }
-        .cover-large .cover-title {
-            font-family: 'Amiri', serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-align: center;
-            line-height: 1.3;
-        }
-        .cover-large .cover-title span { color: var(--accent); }
-        .cover-large .cover-author {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 5px;
-        }
-        .cover-large .cover-part {
-            font-size: 0.6rem;
-            color: var(--accent);
-            background: rgba(108, 139, 158, 0.06);
-            padding: 4px 16px;
-            border-radius: 30px;
-            margin-top: 10px;
-            border: 1px solid rgba(108, 139, 158, 0.06);
-            letter-spacing: 1px;
+        .cover-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
         .book-info {
@@ -294,6 +272,7 @@
             line-height: 1.9;
         }
 
+        /* ====== BUTTONS ====== */
         .btn-group {
             display: flex;
             flex-direction: column;
@@ -310,10 +289,10 @@
             gap: 10px;
             background: var(--accent);
             color: var(--bg-primary);
-            padding: 12px 32px;
+            padding: 10px 22px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             transition: 0.3s;
             border: none;
             cursor: pointer;
@@ -323,7 +302,7 @@
             transform: scale(1.02);
             box-shadow: 0 10px 40px rgba(108, 139, 158, 0.2);
         }
-        .btn-primary i { font-size: 1rem; }
+        .btn-primary i { font-size: 0.9rem; }
 
         .btn-outline {
             display: flex;
@@ -365,6 +344,62 @@
         .btn-whatsapp:hover {
             transform: scale(1.02);
             box-shadow: 0 15px 50px rgba(37, 211, 102, 0.3);
+        }
+
+        /* ====== CHAPTER 1 ====== */
+        .chapter-section {
+            padding: 30px 0 40px;
+        }
+        .chapter-wrapper {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 35px 45px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+        .chapter-wrapper .chapter-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .chapter-wrapper .chapter-sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+        .chapter-wrapper .chapter-divider {
+            text-align: center;
+            color: var(--accent-dark);
+            opacity: 0.3;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            margin: 20px 0;
+        }
+        .chapter-wrapper .chapter-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 2;
+            text-align: justify;
+        }
+        .chapter-wrapper .chapter-text strong {
+            color: var(--accent);
+        }
+        .chapter-wrapper .chapter-text .highlight {
+            color: var(--accent-light);
+            font-weight: 700;
+        }
+        .chapter-wrapper .chapter-text .quote {
+            display: block;
+            background: rgba(108, 139, 158, 0.04);
+            border-right: 3px solid var(--accent);
+            padding: 12px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-style: italic;
         }
 
         /* ====== FORM ====== */
@@ -523,19 +558,18 @@
             .lang-switcher { width: 100%; justify-content: center; }
             .header-content { justify-content: center; }
             .header-buttons { justify-content: center; }
-            .cover-large { width: 140px; height: 210px; }
-            .cover-large .cover-icon { font-size: 2.8rem; }
-            .cover-large .cover-title { font-size: 1.1rem; }
+            .cover-large { width: 180px; height: 270px; }
+            .chapter-wrapper { padding: 20px; }
             .form-wrapper { padding: 20px; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 2rem; }
             .container { padding: 0 16px; }
-            .cover-large { width: 112px; height: 168px; padding: 14px; }
-            .cover-large .cover-icon { font-size: 2rem; }
-            .cover-large .cover-title { font-size: 0.85rem; }
+            .cover-large { width: 150px; height: 225px; }
             .book-info h2 { font-size: 1.6rem; }
             .form-wrapper { padding: 16px; }
+            .chapter-wrapper { padding: 16px; }
+            .chapter-wrapper .chapter-title { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -576,12 +610,11 @@
         <div class="container">
             <div class="book-display">
 
-                <!-- COVER -->
-                <!-- COVER -->
-<div class="cover-large">
-    <div class="badge-copy">©</div>
-    <img src="images/batr-alissan.jpg" alt="بتر اللسان" style="width:100%; height:100%; object-fit:cover; border-radius:6px;">
-</div>
+                <!-- COVER (MEGA LARGE) -->
+                <div class="cover-large">
+                    <div class="badge-copy">©</div>
+                    <img src="images/batr-alissan.jpg" alt="بتر اللسان" loading="lazy">
+                </div>
 
                 <!-- INFO -->
                 <div class="book-info">
@@ -601,7 +634,7 @@
 
                     <div class="btn-group">
                         <div class="btn-wrap">
-                            <a href=https://www.mediafire.com/file/68kcacyv8zjrkwt/%25D8%25B1%25D9%2588%25D8%25A7%25D9%258A%25D8%25A9_%25D8%25A8%25D8%25AA%25D8%25B1_%25D8%25A7%25D9%2584%25D9%2584%25D8%25B3%25D8%25A7%25D9%2586.pdf/file" target="_blank" class="btn-primary">
+                            <a href="https://www.mediafire.com/file/68kcacyv8zjrkwt/%25D8%25B1%25D9%2588%25D8%25A7%25D9%258A%25D8%25A9_%25D8%25A8%25D8%25AA%25D8%25B1_%25D8%25A7%25D9%2584%25D9%2584%25D8%25B3%25D8%25A7%25D9%2586.pdf/file" target="_blank" class="btn-primary" style="font-size:0.8rem; padding:8px 18px;">
                                 <i class="fas fa-download"></i> <span data-key="download-btn">تحميل 5 فصول الأولى (PDF)</span>
                             </a>
                         </div>
@@ -618,6 +651,54 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CHAPTER 1 FULL ====== -->
+    <section class="chapter-section" id="chapter1">
+        <div class="container">
+            <div class="chapter-wrapper">
+                <div class="chapter-title">📖 <span data-key="chapter1-title">الفصل الأول</span></div>
+                <div class="chapter-sub" data-key="chapter1-sub">— البداية في قبو الياسمين —</div>
+                <div class="chapter-divider">✦ ✦ ✦</div>
+
+                <div class="chapter-text" data-key="chapter1-text">
+                    <p>كانت الساعة تشير إلى الثالثة صباحاً بتوقيت وهران. في <strong>"حي الياسمين"</strong>، وبالتحديد في ورشة ضيقة تفوح منها رائحة الزيوت المعدنية الممزوجة برطوبة <strong>"الباهية"</strong> القادمة من جهة البحر، كان <span class="highlight">ياسين</span> واقفاً أمام آلة الطباعة ثلاثية الأبعاد المعدنية <strong>(3D Metal Printer)</strong>. كان صوت المحركات الخطية يصدر طنيناً رئيسياً يشبه تسبيحاً إلكترونياً وسط السكون، بينما كان شعاع الليزر يضرب مسحوق معدن التيتانيوم بدقة ميكرومترية، محوّلاً الغبار إلى صلب.</p>
+
+                    <p>بالنسبة لياسين، لم يكن هذا مجرد تصنيع؛ كان <span class="highlight">"استخلافاً"</span> علمياً يكسر قيود التبعية. مسح عرق جبهته وتأمل القطعة التي تتشكل ببطء؛ صمام محرك توربيني كان يستورد بالعملة الصعبة، والآن يُصاغ بعقل جزائري في قبو متواضع.</p>
+
+                    <p>توقف ياسين قليلاً، واستحضر في ذهنه أصلاً شرعياً لطالما آمن به: <em>"إنَّ القوة ليست في السلاح وحده، بل في كمال العلم والقدرة"</em>... كانت هذه القاعدة هي وقوده النفسي؛ فالقدرة التي يطلبها منهج ليست شعارات تُرفع، بل تمكين في الأرض يبدأ من إتقان الذرة والمعدن.</p>
+
+                    <div class="chapter-divider">✦ ✦ ✦</div>
+
+                    <p>فجأة، اهتز هاتفه القديم برسالة من مجموعة <strong>"تليغرام"</strong> قديمة كان ينتمي إليها قبل <span class="highlight">"توبته وانتقاله للمنهج السلفي"</span>. كان العنوان: <em>"نداء النفير لحماية المسار الديمقراطي"</em>. وتحتها اقتباس يحرض على الخروج والمواجهة السياسية الحزبية.</p>
+
+                    <p>ابتسم ياسين بسخرية مريرة؛ تذكر كيف كان في <strong>حراك 2019</strong> يصرخ في شوارع <em>"واجهة البحر"</em> بنفس تلك الشعارات، ظاناً أن تغيير الوجوه سيغير الواقع، قبل أن يدرك أن العلة في <span class="highlight">"البناء الفكري"</span> لا في <em>"الكراسي"</em>. أغمض عينيه، فهاجمته ذكرى قديمة من صباه:</p>
+
+                    <div class="quote">
+                        <p>ياسين طفل في العاشرة، جالس في <em>"زاوية"</em> بحي <strong>"الدرب"</strong>. الرائحة خليط من البخور والرطوبة الجانبية. رأى الشيخ يضع يده على رأس مريض ويدعي منحه <em>"البركة"</em> للشفاء، بينما المريض يزداد شحوباً. سأل ياسين والده برياءة: <em>"يا أبي، لماذا لا نذهب به إلى الطبيب في المستشفى الجامعي؟"</em> كانت صفعة والده قاسية: <em>"اسكت، هذه أسرار لا يدركها عقلك الصغير"</em>.</p>
+                    </div>
+
+                    <p>في تلك اللحظة، ولد في قلب ياسين <span class="highlight">كره عميق للخرافة</span> التي تُعيب العقل باسم الدين، وللعنف الذي يُمارس باسم التربية.</p>
+
+                    <div class="chapter-divider">✦ ✦ ✦</div>
+
+                    <p>عاد ياسين للواقع على صوت الآلة وهي تعلن انتهاء العملية. فتح الغطاء الزجاجي، وبردت القطعة ببطء. تذكر كلام <strong>الإمام محمد البشير الإبراهيمي</strong> الذي قرأه بالأمس حول حقيقة المنهج الذي يسلكه الآن:</p>
+
+                    <div class="quote">
+                        <p><em>"إن السلفية الحقة هي التي تخرج الأمة من ظلمات الأوهام إلى أنوار الحقائق، ومن قيود التقليد إلى فضاء الاجتهاد المستمد من الكتاب والسنة"</em></p>
+                    </div>
+
+                    <p>أمسك ياسين بالقطعة المعدنية الصلبة، وهمس لنفسه: <span class="highlight">"هذا هو الطريق.. العلم هو السلطان، والشرع هو الميزان"</span>. لم يكن يعلم أن هذه القطعة ستكون هي <strong>الفتيل</strong> الذي سيشتعل حرباً باردة مع <span class="highlight">لوبيات الاستيراد في وهران</span>، الذين لن يسمحوا لشاب <em>"سلفي"</em> بكسر احتكارهم للسوق تحت مسمى <em>"الإبداع التقني"</em>.</p>
+
+                    <div style="text-align:center; margin-top:25px; color:var(--accent-dark); opacity:0.3; font-size:1.5rem; letter-spacing:10px;">
+                        ✦ ✦ ✦
+                    </div>
+                    <div style="text-align:center; margin-top:10px; color:var(--text-muted); font-size:0.85rem;">
+                        <span data-key="chapter1-end">— يتبع في الفصل الثاني —</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -688,7 +769,7 @@
     </footer>
 
     <script>
-        // ====== الترجمات ======
+        // ====== الترجمة ======
         const translations = {
             ar: {
                 'logo-title': 'المكتبة',
@@ -698,7 +779,6 @@
                 'hero-badge': 'الجزء الأول من الثلاثية',
                 'hero-title': 'بتر اللسان',
                 'hero-author': 'سيف الإسلام زحاف',
-                'cover-part': 'الجزء الأول',
                 'novel-title': 'بتر اللسان',
                 'pages': '232 صفحة',
                 'year': '2025',
@@ -708,6 +788,9 @@
                 'download-btn': 'تحميل 5 فصول الأولى (PDF)',
                 'request-btn': 'طلب الرواية كاملة',
                 'whatsapp-btn': 'طلب عبر واتساب',
+                'chapter1-title': 'الفصل الأول',
+                'chapter1-sub': '— البداية في قبو الياسمين —',
+                'chapter1-end': '— يتبع في الفصل الثاني —',
                 'form-title': '📖 طلب الرواية كاملة',
                 'form-sub': 'املأ النموذج وسيتم إرسال الرواية كاملة إلى بريدك الإلكتروني',
                 'form-name': 'الاسم الكامل',
@@ -734,16 +817,18 @@
                 'hero-badge': 'Première partie de la trilogie',
                 'hero-title': 'Battre la langue',
                 'hero-author': 'Saif El Islem Zahaf',
-                'cover-part': 'Première partie',
                 'novel-title': 'Battre la langue',
                 'pages': '232 pages',
                 'year': '2025',
                 'genre': 'Roman dramatique - Technique - Politique',
                 'summary-title': 'Résumé',
-                'summary-text': "Dans le quartier Yasmin à Oran, l'ingénieur Yassine, le salafiste technocrate, mène le projet 'Auras' d'impression 3D et de cryptage personnalisé pour libérer l'Algérie de la dépendance aux importations et des lobbies corrompus, dans l'épopée 'Coupure de langue' qui mêle algorithmes et foi."
+                'summary-text': "Dans le quartier Yasmin à Oran, l'ingénieur Yassine, le salafiste technocrate, mène le projet 'Auras' d'impression 3D et de cryptage personnalisé pour libérer l'Algérie de la dépendance aux importations et des lobbies corrompus, dans l'épopée 'Coupure de langue' qui mêle algorithmes et foi.",
                 'download-btn': 'Télécharger 5 premiers chapitres (PDF)',
                 'request-btn': 'Demander le roman complet',
                 'whatsapp-btn': 'Demander via WhatsApp',
+                'chapter1-title': 'Chapitre Premier',
+                'chapter1-sub': '— Le début dans le sous-sol de Yasmin —',
+                'chapter1-end': '— À suivre au chapitre deux —',
                 'form-title': '📖 Demander le roman complet',
                 'form-sub': 'Remplissez le formulaire et le roman complet vous sera envoyé par email',
                 'form-name': 'Nom complet',
@@ -770,15 +855,18 @@
                 'hero-badge': 'Part One of the trilogy',
                 'hero-title': 'Battre la langue',
                 'hero-author': 'Saif El Islem Zahaf',
-                'cover-part': 'Part One',
                 'novel-title': 'Battre la langue',
                 'pages': '232 pages',
                 'year': '2025',
                 'genre': 'Dramatic - Technical - Political Novel',
                 'summary-title': 'Summary',
-                'summary-text': "In the Yasmin district of Oran, engineer Yassine, the technocratic Salafi, leads the 'Auras' project of 3D printing and custom encryption to free Algeria from import dependence and corrupt lobbies, in the epic 'Cutting the Tongue' that blends algorithms with faith."
+                'summary-text': "In the Yasmin district of Oran, engineer Yassine, the technocratic Salafi, leads the 'Auras' project of 3D printing and custom encryption to free Algeria from import dependence and corrupt lobbies, in the epic 'Cutting the Tongue' that blends algorithms with faith.",
+                'download-btn': 'Download first 5 chapters (PDF)',
                 'request-btn': 'Request full novel',
                 'whatsapp-btn': 'Request via WhatsApp',
+                'chapter1-title': 'Chapter One',
+                'chapter1-sub': '— The beginning in the Yasmin basement —',
+                'chapter1-end': '— To be continued in chapter two —',
                 'form-title': '📖 Request full novel',
                 'form-sub': 'Fill out the form and the full novel will be sent to your email',
                 'form-name': 'Full Name',
@@ -820,7 +908,7 @@
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.dataset.key;
                 if (translations[lang][key] !== undefined) {
-                    if (key === 'summary-text' || key === 'footer-made' || key === 'footer-rights' || key === 'footer-legal' || key === 'form-sub') {
+                    if (key === 'summary-text' || key === 'footer-made' || key === 'footer-rights' || key === 'footer-legal' || key === 'form-sub' || key === 'chapter1-text') {
                         el.innerHTML = translations[lang][key];
                     } else {
                         el.textContent = translations[lang][key];
