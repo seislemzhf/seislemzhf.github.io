@@ -406,6 +406,23 @@
         }
         .form-success p { color: var(--muted); }
 
+        .form-error {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 16px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            margin-top: 15px;
+        }
+        .form-error i {
+            font-size: 2rem;
+            color: var(--red);
+            margin-bottom: 10px;
+        }
+        .form-error h4 { color: var(--red); margin-bottom: 5px; }
+        .form-error p { color: var(--muted); font-size: 0.9rem; }
+
         .btn-whatsapp {
             display: inline-flex;
             align-items: center;
@@ -706,8 +723,8 @@
                 <h3><span data-key="form-head">احصل على عرض سعر</span></h3>
                 <p class="form-sub" data-key="form-sub-desc">املأ النموذج وسأتصل بك خلال 24 ساعة</p>
 
-                <!-- ✅ فورم بسيط يفتح الإيميل -->
-                <form id="contactForm" onsubmit="sendEmail(event)">
+                <!-- ✅ فورم مع Web3Forms (يخدم على الجوال) -->
+                <form id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label data-key="form-name">الاسم الكامل <span>*</span></label>
@@ -755,6 +772,10 @@
                         <textarea id="message" name="message" required placeholder="اكتب تفاصيل مشروعك، متطلباتك، الميزانية، والمدة المتوقعة..."></textarea>
                     </div>
 
+                    <input type="hidden" name="access_key" value="3ba26651-9f02-405b-a4d2-e93e6fc950cc"> <!-- ← حط API Key تاعك هنا -->
+                    <input type="hidden" name="subject" value="طلب خدمة جديد من موقع Minsaj DZ">
+                    <input type="hidden" name="from_name" value="Minsaj DZ Contact Form">
+
                     <button type="submit" class="btn-submit" id="submitBtn">
                         <i class="fas fa-paper-plane"></i> <span data-key="form-submit">إرسال الطلب</span>
                     </button>
@@ -762,8 +783,14 @@
 
                 <div class="form-success" id="formSuccess">
                     <i class="fas fa-check-circle"></i>
-                    <h4 data-key="form-success-title">✅ تم!</h4>
-                    <p data-key="form-success-desc">شكراً لك! سيتم فتح بريدك الإلكتروني لتأكيد الإرسال.</p>
+                    <h4 data-key="form-success-title">تم الإرسال بنجاح! ✅</h4>
+                    <p data-key="form-success-desc">شكراً لك! سأتصل بك في أقرب وقت ممكن خلال 24 ساعة.</p>
+                </div>
+
+                <div class="form-error" id="formError">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h4>حدث خطأ!</h4>
+                    <p>حاول مرة أخرى أو تواصل عبر واتساب.</p>
                 </div>
 
                 <div class="contact-extra">
@@ -842,8 +869,8 @@
                 'form-service-placeholder': '-- اختر الخدمة --',
                 'form-message': 'تفاصيل المشروع',
                 'form-submit': 'إرسال الطلب',
-                'form-success-title': '✅ تم!',
-                'form-success-desc': 'شكراً لك! سيتم فتح بريدك الإلكتروني لتأكيد الإرسال.',
+                'form-success-title': 'تم الإرسال بنجاح! ✅',
+                'form-success-desc': 'شكراً لك! سأتصل بك في أقرب وقت ممكن خلال 24 ساعة.',
                 'form-or': 'أو تواصل معي مباشرة عبر',
                 'form-whatsapp': 'واتساب',
                 'back-btn': 'العودة للصفحة الرئيسية',
@@ -898,8 +925,8 @@
                 'form-service-placeholder': '-- Choisissez un service --',
                 'form-message': 'Détails du projet',
                 'form-submit': 'Envoyer la demande',
-                'form-success-title': '✅ Fait!',
-                'form-success-desc': 'Merci! Votre email va s\'ouvrir pour confirmer l\'envoi.',
+                'form-success-title': 'Envoyé avec succès! ✅',
+                'form-success-desc': 'Merci! Je vous contacterai dans les plus brefs délais sous 24h.',
                 'form-or': 'Ou contactez-moi directement via',
                 'form-whatsapp': 'WhatsApp',
                 'back-btn': 'Retour à l\'accueil',
@@ -954,8 +981,8 @@
                 'form-service-placeholder': '-- Select a service --',
                 'form-message': 'Project Details',
                 'form-submit': 'Send Request',
-                'form-success-title': '✅ Done!',
-                'form-success-desc': 'Thank you! Your email will open to confirm the submission.',
+                'form-success-title': 'Sent Successfully! ✅',
+                'form-success-desc': 'Thank you! I will contact you as soon as possible within 24 hours.',
                 'form-or': 'Or contact me directly via',
                 'form-whatsapp': 'WhatsApp',
                 'back-btn': 'Back to Homepage',
@@ -1014,36 +1041,46 @@
         });
 
         // ==========================================
-        // ✅ فورم mailto - يفتح الإيميل مباشرة
+        // ✅ إرسال الفورم عبر Web3Forms (يخدم على الجوال)
         // ==========================================
-        function sendEmail(event) {
-            event.preventDefault();
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-            // جمع البيانات
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value || 'غير مدخل';
-            const service = document.getElementById('service').value;
-            const message = document.getElementById('message').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const form = this;
 
-            // تكوين نص الإيميل
-            const subject = encodeURIComponent(`طلب خدمة جديد من ${name} - ${service}`);
-            const body = encodeURIComponent(
-                `الاسم الكامل: ${name}\n` +
-                `البريد الإلكتروني: ${email}\n` +
-                `رقم الهاتف: ${phone}\n` +
-                `الخدمة المطلوبة: ${service}\n\n` +
-                `تفاصيل المشروع:\n${message}\n\n` +
-                `---\nتم الإرسال من موقع Minsaj DZ`
-            );
+            // تعطيل الزر
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
 
-            // فتح تطبيق البريد
-            window.location.href = `mailto:seislemzhf@gmail.com?subject=${subject}&body=${body}`;
+            // إخفاء الرسائل السابقة
+            document.getElementById('formSuccess').style.display = 'none';
+            document.getElementById('formError').style.display = 'none';
 
-            // إظهار رسالة نجاح
-            document.getElementById('contactForm').style.display = 'none';
-            document.getElementById('formSuccess').style.display = 'block';
-        }
+            const formData = new FormData(form);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    form.style.display = 'none';
+                    document.getElementById('formSuccess').style.display = 'block';
+                } else {
+                    document.getElementById('formError').style.display = 'block';
+                }
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال الطلب';
+            })
+            .catch(error => {
+                document.getElementById('formError').style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال الطلب';
+                console.error('Error:', error);
+            });
+        });
     </script>
 </body>
 </html>
