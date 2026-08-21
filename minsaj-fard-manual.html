@@ -31,6 +31,10 @@
             background-attachment: fixed;
             color: var(--light);
             line-height: 1.8;
+            transition: 0.3s;
+        }
+        body.en, body.fr {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .container {
@@ -75,6 +79,34 @@
             background: var(--accent);
             color: white;
             transform: translateY(-3px);
+        }
+
+        /* ====== زر تغيير اللغة ====== */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            color: var(--muted);
+            padding: 6px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
         }
 
         /* البطل */
@@ -152,6 +184,8 @@
         }
         .step-card p, .step-card li { color: #cbd5e1; font-size: 0.95rem; }
         .step-card ul, .step-card ol { padding-right: 25px; }
+        body.en .step-card ul, body.fr .step-card ul { padding-left: 25px; padding-right: 0; }
+        body.en .step-card ol, body.fr .step-card ol { padding-left: 25px; padding-right: 0; }
         .step-card ul li::before { content: '✅ '; }
 
         .warning-box {
@@ -194,6 +228,10 @@
             text-align: right;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+        body.en table th, body.en table td,
+        body.fr table th, body.fr table td {
+            text-align: left;
+        }
         th { background: rgba(16, 185, 129, 0.1); color: var(--accent); font-weight: 700; }
         td { color: #cbd5e1; font-size: 0.9rem; }
 
@@ -221,6 +259,9 @@
         @media (max-width: 700px) {
             .hero h1 { font-size: 2rem; }
             .section-title { font-size: 1.4rem; }
+            .lang-switcher { width: 100%; justify-content: center; }
+            .header-content { justify-content: center; }
+            .toc ul { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -228,40 +269,47 @@
 
     <header>
         <div class="container header-content">
-            <div class="logo">Minsaj <span>Fard</span> - الدليل الشامل</div>
-            <a href="minsaj-fard.html" class="btn-back">
-                <i class="fas fa-arrow-right"></i> العودة لصفحة البرنامج
-            </a>
+            <div class="logo">Minsaj <span>Fard</span> - <span data-key="guide-title">الدليل الشامل</span></div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                <a href="minsaj-fard.html" class="btn-back">
+                    <i class="fas fa-arrow-right"></i> <span data-key="back-btn">العودة لصفحة البرنامج</span>
+                </a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="ar">🇩🇿 عربي</button>
+                    <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+                    <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+                </div>
+            </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>📖 دليل استخدام <span>Minsaj Fard</span></h1>
-            <p>كل ما تحتاج معرفته - خطوة بخطوة من التنصيب حتى الاستخدام اليومي</p>
+            <h1>📖 <span data-key="hero-title">دليل استخدام</span> <span>Minsaj Fard</span></h1>
+            <p data-key="hero-desc">كل ما تحتاج معرفته - خطوة بخطوة من التنصيب حتى الاستخدام اليومي</p>
         </div>
     </section>
 
     <!-- فهرس -->
     <div class="container">
         <div class="toc">
-            <h3><i class="fas fa-list"></i> فهرس المحتويات</h3>
+            <h3><i class="fas fa-list"></i> <span data-key="toc-title">فهرس المحتويات</span></h3>
             <ul>
-                <li><a href="#server-install"><i class="fas fa-server"></i> 1. تنصيب الخادم الرئيسي</a></li>
-                <li><a href="#client-install"><i class="fas fa-laptop"></i> 2. تنصيب الأجهزة الأخرى</a></li>
-                <li><a href="#login"><i class="fas fa-key"></i> 3. تسجيل الدخول</a></li>
-                <li><a href="#network"><i class="fas fa-network-wired"></i> 4. إعدادات الشبكة</a></li>
-                <li><a href="#license"><i class="fas fa-shield"></i> 5. تفعيل الترخيص</a></li>
-                <li><a href="#employees"><i class="fas fa-users"></i> 6. إدارة الموظفين</a></li>
-                <li><a href="#attendance"><i class="fas fa-fingerprint"></i> 7. الحضور + ZKTeco</a></li>
-                <li><a href="#leaves"><i class="fas fa-calendar"></i> 8. الإجازات</a></li>
-                <li><a href="#payroll"><i class="fas fa-coins"></i> 9. الرواتب والضرائب</a></li>
-                <li><a href="#documents"><i class="fas fa-file"></i> 10. شهادة وعقد العمل</a></li>
-                <li><a href="#reports"><i class="fas fa-chart"></i> 11. التقارير</a></li>
-                <li><a href="#settings"><i class="fas fa-gear"></i> 12. الإعدادات</a></li>
-                <li><a href="#backup"><i class="fas fa-database"></i> 13. النسخ الاحتياطي</a></li>
-                <li><a href="#faq"><i class="fas fa-question"></i> 14. الأسئلة الشائعة</a></li>
-                <li><a href="#support"><i class="fab fa-whatsapp"></i> 15. الدعم الفني</a></li>
+                <li><a href="#server-install"><i class="fas fa-server"></i> <span data-key="toc1">1. تنصيب الخادم الرئيسي</span></a></li>
+                <li><a href="#client-install"><i class="fas fa-laptop"></i> <span data-key="toc2">2. تنصيب الأجهزة الأخرى</span></a></li>
+                <li><a href="#login"><i class="fas fa-key"></i> <span data-key="toc3">3. تسجيل الدخول</span></a></li>
+                <li><a href="#network"><i class="fas fa-network-wired"></i> <span data-key="toc4">4. إعدادات الشبكة</span></a></li>
+                <li><a href="#license"><i class="fas fa-shield"></i> <span data-key="toc5">5. تفعيل الترخيص</span></a></li>
+                <li><a href="#employees"><i class="fas fa-users"></i> <span data-key="toc6">6. إدارة الموظفين</span></a></li>
+                <li><a href="#attendance"><i class="fas fa-fingerprint"></i> <span data-key="toc7">7. الحضور + ZKTeco</span></a></li>
+                <li><a href="#leaves"><i class="fas fa-calendar"></i> <span data-key="toc8">8. الإجازات</span></a></li>
+                <li><a href="#payroll"><i class="fas fa-coins"></i> <span data-key="toc9">9. الرواتب والضرائب</span></a></li>
+                <li><a href="#documents"><i class="fas fa-file"></i> <span data-key="toc10">10. شهادة وعقد العمل</span></a></li>
+                <li><a href="#reports"><i class="fas fa-chart"></i> <span data-key="toc11">11. التقارير</span></a></li>
+                <li><a href="#settings"><i class="fas fa-gear"></i> <span data-key="toc12">12. الإعدادات</span></a></li>
+                <li><a href="#backup"><i class="fas fa-database"></i> <span data-key="toc13">13. النسخ الاحتياطي</span></a></li>
+                <li><a href="#faq"><i class="fas fa-question"></i> <span data-key="toc14">14. الأسئلة الشائعة</span></a></li>
+                <li><a href="#support"><i class="fab fa-whatsapp"></i> <span data-key="toc15">15. الدعم الفني</span></a></li>
             </ul>
         </div>
     </div>
@@ -269,37 +317,37 @@
     <!-- 1. تنصيب الخادم -->
     <section id="server-install">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-server"></i> 1. تنصيب الخادم الرئيسي (Server)</h2>
+            <h2 class="section-title"><i class="fas fa-server"></i> <span data-key="s1-title">1. تنصيب الخادم الرئيسي (Server)</span></h2>
             
             <div class="step-card">
-                <h4>الخطوة 1: التحميل</h4>
-                <p>حمّل ملف <strong>Setup.exe</strong> من صفحة البرنامج.</p>
+                <h4 data-key="s1-step1-title">الخطوة 1: التحميل</h4>
+                <p data-key="s1-step1-desc">حمّل ملف <strong>Setup.exe</strong> من صفحة البرنامج.</p>
             </div>
             
             <div class="step-card">
-                <h4>الخطوة 2: التثبيت</h4>
+                <h4 data-key="s1-step2-title">الخطوة 2: التثبيت</h4>
                 <ol style="padding-right: 25px;">
-                    <li>انقر مرتين على <strong>Setup.exe</strong></li>
-                    <li>اختر اللغة واضغط OK</li>
-                    <li>اضغط Next</li>
-                    <li>اختر <strong>Server / خادم</strong> من نوع التثبيت</li>
-                    <li>اختر مجلد التثبيت (اترك الافتراضي)</li>
-                    <li>اضغط Install وانتظر</li>
-                    <li>اضغط Finish</li>
+                    <li data-key="s1-step2-1">انقر مرتين على <strong>Setup.exe</strong></li>
+                    <li data-key="s1-step2-2">اختر اللغة واضغط OK</li>
+                    <li data-key="s1-step2-3">اضغط Next</li>
+                    <li data-key="s1-step2-4">اختر <strong>Server / خادم</strong> من نوع التثبيت</li>
+                    <li data-key="s1-step2-5">اختر مجلد التثبيت (اترك الافتراضي)</li>
+                    <li data-key="s1-step2-6">اضغط Install وانتظر</li>
+                    <li data-key="s1-step2-7">اضغط Finish</li>
                 </ol>
                 <div class="info-box">
                     <i class="fas fa-info-circle"></i>
-                    <p>بعد التثبيت، السكربت يشغل كل شيء تلقائياً: قاعدة البيانات + الجدار الناري + الإعدادات</p>
+                    <p data-key="s1-step2-info">بعد التثبيت، السكربت يشغل كل شيء تلقائياً: قاعدة البيانات + الجدار الناري + الإعدادات</p>
                 </div>
             </div>
             
             <div class="step-card">
-                <h4>الخطوة 3: أول تشغيل</h4>
+                <h4 data-key="s1-step3-title">الخطوة 3: أول تشغيل</h4>
                 <ul>
-                    <li>البرنامج يفتح تلقائياً</li>
-                    <li>قاعدة البيانات تنشأ تلقائياً</li>
-                    <li>المستخدم admin يخلق تلقائياً</li>
-                    <li>الأقسام والورديات الافتراضية جاهزة</li>
+                    <li data-key="s1-step3-1">البرنامج يفتح تلقائياً</li>
+                    <li data-key="s1-step3-2">قاعدة البيانات تنشأ تلقائياً</li>
+                    <li data-key="s1-step3-3">المستخدم admin يخلق تلقائياً</li>
+                    <li data-key="s1-step3-4">الأقسام والورديات الافتراضية جاهزة</li>
                 </ul>
             </div>
         </div>
@@ -308,30 +356,30 @@
     <!-- 2. تنصيب العميل -->
     <section id="client-install">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-laptop"></i> 2. تنصيب الأجهزة الأخرى (Client)</h2>
+            <h2 class="section-title"><i class="fas fa-laptop"></i> <span data-key="s2-title">2. تنصيب الأجهزة الأخرى (Client)</span></h2>
             
             <div class="step-card">
-                <h4>الخطوة 1: نفس ملف Setup.exe</h4>
-                <p>نفس الملف يُثبّت على كل الأجهزة</p>
+                <h4 data-key="s2-step1-title">الخطوة 1: نفس ملف Setup.exe</h4>
+                <p data-key="s2-step1-desc">نفس الملف يُثبّت على كل الأجهزة</p>
             </div>
             
             <div class="step-card">
-                <h4>الخطوة 2: اختر Client</h4>
-                <p>أثناء التثبيت، اختر <strong>Client / عميل</strong> بدل Server</p>
+                <h4 data-key="s2-step2-title">الخطوة 2: اختر Client</h4>
+                <p data-key="s2-step2-desc">أثناء التثبيت، اختر <strong>Client / عميل</strong> بدل Server</p>
                 <div class="info-box">
                     <i class="fas fa-info-circle"></i>
-                    <p>هذا يعني: لا تثبيت PostgreSQL - فقط البرنامج</p>
+                    <p data-key="s2-step2-info">هذا يعني: لا تثبيت PostgreSQL - فقط البرنامج</p>
                 </div>
             </div>
             
             <div class="step-card">
-                <h4>الخطوة 3: الاتصال بالخادم</h4>
+                <h4 data-key="s2-step3-title">الخطوة 3: الاتصال بالخادم</h4>
                 <ol style="padding-right: 25px;">
-                    <li>افتح البرنامج</li>
-                    <li>ستظهر نافذة إعدادات الشبكة تلقائياً</li>
-                    <li>في Server IP: اكتب عنوان الخادم</li>
-                    <li>اضغط Test Connection</li>
-                    <li>إذا ظهر ✓ متصل → اضغط Save</li>
+                    <li data-key="s2-step3-1">افتح البرنامج</li>
+                    <li data-key="s2-step3-2">ستظهر نافذة إعدادات الشبكة تلقائياً</li>
+                    <li data-key="s2-step3-3">في Server IP: اكتب عنوان الخادم</li>
+                    <li data-key="s2-step3-4">اضغط Test Connection</li>
+                    <li data-key="s2-step3-5">إذا ظهر ✓ متصل → اضغط Save</li>
                 </ol>
             </div>
         </div>
@@ -340,17 +388,17 @@
     <!-- 3. تسجيل الدخول -->
     <section id="login">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-key"></i> 3. تسجيل الدخول</h2>
+            <h2 class="section-title"><i class="fas fa-key"></i> <span data-key="s3-title">3. تسجيل الدخول</span></h2>
             
             <div class="step-card">
-                <h4>بيانات الدخول الافتراضية</h4>
+                <h4 data-key="s3-credentials">بيانات الدخول الافتراضية</h4>
                 <table>
-                    <tr><th>اسم المستخدم</th><td>admin</td></tr>
-                    <tr><th>كلمة المرور</th><td>admin123</td></tr>
+                    <tr><th data-key="s3-username-label">اسم المستخدم</th><td>admin</td></tr>
+                    <tr><th data-key="s3-password-label">كلمة المرور</th><td>admin123</td></tr>
                 </table>
                 <div class="danger-box">
                     <i class="fas fa-exclamation-triangle"></i>
-                    <p>غيّر كلمة المرور فوراً بعد أول دخول من قسم "المستخدمون"</p>
+                    <p data-key="s3-warning">غيّر كلمة المرور فوراً بعد أول دخول من قسم "المستخدمون"</p>
                 </div>
             </div>
         </div>
@@ -359,10 +407,10 @@
     <!-- 4. الشبكة -->
     <section id="network">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-network-wired"></i> 4. إعدادات الشبكة</h2>
+            <h2 class="section-title"><i class="fas fa-network-wired"></i> <span data-key="s4-title">4. إعدادات الشبكة</span></h2>
             
             <div class="step-card">
-                <h4>على الخادم:</h4>
+                <h4 data-key="s4-server-label">على الخادم:</h4>
                 <table>
                     <tr><th>Server IP</th><td>localhost</td></tr>
                     <tr><th>Port</th><td>5433</td></tr>
@@ -370,20 +418,20 @@
             </div>
             
             <div class="step-card">
-                <h4>على الأجهزة في نفس الشبكة:</h4>
-                <p>اعرف IP الخادم من الأمر <code>ipconfig</code></p>
+                <h4 data-key="s4-client-label">على الأجهزة في نفس الشبكة:</h4>
+                <p data-key="s4-client-desc">اعرف IP الخادم من الأمر <code>ipconfig</code></p>
                 <table>
-                    <tr><th>Server IP</th><td>192.168.1.10 (مثال)</td></tr>
+                    <tr><th>Server IP</th><td>192.168.1.10 <span data-key="s4-example">(مثال)</span></td></tr>
                     <tr><th>Port</th><td>5433</td></tr>
                 </table>
             </div>
             
             <div class="step-card">
-                <h4>عبر الإنترنت (من بعيد):</h4>
+                <h4 data-key="s4-online-label">عبر الإنترنت (من بعيد):</h4>
                 <ol style="padding-right: 25px;">
-                    <li>شغّل Cloudflare على الخادم</li>
-                    <li>يظهر رابط عام</li>
-                    <li>استعمله للوحة المراقبة فقط</li>
+                    <li data-key="s4-online-1">شغّل Cloudflare على الخادم</li>
+                    <li data-key="s4-online-2">يظهر رابط عام</li>
+                    <li data-key="s4-online-3">استعمله للوحة المراقبة فقط</li>
                 </ol>
             </div>
         </div>
@@ -392,33 +440,33 @@
     <!-- 5. الترخيص -->
     <section id="license">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-shield"></i> 5. تفعيل الترخيص</h2>
+            <h2 class="section-title"><i class="fas fa-shield"></i> <span data-key="s5-title">5. تفعيل الترخيص</span></h2>
             
             <div class="step-card">
-                <h4>التجربة المجانية</h4>
-                <p>30 يوم كاملة بكل المميزات - بدون أي قيود.</p>
+                <h4 data-key="s5-trial">التجربة المجانية</h4>
+                <p data-key="s5-trial-desc">30 يوم كاملة بكل المميزات - بدون أي قيود.</p>
             </div>
             
             <div class="step-card">
-                <h4>خطوات التفعيل:</h4>
+                <h4 data-key="s5-steps">خطوات التفعيل:</h4>
                 <ol style="padding-right: 25px;">
-                    <li>افتح <strong>الإعدادات</strong></li>
-                    <li>انسخ <strong>Machine ID</strong></li>
-                    <li>أرسله على واتساب: <strong>0657200758</strong></li>
-                    <li>استلم مفتاح التفعيل</li>
-                    <li>الصقه واضغط تفعيل</li>
+                    <li data-key="s5-step1">افتح <strong>الإعدادات</strong></li>
+                    <li data-key="s5-step2">انسخ <strong>Machine ID</strong></li>
+                    <li data-key="s5-step3">أرسله على واتساب: <strong>0657200758</strong></li>
+                    <li data-key="s5-step4">استلم مفتاح التفعيل</li>
+                    <li data-key="s5-step5">الصقه واضغط تفعيل</li>
                 </ol>
             </div>
             
             <div class="step-card">
-                <h4>أنواع التراخيص:</h4>
+                <h4 data-key="s5-types">أنواع التراخيص:</h4>
                 <table>
-                    <tr><th>النوع</th><th>المدة</th></tr>
-                    <tr><td>شهري</td><td>30 يوم</td></tr>
-                    <tr><td>3 أشهر</td><td>90 يوم</td></tr>
-                    <tr><td>6 أشهر</td><td>180 يوم</td></tr>
-                    <tr><td>سنوي</td><td>365 يوم</td></tr>
-                    <tr><td>مدى الحياة</td><td>∞</td></tr>
+                    <tr><th data-key="s5-type-label">النوع</th><th data-key="s5-duration-label">المدة</th></tr>
+                    <tr><td data-key="s5-monthly">شهري</td><td>30 يوم</td></tr>
+                    <tr><td data-key="s5-3months">3 أشهر</td><td>90 يوم</td></tr>
+                    <tr><td data-key="s5-6months">6 أشهر</td><td>180 يوم</td></tr>
+                    <tr><td data-key="s5-yearly">سنوي</td><td>365 يوم</td></tr>
+                    <tr><td data-key="s5-lifetime">مدى الحياة</td><td>∞</td></tr>
                 </table>
             </div>
         </div>
@@ -427,27 +475,27 @@
     <!-- 6. الموظفين -->
     <section id="employees">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-users"></i> 6. إدارة الموظفين</h2>
+            <h2 class="section-title"><i class="fas fa-users"></i> <span data-key="s6-title">6. إدارة الموظفين</span></h2>
             
             <div class="step-card">
-                <h4>إضافة موظف:</h4>
+                <h4 data-key="s6-add">إضافة موظف:</h4>
                 <ol style="padding-right: 25px;">
-                    <li>القائمة: <strong>الموظفون</strong></li>
-                    <li>اضغط <strong>إضافة موظف</strong></li>
-                    <li>الكود يتولد تلقائياً (EMP-0001...)</li>
-                    <li>أدخل الاسم واللقب</li>
-                    <li>اختر القسم والوردية والمنصب</li>
-                    <li>أدخل الراتب والعلاوات والخصومات</li>
-                    <li>اضغط <strong>حفظ</strong></li>
+                    <li data-key="s6-add-1">القائمة: <strong>الموظفون</strong></li>
+                    <li data-key="s6-add-2">اضغط <strong>إضافة موظف</strong></li>
+                    <li data-key="s6-add-3">الكود يتولد تلقائياً (EMP-0001...)</li>
+                    <li data-key="s6-add-4">أدخل الاسم واللقب</li>
+                    <li data-key="s6-add-5">اختر القسم والوردية والمنصب</li>
+                    <li data-key="s6-add-6">أدخل الراتب والعلاوات والخصومات</li>
+                    <li data-key="s6-add-7">اضغط <strong>حفظ</strong></li>
                 </ol>
             </div>
             
             <div class="step-card">
-                <h4>بحث وتعديل:</h4>
+                <h4 data-key="s6-search">بحث وتعديل:</h4>
                 <ul>
-                    <li>حقل البحث يبحث بالاسم أو الكود</li>
-                    <li>انقر مرتين للتفاصيل</li>
-                    <li>أزرار: عرض / تعديل / حذف</li>
+                    <li data-key="s6-search-1">حقل البحث يبحث بالاسم أو الكود</li>
+                    <li data-key="s6-search-2">انقر مرتين للتفاصيل</li>
+                    <li data-key="s6-search-3">أزرار: عرض / تعديل / حذف</li>
                 </ul>
             </div>
         </div>
@@ -456,30 +504,30 @@
     <!-- 7. الحضور -->
     <section id="attendance">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-fingerprint"></i> 7. سجل الحضور + ZKTeco</h2>
+            <h2 class="section-title"><i class="fas fa-fingerprint"></i> <span data-key="s7-title">7. سجل الحضور + ZKTeco</span></h2>
             
             <div class="step-card">
-                <h4>إدخال يدوي:</h4>
+                <h4 data-key="s7-manual">إدخال يدوي:</h4>
                 <ul>
-                    <li>القائمة: <strong>سجل الحضور</strong></li>
-                    <li>اضغط <strong>إضافة يدوي</strong></li>
-                    <li>اختر الموظف والتاريخ والأوقات</li>
-                    <li>حدد الحالة</li>
+                    <li data-key="s7-manual-1">القائمة: <strong>سجل الحضور</strong></li>
+                    <li data-key="s7-manual-2">اضغط <strong>إضافة يدوي</strong></li>
+                    <li data-key="s7-manual-3">اختر الموظف والتاريخ والأوقات</li>
+                    <li data-key="s7-manual-4">حدد الحالة</li>
                 </ul>
             </div>
             
             <div class="step-card">
-                <h4>جلب من ZKTeco:</h4>
+                <h4 data-key="s7-zkteco">جلب من ZKTeco:</h4>
                 <ol style="padding-right: 25px;">
-                    <li>اضغط <strong>جلب من ZKTeco</strong></li>
-                    <li>أدخل IP الجهاز (مثال: 192.168.1.201)</li>
-                    <li>المنفذ: 4370</li>
-                    <li>اضغط فحص الاتصال</li>
-                    <li>ثم جلب السجلات</li>
+                    <li data-key="s7-zk-1">اضغط <strong>جلب من ZKTeco</strong></li>
+                    <li data-key="s7-zk-2">أدخل IP الجهاز (مثال: 192.168.1.201)</li>
+                    <li data-key="s7-zk-3">المنفذ: 4370</li>
+                    <li data-key="s7-zk-4">اضغط فحص الاتصال</li>
+                    <li data-key="s7-zk-5">ثم جلب السجلات</li>
                 </ol>
                 <div class="info-box">
                     <i class="fas fa-info-circle"></i>
-                    <p>الجهاز والكمبيوتر على نفس الشبكة</p>
+                    <p data-key="s7-zk-info">الجهاز والكمبيوتر على نفس الشبكة</p>
                 </div>
             </div>
         </div>
@@ -488,28 +536,28 @@
     <!-- 8. الإجازات -->
     <section id="leaves">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-calendar"></i> 8. الإجازات</h2>
+            <h2 class="section-title"><i class="fas fa-calendar"></i> <span data-key="s8-title">8. الإجازات</span></h2>
             
             <div class="step-card">
-                <h4>طلب إجازة:</h4>
+                <h4 data-key="s8-request">طلب إجازة:</h4>
                 <ol style="padding-right: 25px;">
-                    <li>القائمة: <strong>الإجازات</strong></li>
-                    <li>اضغط <strong>طلب إجازة</strong></li>
-                    <li>اختر الموظف والنوع</li>
-                    <li>حدد البداية والنهاية</li>
-                    <li>اضغط حفظ</li>
+                    <li data-key="s8-req-1">القائمة: <strong>الإجازات</strong></li>
+                    <li data-key="s8-req-2">اضغط <strong>طلب إجازة</strong></li>
+                    <li data-key="s8-req-3">اختر الموظف والنوع</li>
+                    <li data-key="s8-req-4">حدد البداية والنهاية</li>
+                    <li data-key="s8-req-5">اضغط حفظ</li>
                 </ol>
             </div>
             
             <div class="step-card">
-                <h4>موافقة/رفض:</h4>
+                <h4 data-key="s8-approve">موافقة/رفض:</h4>
                 <ul>
-                    <li>انقر عرض على الطلب</li>
-                    <li>اضغط موافقة أو رفض</li>
+                    <li data-key="s8-app-1">انقر عرض على الطلب</li>
+                    <li data-key="s8-app-2">اضغط موافقة أو رفض</li>
                 </ul>
                 <div class="info-box">
                     <i class="fas fa-info-circle"></i>
-                    <p>الموظف في إجازة = لا يحسب غائب في الرواتب</p>
+                    <p data-key="s8-app-info">الموظف في إجازة = لا يحسب غائب في الرواتب</p>
                 </div>
             </div>
         </div>
@@ -518,25 +566,25 @@
     <!-- 9. الرواتب -->
     <section id="payroll">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-coins"></i> 9. الرواتب والضرائب</h2>
+            <h2 class="section-title"><i class="fas fa-coins"></i> <span data-key="s9-title">9. الرواتب والضرائب</span></h2>
             
             <div class="step-card">
-                <h4>حساب الرواتب:</h4>
+                <h4 data-key="s9-calc">حساب الرواتب:</h4>
                 <ol style="padding-right: 25px;">
-                    <li>القائمة: <strong>الرواتب</strong></li>
-                    <li>اختر الشهر والسنة</li>
-                    <li>اضغط <strong>حساب الرواتب</strong></li>
-                    <li>البرنامج يحسب تلقائياً</li>
+                    <li data-key="s9-calc-1">القائمة: <strong>الرواتب</strong></li>
+                    <li data-key="s9-calc-2">اختر الشهر والسنة</li>
+                    <li data-key="s9-calc-3">اضغط <strong>حساب الرواتب</strong></li>
+                    <li data-key="s9-calc-4">البرنامج يحسب تلقائياً</li>
                 </ol>
             </div>
             
             <div class="step-card">
-                <h4>الضرائب الجزائرية:</h4>
+                <h4 data-key="s9-tax">الضرائب الجزائرية:</h4>
                 <table>
-                    <tr><th>الاقتطاع</th><th>النسبة</th></tr>
-                    <tr><td>CNAS الموظف</td><td>9%</td></tr>
-                    <tr><td>CNAS رب العمل</td><td>26%</td></tr>
-                    <tr><td>IRG</td><td>حسب الجدول</td></tr>
+                    <tr><th data-key="s9-tax-deduction">الاقتطاع</th><th data-key="s9-tax-rate">النسبة</th></tr>
+                    <tr><td>CNAS <span data-key="s9-tax-employee">الموظف</span></td><td>9%</td></tr>
+                    <tr><td>CNAS <span data-key="s9-tax-employer">رب العمل</span></td><td>26%</td></tr>
+                    <tr><td>IRG</td><td data-key="s9-tax-irg">حسب الجدول</td></tr>
                 </table>
             </div>
         </div>
@@ -545,23 +593,23 @@
     <!-- 10. الوثائق -->
     <section id="documents">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-file"></i> 10. شهادة وعقد العمل</h2>
+            <h2 class="section-title"><i class="fas fa-file"></i> <span data-key="s10-title">10. شهادة وعقد العمل</span></h2>
             
             <div class="step-card">
-                <h4>شهادة عمل:</h4>
+                <h4 data-key="s10-cert">شهادة عمل:</h4>
                 <ul>
-                    <li>افتح تفاصيل الموظف</li>
-                    <li>اضغط "شهادة عمل PDF"</li>
-                    <li>احفظ الملف</li>
+                    <li data-key="s10-cert-1">افتح تفاصيل الموظف</li>
+                    <li data-key="s10-cert-2">اضغط "شهادة عمل PDF"</li>
+                    <li data-key="s10-cert-3">احفظ الملف</li>
                 </ul>
             </div>
             
             <div class="step-card">
-                <h4>عقد عمل:</h4>
+                <h4 data-key="s10-contract">عقد عمل:</h4>
                 <ul>
-                    <li>افتح تفاصيل الموظف</li>
-                    <li>اضغط "عقد عمل PDF"</li>
-                    <li>اختر CDD أو CDI</li>
+                    <li data-key="s10-contract-1">افتح تفاصيل الموظف</li>
+                    <li data-key="s10-contract-2">اضغط "عقد عمل PDF"</li>
+                    <li data-key="s10-contract-3">اختر CDD أو CDI</li>
                 </ul>
             </div>
         </div>
@@ -570,24 +618,24 @@
     <!-- 11. التقارير -->
     <section id="reports">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-chart"></i> 11. التقارير</h2>
+            <h2 class="section-title"><i class="fas fa-chart"></i> <span data-key="s11-title">11. التقارير</span></h2>
             
             <div class="step-card">
-                <h4>أنواع التقارير:</h4>
+                <h4 data-key="s11-types">أنواع التقارير:</h4>
                 <ul>
-                    <li>شامل</li>
-                    <li>الموظفين</li>
-                    <li>الحضور</li>
-                    <li>الإجازات</li>
-                    <li>الرواتب</li>
+                    <li data-key="s11-type1">شامل</li>
+                    <li data-key="s11-type2">الموظفين</li>
+                    <li data-key="s11-type3">الحضور</li>
+                    <li data-key="s11-type4">الإجازات</li>
+                    <li data-key="s11-type5">الرواتب</li>
                 </ul>
             </div>
             
             <div class="step-card">
-                <h4>التصدير:</h4>
+                <h4 data-key="s11-export">التصدير:</h4>
                 <ul>
-                    <li>Excel من أزرار التصدير</li>
-                    <li>PDF من القسائم</li>
+                    <li data-key="s11-export-1">Excel من أزرار التصدير</li>
+                    <li data-key="s11-export-2">PDF من القسائم</li>
                 </ul>
             </div>
         </div>
@@ -596,17 +644,17 @@
     <!-- 12. الإعدادات -->
     <section id="settings">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-gear"></i> 12. الإعدادات</h2>
+            <h2 class="section-title"><i class="fas fa-gear"></i> <span data-key="s12-title">12. الإعدادات</span></h2>
             
             <div class="step-card">
-                <h4>كل الإعدادات:</h4>
+                <h4 data-key="s12-all">كل الإعدادات:</h4>
                 <ul>
-                    <li>أوقات العمل</li>
-                    <li>معاملات الرواتب</li>
-                    <li>قاعدة البيانات</li>
-                    <li>جهاز ZKTeco</li>
-                    <li>اللغة</li>
-                    <li>الترخيص</li>
+                    <li data-key="s12-item1">أوقات العمل</li>
+                    <li data-key="s12-item2">معاملات الرواتب</li>
+                    <li data-key="s12-item3">قاعدة البيانات</li>
+                    <li data-key="s12-item4">جهاز ZKTeco</li>
+                    <li data-key="s12-item5">اللغة</li>
+                    <li data-key="s12-item6">الترخيص</li>
                 </ul>
             </div>
         </div>
@@ -615,18 +663,18 @@
     <!-- 13. النسخ الاحتياطي -->
     <section id="backup">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-database"></i> 13. النسخ الاحتياطي</h2>
+            <h2 class="section-title"><i class="fas fa-database"></i> <span data-key="s13-title">13. النسخ الاحتياطي</span></h2>
             
             <div class="step-card">
-                <h4>إنشاء نسخة:</h4>
+                <h4 data-key="s13-create">إنشاء نسخة:</h4>
                 <ul>
-                    <li>القائمة: <strong>نسخ احتياطي</strong></li>
-                    <li>اضغط نعم</li>
-                    <li>النسخة تحفظ تلقائياً</li>
+                    <li data-key="s13-create-1">القائمة: <strong>نسخ احتياطي</strong></li>
+                    <li data-key="s13-create-2">اضغط نعم</li>
+                    <li data-key="s13-create-3">النسخة تحفظ تلقائياً</li>
                 </ul>
                 <div class="warning-box">
                     <i class="fas fa-exclamation-triangle"></i>
-                    <p>اعمل نسخة أسبوعياً</p>
+                    <p data-key="s13-warning">اعمل نسخة أسبوعياً</p>
                 </div>
             </div>
         </div>
@@ -635,26 +683,26 @@
     <!-- 14. FAQ -->
     <section id="faq">
         <div class="container">
-            <h2 class="section-title"><i class="fas fa-question"></i> 14. الأسئلة الشائعة</h2>
+            <h2 class="section-title"><i class="fas fa-question"></i> <span data-key="s14-title">14. الأسئلة الشائعة</span></h2>
             
             <div class="step-card">
-                <h4>هل يعمل بدون إنترنت؟</h4>
-                <p>نعم، في الشبكة المحلية يعمل بدون إنترنت.</p>
+                <h4 data-key="s14-q1">هل يعمل بدون إنترنت؟</h4>
+                <p data-key="s14-a1">نعم، في الشبكة المحلية يعمل بدون إنترنت.</p>
             </div>
             
             <div class="step-card">
-                <h4>كيف أسترد كلمة المرور؟</h4>
-                <p>راسلني واتساب على 0657200758.</p>
+                <h4 data-key="s14-q2">كيف أسترد كلمة المرور؟</h4>
+                <p data-key="s14-a2">راسلني واتساب على 0657200758.</p>
             </div>
             
             <div class="step-card">
-                <h4>هل يعمل على أكثر من جهاز؟</h4>
-                <p>نعم، Server + Clients على نفس الشبكة.</p>
+                <h4 data-key="s14-q3">هل يعمل على أكثر من جهاز؟</h4>
+                <p data-key="s14-a3">نعم، Server + Clients على نفس الشبكة.</p>
             </div>
             
             <div class="step-card">
-                <h4>ماذا بعد انتهاء التجربة؟</h4>
-                <p>البرنامج يتوقف - بياناتك محفوظة - فعّل الترخيص.</p>
+                <h4 data-key="s14-q4">ماذا بعد انتهاء التجربة؟</h4>
+                <p data-key="s14-a4">البرنامج يتوقف - بياناتك محفوظة - فعّل الترخيص.</p>
             </div>
         </div>
     </section>
@@ -662,13 +710,13 @@
     <!-- 15. الدعم -->
     <section id="support">
         <div class="container">
-            <h2 class="section-title"><i class="fab fa-whatsapp"></i> 15. الدعم الفني</h2>
+            <h2 class="section-title"><i class="fab fa-whatsapp"></i> <span data-key="s15-title">15. الدعم الفني</span></h2>
             
             <div class="step-card" style="text-align: center;">
-                <h4>تحتاج مساعدة؟</h4>
-                <p style="margin-bottom: 20px;">أنا هنا لمساعدتك</p>
+                <h4 data-key="s15-help">تحتاج مساعدة؟</h4>
+                <p style="margin-bottom: 20px;" data-key="s15-desc">أنا هنا لمساعدتك</p>
                 <a href="https://wa.me/2130657200758" target="_blank" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> تواصل معي واتساب
+                    <i class="fab fa-whatsapp"></i> <span data-key="s15-btn">تواصل معي واتساب</span>
                 </a>
             </div>
         </div>
@@ -676,13 +724,609 @@
 
     <footer>
         <div class="container">
-            <p>Made in Algeria 🇩🇿, with ❤️</p>
-            <p>© 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
+            <p data-key="footer-made">Made in Algeria 🇩🇿, with ❤️</p>
+            <p data-key="footer-rights">© 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
             <a href="minsaj-fard.html" style="display: inline-block; margin-top: 20px; color: #10B981; font-weight: 700;">
-                <i class="fas fa-arrow-right"></i> العودة لصفحة البرنامج
+                <i class="fas fa-arrow-right"></i> <span data-key="footer-back">العودة لصفحة البرنامج</span>
             </a>
         </div>
     </footer>
 
+    <script>
+        // ====== البيانات متعددة اللغات ======
+        const translations = {
+            ar: {
+                'guide-title': 'الدليل الشامل',
+                'back-btn': 'العودة لصفحة البرنامج',
+                'hero-title': 'دليل استخدام',
+                'hero-desc': 'كل ما تحتاج معرفته - خطوة بخطوة من التنصيب حتى الاستخدام اليومي',
+                'toc-title': 'فهرس المحتويات',
+                'toc1': '1. تنصيب الخادم الرئيسي',
+                'toc2': '2. تنصيب الأجهزة الأخرى',
+                'toc3': '3. تسجيل الدخول',
+                'toc4': '4. إعدادات الشبكة',
+                'toc5': '5. تفعيل الترخيص',
+                'toc6': '6. إدارة الموظفين',
+                'toc7': '7. الحضور + ZKTeco',
+                'toc8': '8. الإجازات',
+                'toc9': '9. الرواتب والضرائب',
+                'toc10': '10. شهادة وعقد العمل',
+                'toc11': '11. التقارير',
+                'toc12': '12. الإعدادات',
+                'toc13': '13. النسخ الاحتياطي',
+                'toc14': '14. الأسئلة الشائعة',
+                'toc15': '15. الدعم الفني',
+                's1-title': '1. تنصيب الخادم الرئيسي (Server)',
+                's1-step1-title': 'الخطوة 1: التحميل',
+                's1-step1-desc': 'حمّل ملف Setup.exe من صفحة البرنامج.',
+                's1-step2-title': 'الخطوة 2: التثبيت',
+                's1-step2-1': 'انقر مرتين على Setup.exe',
+                's1-step2-2': 'اختر اللغة واضغط OK',
+                's1-step2-3': 'اضغط Next',
+                's1-step2-4': 'اختر Server / خادم من نوع التثبيت',
+                's1-step2-5': 'اختر مجلد التثبيت (اترك الافتراضي)',
+                's1-step2-6': 'اضغط Install وانتظر',
+                's1-step2-7': 'اضغط Finish',
+                's1-step2-info': 'بعد التثبيت، السكربت يشغل كل شيء تلقائياً: قاعدة البيانات + الجدار الناري + الإعدادات',
+                's1-step3-title': 'الخطوة 3: أول تشغيل',
+                's1-step3-1': 'البرنامج يفتح تلقائياً',
+                's1-step3-2': 'قاعدة البيانات تنشأ تلقائياً',
+                's1-step3-3': 'المستخدم admin يخلق تلقائياً',
+                's1-step3-4': 'الأقسام والورديات الافتراضية جاهزة',
+                's2-title': '2. تنصيب الأجهزة الأخرى (Client)',
+                's2-step1-title': 'الخطوة 1: نفس ملف Setup.exe',
+                's2-step1-desc': 'نفس الملف يُثبّت على كل الأجهزة',
+                's2-step2-title': 'الخطوة 2: اختر Client',
+                's2-step2-desc': 'أثناء التثبيت، اختر Client / عميل بدل Server',
+                's2-step2-info': 'هذا يعني: لا تثبيت PostgreSQL - فقط البرنامج',
+                's2-step3-title': 'الخطوة 3: الاتصال بالخادم',
+                's2-step3-1': 'افتح البرنامج',
+                's2-step3-2': 'ستظهر نافذة إعدادات الشبكة تلقائياً',
+                's2-step3-3': 'في Server IP: اكتب عنوان الخادم',
+                's2-step3-4': 'اضغط Test Connection',
+                's2-step3-5': 'إذا ظهر ✓ متصل → اضغط Save',
+                's3-title': '3. تسجيل الدخول',
+                's3-credentials': 'بيانات الدخول الافتراضية',
+                's3-username-label': 'اسم المستخدم',
+                's3-password-label': 'كلمة المرور',
+                's3-warning': 'غيّر كلمة المرور فوراً بعد أول دخول من قسم "المستخدمون"',
+                's4-title': '4. إعدادات الشبكة',
+                's4-server-label': 'على الخادم:',
+                's4-client-label': 'على الأجهزة في نفس الشبكة:',
+                's4-client-desc': 'اعرف IP الخادم من الأمر ipconfig',
+                's4-example': '(مثال)',
+                's4-online-label': 'عبر الإنترنت (من بعيد):',
+                's4-online-1': 'شغّل Cloudflare على الخادم',
+                's4-online-2': 'يظهر رابط عام',
+                's4-online-3': 'استعمله للوحة المراقبة فقط',
+                's5-title': '5. تفعيل الترخيص',
+                's5-trial': 'التجربة المجانية',
+                's5-trial-desc': '30 يوم كاملة بكل المميزات - بدون أي قيود.',
+                's5-steps': 'خطوات التفعيل:',
+                's5-step1': 'افتح الإعدادات',
+                's5-step2': 'انسخ Machine ID',
+                's5-step3': 'أرسله على واتساب: 0657200758',
+                's5-step4': 'استلم مفتاح التفعيل',
+                's5-step5': 'الصقه واضغط تفعيل',
+                's5-types': 'أنواع التراخيص:',
+                's5-type-label': 'النوع',
+                's5-duration-label': 'المدة',
+                's5-monthly': 'شهري',
+                's5-3months': '3 أشهر',
+                's5-6months': '6 أشهر',
+                's5-yearly': 'سنوي',
+                's5-lifetime': 'مدى الحياة',
+                's6-title': '6. إدارة الموظفين',
+                's6-add': 'إضافة موظف:',
+                's6-add-1': 'القائمة: الموظفون',
+                's6-add-2': 'اضغط إضافة موظف',
+                's6-add-3': 'الكود يتولد تلقائياً (EMP-0001...)',
+                's6-add-4': 'أدخل الاسم واللقب',
+                's6-add-5': 'اختر القسم والوردية والمنصب',
+                's6-add-6': 'أدخل الراتب والعلاوات والخصومات',
+                's6-add-7': 'اضغط حفظ',
+                's6-search': 'بحث وتعديل:',
+                's6-search-1': 'حقل البحث يبحث بالاسم أو الكود',
+                's6-search-2': 'انقر مرتين للتفاصيل',
+                's6-search-3': 'أزرار: عرض / تعديل / حذف',
+                's7-title': '7. سجل الحضور + ZKTeco',
+                's7-manual': 'إدخال يدوي:',
+                's7-manual-1': 'القائمة: سجل الحضور',
+                's7-manual-2': 'اضغط إضافة يدوي',
+                's7-manual-3': 'اختر الموظف والتاريخ والأوقات',
+                's7-manual-4': 'حدد الحالة',
+                's7-zkteco': 'جلب من ZKTeco:',
+                's7-zk-1': 'اضغط جلب من ZKTeco',
+                's7-zk-2': 'أدخل IP الجهاز (مثال: 192.168.1.201)',
+                's7-zk-3': 'المنفذ: 4370',
+                's7-zk-4': 'اضغط فحص الاتصال',
+                's7-zk-5': 'ثم جلب السجلات',
+                's7-zk-info': 'الجهاز والكمبيوتر على نفس الشبكة',
+                's8-title': '8. الإجازات',
+                's8-request': 'طلب إجازة:',
+                's8-req-1': 'القائمة: الإجازات',
+                's8-req-2': 'اضغط طلب إجازة',
+                's8-req-3': 'اختر الموظف والنوع',
+                's8-req-4': 'حدد البداية والنهاية',
+                's8-req-5': 'اضغط حفظ',
+                's8-approve': 'موافقة/رفض:',
+                's8-app-1': 'انقر عرض على الطلب',
+                's8-app-2': 'اضغط موافقة أو رفض',
+                's8-app-info': 'الموظف في إجازة = لا يحسب غائب في الرواتب',
+                's9-title': '9. الرواتب والضرائب',
+                's9-calc': 'حساب الرواتب:',
+                's9-calc-1': 'القائمة: الرواتب',
+                's9-calc-2': 'اختر الشهر والسنة',
+                's9-calc-3': 'اضغط حساب الرواتب',
+                's9-calc-4': 'البرنامج يحسب تلقائياً',
+                's9-tax': 'الضرائب الجزائرية:',
+                's9-tax-deduction': 'الاقتطاع',
+                's9-tax-rate': 'النسبة',
+                's9-tax-employee': 'الموظف',
+                's9-tax-employer': 'رب العمل',
+                's9-tax-irg': 'حسب الجدول',
+                's10-title': '10. شهادة وعقد العمل',
+                's10-cert': 'شهادة عمل:',
+                's10-cert-1': 'افتح تفاصيل الموظف',
+                's10-cert-2': 'اضغط "شهادة عمل PDF"',
+                's10-cert-3': 'احفظ الملف',
+                's10-contract': 'عقد عمل:',
+                's10-contract-1': 'افتح تفاصيل الموظف',
+                's10-contract-2': 'اضغط "عقد عمل PDF"',
+                's10-contract-3': 'اختر CDD أو CDI',
+                's11-title': '11. التقارير',
+                's11-types': 'أنواع التقارير:',
+                's11-type1': 'شامل',
+                's11-type2': 'الموظفين',
+                's11-type3': 'الحضور',
+                's11-type4': 'الإجازات',
+                's11-type5': 'الرواتب',
+                's11-export': 'التصدير:',
+                's11-export-1': 'Excel من أزرار التصدير',
+                's11-export-2': 'PDF من القسائم',
+                's12-title': '12. الإعدادات',
+                's12-all': 'كل الإعدادات:',
+                's12-item1': 'أوقات العمل',
+                's12-item2': 'معاملات الرواتب',
+                's12-item3': 'قاعدة البيانات',
+                's12-item4': 'جهاز ZKTeco',
+                's12-item5': 'اللغة',
+                's12-item6': 'الترخيص',
+                's13-title': '13. النسخ الاحتياطي',
+                's13-create': 'إنشاء نسخة:',
+                's13-create-1': 'القائمة: نسخ احتياطي',
+                's13-create-2': 'اضغط نعم',
+                's13-create-3': 'النسخة تحفظ تلقائياً',
+                's13-warning': 'اعمل نسخة أسبوعياً',
+                's14-title': '14. الأسئلة الشائعة',
+                's14-q1': 'هل يعمل بدون إنترنت؟',
+                's14-a1': 'نعم، في الشبكة المحلية يعمل بدون إنترنت.',
+                's14-q2': 'كيف أسترد كلمة المرور؟',
+                's14-a2': 'راسلني واتساب على 0657200758.',
+                's14-q3': 'هل يعمل على أكثر من جهاز؟',
+                's14-a3': 'نعم، Server + Clients على نفس الشبكة.',
+                's14-q4': 'ماذا بعد انتهاء التجربة؟',
+                's14-a4': 'البرنامج يتوقف - بياناتك محفوظة - فعّل الترخيص.',
+                's15-title': '15. الدعم الفني',
+                's15-help': 'تحتاج مساعدة؟',
+                's15-desc': 'أنا هنا لمساعدتك',
+                's15-btn': 'تواصل معي واتساب',
+                'footer-made': 'Made in Algeria 🇩🇿, with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - جميع الحقوق محفوظة',
+                'footer-back': 'العودة لصفحة البرنامج'
+            },
+            fr: {
+                'guide-title': 'Guide complet',
+                'back-btn': 'Retour à la page du programme',
+                'hero-title': "Guide d'utilisation",
+                'hero-desc': "Tout ce que vous devez savoir - étape par étape, de l'installation à l'utilisation quotidienne",
+                'toc-title': 'Table des matières',
+                'toc1': '1. Installation du serveur',
+                'toc2': "2. Installation des autres machines",
+                'toc3': '3. Connexion',
+                'toc4': '4. Paramètres réseau',
+                'toc5': '5. Activation de la licence',
+                'toc6': "6. Gestion des employés",
+                'toc7': "7. Présence + ZKTeco",
+                'toc8': '8. Congés',
+                'toc9': '9. Salaires et impôts',
+                'toc10': "10. Certificat et contrat de travail",
+                'toc11': '11. Rapports',
+                'toc12': '12. Paramètres',
+                'toc13': '13. Sauvegarde',
+                'toc14': "14. FAQ",
+                'toc15': '15. Support technique',
+                's1-title': "1. Installation du serveur principal (Server)",
+                's1-step1-title': 'Étape 1: Téléchargement',
+                's1-step1-desc': "Téléchargez le fichier Setup.exe depuis la page du programme.",
+                's1-step2-title': 'Étape 2: Installation',
+                's1-step2-1': 'Double-cliquez sur Setup.exe',
+                's1-step2-2': 'Choisissez la langue et cliquez OK',
+                's1-step2-3': 'Cliquez sur Next',
+                's1-step2-4': "Choisissez Server / Serveur comme type d'installation",
+                's1-step2-5': "Choisissez le dossier d'installation (laissez par défaut)",
+                's1-step2-6': "Cliquez sur Install et attendez",
+                's1-step2-7': 'Cliquez sur Finish',
+                's1-step2-info': "Après l'installation, le script configure tout automatiquement: base de données + pare-feu + paramètres",
+                's1-step3-title': 'Étape 3: Premier démarrage',
+                's1-step3-1': "Le programme s'ouvre automatiquement",
+                's1-step3-2': 'La base de données est créée automatiquement',
+                's1-step3-3': "L'utilisateur admin est créé automatiquement",
+                's1-step3-4': 'Les départements et équipes par défaut sont prêts',
+                's2-title': "2. Installation des autres machines (Client)",
+                's2-step1-title': 'Étape 1: Même fichier Setup.exe',
+                's2-step1-desc': 'Le même fichier est installé sur toutes les machines',
+                's2-step2-title': 'Étape 2: Choisissez Client',
+                's2-step2-desc': "Pendant l'installation, choisissez Client / Client au lieu de Server",
+                's2-step2-info': "Cela signifie: pas d'installation de PostgreSQL - seulement le programme",
+                's2-step3-title': 'Étape 3: Connexion au serveur',
+                's2-step3-1': 'Ouvrez le programme',
+                's2-step3-2': "La fenêtre des paramètres réseau apparaît automatiquement",
+                's2-step3-3': "Dans Server IP: entrez l'adresse du serveur",
+                's2-step3-4': 'Cliquez sur Test Connection',
+                's2-step3-5': 'Si ✓ Connecté apparaît → cliquez sur Save',
+                's3-title': '3. Connexion',
+                's3-credentials': 'Identifiants par défaut',
+                's3-username-label': "Nom d'utilisateur",
+                's3-password-label': 'Mot de passe',
+                's3-warning': "Changez le mot de passe immédiatement après la première connexion depuis la section 'Utilisateurs'",
+                's4-title': '4. Paramètres réseau',
+                's4-server-label': 'Sur le serveur:',
+                's4-client-label': "Sur les machines du même réseau:",
+                's4-client-desc': "Trouvez l'IP du serveur avec la commande ipconfig",
+                's4-example': '(exemple)',
+                's4-online-label': "Via Internet (à distance):",
+                's4-online-1': 'Activez Cloudflare sur le serveur',
+                's4-online-2': 'Un lien public apparaît',
+                's4-online-3': 'Utilisez-le uniquement pour le tableau de bord',
+                's5-title': '5. Activation de la licence',
+                's5-trial': "Essai gratuit",
+                's5-trial-desc': '30 jours complets avec toutes les fonctionnalités - sans aucune restriction.',
+                's5-steps': "Étapes d'activation:",
+                's5-step1': 'Ouvrez Paramètres',
+                's5-step2': 'Copiez le Machine ID',
+                's5-step3': "Envoyez-le sur WhatsApp: 0657200758",
+                's5-step4': 'Recevez la clé d\'activation',
+                's5-step5': 'Collez-la et cliquez sur Activer',
+                's5-types': "Types de licences:",
+                's5-type-label': 'Type',
+                's5-duration-label': 'Durée',
+                's5-monthly': 'Mensuel',
+                's5-3months': '3 mois',
+                's5-6months': '6 mois',
+                's5-yearly': 'Annuel',
+                's5-lifetime': 'À vie',
+                's6-title': "6. Gestion des employés",
+                's6-add': "Ajouter un employé:",
+                's6-add-1': 'Menu: Employés',
+                's6-add-2': 'Cliquez sur Ajouter un employé',
+                's6-add-3': 'Le code est généré automatiquement (EMP-0001...)',
+                's6-add-4': 'Entrez le nom et le prénom',
+                's6-add-5': 'Choisissez le département, l\'équipe et le poste',
+                's6-add-6': 'Entrez le salaire, les primes et les déductions',
+                's6-add-7': 'Cliquez sur Enregistrer',
+                's6-search': 'Recherche et modification:',
+                's6-search-1': 'Le champ de recherche cherche par nom ou code',
+                's6-search-2': 'Double-cliquez pour les détails',
+                's6-search-3': 'Boutons: Afficher / Modifier / Supprimer',
+                's7-title': "7. Registre de présence + ZKTeco",
+                's7-manual': 'Saisie manuelle:',
+                's7-manual-1': 'Menu: Registre de présence',
+                's7-manual-2': 'Cliquez sur Ajout manuel',
+                's7-manual-3': 'Choisissez l\'employé, la date et les heures',
+                's7-manual-4': 'Définissez le statut',
+                's7-zkteco': 'Import depuis ZKTeco:',
+                's7-zk-1': 'Cliquez sur Importer depuis ZKTeco',
+                's7-zk-2': 'Entrez l\'IP de l\'appareil (ex: 192.168.1.201)',
+                's7-zk-3': 'Port: 4370',
+                's7-zk-4': 'Cliquez sur Tester la connexion',
+                's7-zk-5': 'Puis importer les enregistrements',
+                's7-zk-info': "L'appareil et l'ordinateur sont sur le même réseau",
+                's8-title': '8. Congés',
+                's8-request': 'Demande de congé:',
+                's8-req-1': 'Menu: Congés',
+                's8-req-2': 'Cliquez sur Demander un congé',
+                's8-req-3': 'Choisissez l\'employé et le type',
+                's8-req-4': 'Définissez le début et la fin',
+                's8-req-5': 'Cliquez sur Enregistrer',
+                's8-approve': 'Approuver/Refuser:',
+                's8-app-1': 'Cliquez sur Afficher la demande',
+                's8-app-2': 'Cliquez sur Approuver ou Refuser',
+                's8-app-info': "L'employé en congé = non compté comme absent dans les salaires",
+                's9-title': '9. Salaires et impôts',
+                's9-calc': 'Calcul des salaires:',
+                's9-calc-1': 'Menu: Salaires',
+                's9-calc-2': 'Choisissez le mois et l\'année',
+                's9-calc-3': 'Cliquez sur Calculer les salaires',
+                's9-calc-4': 'Le programme calcule automatiquement',
+                's9-tax': 'Impôts algériens:',
+                's9-tax-deduction': 'Déduction',
+                's9-tax-rate': 'Taux',
+                's9-tax-employee': 'Employé',
+                's9-tax-employer': 'Employeur',
+                's9-tax-irg': 'Selon le barème',
+                's10-title': "10. Certificat et contrat de travail",
+                's10-cert': 'Certificat de travail:',
+                's10-cert-1': 'Ouvrez les détails de l\'employé',
+                's10-cert-2': 'Cliquez sur "Certificat de travail PDF"',
+                's10-cert-3': 'Enregistrez le fichier',
+                's10-contract': 'Contrat de travail:',
+                's10-contract-1': 'Ouvrez les détails de l\'employé',
+                's10-contract-2': 'Cliquez sur "Contrat de travail PDF"',
+                's10-contract-3': 'Choisissez CDD ou CDI',
+                's11-title': '11. Rapports',
+                's11-types': "Types de rapports:",
+                's11-type1': 'Général',
+                's11-type2': 'Employés',
+                's11-type3': 'Présence',
+                's11-type4': 'Congés',
+                's11-type5': 'Salaires',
+                's11-export': 'Exportation:',
+                's11-export-1': 'Excel depuis les boutons d\'exportation',
+                's11-export-2': 'PDF depuis les fiches de paie',
+                's12-title': '12. Paramètres',
+                's12-all': 'Tous les paramètres:',
+                's12-item1': "Horaires de travail",
+                's12-item2': 'Paramètres des salaires',
+                's12-item3': 'Base de données',
+                's12-item4': 'Appareil ZKTeco',
+                's12-item5': 'Langue',
+                's12-item6': 'Licence',
+                's13-title': '13. Sauvegarde',
+                's13-create': 'Créer une sauvegarde:',
+                's13-create-1': 'Menu: Sauvegarde',
+                's13-create-2': 'Cliquez sur Oui',
+                's13-create-3': 'La sauvegarde est enregistrée automatiquement',
+                's13-warning': 'Faites une sauvegarde chaque semaine',
+                's14-title': "14. FAQ",
+                's14-q1': 'Fonctionne-t-il sans Internet ?',
+                's14-a1': 'Oui, sur le réseau local, il fonctionne sans Internet.',
+                's14-q2': 'Comment récupérer mon mot de passe ?',
+                's14-a2': 'Contactez-moi sur WhatsApp au 0657200758.',
+                's14-q3': 'Fonctionne-t-il sur plusieurs machines ?',
+                's14-a3': 'Oui, Server + Clients sur le même réseau.',
+                's14-q4': 'Que se passe-t-il après la fin de l\'essai ?',
+                's14-a4': 'Le programme s\'arrête - vos données sont conservées - activez la licence.',
+                's15-title': '15. Support technique',
+                's15-help': 'Besoin d\'aide ?',
+                's15-desc': 'Je suis là pour vous aider',
+                's15-btn': 'Contactez-moi sur WhatsApp',
+                'footer-made': 'Made in Algeria 🇩🇿, with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - Tous droits réservés',
+                'footer-back': 'Retour à la page du programme'
+            },
+            en: {
+                'guide-title': 'Complete Guide',
+                'back-btn': 'Back to Program Page',
+                'hero-title': 'User Guide',
+                'hero-desc': 'Everything you need to know - step by step from installation to daily use',
+                'toc-title': 'Table of Contents',
+                'toc1': '1. Server Installation',
+                'toc2': '2. Client Installation',
+                'toc3': '3. Login',
+                'toc4': '4. Network Settings',
+                'toc5': '5. License Activation',
+                'toc6': '6. Employee Management',
+                'toc7': '7. Attendance + ZKTeco',
+                'toc8': '8. Leaves',
+                'toc9': '9. Payroll & Taxes',
+                'toc10': '10. Certificates & Contracts',
+                'toc11': '11. Reports',
+                'toc12': '12. Settings',
+                'toc13': '13. Backup',
+                'toc14': '14. FAQ',
+                'toc15': '15. Technical Support',
+                's1-title': '1. Main Server Installation',
+                's1-step1-title': 'Step 1: Download',
+                's1-step1-desc': 'Download the Setup.exe file from the program page.',
+                's1-step2-title': 'Step 2: Installation',
+                's1-step2-1': 'Double-click Setup.exe',
+                's1-step2-2': 'Choose language and click OK',
+                's1-step2-3': 'Click Next',
+                's1-step2-4': 'Choose Server as installation type',
+                's1-step2-5': 'Choose installation folder (keep default)',
+                's1-step2-6': 'Click Install and wait',
+                's1-step2-7': 'Click Finish',
+                's1-step2-info': 'After installation, the script runs everything automatically: database + firewall + settings',
+                's1-step3-title': 'Step 3: First Run',
+                's1-step3-1': 'The program opens automatically',
+                's1-step3-2': 'The database is created automatically',
+                's1-step3-3': 'The admin user is created automatically',
+                's1-step3-4': 'Default departments and shifts are ready',
+                's2-title': '2. Client Installation',
+                's2-step1-title': 'Step 1: Same Setup.exe file',
+                's2-step1-desc': 'The same file is installed on all machines',
+                's2-step2-title': 'Step 2: Choose Client',
+                's2-step2-desc': 'During installation, choose Client instead of Server',
+                's2-step2-info': 'This means: no PostgreSQL installation - only the program',
+                's2-step3-title': 'Step 3: Connect to Server',
+                's2-step3-1': 'Open the program',
+                's2-step3-2': 'The network settings window appears automatically',
+                's2-step3-3': 'In Server IP: enter the server address',
+                's2-step3-4': 'Click Test Connection',
+                's2-step3-5': 'If ✓ Connected appears → click Save',
+                's3-title': '3. Login',
+                's3-credentials': 'Default Credentials',
+                's3-username-label': 'Username',
+                's3-password-label': 'Password',
+                's3-warning': 'Change the password immediately after first login from the "Users" section',
+                's4-title': '4. Network Settings',
+                's4-server-label': 'On the Server:',
+                's4-client-label': 'On machines in the same network:',
+                's4-client-desc': 'Find the server IP using the ipconfig command',
+                's4-example': '(example)',
+                's4-online-label': 'Over the Internet (remote):',
+                's4-online-1': 'Enable Cloudflare on the server',
+                's4-online-2': 'A public link appears',
+                's4-online-3': 'Use it only for the dashboard',
+                's5-title': '5. License Activation',
+                's5-trial': 'Free Trial',
+                's5-trial-desc': '30 full days with all features - no restrictions.',
+                's5-steps': 'Activation Steps:',
+                's5-step1': 'Open Settings',
+                's5-step2': 'Copy Machine ID',
+                's5-step3': 'Send it on WhatsApp: 0657200758',
+                's5-step4': 'Receive the activation key',
+                's5-step5': 'Paste it and click Activate',
+                's5-types': 'License Types:',
+                's5-type-label': 'Type',
+                's5-duration-label': 'Duration',
+                's5-monthly': 'Monthly',
+                's5-3months': '3 Months',
+                's5-6months': '6 Months',
+                's5-yearly': 'Yearly',
+                's5-lifetime': 'Lifetime',
+                's6-title': '6. Employee Management',
+                's6-add': 'Add Employee:',
+                's6-add-1': 'Menu: Employees',
+                's6-add-2': 'Click Add Employee',
+                's6-add-3': 'Code is auto-generated (EMP-0001...)',
+                's6-add-4': 'Enter first and last name',
+                's6-add-5': 'Choose department, shift and position',
+                's6-add-6': 'Enter salary, allowances and deductions',
+                's6-add-7': 'Click Save',
+                's6-search': 'Search & Edit:',
+                's6-search-1': 'Search field searches by name or code',
+                's6-search-2': 'Double-click for details',
+                's6-search-3': 'Buttons: View / Edit / Delete',
+                's7-title': '7. Attendance Log + ZKTeco',
+                's7-manual': 'Manual Entry:',
+                's7-manual-1': 'Menu: Attendance Log',
+                's7-manual-2': 'Click Add Manually',
+                's7-manual-3': 'Choose employee, date and times',
+                's7-manual-4': 'Set status',
+                's7-zkteco': 'Import from ZKTeco:',
+                's7-zk-1': 'Click Import from ZKTeco',
+                's7-zk-2': 'Enter device IP (e.g., 192.168.1.201)',
+                's7-zk-3': 'Port: 4370',
+                's7-zk-4': 'Click Test Connection',
+                's7-zk-5': 'Then import records',
+                's7-zk-info': 'Device and computer are on the same network',
+                's8-title': '8. Leaves',
+                's8-request': 'Leave Request:',
+                's8-req-1': 'Menu: Leaves',
+                's8-req-2': 'Click Request Leave',
+                's8-req-3': 'Choose employee and type',
+                's8-req-4': 'Set start and end dates',
+                's8-req-5': 'Click Save',
+                's8-approve': 'Approve/Reject:',
+                's8-app-1': 'Click View on the request',
+                's8-app-2': 'Click Approve or Reject',
+                's8-app-info': 'Employee on leave = not counted as absent in payroll',
+                's9-title': '9. Payroll & Taxes',
+                's9-calc': 'Calculate Payroll:',
+                's9-calc-1': 'Menu: Payroll',
+                's9-calc-2': 'Choose month and year',
+                's9-calc-3': 'Click Calculate Payroll',
+                's9-calc-4': 'The program calculates automatically',
+                's9-tax': 'Algerian Taxes:',
+                's9-tax-deduction': 'Deduction',
+                's9-tax-rate': 'Rate',
+                's9-tax-employee': 'Employee',
+                's9-tax-employer': 'Employer',
+                's9-tax-irg': 'According to scale',
+                's10-title': '10. Certificates & Contracts',
+                's10-cert': 'Work Certificate:',
+                's10-cert-1': 'Open employee details',
+                's10-cert-2': 'Click "Work Certificate PDF"',
+                's10-cert-3': 'Save the file',
+                's10-contract': 'Employment Contract:',
+                's10-contract-1': 'Open employee details',
+                's10-contract-2': 'Click "Employment Contract PDF"',
+                's10-contract-3': 'Choose CDD or CDI',
+                's11-title': '11. Reports',
+                's11-types': 'Report Types:',
+                's11-type1': 'General',
+                's11-type2': 'Employees',
+                's11-type3': 'Attendance',
+                's11-type4': 'Leaves',
+                's11-type5': 'Payroll',
+                's11-export': 'Export:',
+                's11-export-1': 'Excel from export buttons',
+                's11-export-2': 'PDF from payslips',
+                's12-title': '12. Settings',
+                's12-all': 'All Settings:',
+                's12-item1': 'Working Hours',
+                's12-item2': 'Payroll Parameters',
+                's12-item3': 'Database',
+                's12-item4': 'ZKTeco Device',
+                's12-item5': 'Language',
+                's12-item6': 'License',
+                's13-title': '13. Backup',
+                's13-create': 'Create Backup:',
+                's13-create-1': 'Menu: Backup',
+                's13-create-2': 'Click Yes',
+                's13-create-3': 'Backup is saved automatically',
+                's13-warning': 'Backup weekly',
+                's14-title': '14. FAQ',
+                's14-q1': 'Does it work without Internet?',
+                's14-a1': 'Yes, on the local network it works without Internet.',
+                's14-q2': 'How do I recover my password?',
+                's14-a2': 'Contact me on WhatsApp at 0657200758.',
+                's14-q3': 'Does it work on multiple devices?',
+                's14-a3': 'Yes, Server + Clients on the same network.',
+                's14-q4': 'What happens after the trial ends?',
+                's14-a4': 'The program stops - your data is preserved - activate the license.',
+                's15-title': '15. Technical Support',
+                's15-help': 'Need help?',
+                's15-desc': "I'm here to help you",
+                's15-btn': 'Contact me on WhatsApp',
+                'footer-made': 'Made in Algeria 🇩🇿, with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - All rights reserved',
+                'footer-back': 'Back to Program Page'
+            }
+        };
+
+        // ====== تغيير اللغة ======
+        let currentLang = 'ar';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const html = document.documentElement;
+            if (lang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                document.body.className = '';
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', lang);
+                document.body.className = lang;
+            }
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.dataset.key;
+                if (translations[lang][key] !== undefined) {
+                    if (key === 'hero-desc' || key === 'footer-made' || key === 'footer-rights' || 
+                        key === 's1-step2-info' || key === 's2-step2-info' || key === 's7-zk-info' || 
+                        key === 's8-app-info' || key === 's4-client-desc') {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            localStorage.setItem('preferred-lang-fard-guide', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeLanguage(btn.dataset.lang);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang-fard-guide') || 'ar';
+            changeLanguage(savedLang);
+        });
+    </script>
 </body>
 </html>
