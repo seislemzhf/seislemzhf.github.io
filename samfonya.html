@@ -18,7 +18,7 @@
             font-family: 'Tajawal', sans-serif;
             background: #0a0a0a;
             color: #f0ece6;
-            line-height: 1.8;
+            line-height: 1.9;
             transition: 0.3s;
         }
         body.en, body.fr {
@@ -141,7 +141,7 @@
 
         /* ====== HERO ====== */
         .hero {
-            padding: 40px 0 30px;
+            padding: 40px 0 20px;
             text-align: center;
         }
         .hero .ornament {
@@ -183,75 +183,53 @@
             display: flex;
             gap: 50px;
             align-items: flex-start;
-            padding: 30px 0 40px;
+            padding: 20px 0 30px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
+        /* ====== COVER LARGE ====== */
         .cover-large {
-            width: 168px;
-            height: 252px;
+            width: 220px;
+            height: 330px;
             background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
-            border-radius: 8px;
-            border: 1px solid rgba(108, 139, 158, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(108, 139, 158, 0.12);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 10px;
             flex-shrink: 0;
             transition: 0.4s;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
         }
         .cover-large:hover {
-            transform: scale(1.02);
-            border-color: rgba(108, 139, 158, 0.2);
-            box-shadow: 0 10px 50px rgba(108, 139, 158, 0.04);
+            transform: scale(1.03);
+            border-color: rgba(108, 139, 158, 0.25);
+            box-shadow: 0 15px 60px rgba(108, 139, 158, 0.06);
         }
         .cover-large .badge-copy {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 10px;
+            right: 12px;
             background: var(--accent);
             color: var(--bg-primary);
-            font-size: 0.4rem;
-            padding: 2px 10px;
+            font-size: 0.45rem;
+            padding: 2px 12px;
             border-radius: 30px;
             font-weight: 800;
             letter-spacing: 0.5px;
             box-shadow: 0 2px 10px rgba(108, 139, 158, 0.2);
+            z-index: 2;
         }
-        .cover-large .cover-icon {
-            font-size: 3.5rem;
-            color: var(--accent);
-            opacity: 0.3;
-            margin-bottom: 10px;
-        }
-        .cover-large .cover-title {
-            font-family: 'Amiri', serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            text-align: center;
-            line-height: 1.3;
-        }
-        .cover-large .cover-title span { color: var(--accent); }
-        .cover-large .cover-author {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 5px;
-        }
-        .cover-large .cover-part {
-            font-size: 0.6rem;
-            color: var(--accent);
-            background: rgba(108, 139, 158, 0.06);
-            padding: 4px 16px;
-            border-radius: 30px;
-            margin-top: 10px;
-            border: 1px solid rgba(108, 139, 158, 0.06);
-            letter-spacing: 1px;
+        .cover-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
         .book-info {
@@ -294,6 +272,7 @@
             line-height: 1.9;
         }
 
+        /* ====== BUTTONS ====== */
         .btn-group {
             display: flex;
             flex-direction: column;
@@ -310,10 +289,10 @@
             gap: 10px;
             background: var(--accent);
             color: var(--bg-primary);
-            padding: 12px 32px;
+            padding: 10px 22px;
             border-radius: 50px;
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             transition: 0.3s;
             border: none;
             cursor: pointer;
@@ -323,7 +302,7 @@
             transform: scale(1.02);
             box-shadow: 0 10px 40px rgba(108, 139, 158, 0.2);
         }
-        .btn-primary i { font-size: 1rem; }
+        .btn-primary i { font-size: 0.9rem; }
 
         .btn-outline {
             display: flex;
@@ -365,6 +344,62 @@
         .btn-whatsapp:hover {
             transform: scale(1.02);
             box-shadow: 0 15px 50px rgba(37, 211, 102, 0.3);
+        }
+
+        /* ====== CHAPTER 1 ====== */
+        .chapter-section {
+            padding: 30px 0 40px;
+        }
+        .chapter-wrapper {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 35px 45px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+        .chapter-wrapper .chapter-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .chapter-wrapper .chapter-sub {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+        }
+        .chapter-wrapper .chapter-divider {
+            text-align: center;
+            color: var(--accent-dark);
+            opacity: 0.3;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            margin: 20px 0;
+        }
+        .chapter-wrapper .chapter-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 2;
+            text-align: justify;
+        }
+        .chapter-wrapper .chapter-text strong {
+            color: var(--accent);
+        }
+        .chapter-wrapper .chapter-text .highlight {
+            color: var(--accent-light);
+            font-weight: 700;
+        }
+        .chapter-wrapper .chapter-text .quote {
+            display: block;
+            background: rgba(108, 139, 158, 0.04);
+            border-right: 3px solid var(--accent);
+            padding: 12px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+            color: var(--text-primary);
+            font-style: italic;
         }
 
         /* ====== FORM ====== */
@@ -523,19 +558,18 @@
             .lang-switcher { width: 100%; justify-content: center; }
             .header-content { justify-content: center; }
             .header-buttons { justify-content: center; }
-            .cover-large { width: 140px; height: 210px; }
-            .cover-large .cover-icon { font-size: 2.8rem; }
-            .cover-large .cover-title { font-size: 1.1rem; }
+            .cover-large { width: 180px; height: 270px; }
+            .chapter-wrapper { padding: 20px; }
             .form-wrapper { padding: 20px; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 2rem; }
             .container { padding: 0 16px; }
-            .cover-large { width: 112px; height: 168px; padding: 14px; }
-            .cover-large .cover-icon { font-size: 2rem; }
-            .cover-large .cover-title { font-size: 0.85rem; }
+            .cover-large { width: 150px; height: 225px; }
             .book-info h2 { font-size: 1.6rem; }
             .form-wrapper { padding: 16px; }
+            .chapter-wrapper { padding: 16px; }
+            .chapter-wrapper .chapter-title { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -576,12 +610,11 @@
         <div class="container">
             <div class="book-display">
 
-                <!-- COVER -->
-                <!-- COVER -->
-<div class="cover-large">
-    <div class="badge-copy">©</div>
-    <img src="images/samfonya.jpg" alt="سيمفونية المرادية" style="width:100%; height:100%; object-fit:cover; border-radius:6px;">
-</div>
+                <!-- COVER (MEGA LARGE) -->
+                <div class="cover-large">
+                    <div class="badge-copy">©</div>
+                    <img src="images/samfonya.jpg" alt="سيمفونية المرادية الأخيرة" loading="lazy">
+                </div>
 
                 <!-- INFO -->
                 <div class="book-info">
@@ -601,7 +634,7 @@
 
                     <div class="btn-group">
                         <div class="btn-wrap">
-                            <a href="https://www.mediafire.com/file/1whi2kqipha2o17/%25D8%25B1%25D9%2588%25D8%25A7%25D9%258A%25D8%25A9_%25D8%25B3%25D9%258A%25D9%2585%25D9%2581%25D9%2588%25D9%2586%25D9%258A%25D8%25A9_%25D8%25A7%25D9%2584%25D9%2585%25D8%25B1%25D8%25A7%25D8%25AF%25D9%258A%25D8%25A9_%25D8%25A7%25D9%2584%25D8%25A3%25D8%25AE%25D9%258A%25D8%25B1%25D8%25A9.pdf/file" target="_blank" class="btn-primary">
+                            <a href="https://www.mediafire.com/file/1whi2kqipha2o17/%25D8%25B1%25D9%2588%25D8%25A7%25D9%258A%25D8%25A9_%25D8%25B3%25D9%258A%25D9%2585%25D9%2581%25D9%2588%25D9%2586%25D9%258A%25D8%25A9_%25D8%25A7%25D9%2584%25D9%2585%25D8%25B1%25D8%25A7%25D8%25AF%25D9%258A%25D8%25A9_%25D8%25A7%25D9%2584%25D8%25A3%25D8%25AE%25D9%258A%25D8%25B1%25D8%25A9.pdf/file" target="_blank" class="btn-primary" style="font-size:0.8rem; padding:8px 18px;">
                                 <i class="fas fa-download"></i> <span data-key="download-btn">تحميل 5 فصول الأولى (PDF)</span>
                             </a>
                         </div>
@@ -618,6 +651,44 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CHAPTER 1 FULL ====== -->
+    <section class="chapter-section" id="chapter1">
+        <div class="container">
+            <div class="chapter-wrapper">
+                <div class="chapter-title">📖 <span data-key="chapter1-title">الفصل الأول</span></div>
+                <div class="chapter-sub" data-key="chapter1-sub">— حقيقة الدفائن —</div>
+                <div class="chapter-divider">✦ ✦ ✦</div>
+
+                <div class="chapter-text" data-key="chapter1-text">
+                    <p>«الرئيس كاذب...» هكذا هتفت العناوين المرفوعة على التقارير التي وُضعت فوق مكتبه في قصر المرادية عند الساعة الثامنة صباحاً. لكن الحقيقة في بلدانا كانت دائماً، وأشد مكراً: الرئيس لم يكن يكذب، بل كان الشعب يكذب عليه، والمدراء يزيفون له العناوين، والكل يشارك في هندسة لعبة <em>"كل شيء تمام سيدي الرئيس"</em>، بينما البلد تأكل لحماها من الداخل. <span class="highlight">بلال</span> كان الشاب الوحيد الذي استلم مشعل الحقيقة من ياسين، وامتلك بيده <strong>"الخوارزمية الصاهرة"</strong> التي لا تجامل أحداً... ولهذا السبب عينه، كان عليه أن يواجه الموت قبل أذان الفجر بمواقيت وهران.</p>
+
+                    <p>صمت مريب ذلك الذي يبتلع مخبر الأمن الرقمي في ضواحي وهران عند الساعة الثالثة وأربع عشرة دقيقة صباحاً. لم يكن يكسر حدة هذا السكون سوى الأزيز الخافت لستة سيرفرات ضخمة تعمل بأقصى طاقتها، تلهث تحت ضغط تحليل ملايين البيانات التي كان بلال قد استخرجها من أعماق الشبكات المالية والإدارية الفاسدة. كان ضوء الشاشات الأزرق البارد ينعكس على وجه بلال الشاحب، وهو يمسح جبينه المتصبب عرقاً، بينما كانت عيناه تتابعان الأكواد البرمجية التي تتساقط كالمطر على واجهة حاسوبه المركزي.</p>
+
+                    <div class="quote">
+                        <p><em>"العينة الميدانية تحوي بدوراً معدلة وراثياً ومسرطنة مهربة عبر الحاويات رقم 12 و14... الفاعل: شبكة تزوير إدارية بالتواطؤ مع المدير الإقليمي للميناء والمفتش العام لوزارة الفلاحة."</em></p>
+                    </div>
+
+                    <p>أرجأ بلال ظهره إلى الوراء، وأطلق زفرة حارة محملة بمرارة السنين والتعب. شعر بغصة في حلقه وهو يستحضر اللقاء الصحفي الأخير لرئيس الجمهورية، عندما قال بنبرة ممزوجة بالحرفة وعزلة القرار إن بعض الجهات تحته ترفع إليه تقارير مغلوطة ومعلومات مضللة لحجب شمس الحقيقة عنه وعن الشعب.</p>
+
+                    <p><span class="highlight">"الآن فهمت يا سيادة الرئيس"</span>... همس بلال بصوت مبحوح، وهو يمسح قطرات العرق البارد عن جبهته ولحيته الكثيفة. <em>"المرض ليس في رأس السلطة فقط.. المرض سار في عروق القاعدة. تشتكي الرعية من جور الحكام، والتاجر يجور على أخيه في الميزان والاحتكار وغش السلع، والموظف الصغير يبيع أمن البلد من أجل رشاوي ودنانير زائلة. الفساد بدأ من قاع المجتمع صعوداً، والكل يزور الوعي ويقرع من الدولة ما لا يفعله في نفسه."</em></p>
+
+                    <p>أغمض عينيه واستحضر في ذهنه آية الروم التي تلخص هذا المشهد كقانون كوني صارم: <strong>﴿ظَهَرَ الْفَسَادُ فِي الْبَرِّ وَالْبَحْرِ بِمَا كَسَبَتْ أَيْدِي النَّاسِ لِيُذِيقَهُمْ بَعْضَ الَّذِي عَمِلُوا لَعَلَّهُمْ يَرْجِعُونَ﴾</strong>. نعم، إنه فساد كسبته أيدي الناس.. وكي تنطفئ المنظومة الرقمية للبلاد، يجب أن تغير القلوب والضمائر أولاً، فالبيانات الصادقة تحتاج إلى رجال صادقين.</p>
+
+                    <p>فجأة، وبدون أي مقدمات، انطفأت مصابيح السيرفرات الستة دفعة واحدة. ساد ظلام دامس، وتبعه هبوط مفاجئ في الضغط الكهرومغناطيسي داخل الغرفة. أحس بلال بنبضة صامتة وعنيفة تخترق فضاء المخبر؛ نبضة كهرومغناطيسية موجهة لضرب الأجهزة واختراق النظام العصبي للمكان. أحس بقلبه يضطرب، وحواسيب المخبر بدأت في التآكل الرقمي والاحتراق الداخلي. لقد عرف الخونة أمره، وعرفوا أن مشعل ياسين لم ينطفئ، بل تحول إلى خوارزمية حية تكشف عوراتهم وتنسف تقاريرهم الكاذبة.</p>
+
+                    <p>شعر بلال بالاختناق، وكانت أنفاسه تشعر والوقت يهرب كرمال الساعة وسط الظلام الحالك. لم يتجه نحو الهرب، بل اعتمد على روحه الصلبة وزحف بجسده المنهك نحو المحطة الطرفية الخلفية للمخبر، حيث كان يخفي <span class="highlight">"المنظومة الطاهرة"</span> التي صممها بمساعدة ياسين قبل سنوات. منظومة لا تعتمد على سيرفرات تقليدية، بل على شبكة لامركزية مشفرة بلغة برمجية عربية خالصة، لا يمكن لأي خوارزمية غربية فك شفرتها. ضغط على زر الطوارئ الأحمر بيد مرتجفة، فأطلقت المنظومة دفعة أخيرة من البيانات المشفرة نحو الفضاء الإلكتروني، قبل أن يختفي كل شيء في الظلام.</p>
+
+                    <div style="text-align:center; margin-top:25px; color:var(--accent-dark); opacity:0.3; font-size:1.5rem; letter-spacing:10px;">
+                        ✦ ✦ ✦
+                    </div>
+                    <div style="text-align:center; margin-top:10px; color:var(--text-muted); font-size:0.85rem;">
+                        <span data-key="chapter1-end">— يتبع في الفصل الثاني —</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -688,7 +759,7 @@
     </footer>
 
     <script>
-        // ====== الترجمات ======
+        // ====== الترجمة ======
         const translations = {
             ar: {
                 'logo-title': 'المكتبة',
@@ -698,7 +769,6 @@
                 'hero-badge': 'الجزء الثالث والأخير',
                 'hero-title': 'سيمفونية المرادية الأخيرة',
                 'hero-author': 'سيف الإسلام زحاف',
-                'cover-part': 'الجزء الثالث',
                 'novel-title': 'سيمفونية المرادية الأخيرة',
                 'pages': '230 صفحة',
                 'year': '2026',
@@ -708,6 +778,9 @@
                 'download-btn': 'تحميل 5 فصول الأولى (PDF)',
                 'request-btn': 'طلب الرواية كاملة',
                 'whatsapp-btn': 'طلب عبر واتساب',
+                'chapter1-title': 'الفصل الأول',
+                'chapter1-sub': '— حقيقة الدفائن —',
+                'chapter1-end': '— يتبع في الفصل الثاني —',
                 'form-title': '📖 طلب الرواية كاملة',
                 'form-sub': 'املأ النموذج وسيتم إرسال الرواية كاملة إلى بريدك الإلكتروني',
                 'form-name': 'الاسم الكامل',
@@ -734,7 +807,6 @@
                 'hero-badge': 'Troisième et dernière partie',
                 'hero-title': 'Symphonie de la Mouradia',
                 'hero-author': 'Saif El Islem Zahaf',
-                'cover-part': 'Troisième partie',
                 'novel-title': 'Symphonie de la Mouradia',
                 'pages': '230 pages',
                 'year': '2026',
@@ -744,6 +816,9 @@
                 'download-btn': 'Télécharger 5 premiers chapitres (PDF)',
                 'request-btn': 'Demander le roman complet',
                 'whatsapp-btn': 'Demander via WhatsApp',
+                'chapter1-title': 'Chapitre Premier',
+                'chapter1-sub': '— La vérité des dossiers —',
+                'chapter1-end': '— À suivre au chapitre deux —',
                 'form-title': '📖 Demander le roman complet',
                 'form-sub': 'Remplissez le formulaire et le roman complet vous sera envoyé par email',
                 'form-name': 'Nom complet',
@@ -770,7 +845,6 @@
                 'hero-badge': 'Third and final part',
                 'hero-title': 'Symphony of the Mouradia',
                 'hero-author': 'Saif El Islem Zahaf',
-                'cover-part': 'Part Three',
                 'novel-title': 'Symphony of the Mouradia',
                 'pages': '230 pages',
                 'year': '2026',
@@ -780,6 +854,9 @@
                 'download-btn': 'Download first 5 chapters (PDF)',
                 'request-btn': 'Request full novel',
                 'whatsapp-btn': 'Request via WhatsApp',
+                'chapter1-title': 'Chapter One',
+                'chapter1-sub': '— The truth of the files —',
+                'chapter1-end': '— To be continued in chapter two —',
                 'form-title': '📖 Request full novel',
                 'form-sub': 'Fill out the form and the full novel will be sent to your email',
                 'form-name': 'Full Name',
@@ -821,7 +898,7 @@
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.dataset.key;
                 if (translations[lang][key] !== undefined) {
-                    if (key === 'summary-text' || key === 'footer-made' || key === 'footer-rights' || key === 'footer-legal' || key === 'form-sub') {
+                    if (key === 'summary-text' || key === 'footer-made' || key === 'footer-rights' || key === 'footer-legal' || key === 'form-sub' || key === 'chapter1-text') {
                         el.innerHTML = translations[lang][key];
                     } else {
                         el.textContent = translations[lang][key];
