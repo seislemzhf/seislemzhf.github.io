@@ -31,6 +31,10 @@
             background-attachment: fixed;
             color: var(--light);
             line-height: 1.7;
+            transition: 0.3s;
+        }
+        body.en, body.fr {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .container {
@@ -68,6 +72,7 @@
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
+            align-items: center;
         }
         .btn-manual, .btn-home {
             display: inline-block;
@@ -85,6 +90,34 @@
             color: white;
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* ====== زر تغيير اللغة ====== */
+        .lang-switcher {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            color: var(--muted);
+            padding: 5px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.75rem;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
         }
 
         /* ====== البطل ====== */
@@ -366,6 +399,9 @@
             .btn-download { padding: 16px 35px; font-size: 1.1rem; }
             .license-items { flex-direction: column; gap: 12px; }
             .section-header h2 { font-size: 2rem; }
+            .lang-switcher { width: 100%; justify-content: center; }
+            .header-content { justify-content: center; }
+            .header-buttons { justify-content: center; }
         }
     </style>
 </head>
@@ -376,115 +412,120 @@
             <div class="logo">Minsaj <span>Fard</span></div>
             <div class="header-buttons">
                 <a href="minsaj-fard-manual.html" class="btn-manual">
-                    <i class="fas fa-book"></i> دليل الاستخدام
+                    <i class="fas fa-book"></i> <span data-key="manual-btn">دليل الاستخدام</span>
                 </a>
                 <a href="index.html" class="btn-home">
-                    <i class="fas fa-home"></i> الرئيسية
+                    <i class="fas fa-home"></i> <span data-key="home-btn">الرئيسية</span>
                 </a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="ar">🇩🇿 عربي</button>
+                    <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+                    <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+                </div>
             </div>
         </div>
     </header>
 
     <section class="hero">
         <div class="container">
-            <div class="badge"><i class="fas fa-star"></i> صنع في الجزائر 🇩🇿</div>
+            <div class="badge"><i class="fas fa-star"></i> <span data-key="hero-badge">صنع في الجزائر 🇩🇿</span></div>
             <h1>Minsaj <span>Fard</span></h1>
-            <div class="version-badge"><i class="fas fa-check-circle"></i> v1.0.0 - النسخة الكاملة</div>
-            <p class="subtitle">نظام متكامل لإدارة الموارد البشرية (HR ERP) مصمم خصيصاً للشركات الجزائرية. رواتب بالضرائب الجزائرية، حضور ببصمة ZKTeco، إجازات، تقارير Excel و PDF، وترخيص محكم.</p>
+            <div class="version-badge"><i class="fas fa-check-circle"></i> <span data-key="version">v1.0.0 - النسخة الكاملة</span></div>
+            <p class="subtitle" data-key="hero-desc">نظام متكامل لإدارة الموارد البشرية (HR ERP) مصمم خصيصاً للشركات الجزائرية. رواتب بالضرائب الجزائرية، حضور ببصمة ZKTeco، إجازات، تقارير Excel و PDF، وترخيص محكم.</p>
             
             <a href="https://www.mediafire.com/file/zkq6einqhjbbgvq/Minsaj+Fard.zip/file" target="_blank" class="btn-download">
-                <i class="fas fa-download"></i> حمل البرنامج (ZIP)
+                <i class="fas fa-download"></i> <span data-key="download-btn">حمل البرنامج (ZIP)</span>
             </a>
-            <p class="file-size"><i class="fas fa-hdd"></i> 251.78 ميغابايت</p>
+            <p class="file-size"><i class="fas fa-hdd"></i> <span data-key="file-size">251.78 ميغابايت</span></p>
         </div>
     </section>
 
     <section>
         <div class="container">
             <div class="section-header">
-                <h2>✨ لماذا <span>Minsaj Fard</span>؟</h2>
-                <p>16 سبباً يجعله أفضل نظام HR في الجزائر</p>
+                <h2>✨ <span data-key="features-title">لماذا Minsaj Fard</span>؟</h2>
+                <p data-key="features-sub">16 سبباً يجعله أفضل نظام HR في الجزائر</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-users"></i></div>
-                    <h3>إدارة الموظفين</h3>
-                    <p>ملف شامل لكل موظف: بيانات، وردية، منصب، راتب.</p>
+                    <h3 data-key="f1-title">إدارة الموظفين</h3>
+                    <p data-key="f1-desc">ملف شامل لكل موظف: بيانات، وردية، منصب، راتب.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-fingerprint"></i></div>
-                    <h3>جهاز البصمة ZKTeco</h3>
-                    <p>جلب سجلات الحضور تلقائياً عبر الشبكة.</p>
+                    <h3 data-key="f2-title">جهاز البصمة ZKTeco</h3>
+                    <p data-key="f2-desc">جلب سجلات الحضور تلقائياً عبر الشبكة.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-coins"></i></div>
-                    <h3>رواتب بالضرائب الجزائرية</h3>
-                    <p>CNAS (9%) + IRG حسب الجدول الرسمي.</p>
+                    <h3 data-key="f3-title">رواتب بالضرائب الجزائرية</h3>
+                    <p data-key="f3-desc">CNAS (9%) + IRG حسب الجدول الرسمي.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-calendar-check"></i></div>
-                    <h3>إدارة الإجازات</h3>
-                    <p>طلبات، موافقة/رفض، تتبع الرصيد.</p>
+                    <h3 data-key="f4-title">إدارة الإجازات</h3>
+                    <p data-key="f4-desc">طلبات، موافقة/رفض، تتبع الرصيد.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-rotate"></i></div>
-                    <h3>نظام الورديات</h3>
-                    <p>صباحية/مسائية/ليلية مع أيام عمل.</p>
+                    <h3 data-key="f5-title">نظام الورديات</h3>
+                    <p data-key="f5-desc">صباحية/مسائية/ليلية مع أيام عمل.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-building"></i></div>
-                    <h3>الأقسام والمناصب</h3>
-                    <p>تنظيم هيكلي كامل للشركة.</p>
+                    <h3 data-key="f6-title">الأقسام والمناصب</h3>
+                    <p data-key="f6-desc">تنظيم هيكلي كامل للشركة.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-chart-column"></i></div>
-                    <h3>لوحة تحكم بالرسوم</h3>
-                    <p>رسم دائري وأعمدة للحضور الأسبوعي.</p>
+                    <h3 data-key="f7-title">لوحة تحكم بالرسوم</h3>
+                    <p data-key="f7-desc">رسم دائري وأعمدة للحضور الأسبوعي.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-star"></i></div>
-                    <h3>تقييم الأداء</h3>
-                    <p>تقييم دوري بخمس معايير.</p>
+                    <h3 data-key="f8-title">تقييم الأداء</h3>
+                    <p data-key="f8-desc">تقييم دوري بخمس معايير.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-book-open"></i></div>
-                    <h3>إدارة التدريب</h3>
-                    <p>دورات تدريبية مع متابعة.</p>
+                    <h3 data-key="f9-title">إدارة التدريب</h3>
+                    <p data-key="f9-desc">دورات تدريبية مع متابعة.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-file-pdf"></i></div>
-                    <h3>شهادة عمل + عقد</h3>
-                    <p>CDD/CDI بصيغة PDF احترافية.</p>
+                    <h3 data-key="f10-title">شهادة عمل + عقد</h3>
+                    <p data-key="f10-desc">CDD/CDI بصيغة PDF احترافية.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-file-excel"></i></div>
-                    <h3>تصدير Excel</h3>
-                    <p>بنقرة واحدة لكل الأقسام.</p>
+                    <h3 data-key="f11-title">تصدير Excel</h3>
+                    <p data-key="f11-desc">بنقرة واحدة لكل الأقسام.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-language"></i></div>
-                    <h3>3 لغات</h3>
-                    <p>عربي / Français / English.</p>
+                    <h3 data-key="f12-title">3 لغات</h3>
+                    <p data-key="f12-desc">عربي / Français / English.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-shield-halved"></i></div>
-                    <h3>ترخيص محكم</h3>
-                    <p>مرتبط بالجهاز مع تشفير.</p>
+                    <h3 data-key="f13-title">ترخيص محكم</h3>
+                    <p data-key="f13-desc">مرتبط بالجهاز مع تشفير.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-clock-rotate-left"></i></div>
-                    <h3>سجل الأحداث</h3>
-                    <p>تتبع كل عملية.</p>
+                    <h3 data-key="f14-title">سجل الأحداث</h3>
+                    <p data-key="f14-desc">تتبع كل عملية.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-database"></i></div>
-                    <h3>نسخ احتياطي</h3>
-                    <p>بنقرة واحدة.</p>
+                    <h3 data-key="f15-title">نسخ احتياطي</h3>
+                    <p data-key="f15-desc">بنقرة واحدة.</p>
                 </div>
                 <div class="feature-card">
                     <div class="icon-wrapper"><i class="fas fa-gift"></i></div>
-                    <h3>تجربة مجانية</h3>
-                    <p>30 يوم كاملة بكل المميزات.</p>
+                    <h3 data-key="f16-title">تجربة مجانية</h3>
+                    <p data-key="f16-desc">30 يوم كاملة بكل المميزات.</p>
                 </div>
             </div>
         </div>
@@ -493,18 +534,18 @@
     <section>
         <div class="container">
             <div class="section-header">
-                <h2>🔐 <span>نظام الترخيص</span></h2>
-                <p>ابدأ مجاناً ثم فعّل حسب نوع الترخيص</p>
+                <h2>🔐 <span data-key="license-title">نظام الترخيص</span></h2>
+                <p data-key="license-sub">ابدأ مجاناً ثم فعّل حسب نوع الترخيص</p>
             </div>
             <div class="license-box">
-                <h3>جرب الآن مجاناً</h3>
+                <h3 data-key="license-head">جرب الآن مجاناً</h3>
                 <div class="license-items">
-                    <div class="license-item"><i class="fas fa-check-circle"></i> 30 يوم <span>تجربة مجانية</span> كاملة</div>
-                    <div class="license-item"><i class="fas fa-check-circle"></i> <span>شهر / 3 أشهر / 6 أشهر / سنة / مدى الحياة</span></div>
+                    <div class="license-item"><i class="fas fa-check-circle"></i> <span data-key="license1">30 يوم تجربة مجانية كاملة</span></div>
+                    <div class="license-item"><i class="fas fa-check-circle"></i> <span data-key="license2">شهر / 3 أشهر / 6 أشهر / سنة / مدى الحياة</span></div>
                 </div>
-                <p style="color: var(--muted); margin-bottom: 20px;">للحصول على رمز التفعيل، راسلني مباشرة:</p>
+                <p style="color: var(--muted); margin-bottom: 20px;" data-key="license-msg">للحصول على رمز التفعيل، راسلني مباشرة:</p>
                 <a href="https://wa.me/2130657200758" target="_blank" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> راسلني على واتساب لطلب رمز التفعيل
+                    <i class="fab fa-whatsapp"></i> <span data-key="whatsapp-btn">راسلني على واتساب لطلب رمز التفعيل</span>
                 </a>
             </div>
         </div>
@@ -512,8 +553,8 @@
 
     <footer>
         <div class="container">
-            <p>Made in Algeria 🇩🇿, with ❤️</p>
-            <p>© 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
+            <p data-key="footer-made">Made in Algeria 🇩🇿, with ❤️</p>
+            <p data-key="footer-rights">© 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
             <div class="footer-links">
                 <a href="https://github.com/seislemzhf" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="mailto:seislemzhf@gmail.com"><i class="fas fa-envelope"></i></a>
@@ -524,9 +565,222 @@
 
     <div class="back-section">
         <a href="index.html" class="back-btn">
-            <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
+            <i class="fas fa-arrow-right"></i> <span data-key="back-btn">العودة للصفحة الرئيسية</span>
         </a>
     </div>
 
+    <script>
+        // ====== البيانات متعددة اللغات ======
+        const translations = {
+            ar: {
+                'manual-btn': 'دليل الاستخدام',
+                'home-btn': 'الرئيسية',
+                'hero-badge': 'صنع في الجزائر 🇩🇿',
+                'version': 'v1.0.0 - النسخة الكاملة',
+                'hero-desc': 'نظام متكامل لإدارة الموارد البشرية (HR ERP) مصمم خصيصاً للشركات الجزائرية. رواتب بالضرائب الجزائرية، حضور ببصمة ZKTeco، إجازات، تقارير Excel و PDF، وترخيص محكم.',
+                'download-btn': 'حمل البرنامج (ZIP)',
+                'file-size': '251.78 ميغابايت',
+                'features-title': 'لماذا Minsaj Fard',
+                'features-sub': '16 سبباً يجعله أفضل نظام HR في الجزائر',
+                'f1-title': 'إدارة الموظفين',
+                'f1-desc': 'ملف شامل لكل موظف: بيانات، وردية، منصب، راتب.',
+                'f2-title': 'جهاز البصمة ZKTeco',
+                'f2-desc': 'جلب سجلات الحضور تلقائياً عبر الشبكة.',
+                'f3-title': 'رواتب بالضرائب الجزائرية',
+                'f3-desc': 'CNAS (9%) + IRG حسب الجدول الرسمي.',
+                'f4-title': 'إدارة الإجازات',
+                'f4-desc': 'طلبات، موافقة/رفض، تتبع الرصيد.',
+                'f5-title': 'نظام الورديات',
+                'f5-desc': 'صباحية/مسائية/ليلية مع أيام عمل.',
+                'f6-title': 'الأقسام والمناصب',
+                'f6-desc': 'تنظيم هيكلي كامل للشركة.',
+                'f7-title': 'لوحة تحكم بالرسوم',
+                'f7-desc': 'رسم دائري وأعمدة للحضور الأسبوعي.',
+                'f8-title': 'تقييم الأداء',
+                'f8-desc': 'تقييم دوري بخمس معايير.',
+                'f9-title': 'إدارة التدريب',
+                'f9-desc': 'دورات تدريبية مع متابعة.',
+                'f10-title': 'شهادة عمل + عقد',
+                'f10-desc': 'CDD/CDI بصيغة PDF احترافية.',
+                'f11-title': 'تصدير Excel',
+                'f11-desc': 'بنقرة واحدة لكل الأقسام.',
+                'f12-title': '3 لغات',
+                'f12-desc': 'عربي / Français / English.',
+                'f13-title': 'ترخيص محكم',
+                'f13-desc': 'مرتبط بالجهاز مع تشفير.',
+                'f14-title': 'سجل الأحداث',
+                'f14-desc': 'تتبع كل عملية.',
+                'f15-title': 'نسخ احتياطي',
+                'f15-desc': 'بنقرة واحدة.',
+                'f16-title': 'تجربة مجانية',
+                'f16-desc': '30 يوم كاملة بكل المميزات.',
+                'license-title': 'نظام الترخيص',
+                'license-sub': 'ابدأ مجاناً ثم فعّل حسب نوع الترخيص',
+                'license-head': 'جرب الآن مجاناً',
+                'license1': '30 يوم تجربة مجانية كاملة',
+                'license2': 'شهر / 3 أشهر / 6 أشهر / سنة / مدى الحياة',
+                'license-msg': 'للحصول على رمز التفعيل، راسلني مباشرة:',
+                'whatsapp-btn': 'راسلني على واتساب لطلب رمز التفعيل',
+                'footer-made': 'Made in Algeria 🇩🇿, with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - جميع الحقوق محفوظة',
+                'back-btn': 'العودة للصفحة الرئيسية'
+            },
+            fr: {
+                'manual-btn': "Guide d'utilisation",
+                'home-btn': 'Accueil',
+                'hero-badge': 'Fabriqué en Algérie 🇩🇿',
+                'version': 'v1.0.0 - Version complète',
+                'hero-desc': "Système intégré de gestion des ressources humaines (HR ERP) spécialement conçu pour les entreprises algériennes. Salaires avec taxes algériennes, présence avec empreinte ZKTeco, congés, rapports Excel et PDF, et licence sécurisée.",
+                'download-btn': 'Télécharger (ZIP)',
+                'file-size': '251.78 Mo',
+                'features-title': 'Pourquoi Minsaj Fard',
+                'features-sub': '16 raisons qui en font le meilleur système RH en Algérie',
+                'f1-title': "Gestion des employés",
+                'f1-desc': 'Fiche complète pour chaque employé: données, équipe, poste, salaire.',
+                'f2-title': 'Appareil ZKTeco',
+                'f2-desc': 'Import automatique des enregistrements de présence via le réseau.',
+                'f3-title': 'Salaires avec taxes algériennes',
+                'f3-desc': 'CNAS (9%) + IRG selon le barème officiel.',
+                'f4-title': 'Gestion des congés',
+                'f4-desc': 'Demandes, approbation/refus, suivi du solde.',
+                'f5-title': "Système d'équipes",
+                'f5-desc': 'Matin/Soir/Nuit avec jours de travail.',
+                'f6-title': 'Départements et postes',
+                'f6-desc': 'Organisation structurelle complète de l\'entreprise.',
+                'f7-title': 'Tableau de bord avec graphiques',
+                'f7-desc': 'Camembert et histogramme pour la présence hebdomadaire.',
+                'f8-title': "Évaluation des performances",
+                'f8-desc': "Évaluation périodique avec cinq critères.",
+                'f9-title': 'Gestion de la formation',
+                'f9-desc': 'Formations avec suivi.',
+                'f10-title': 'Certificat + Contrat',
+                'f10-desc': 'CDD/CDI en PDF professionnel.',
+                'f11-title': 'Export Excel',
+                'f11-desc': 'En un clic pour toutes les sections.',
+                'f12-title': '3 langues',
+                'f12-desc': 'Arabe / Français / English.',
+                'f13-title': 'Licence sécurisée',
+                'f13-desc': 'Liée à la machine avec chiffrement.',
+                'f14-title': "Journal d'événements",
+                'f14-desc': 'Traçabilité de chaque opération.',
+                'f15-title': 'Sauvegarde',
+                'f15-desc': 'En un clic.',
+                'f16-title': 'Essai gratuit',
+                'f16-desc': '30 jours complets avec toutes les fonctionnalités.',
+                'license-title': 'Système de licence',
+                'license-sub': 'Commencez gratuitement puis activez selon le type',
+                'license-head': 'Essayez maintenant gratuitement',
+                'license1': '30 jours d\'essai gratuit complet',
+                'license2': 'Mensuel / 3 mois / 6 mois / Annuel / À vie',
+                'license-msg': 'Pour obtenir le code d\'activation, contactez-moi directement:',
+                'whatsapp-btn': 'Contactez-moi sur WhatsApp pour le code d\'activation',
+                'footer-made': 'Made in Algeria 🇩🇿, with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - Tous droits réservés',
+                'back-btn': 'Retour à la page d\'accueil'
+            },
+            en: {
+                'manual-btn': 'User Guide',
+                'home-btn': 'Home',
+                'hero-badge': 'Made in Algeria 🇩🇿',
+                'version': 'v1.0.0 - Full Version',
+                'hero-desc': 'Integrated Human Resources management system (HR ERP) specially designed for Algerian companies. Payroll with Algerian taxes, attendance with ZKTeco fingerprint, leaves, Excel and PDF reports, and secure licensing.',
+                'download-btn': 'Download (ZIP)',
+                'file-size': '251.78 MB',
+                'features-title': 'Why Minsaj Fard',
+                'features-sub': '16 reasons why it\'s the best HR system in Algeria',
+                'f1-title': 'Employee Management',
+                'f1-desc': 'Complete profile for each employee: data, shift, position, salary.',
+                'f2-title': 'ZKTeco Fingerprint Device',
+                'f2-desc': 'Automatic attendance records import via network.',
+                'f3-title': 'Payroll with Algerian Taxes',
+                'f3-desc': 'CNAS (9%) + IRG according to official scale.',
+                'f4-title': 'Leave Management',
+                'f4-desc': 'Requests, approve/reject, balance tracking.',
+                'f5-title': 'Shift System',
+                'f5-desc': 'Morning/Evening/Night with work days.',
+                'f6-title': 'Departments & Positions',
+                'f6-desc': 'Complete structural organization of the company.',
+                'f7-title': 'Dashboard with Charts',
+                'f7-desc': 'Pie chart and bar chart for weekly attendance.',
+                'f8-title': 'Performance Evaluation',
+                'f8-desc': 'Periodic evaluation with five criteria.',
+                'f9-title': 'Training Management',
+                'f9-desc': 'Training courses with tracking.',
+                'f10-title': 'Certificate + Contract',
+                'f10-desc': 'CDD/CDI in professional PDF format.',
+                'f11-title': 'Excel Export',
+                'f11-desc': 'One click for all sections.',
+                'f12-title': '3 Languages',
+                'f12-desc': 'Arabic / Français / English.',
+                'f13-title': 'Secure Licensing',
+                'f13-desc': 'Tied to machine with encryption.',
+                'f14-title': 'Event Log',
+                'f14-desc': 'Traceability of every operation.',
+                'f15-title': 'Backup',
+                'f15-desc': 'One click.',
+                'f16-title': 'Free Trial',
+                'f16-desc': '30 full days with all features.',
+                'license-title': 'Licensing System',
+                'license-sub': 'Start free then activate according to license type',
+                'license-head': 'Try it now for free',
+                'license1': '30-day full free trial',
+                'license2': 'Monthly / 3 Months / 6 Months / Yearly / Lifetime',
+                'license-msg': 'To get the activation code, contact me directly:',
+                'whatsapp-btn': 'Contact me on WhatsApp for activation code',
+                'footer-made': 'Made in Algeria 🇩🇿, with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - All rights reserved',
+                'back-btn': 'Back to Homepage'
+            }
+        };
+
+        // ====== تغيير اللغة ======
+        let currentLang = 'ar';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const html = document.documentElement;
+            if (lang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                document.body.className = '';
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', lang);
+                document.body.className = lang;
+            }
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.dataset.key;
+                if (translations[lang][key] !== undefined) {
+                    if (key === 'hero-desc' || key === 'footer-made' || key === 'footer-rights') {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            localStorage.setItem('preferred-lang-fard', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeLanguage(btn.dataset.lang);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang-fard') || 'ar';
+            changeLanguage(savedLang);
+        });
+    </script>
 </body>
 </html>
