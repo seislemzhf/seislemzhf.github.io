@@ -84,6 +84,9 @@
         nav ul li a:hover {
             color: var(--accent);
         }
+        nav ul li a.active-link {
+            color: var(--accent);
+        }
         .hamburger {
             display: none;
             font-size: 1.8rem;
@@ -148,6 +151,28 @@
             max-width: 600px;
             margin: 0 auto 30px;
         }
+        .hero .identity-tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        .hero .identity-tags .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16,185,129,0.08);
+            color: var(--accent);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid rgba(16,185,129,0.12);
+        }
+        .hero .identity-tags .tag i { font-size: 0.9rem; }
+        .hero .identity-tags .tag.writer { background: rgba(245,158,11,0.08); color: var(--gold); border-color: rgba(245,158,11,0.12); }
+
         .hero-buttons {
             display: flex;
             justify-content: center;
@@ -198,6 +223,18 @@
         }
         .section-header h2 span { color: var(--accent); }
         .section-header p { color: var(--muted); font-size: 1.1rem; }
+        .section-header .sub-tag {
+            display: inline-block;
+            background: rgba(16,185,129,0.08);
+            color: var(--accent);
+            padding: 4px 16px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 8px;
+            border: 1px solid rgba(16,185,129,0.08);
+        }
+        .section-header .sub-tag.writer-tag { background: rgba(245,158,11,0.08); color: var(--gold); border-color: rgba(245,158,11,0.08); }
 
         /* ====== قسم الإحصائيات ====== */
         .stats {
@@ -208,7 +245,7 @@
         }
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
             text-align: center;
         }
@@ -225,6 +262,9 @@
             color: var(--muted);
             font-size: 1.1rem;
             font-weight: 600;
+        }
+        @media (max-width: 700px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         /* ====== قسم عني ====== */
@@ -284,6 +324,7 @@
             border: 1px solid rgba(255,255,255,0.05);
             text-align: center;
             transition: 0.3s;
+            cursor: default;
         }
         .service-card:hover {
             transform: translateY(-5px);
@@ -388,6 +429,102 @@
         .btn-outline-small:hover {
             border-color: var(--accent);
             color: var(--accent);
+        }
+
+        /* ====== قسم الروايات (جديد) ====== */
+        .novels-showcase {
+            background: var(--secondary);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-top: 20px;
+        }
+        .novels-showcase .intro {
+            text-align: center;
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            line-height: 1.9;
+        }
+        .novels-showcase .intro i { color: var(--gold); }
+        .novels-showcase .intro strong { color: var(--gold); }
+
+        .novels-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .novel-mini-card {
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+            text-align: center;
+        }
+        .novel-mini-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(245,158,11,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .novel-mini-card .n-icon {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 8px;
+            opacity: 0.6;
+        }
+        .novel-mini-card h4 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--light);
+        }
+        .novel-mini-card h4 span { color: var(--gold); }
+        .novel-mini-card .n-part {
+            font-size: 0.7rem;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+        .novel-mini-card p {
+            color: var(--muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .novel-mini-card .btn-novel {
+            display: inline-block;
+            background: rgba(245,158,11,0.12);
+            color: var(--gold);
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border: 1px solid rgba(245,158,11,0.15);
+            transition: 0.3s;
+        }
+        .novel-mini-card .btn-novel:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: scale(1.04);
+        }
+
+        .novels-showcase .view-all {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .novels-showcase .view-all a {
+            display: inline-block;
+            background: rgba(245,158,11,0.1);
+            color: var(--gold);
+            padding: 10px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            border: 1px solid rgba(245,158,11,0.15);
+            transition: 0.3s;
+        }
+        .novels-showcase .view-all a:hover {
+            background: var(--gold);
+            color: var(--dark);
+            transform: scale(1.04);
         }
 
         /* ====== قسم المهارات ====== */
@@ -517,9 +654,12 @@
             .hamburger { display: block; }
             .hero h1 { font-size: 2.2rem; }
             .info-grid { grid-template-columns: 1fr; }
-            .stats-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .projects-grid { grid-template-columns: 1fr; }
+            .novels-mini-grid { grid-template-columns: 1fr; }
             .lang-switcher { order: 3; width: 100%; justify-content: center; }
+            .novels-showcase { padding: 20px; }
+            .hero .identity-tags .tag { font-size: 0.75rem; padding: 4px 12px; }
         }
     </style>
 </head>
@@ -533,7 +673,8 @@
                 <ul id="nav-links">
                     <li><a href="index.html" data-key="nav-home">الرئيسية</a></li>
                     <li><a href="#about" data-key="nav-about">عني</a></li>
-                    <li><a href="services.html" data-key="nav-services">خدماتي</a></li>  <!-- ← رابط services.html -->
+                    <li><a href="services.html" data-key="nav-services">خدماتي</a></li>
+                    <li><a href="novels.html" data-key="nav-novels">رواياتي</a></li>
                     <li><a href="#projects" data-key="nav-projects">مشاريعي</a></li>
                     <li><a href="#skills" data-key="nav-skills">مهاراتي</a></li>
                     <li><a href="#contact" data-key="nav-contact">اتصل بي</a></li>
@@ -553,10 +694,17 @@
         <div class="container">
             <div class="badge"><i class="fas fa-rocket"></i> <span data-key="hero-badge">مطور برمجيات</span></div>
             <h1><span data-key="hero-name-first">سيف الإسلام</span> <span data-key="hero-name-last">زحاف</span></h1>
-            <p class="subtitle" data-key="hero-desc">أبني تطبيقات سطح مكتب عالية الأداء باستخدام .NET و WPF، وأصمم تجارب مستخدم مستقبلية.</p>
+            <p class="subtitle" data-key="hero-desc">أبني تطبيقات سطح مكتب عالية الأداء باستخدام .NET و WPF، وأكتب روايات تنبض بالحياة</p>
+            
+            <div class="identity-tags">
+                <span class="tag"><i class="fas fa-code"></i> <span data-key="tag-dev">مطور برمجيات</span></span>
+                <span class="tag writer"><i class="fas fa-feather-alt"></i> <span data-key="tag-writer">كاتب روائي</span></span>
+                <span class="tag"><i class="fas fa-laptop-code"></i> <span data-key="tag-tech">خبير تقني</span></span>
+            </div>
+
             <div class="hero-buttons">
                 <a href="#projects" class="btn-primary"><i class="fas fa-crown"></i> <span data-key="hero-btn1">اكتشف مشاريعي</span></a>
-                <a href="#contact" class="btn-outline"><span data-key="hero-btn2">تواصل معي</span></a>
+                <a href="novels.html" class="btn-outline"><i class="fas fa-book"></i> <span data-key="hero-btn-novels">اقرأ رواياتي</span></a>
             </div>
         </div>
     </section>
@@ -567,20 +715,21 @@
             <div class="stat-box"><i class="fas fa-calendar-alt"></i><h3>4</h3><p data-key="stat1">سنوات الخبرة</p></div>
             <div class="stat-box"><i class="fas fa-layer-group"></i><h3>15</h3><p data-key="stat2">مشاريع مكتملة</p></div>
             <div class="stat-box"><i class="fas fa-users-gear"></i><h3>25</h3><p data-key="stat3">عملاء راضون</p></div>
+            <div class="stat-box"><i class="fas fa-book"></i><h3>3</h3><p data-key="stat4">روايات منشورة</p></div>
         </div>
     </section>
 
     <!-- ====== عني ====== -->
     <section class="about" id="about">
         <div class="container">
-            <div class="section-header"><h2><span data-key="about-title1">من</span> <span data-key="about-title2">أنا؟</span></h2><p data-key="about-sub">لمحة عن المطور</p></div>
+            <div class="section-header"><h2><span data-key="about-title1">من</span> <span data-key="about-title2">أنا؟</span></h2><p data-key="about-sub">لمحة عن المطور والكاتب</p></div>
             <div class="about-content">
                 <div class="about-text">
-                    <h3><span data-key="about-text1">أنا</span> <span data-key="about-text2">سيف الإسلام</span><span data-key="about-text3">، مهندس برمجيات من الجزائر 🇩🇿</span></h3>
-                    <p data-key="about-desc">متخصص في تطوير تطبيقات سطح المكتب القوية بواجهات جذابة، أركز على تجربة المستخدم النهائية.</p>
+                    <h3><span data-key="about-text1">أنا</span> <span data-key="about-text2">سيف الإسلام</span><span data-key="about-text3">، مهندس برمجيات وكاتب من الجزائر 🇩🇿</span></h3>
+                    <p data-key="about-desc">متخصص في تطوير تطبيقات سطح المكتب القوية بواجهات جذابة، وأكتب روايات تعكس رؤيتي للسيادة والوعي. أؤمن بأن التكنولوجيا والأدب وجهان لعملة واحدة: بناء المستقبل بفكر متوازن.</p>
                     <div class="info-grid">
                         <div class="info-item"><i class="fas fa-user"></i> <span data-key="info-name-label">الاسم:</span> <span data-key="info-name">Saif El Islem Zahaf</span></div>
-                        <div class="info-item"><i class="fas fa-briefcase"></i> <span data-key="info-job-label">المهنة:</span> <span data-key="info-job">Software Developer</span></div>
+                        <div class="info-item"><i class="fas fa-briefcase"></i> <span data-key="info-job-label">المهنة:</span> <span data-key="info-job">Software Developer &amp; Novelist</span></div>
                         <div class="info-item"><i class="fas fa-envelope"></i> <span data-key="info-email-label">البريد:</span> <span>seislemzhf@gmail.com</span></div>
                         <div class="info-item"><i class="fas fa-map-location-dot"></i> <span data-key="info-address-label">العنوان:</span> <span data-key="info-address">Oran, Algeria</span></div>
                     </div>
@@ -589,58 +738,25 @@
         </div>
     </section>
 
-    <!-- ====== الخدمات (مع أزرار طلب الخدمة) ====== -->
+    <!-- ====== الخدمات ====== -->
     <section class="services" id="services">
         <div class="container">
-            <div class="section-header">
-                <h2><span data-key="services-title1">خدماتي</span></h2>
-                <p data-key="services-sub">قدراتي التقنية - اضغط على "اطلب الخدمة" للتواصل</p>
-            </div>
+            <div class="section-header"><h2><span data-key="services-title1">خدماتي</span></h2><p data-key="services-sub">قدراتي التقنية</p></div>
             <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-crown"></i>
-                    <h3 data-key="service1-title">تطوير WPF & .NET</h3>
-                    <p data-key="service1-desc">تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.</p>
-                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-palette"></i>
-                    <h3 data-key="service2-title">تصميم UI/UX</h3>
-                    <p data-key="service2-desc">واجهات مستخدم تفاعلية وعصرية.</p>
-                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-database"></i>
-                    <h3 data-key="service3-title">قواعد البيانات</h3>
-                    <p data-key="service3-desc">تكامل مثالي مع SQLite و SQL Server.</p>
-                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-paint-brush"></i>
-                    <h3 data-key="service4-title">تصميم الشعارات والهوية</h3>
-                    <p data-key="service4-desc">شعارات احترافية، بطاقات تعريف، وإعلانات.</p>
-                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-globe"></i>
-                    <h3 data-key="service5-title">تطوير تطبيقات الويب</h3>
-                    <p data-key="service5-desc">مواقع وتطبيقات ويب حديثة متجاوبة.</p>
-                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-screwdriver-wrench"></i>
-                    <h3 data-key="service6-title">حلول تقنية المعلومات</h3>
-                    <p data-key="service6-desc">صيانة، تنصيب أنظمة، شبكات، وفحص شامل.</p>
-                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
-                </div>
+                <div class="service-card"><i class="fas fa-crown"></i><h3 data-key="service1-title">تطوير WPF & .NET</h3><p data-key="service1-desc">تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.</p></div>
+                <div class="service-card"><i class="fas fa-palette"></i><h3 data-key="service2-title">تصميم UI/UX</h3><p data-key="service2-desc">واجهات مستخدم تفاعلية وعصرية.</p></div>
+                <div class="service-card"><i class="fas fa-database"></i><h3 data-key="service3-title">قواعد البيانات</h3><p data-key="service3-desc">تكامل مثالي مع SQLite و SQL Server.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- ====== المشاريع ====== -->
+    <!-- ====== المشاريع + الروايات ====== -->
     <section class="projects" id="projects">
         <div class="container">
-            <div class="section-header"><h2><span data-key="projects-title1">روائع</span> <span data-key="projects-title2">مشاريعي</span></h2><p data-key="projects-sub">أقوى أعمالي التقنية</p></div>
+            <div class="section-header">
+                <h2><span data-key="projects-title1">روائع</span> <span data-key="projects-title2">مشاريعي</span></h2>
+                <p data-key="projects-sub">أقوى أعمالي التقنية</p>
+            </div>
             <div class="projects-grid">
                 
                 <div class="project-card">
@@ -677,6 +793,55 @@
                 </div>
 
             </div>
+
+            <!-- ====== قسم الروايات تحت المشاريع ====== -->
+            <div class="novels-showcase">
+                <div class="section-header" style="margin-bottom:20px;">
+                    <h2><span style="color:var(--gold);">📚</span> <span data-key="novels-title">رواياتي</span></h2>
+                    <p data-key="novels-sub">ثلاثية "بتر اللسان" – ملحمة السيادة الجزائرية</p>
+                    <span class="sub-tag writer-tag"><i class="fas fa-feather-alt"></i> <span data-key="novels-tag">جانبي الأدبي</span></span>
+                </div>
+
+                <p class="intro" data-key="novels-intro">
+                    <i class="fas fa-quote-right"></i> 
+                    <strong data-key="novels-intro-strong">ثلاثية "بتر اللسان"</strong> 
+                    <span data-key="novels-intro-text">هي ملحمة وطنية تجمع بين الدراما التقنية والصراع السياسي، تحكي قصة التحرر من التبعية الرقمية من خلال شخصية "ياسين" التي تعكس رؤيتي للسيادة والعلم والإيمان.</span>
+                </p>
+
+                <div class="novels-mini-grid">
+                    <!-- الرواية 1 -->
+                    <div class="novel-mini-card">
+                        <div class="n-icon"><i class="fas fa-book-open"></i></div>
+                        <h4><span data-key="n1-title">بتر اللسان</span></h4>
+                        <div class="n-part" data-key="n1-part">الجزء الأول من الثلاثية</div>
+                        <p data-key="n1-desc">في عالم تسيطر فيه الخوارزميات، يبرز ياسين بمشروع لتحرير الجزائر من التبعية الرقمية. بداية الملحمة.</p>
+                        <a href="batr-lissan.html" class="btn-novel"><i class="fas fa-arrow-left"></i> <span data-key="n1-btn">اقرأ المزيد</span></a>
+                    </div>
+
+                    <!-- الرواية 2 -->
+                    <div class="novel-mini-card">
+                        <div class="n-icon"><i class="fas fa-heartbeat"></i></div>
+                        <h4><span data-key="n2-title">شيفرة النبض</span></h4>
+                        <div class="n-part" data-key="n2-part">الجزء الثاني من الثلاثية</div>
+                        <p data-key="n2-desc">ياسين يواجه مؤامرة أكبر تهدد السيادة الرقمية للجزائر. هل ستنجح شيفرة النبض في إنقاذ الوطن؟</p>
+                        <a href="chifret-anabd.html" class="btn-novel"><i class="fas fa-arrow-left"></i> <span data-key="n2-btn">اقرأ المزيد</span></a>
+                    </div>
+
+                    <!-- الرواية 3 -->
+                    <div class="novel-mini-card">
+                        <div class="n-icon"><i class="fas fa-music"></i></div>
+                        <h4><span data-key="n3-title">سيمفونية المرادية الأخيرة</span></h4>
+                        <div class="n-part" data-key="n3-part">الجزء الثالث والأخير</div>
+                        <p data-key="n3-desc">المواجهة النهائية في قلب قصر المرادية. حيث تتحدد مصير الأمة في ملحمة ختامية لا تنسى.</p>
+                        <a href="samfonya.html" class="btn-novel"><i class="fas fa-arrow-left"></i> <span data-key="n3-btn">اقرأ المزيد</span></a>
+                    </div>
+                </div>
+
+                <div class="view-all">
+                    <a href="novels.html"><i class="fas fa-arrow-left"></i> <span data-key="novels-view-all">استكشف كل الروايات</span></a>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -708,7 +873,7 @@
     <!-- ====== التواصل ====== -->
     <section class="contact" id="contact">
         <div class="container">
-            <div class="section-header"><h2><span data-key="contact-title1">تواصل</span> <span data-key="contact-title2">معي</span></h2><p data-key="contact-sub">لنتحدث عن مشروعك 🚀</p></div>
+            <div class="section-header"><h2><span data-key="contact-title1">تواصل</span> <span data-key="contact-title2">معي</span></h2><p data-key="contact-sub">لنتحدث عن مشروعك أو روايتك 🚀</p></div>
             <div style="text-align: center;">
                 <div class="contact-grid">
                     <div class="contact-card"><i class="fas fa-location-dot"></i><h4 data-key="contact-address-label">العنوان</h4><p data-key="contact-address">Belgaid, Bir El Djir, Oran</p></div>
@@ -741,47 +906,46 @@
                 'nav-home': 'الرئيسية',
                 'nav-about': 'عني',
                 'nav-services': 'خدماتي',
+                'nav-novels': 'رواياتي',
                 'nav-projects': 'مشاريعي',
                 'nav-skills': 'مهاراتي',
                 'nav-contact': 'اتصل بي',
-                'hero-badge': 'مطور برمجيات',
+                'hero-badge': 'مطور برمجيات وكاتب',
                 'hero-name-first': 'سيف الإسلام',
                 'hero-name-last': 'زحاف',
-                'hero-desc': 'أبني تطبيقات سطح مكتب عالية الأداء باستخدام .NET و WPF، وأصمم تجارب مستخدم مستقبلية.',
+                'hero-desc': 'أبني تطبيقات سطح مكتب عالية الأداء باستخدام .NET و WPF، وأكتب روايات تنبض بالحياة',
+                'tag-dev': 'مطور برمجيات',
+                'tag-writer': 'كاتب روائي',
+                'tag-tech': 'خبير تقني',
                 'hero-btn1': 'اكتشف مشاريعي',
+                'hero-btn-novels': 'اقرأ رواياتي',
                 'hero-btn2': 'تواصل معي',
                 'stat1': 'سنوات الخبرة',
                 'stat2': 'مشاريع مكتملة',
                 'stat3': 'عملاء راضون',
+                'stat4': 'روايات منشورة',
                 'about-title1': 'من',
                 'about-title2': 'أنا؟',
-                'about-sub': 'لمحة عن المطور',
+                'about-sub': 'لمحة عن المطور والكاتب',
                 'about-text1': 'أنا',
                 'about-text2': 'سيف الإسلام',
-                'about-text3': '، مهندس برمجيات من الجزائر 🇩🇿',
-                'about-desc': 'متخصص في تطوير تطبيقات سطح المكتب القوية بواجهات جذابة، أركز على تجربة المستخدم النهائية.',
+                'about-text3': '، مهندس برمجيات وكاتب من الجزائر 🇩🇿',
+                'about-desc': 'متخصص في تطوير تطبيقات سطح المكتب القوية بواجهات جذابة، وأكتب روايات تعكس رؤيتي للسيادة والوعي. أؤمن بأن التكنولوجيا والأدب وجهان لعملة واحدة: بناء المستقبل بفكر متوازن.',
                 'info-name-label': 'الاسم:',
                 'info-name': 'Saif El Islem Zahaf',
                 'info-job-label': 'المهنة:',
-                'info-job': 'Software Developer',
+                'info-job': 'Software Developer & Novelist',
                 'info-email-label': 'البريد:',
                 'info-address-label': 'العنوان:',
                 'info-address': 'Oran, Algeria',
                 'services-title1': 'خدماتي',
-                'services-sub': 'قدراتي التقنية - اضغط على "اطلب الخدمة" للتواصل',
+                'services-sub': 'قدراتي التقنية',
                 'service1-title': 'تطوير WPF & .NET',
                 'service1-desc': 'تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.',
                 'service2-title': 'تصميم UI/UX',
                 'service2-desc': 'واجهات مستخدم تفاعلية وعصرية.',
                 'service3-title': 'قواعد البيانات',
                 'service3-desc': 'تكامل مثالي مع SQLite و SQL Server.',
-                'service4-title': 'تصميم الشعارات والهوية',
-                'service4-desc': 'شعارات احترافية، بطاقات تعريف، وإعلانات.',
-                'service5-title': 'تطوير تطبيقات الويب',
-                'service5-desc': 'مواقع وتطبيقات ويب حديثة متجاوبة.',
-                'service6-title': 'حلول تقنية المعلومات',
-                'service6-desc': 'صيانة، تنصيب أنظمة، شبكات، وفحص شامل.',
-                'service-btn': 'اطلب الخدمة',
                 'projects-title1': 'روائع',
                 'projects-title2': 'مشاريعي',
                 'projects-sub': 'أقوى أعمالي التقنية',
@@ -790,6 +954,24 @@
                 'project3-desc': 'نظام متكامل لإدارة الموارد البشرية (HR ERP) بضرائب جزائرية وبصمة ZKTeco.',
                 'project-langs': '3 لغات',
                 'project-btn': 'اكتشف المميزات',
+                'novels-title': 'رواياتي',
+                'novels-sub': 'ثلاثية "بتر اللسان" – ملحمة السيادة الجزائرية',
+                'novels-tag': 'جانبي الأدبي',
+                'novels-intro-strong': 'ثلاثية "بتر اللسان"',
+                'novels-intro-text': 'هي ملحمة وطنية تجمع بين الدراما التقنية والصراع السياسي، تحكي قصة التحرر من التبعية الرقمية من خلال شخصية "ياسين" التي تعكس رؤيتي للسيادة والعلم والإيمان.',
+                'n1-title': 'بتر اللسان',
+                'n1-part': 'الجزء الأول من الثلاثية',
+                'n1-desc': 'في عالم تسيطر فيه الخوارزميات، يبرز ياسين بمشروع لتحرير الجزائر من التبعية الرقمية. بداية الملحمة.',
+                'n1-btn': 'اقرأ المزيد',
+                'n2-title': 'شيفرة النبض',
+                'n2-part': 'الجزء الثاني من الثلاثية',
+                'n2-desc': 'ياسين يواجه مؤامرة أكبر تهدد السيادة الرقمية للجزائر. هل ستنجح شيفرة النبض في إنقاذ الوطن؟',
+                'n2-btn': 'اقرأ المزيد',
+                'n3-title': 'سيمفونية المرادية الأخيرة',
+                'n3-part': 'الجزء الثالث والأخير',
+                'n3-desc': 'المواجهة النهائية في قلب قصر المرادية. حيث تتحدد مصير الأمة في ملحمة ختامية لا تنسى.',
+                'n3-btn': 'اقرأ المزيد',
+                'novels-view-all': 'استكشف كل الروايات',
                 'skills-title1': 'المهارات',
                 'skills-sub': 'دقة وإتقان',
                 'skill1': 'C# & .NET',
@@ -798,7 +980,7 @@
                 'skill4': 'SQLite / SQL Server',
                 'contact-title1': 'تواصل',
                 'contact-title2': 'معي',
-                'contact-sub': 'لنتحدث عن مشروعك 🚀',
+                'contact-sub': 'لنتحدث عن مشروعك أو روايتك 🚀',
                 'contact-address-label': 'العنوان',
                 'contact-address': 'Belgaid, Bir El Djir, Oran',
                 'contact-email-label': 'البريد',
@@ -810,47 +992,46 @@
                 'nav-home': 'Accueil',
                 'nav-about': 'À propos',
                 'nav-services': 'Mes Services',
+                'nav-novels': 'Mes Romans',
                 'nav-projects': 'Projets',
                 'nav-skills': 'Compétences',
                 'nav-contact': 'Contact',
-                'hero-badge': 'Développeur Logiciel',
+                'hero-badge': 'Développeur et Écrivain',
                 'hero-name-first': 'Saif El Islem',
                 'hero-name-last': 'Zahaf',
-                'hero-desc': 'Je développe des applications desktop haute performance avec .NET et WPF, et je conçois des expériences utilisateur futuristes.',
+                'hero-desc': 'Je développe des applications desktop haute performance avec .NET et WPF, et j\'écris des romans qui respirent la vie',
+                'tag-dev': 'Développeur',
+                'tag-writer': 'Romancier',
+                'tag-tech': 'Expert Technique',
                 'hero-btn1': 'Découvrez mes projets',
+                'hero-btn-novels': 'Lire mes romans',
                 'hero-btn2': 'Contactez-moi',
                 'stat1': "Années d'expérience",
                 'stat2': 'Projets réalisés',
                 'stat3': 'Clients satisfaits',
+                'stat4': 'Romans publiés',
                 'about-title1': 'Qui',
                 'about-title2': 'suis-je ?',
-                'about-sub': 'Un aperçu du développeur',
+                'about-sub': 'Un aperçu du développeur et écrivain',
                 'about-text1': 'Je suis',
                 'about-text2': 'Saif El Islem',
-                'about-text3': ", ingénieur logiciel d'Algérie 🇩🇿",
-                'about-desc': "Spécialisé dans le développement d'applications desktop robustes avec des interfaces attrayantes, je me concentre sur l'expérience utilisateur finale.",
+                'about-text3': ", ingénieur logiciel et écrivain d'Algérie 🇩🇿",
+                'about-desc': "Spécialisé dans le développement d'applications desktop robustes avec des interfaces attrayantes, j'écris des romans qui reflètent ma vision de la souveraineté et de la conscience.",
                 'info-name-label': 'Nom :',
                 'info-name': 'Saif El Islem Zahaf',
                 'info-job-label': 'Métier :',
-                'info-job': 'Software Developer',
+                'info-job': 'Software Developer & Novelist',
                 'info-email-label': 'Email :',
                 'info-address-label': 'Adresse :',
                 'info-address': 'Oran, Algérie',
                 'services-title1': 'Mes services',
-                'services-sub': 'Mes compétences techniques - Cliquez sur "Demander le service" pour me contacter',
+                'services-sub': 'Mes compétences techniques',
                 'service1-title': 'Développement WPF & .NET',
                 'service1-desc': 'Applications desktop ultra-rapides et robustes.',
                 'service2-title': 'Design UI/UX',
                 'service2-desc': 'Interfaces utilisateur interactives et modernes.',
                 'service3-title': 'Bases de données',
                 'service3-desc': 'Intégration parfaite avec SQLite et SQL Server.',
-                'service4-title': 'Design de logos et identité',
-                'service4-desc': 'Logos professionnels, cartes de visite et publicités.',
-                'service5-title': 'Développement Web',
-                'service5-desc': 'Sites et applications web modernes et responsives.',
-                'service6-title': 'Solutions informatiques',
-                'service6-desc': 'Maintenance, installation de systèmes, réseaux et diagnostic complet.',
-                'service-btn': 'Demander le service',
                 'projects-title1': 'Mes',
                 'projects-title2': 'projets',
                 'projects-sub': 'Mes réalisations techniques',
@@ -859,6 +1040,24 @@
                 'project3-desc': "Système intégré de gestion des ressources humaines (HR ERP) avec fiscalité algérienne et empreinte ZKTeco.",
                 'project-langs': '3 langues',
                 'project-btn': 'Découvrir les fonctionnalités',
+                'novels-title': 'Mes Romans',
+                'novels-sub': 'Trilogie "Battre la langue" – L\'épopée de la souveraineté algérienne',
+                'novels-tag': 'Mon côté littéraire',
+                'novels-intro-strong': 'Trilogie "Battre la langue"',
+                'novels-intro-text': 'est une épopée nationale qui mêle drame technique et conflit politique, racontant l\'histoire de la libération de la dépendance numérique à travers le personnage de "Yacine".',
+                'n1-title': 'Battre la langue',
+                'n1-part': 'Première partie de la trilogie',
+                'n1-desc': 'Dans un monde contrôlé par les algorithmes, Yacine émerge avec un projet pour libérer l\'Algérie.',
+                'n1-btn': 'En savoir plus',
+                'n2-title': 'Code du pouls',
+                'n2-part': 'Deuxième partie de la trilogie',
+                'n2-desc': 'Yacine fait face à un complot plus vaste qui menace la souveraineté numérique de l\'Algérie.',
+                'n2-btn': 'En savoir plus',
+                'n3-title': 'Symphonie de la Mouradia',
+                'n3-part': 'Troisième et dernière partie',
+                'n3-desc': 'L\'affrontement final au cœur du Palais de la Mouradia.',
+                'n3-btn': 'En savoir plus',
+                'novels-view-all': 'Explorer tous les romans',
                 'skills-title1': 'Mes compétences',
                 'skills-sub': 'Précision et maîtrise',
                 'skill1': 'C# & .NET',
@@ -867,7 +1066,7 @@
                 'skill4': 'SQLite / SQL Server',
                 'contact-title1': 'Contactez-',
                 'contact-title2': 'moi',
-                'contact-sub': 'Parlons de votre projet 🚀',
+                'contact-sub': 'Parlons de votre projet ou de votre roman 🚀',
                 'contact-address-label': 'Adresse',
                 'contact-address': 'Belgaid, Bir El Djir, Oran',
                 'contact-email-label': 'Email',
@@ -879,47 +1078,46 @@
                 'nav-home': 'Home',
                 'nav-about': 'About',
                 'nav-services': 'My Services',
+                'nav-novels': 'My Novels',
                 'nav-projects': 'Projects',
                 'nav-skills': 'Skills',
                 'nav-contact': 'Contact',
-                'hero-badge': 'Software Developer',
+                'hero-badge': 'Developer & Novelist',
                 'hero-name-first': 'Saif El Islem',
                 'hero-name-last': 'Zahaf',
-                'hero-desc': 'I build high-performance desktop applications using .NET and WPF, and design futuristic user experiences.',
+                'hero-desc': 'I build high-performance desktop applications using .NET and WPF, and write novels that breathe life',
+                'tag-dev': 'Developer',
+                'tag-writer': 'Novelist',
+                'tag-tech': 'Tech Expert',
                 'hero-btn1': 'Discover My Projects',
+                'hero-btn-novels': 'Read My Novels',
                 'hero-btn2': 'Contact Me',
                 'stat1': 'Years of Experience',
                 'stat2': 'Completed Projects',
                 'stat3': 'Happy Clients',
+                'stat4': 'Published Novels',
                 'about-title1': 'Who',
                 'about-title2': 'am I?',
-                'about-sub': 'A glimpse of the developer',
+                'about-sub': 'A glimpse of the developer and writer',
                 'about-text1': "I'm",
                 'about-text2': 'Saif El Islem',
-                'about-text3': ', a software engineer from Algeria 🇩🇿',
-                'about-desc': 'Specialized in developing robust desktop applications with attractive interfaces, I focus on the end-user experience.',
+                'about-text3': ', a software engineer and novelist from Algeria 🇩🇿',
+                'about-desc': 'Specialized in developing robust desktop applications with attractive interfaces, and writing novels that reflect my vision of sovereignty and consciousness.',
                 'info-name-label': 'Name:',
                 'info-name': 'Saif El Islem Zahaf',
                 'info-job-label': 'Profession:',
-                'info-job': 'Software Developer',
+                'info-job': 'Software Developer & Novelist',
                 'info-email-label': 'Email:',
                 'info-address-label': 'Address:',
                 'info-address': 'Oran, Algeria',
                 'services-title1': 'My Services',
-                'services-sub': 'My technical capabilities - Click "Request Service" to contact me',
+                'services-sub': 'My technical capabilities',
                 'service1-title': 'WPF & .NET Development',
                 'service1-desc': 'Ultra-fast and robust desktop applications.',
                 'service2-title': 'UI/UX Design',
                 'service2-desc': 'Interactive and modern user interfaces.',
                 'service3-title': 'Databases',
                 'service3-desc': 'Perfect integration with SQLite and SQL Server.',
-                'service4-title': 'Logo & Identity Design',
-                'service4-desc': 'Professional logos, business cards, and advertisements.',
-                'service5-title': 'Web Development',
-                'service5-desc': 'Modern and responsive websites and web applications.',
-                'service6-title': 'IT Solutions',
-                'service6-desc': 'Maintenance, OS installation, networks, and complete diagnostics.',
-                'service-btn': 'Request Service',
                 'projects-title1': 'My',
                 'projects-title2': 'Projects',
                 'projects-sub': 'My strongest technical works',
@@ -928,6 +1126,24 @@
                 'project3-desc': 'An integrated Human Resources management system (HR ERP) with Algerian taxation and ZKTeco fingerprint.',
                 'project-langs': '3 Languages',
                 'project-btn': 'Discover Features',
+                'novels-title': 'My Novels',
+                'novels-sub': '"Battre la langue" Trilogy – The epic of Algerian sovereignty',
+                'novels-tag': 'My literary side',
+                'novels-intro-strong': '"Battre la langue" Trilogy',
+                'novels-intro-text': 'is a national epic that combines technical drama and political conflict, telling the story of liberation from digital dependency through the character of "Yacine".',
+                'n1-title': 'Battre la langue',
+                'n1-part': 'Part One of the trilogy',
+                'n1-desc': 'In a world controlled by algorithms, Yacine emerges with a project to liberate Algeria.',
+                'n1-btn': 'Read more',
+                'n2-title': 'Pulse Code',
+                'n2-part': 'Part Two of the trilogy',
+                'n2-desc': 'Yacine faces a larger conspiracy threatening Algeria\'s digital sovereignty.',
+                'n2-btn': 'Read more',
+                'n3-title': 'Symphony of the Mouradia',
+                'n3-part': 'Third and final part',
+                'n3-desc': 'The final confrontation in the heart of the Mouradia Palace.',
+                'n3-btn': 'Read more',
+                'novels-view-all': 'Explore all novels',
                 'skills-title1': 'My Skills',
                 'skills-sub': 'Precision and mastery',
                 'skill1': 'C# & .NET',
@@ -936,7 +1152,7 @@
                 'skill4': 'SQLite / SQL Server',
                 'contact-title1': 'Contact',
                 'contact-title2': 'Me',
-                'contact-sub': "Let's talk about your project 🚀",
+                'contact-sub': "Let's talk about your project or novel 🚀",
                 'contact-address-label': 'Address',
                 'contact-address': 'Belgaid, Bir El Djir, Oran',
                 'contact-email-label': 'Email',
@@ -973,7 +1189,9 @@
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.dataset.key;
                 if (translations[lang][key] !== undefined) {
-                    if (key === 'footer-text' || key === 'about-text3' || key === 'hero-desc' || key === 'services-sub') {
+                    if (key === 'footer-text' || key === 'about-text3' || key === 'hero-desc' ||
+                        key === 'about-desc' || key === 'novels-intro-text' || key === 'n1-desc' ||
+                        key === 'n2-desc' || key === 'n3-desc') {
                         el.innerHTML = translations[lang][key];
                     } else {
                         el.textContent = translations[lang][key];
