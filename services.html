@@ -6,6 +6,7 @@
     <title>خدماتي | Minsaj DZ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
         /* ====== إعدادات عامة ====== */
         * {
@@ -39,7 +40,6 @@
             --accent2: #06B6D4;
             --gold: #F59E0B;
             --purple: #8B5CF6;
-            --pink: #EC4899;
             --red: #EF4444;
             --muted: #94a3b8;
             --light: #F8FAFC;
@@ -283,6 +283,18 @@
             color: var(--accent2);
         }
 
+        .section-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .section-tag.design-tag { background: rgba(139, 92, 246, 0.2); color: var(--purple); }
+        .section-tag.dev-tag { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
+        .section-tag.it-tag { background: rgba(6, 182, 212, 0.2); color: var(--accent2); }
+
         /* ====== فورم التواصل ====== */
         .contact-form-wrapper {
             background: var(--secondary);
@@ -450,19 +462,6 @@
             transform: scale(1.05);
             box-shadow: 0 10px 40px rgba(16,185,129,0.5);
         }
-
-        /* ====== شارة القسم ====== */
-        .section-tag {
-            display: inline-block;
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-        .section-tag.design-tag { background: rgba(139, 92, 246, 0.2); color: var(--purple); }
-        .section-tag.dev-tag { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
-        .section-tag.it-tag { background: rgba(6, 182, 212, 0.2); color: var(--accent2); }
 
         @media (max-width: 700px) {
             .hero h1 { font-size: 2.2rem; }
@@ -707,7 +706,8 @@
                 <h3><span data-key="form-head">احصل على عرض سعر</span></h3>
                 <p class="form-sub" data-key="form-sub-desc">املأ النموذج وسأتصل بك خلال 24 ساعة</p>
 
-                <form id="contactForm" method="POST">
+                <!-- ✅ فورم بسيط يفتح الإيميل -->
+                <form id="contactForm" onsubmit="sendEmail(event)">
                     <div class="form-row">
                         <div class="form-group">
                             <label data-key="form-name">الاسم الكامل <span>*</span></label>
@@ -729,24 +729,24 @@
                         <select id="service" name="service" required>
                             <option value="" data-key="form-service-placeholder">-- اختر الخدمة --</option>
                             <optgroup label="🎨 خدمات التصميم">
-                                <option value="logo" data-key="form-service-logo">شعار احترافي (Logo)</option>
-                                <option value="visite" data-key="form-service-visite">بطاقة تعريفية (Visite Card)</option>
-                                <option value="flyer" data-key="form-service-flyer">إعلان ومنشور (Flyer)</option>
-                                <option value="uiux" data-key="form-service-uiux">تصميم واجهات UI/UX</option>
+                                <option value="شعار احترافي (Logo)">شعار احترافي (Logo)</option>
+                                <option value="بطاقة تعريفية (Visite Card)">بطاقة تعريفية (Visite Card)</option>
+                                <option value="إعلان ومنشور (Flyer)">إعلان ومنشور (Flyer)</option>
+                                <option value="تصميم واجهات UI/UX">تصميم واجهات UI/UX</option>
                             </optgroup>
                             <optgroup label="💻 تطوير التطبيقات">
-                                <option value="desktop" data-key="form-service-desktop">تطوير تطبيقات سطح المكتب</option>
-                                <option value="web" data-key="form-service-web">تطوير تطبيقات الويب</option>
-                                <option value="database" data-key="form-service-database">حلول قواعد البيانات</option>
-                                <option value="erp" data-key="form-service-erp">حلول المؤسسات ERP</option>
+                                <option value="تطوير تطبيقات سطح المكتب">تطوير تطبيقات سطح المكتب</option>
+                                <option value="تطوير تطبيقات الويب">تطوير تطبيقات الويب</option>
+                                <option value="حلول قواعد البيانات">حلول قواعد البيانات</option>
+                                <option value="حلول المؤسسات ERP">حلول المؤسسات ERP</option>
                             </optgroup>
                             <optgroup label="🛠️ حلول تقنية المعلومات">
-                                <option value="os" data-key="form-service-os">تنصيب أنظمة التشغيل</option>
-                                <option value="repair" data-key="form-service-repair">صيانة وتبديل القطع</option>
-                                <option value="diagnostic" data-key="form-service-diagnostic">فحص شامل للأجهزة</option>
-                                <option value="network" data-key="form-service-network">تنصيب الشبكات</option>
+                                <option value="تنصيب أنظمة التشغيل">تنصيب أنظمة التشغيل</option>
+                                <option value="صيانة وتبديل القطع">صيانة وتبديل القطع</option>
+                                <option value="فحص شامل للأجهزة">فحص شامل للأجهزة</option>
+                                <option value="تنصيب الشبكات">تنصيب الشبكات</option>
                             </optgroup>
-                            <option value="other" data-key="form-service-other">خدمة أخرى</option>
+                            <option value="خدمة أخرى">خدمة أخرى</option>
                         </select>
                     </div>
 
@@ -762,8 +762,8 @@
 
                 <div class="form-success" id="formSuccess">
                     <i class="fas fa-check-circle"></i>
-                    <h4 data-key="form-success-title">تم الإرسال بنجاح! ✅</h4>
-                    <p data-key="form-success-desc">شكراً لك! سأتصل بك في أقرب وقت ممكن خلال 24 ساعة.</p>
+                    <h4 data-key="form-success-title">✅ تم!</h4>
+                    <p data-key="form-success-desc">شكراً لك! سيتم فتح بريدك الإلكتروني لتأكيد الإرسال.</p>
                 </div>
 
                 <div class="contact-extra">
@@ -840,23 +840,10 @@
                 'form-phone': 'رقم الهاتف',
                 'form-service': 'نوع الخدمة المطلوبة',
                 'form-service-placeholder': '-- اختر الخدمة --',
-                'form-service-logo': 'شعار احترافي (Logo)',
-                'form-service-visite': 'بطاقة تعريفية (Visite Card)',
-                'form-service-flyer': 'إعلان ومنشور (Flyer)',
-                'form-service-uiux': 'تصميم واجهات UI/UX',
-                'form-service-desktop': 'تطوير تطبيقات سطح المكتب',
-                'form-service-web': 'تطوير تطبيقات الويب',
-                'form-service-database': 'حلول قواعد البيانات',
-                'form-service-erp': 'حلول المؤسسات ERP',
-                'form-service-os': 'تنصيب أنظمة التشغيل',
-                'form-service-repair': 'صيانة وتبديل القطع',
-                'form-service-diagnostic': 'فحص شامل للأجهزة',
-                'form-service-network': 'تنصيب الشبكات',
-                'form-service-other': 'خدمة أخرى',
                 'form-message': 'تفاصيل المشروع',
                 'form-submit': 'إرسال الطلب',
-                'form-success-title': 'تم الإرسال بنجاح! ✅',
-                'form-success-desc': 'شكراً لك! سأتصل بك في أقرب وقت ممكن خلال 24 ساعة.',
+                'form-success-title': '✅ تم!',
+                'form-success-desc': 'شكراً لك! سيتم فتح بريدك الإلكتروني لتأكيد الإرسال.',
                 'form-or': 'أو تواصل معي مباشرة عبر',
                 'form-whatsapp': 'واتساب',
                 'back-btn': 'العودة للصفحة الرئيسية',
@@ -909,23 +896,10 @@
                 'form-phone': 'Téléphone',
                 'form-service': 'Service requis',
                 'form-service-placeholder': '-- Choisissez un service --',
-                'form-service-logo': 'Logo professionnel',
-                'form-service-visite': 'Carte de visite',
-                'form-service-flyer': 'Flyer et publication',
-                'form-service-uiux': 'Design UI/UX',
-                'form-service-desktop': 'Développement Desktop',
-                'form-service-web': 'Développement Web',
-                'form-service-database': 'Bases de données',
-                'form-service-erp': 'Solutions ERP',
-                'form-service-os': 'Installation OS',
-                'form-service-repair': 'Maintenance et réparation',
-                'form-service-diagnostic': 'Diagnostic complet',
-                'form-service-network': 'Installation réseau',
-                'form-service-other': 'Autre service',
                 'form-message': 'Détails du projet',
                 'form-submit': 'Envoyer la demande',
-                'form-success-title': 'Envoyé avec succès! ✅',
-                'form-success-desc': 'Merci! Je vous contacterai dans les plus brefs délais sous 24h.',
+                'form-success-title': '✅ Fait!',
+                'form-success-desc': 'Merci! Votre email va s\'ouvrir pour confirmer l\'envoi.',
                 'form-or': 'Ou contactez-moi directement via',
                 'form-whatsapp': 'WhatsApp',
                 'back-btn': 'Retour à l\'accueil',
@@ -978,23 +952,10 @@
                 'form-phone': 'Phone Number',
                 'form-service': 'Service Required',
                 'form-service-placeholder': '-- Select a service --',
-                'form-service-logo': 'Professional Logo',
-                'form-service-visite': 'Visiting Card',
-                'form-service-flyer': 'Flyer & Advertisement',
-                'form-service-uiux': 'UI/UX Design',
-                'form-service-desktop': 'Desktop Development',
-                'form-service-web': 'Web Development',
-                'form-service-database': 'Database Solutions',
-                'form-service-erp': 'ERP Solutions',
-                'form-service-os': 'OS Installation',
-                'form-service-repair': 'Hardware Repair',
-                'form-service-diagnostic': 'Complete Diagnostic',
-                'form-service-network': 'Network Setup',
-                'form-service-other': 'Other Service',
                 'form-message': 'Project Details',
                 'form-submit': 'Send Request',
-                'form-success-title': 'Sent Successfully! ✅',
-                'form-success-desc': 'Thank you! I will contact you as soon as possible within 24 hours.',
+                'form-success-title': '✅ Done!',
+                'form-success-desc': 'Thank you! Your email will open to confirm the submission.',
                 'form-or': 'Or contact me directly via',
                 'form-whatsapp': 'WhatsApp',
                 'back-btn': 'Back to Homepage',
@@ -1038,14 +999,6 @@
                 }
             });
 
-            // تحديث الـ placeholder في الفورم
-            document.querySelectorAll('input, textarea, select').forEach(el => {
-                const key = el.getAttribute('data-placeholder-key');
-                if (key && translations[lang][key]) {
-                    el.placeholder = translations[lang][key];
-                }
-            });
-
             localStorage.setItem('preferred-lang-services', lang);
         }
 
@@ -1060,52 +1013,37 @@
             changeLanguage(savedLang);
         });
 
-        // ====== إرسال الفورم للإيميل ======
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // ==========================================
+        // ✅ فورم mailto - يفتح الإيميل مباشرة
+        // ==========================================
+        function sendEmail(event) {
+            event.preventDefault();
 
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+            // جمع البيانات
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value || 'غير مدخل';
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
 
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
+            // تكوين نص الإيميل
+            const subject = encodeURIComponent(`طلب خدمة جديد من ${name} - ${service}`);
+            const body = encodeURIComponent(
+                `الاسم الكامل: ${name}\n` +
+                `البريد الإلكتروني: ${email}\n` +
+                `رقم الهاتف: ${phone}\n` +
+                `الخدمة المطلوبة: ${service}\n\n` +
+                `تفاصيل المشروع:\n${message}\n\n` +
+                `---\nتم الإرسال من موقع Minsaj DZ`
+            );
 
-            // الحصول على اسم الخدمة المختارة
-            const serviceSelect = document.getElementById('service');
-            const serviceText = serviceSelect.options[serviceSelect.selectedIndex].text;
+            // فتح تطبيق البريد
+            window.location.href = `mailto:seislemzhf@gmail.com?subject=${subject}&body=${body}`;
 
-            fetch('https://formsubmit.co/ajax/seislemzhf@gmail.com', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: data.name,
-                    email: data.email,
-                    phone: data.phone || 'غير مدخل',
-                    service: serviceText,
-                    message: data.message,
-                    _subject: `طلب خدمة جديد من ${data.name} - ${serviceText}`,
-                    _captcha: 'false',
-                    _template: 'table'
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('contactForm').style.display = 'none';
-                document.getElementById('formSuccess').style.display = 'block';
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال الطلب';
-            })
-            .catch(error => {
-                alert('حدث خطأ! حاول مرة أخرى أو تواصل عبر واتساب.');
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال الطلب';
-                console.error('Error:', error);
-            });
-        });
+            // إظهار رسالة نجاح
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+        }
     </script>
 </body>
 </html>
