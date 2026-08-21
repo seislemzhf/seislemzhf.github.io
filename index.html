@@ -42,7 +42,6 @@
             --accent: #6c8b9e;
             --accent-light: #8aadc2;
             --accent-dark: #4a6a7e;
-            --accent-glow: rgba(108, 139, 158, 0.08);
             --text-primary: #f0ece6;
             --text-secondary: #b8b0a8;
             --text-muted: #6a625a;
@@ -60,11 +59,6 @@
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-6px); }
-        }
-
         .hero, .stat-box, .about-content, .service-card, .project-card, .novel-mini-card {
             animation: fadeUp 0.8s ease forwards;
             opacity: 0;
@@ -78,9 +72,13 @@
         .service-card:nth-child(1) { animation-delay: 0.1s; }
         .service-card:nth-child(2) { animation-delay: 0.2s; }
         .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
         .project-card:nth-child(1) { animation-delay: 0.1s; }
         .project-card:nth-child(2) { animation-delay: 0.2s; }
         .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
         .novel-mini-card:nth-child(1) { animation-delay: 0.1s; }
         .novel-mini-card:nth-child(2) { animation-delay: 0.2s; }
         .novel-mini-card:nth-child(3) { animation-delay: 0.3s; }
@@ -357,13 +355,13 @@
         /* ====== الخدمات ====== */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
         }
         .service-card {
             background: var(--bg-card);
-            padding: 30px 20px;
-            border-radius: 16px;
+            padding: 25px 18px;
+            border-radius: 14px;
             border: 1px solid var(--border);
             text-align: center;
             transition: 0.4s;
@@ -374,25 +372,30 @@
             background: var(--bg-card-hover);
         }
         .service-card i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             background: rgba(108,139,158,0.08);
-            padding: 16px;
+            padding: 14px;
             border-radius: 50%;
+            transition: 0.4s;
         }
-        .service-card h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
-        .service-card p { color: var(--text-muted); font-size: 0.85rem; }
+        .service-card:hover i {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+        .service-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 6px; }
+        .service-card p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.6; }
 
         /* ====== المشاريع ====== */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 22px;
         }
         .project-card {
             background: var(--bg-card);
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
             border: 1px solid var(--border);
             transition: 0.4s;
@@ -404,7 +407,7 @@
         }
         .project-image {
             overflow: hidden;
-            height: 200px;
+            height: 190px;
             background: var(--bg-secondary);
         }
         .project-image img {
@@ -417,40 +420,40 @@
             transform: scale(1.05);
         }
         .project-info {
-            padding: 18px 20px 20px;
+            padding: 16px 18px 18px;
         }
         .project-info h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .project-info p {
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             line-height: 1.6;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .project-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 12px;
+            gap: 5px;
+            margin-bottom: 10px;
         }
         .project-tech span {
             background: rgba(108,139,158,0.08);
             color: var(--accent);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 16px;
+            font-size: 0.65rem;
             font-weight: 700;
         }
         .btn-outline-small {
             display: inline-block;
             border: 1px solid rgba(255,255,255,0.1);
-            padding: 8px 20px;
+            padding: 7px 18px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             transition: 0.3s;
         }
         .btn-outline-small:hover {
@@ -462,15 +465,15 @@
         .novels-showcase {
             background: var(--bg-secondary);
             border-radius: 16px;
-            padding: 35px;
+            padding: 30px;
             border: 1px solid var(--border);
             margin-top: 20px;
         }
         .novels-showcase .intro {
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 22px;
             line-height: 1.8;
         }
         .novels-showcase .intro i { color: var(--accent-light); }
@@ -478,13 +481,13 @@
 
         .novels-mini-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
         }
         .novel-mini-card {
             background: rgba(255,255,255,0.02);
-            padding: 18px;
-            border-radius: 14px;
+            padding: 16px;
+            border-radius: 12px;
             border: 1px solid var(--border);
             transition: 0.3s;
             text-align: center;
@@ -495,35 +498,35 @@
             background: var(--bg-card-hover);
         }
         .novel-mini-card .n-icon {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--accent-light);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             opacity: 0.5;
         }
         .novel-mini-card h4 {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 800;
             color: var(--text-primary);
         }
         .novel-mini-card h4 span { color: var(--accent); }
         .novel-mini-card .n-part {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: var(--text-muted);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         .novel-mini-card p {
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             line-height: 1.6;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .btn-novel {
             display: inline-block;
             background: rgba(108,139,158,0.08);
             color: var(--accent);
-            padding: 5px 18px;
+            padding: 4px 16px;
             border-radius: 30px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             border: 1px solid rgba(108,139,158,0.08);
             transition: 0.3s;
@@ -535,17 +538,18 @@
         }
         .novels-showcase .view-all {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 18px;
         }
         .novels-showcase .view-all a {
             display: inline-block;
             background: rgba(108,139,158,0.06);
             color: var(--accent);
-            padding: 8px 30px;
+            padding: 7px 28px;
             border-radius: 50px;
             font-weight: 700;
             border: 1px solid rgba(108,139,158,0.08);
             transition: 0.3s;
+            font-size: 0.85rem;
         }
         .novels-showcase .view-all a:hover {
             background: var(--accent);
@@ -587,15 +591,15 @@
         /* ====== التواصل ====== */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 18px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 16px;
+            margin-bottom: 25px;
         }
         .contact-card {
             background: var(--bg-card);
-            padding: 25px 18px;
+            padding: 22px 16px;
             text-align: center;
-            border-radius: 16px;
+            border-radius: 14px;
             border: 1px solid var(--border);
             transition: 0.3s;
         }
@@ -604,20 +608,20 @@
             border-color: rgba(108,139,158,0.15);
         }
         .contact-card i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
-        .contact-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
-        .contact-card p { color: var(--text-muted); font-size: 0.85rem; }
+        .contact-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+        .contact-card p { color: var(--text-muted); font-size: 0.8rem; }
         .whatsapp-btn {
             display: inline-block;
             background: #25D366;
             color: white;
-            padding: 16px 40px;
+            padding: 14px 35px;
             border-radius: 60px;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1rem;
             box-shadow: 0 10px 30px rgba(37,211,102,0.3);
             transition: 0.3s;
         }
@@ -678,9 +682,10 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .info-grid { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
             .novels-mini-grid { grid-template-columns: 1fr; }
             .lang-switcher { order: 3; width: 100%; justify-content: center; }
-            .novels-showcase { padding: 20px; }
+            .novels-showcase { padding: 18px; }
             .hero .identity-tags .tag { font-size: 0.7rem; padding: 4px 12px; }
         }
         @media (max-width: 480px) {
@@ -689,7 +694,7 @@
             .stat-box h3 { font-size: 1.8rem; }
             .stat-box i { font-size: 1.8rem; }
             .section-header h2 { font-size: 1.6rem; }
-            .service-card { padding: 20px 14px; }
+            .service-card { padding: 18px 14px; }
             .project-info { padding: 14px; }
             .novel-mini-card { padding: 14px; }
         }
@@ -708,9 +713,8 @@
                 <ul id="nav-links">
                     <li><a href="index.html" class="active-link" data-key="nav-home">الرئيسية</a></li>
                     <li><a href="#about" data-key="nav-about">عني</a></li>
-                    <li><a href="#services" data-key="nav-services">خدماتي</a></li>
-                    <li><a href="novels.html" data-key="nav-novels">رواياتي</a></li>
                     <li><a href="#projects" data-key="nav-projects">مشاريعي</a></li>
+                    <li><a href="novels.html" data-key="nav-novels">رواياتي</a></li>
                     <li><a href="#skills" data-key="nav-skills">مهاراتي</a></li>
                     <li><a href="#contact" data-key="nav-contact">اتصل بي</a></li>
                 </ul>
@@ -777,23 +781,7 @@
         </div>
     </section>
 
-    <!-- ====== الخدمات ====== -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <div class="ornament">✦ ✦ ✦</div>
-                <h2><span data-key="services-title1">خدماتي</span></h2>
-                <p data-key="services-sub">قدراتي التقنية</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card"><i class="fas fa-crown"></i><h3 data-key="service1-title">تطوير WPF & .NET</h3><p data-key="service1-desc">تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.</p></div>
-                <div class="service-card"><i class="fas fa-palette"></i><h3 data-key="service2-title">تصميم UI/UX</h3><p data-key="service2-desc">واجهات مستخدم تفاعلية وعصرية.</p></div>
-                <div class="service-card"><i class="fas fa-database"></i><h3 data-key="service3-title">قواعد البيانات</h3><p data-key="service3-desc">تكامل مثالي مع SQLite و SQL Server.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====== المشاريع ====== -->
+    <!-- ====== المشاريع + الخدمات المدمجة ====== -->
     <section class="projects" id="projects">
         <div class="container">
             <div class="section-header">
@@ -803,6 +791,7 @@
             </div>
             <div class="projects-grid">
                 
+                <!-- مشروع 1 -->
                 <div class="project-card">
                     <div class="project-image"><img src="images/fix.jpg" alt="Minsaj Fix"></div>
                     <div class="project-info">
@@ -813,6 +802,7 @@
                     </div>
                 </div>
 
+                <!-- مشروع 2 -->
                 <div class="project-card">
                     <div class="project-image"><img src="images/barcode.jpg" alt="Minsaj Barcode"></div>
                     <div class="project-info">
@@ -823,6 +813,7 @@
                     </div>
                 </div>
 
+                <!-- مشروع 3 -->
                 <div class="project-card">
                     <div class="project-image"><img src="images/fard.jpg" alt="Minsaj Fard"></div>
                     <div class="project-info">
@@ -834,8 +825,29 @@
                         </div>
                         <a href="minsaj-fard.html" class="btn-outline-small"><i class="fas fa-eye"></i> <span data-key="project-btn">اكتشف المميزات</span></a>
                     </div>
-                </div>
+                </div>                
+            </div>
 
+            <!-- ====== ⚡ قسم الخدمات المدمج تحت المشاريع ====== -->
+            <div class="services" style="padding: 40px 0 0; margin-top: 30px; border-top: 1px solid var(--border);">
+                <div class="section-header" style="margin-bottom: 25px;">
+                    <div class="ornament">✦ ✦ ✦</div>
+                    <h2 style="font-family: 'Amiri', serif; font-size: 1.8rem; font-weight: 900;"><span data-key="services-title1">خدماتي</span> <span data-key="services-title2">التقنية</span></h2>
+                    <p data-key="services-sub">قدراتي التقنية</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card"><i class="fas fa-crown"></i><h3 data-key="service1-title">تطوير WPF & .NET</h3><p data-key="service1-desc">تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.</p></div>
+                    <div class="service-card"><i class="fas fa-palette"></i><h3 data-key="service2-title">تصميم UI/UX</h3><p data-key="service2-desc">واجهات مستخدم تفاعلية وعصرية.</p></div>
+                    <div class="service-card"><i class="fas fa-database"></i><h3 data-key="service3-title">قواعد البيانات</h3><p data-key="service3-desc">تكامل مثالي مع SQLite و SQL Server.</p></div>
+                    <div class="service-card"><i class="fas fa-print"></i><h3 data-key="service4-title">طباعة الملصقات</h3><p data-key="service4-desc">تصميم وطباعة ملصقات وباركود احترافية.</p></div>
+                    <div class="service-card"><i class="fas fa-wrench"></i><h3 data-key="service5-title">صيانة الأجهزة</h3><p data-key="service5-desc">تشخيص، صيانة، وتبديل قطع أجهزة الكمبيوتر.</p></div>
+                    <div class="service-card"><i class="fas fa-network-wired"></i><h3 data-key="service6-title">الشبكات والسيرفرات</h3><p data-key="service6-desc">تنصيب وتكوين الشبكات المحلية والسيرفرات.</p></div>
+                </div>
+                <div style="text-align:center; margin-top:25px;">
+                    <a href="services.html" class="btn-outline-small" style="padding: 12px 40px; font-size: 0.95rem;">
+                        <i class="fas fa-arrow-left"></i> <span data-key="services-view-all">استكشف كل الخدمات</span>
+                    </a>
+                </div>
             </div>
 
             <!-- ====== قسم الروايات المصغر ====== -->
@@ -958,9 +970,8 @@
                 'logo-author': 'سيف الإسلام زحاف',
                 'nav-home': 'الرئيسية',
                 'nav-about': 'عني',
-                'nav-services': 'خدماتي',
-                'nav-novels': 'رواياتي',
                 'nav-projects': 'مشاريعي',
+                'nav-novels': 'رواياتي',
                 'nav-skills': 'مهاراتي',
                 'nav-contact': 'اتصل بي',
                 'hero-badge': 'مطور برمجيات وكاتب',
@@ -991,6 +1002,7 @@
                 'info-address-label': 'العنوان:',
                 'info-address': 'Oran, Algeria',
                 'services-title1': 'خدماتي',
+                'services-title2': 'التقنية',
                 'services-sub': 'قدراتي التقنية',
                 'service1-title': 'تطوير WPF & .NET',
                 'service1-desc': 'تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.',
@@ -998,6 +1010,13 @@
                 'service2-desc': 'واجهات مستخدم تفاعلية وعصرية.',
                 'service3-title': 'قواعد البيانات',
                 'service3-desc': 'تكامل مثالي مع SQLite و SQL Server.',
+                'service4-title': 'طباعة الملصقات',
+                'service4-desc': 'تصميم وطباعة ملصقات وباركود احترافية.',
+                'service5-title': 'صيانة الأجهزة',
+                'service5-desc': 'تشخيص، صيانة، وتبديل قطع أجهزة الكمبيوتر.',
+                'service6-title': 'الشبكات والسيرفرات',
+                'service6-desc': 'تنصيب وتكوين الشبكات المحلية والسيرفرات.',
+                'services-view-all': 'استكشف كل الخدمات',
                 'projects-title1': 'روائع',
                 'projects-title2': 'مشاريعي',
                 'projects-sub': 'أقوى أعمالي التقنية',
@@ -1006,6 +1025,10 @@
                 'project3-desc': 'نظام متكامل لإدارة الموارد البشرية (HR ERP) بضرائب جزائرية وبصمة ZKTeco.',
                 'project-langs': '3 لغات',
                 'project-btn': 'اكتشف المميزات',
+                'services-card-title': 'خدماتي',
+                'services-card-desc': 'تصميم شعارات، بطاقات تعريفية، إعلانات، تطوير تطبيقات سطح المكتب والويب، حلول قواعد البيانات، صيانة وتبديل القطع، تنصيب الشبكات، وغيرها من الخدمات التقنية والإبداعية.',
+                'services-card-tag': 'جميع الخدمات',
+                'services-card-btn': 'اكتشف الخدمات',
                 'novels-title': 'رواياتي',
                 'novels-sub': 'ثلاثية "بتر اللسان" – ملحمة السيادة الجزائرية',
                 'novels-intro-strong': 'ثلاثية "بتر اللسان"',
@@ -1047,9 +1070,8 @@
                 'logo-author': 'Saif El Islem Zahaf',
                 'nav-home': 'Accueil',
                 'nav-about': 'À propos',
-                'nav-services': 'Mes Services',
-                'nav-novels': 'Mes Romans',
                 'nav-projects': 'Projets',
+                'nav-novels': 'Mes Romans',
                 'nav-skills': 'Compétences',
                 'nav-contact': 'Contact',
                 'hero-badge': 'Développeur et Écrivain',
@@ -1080,6 +1102,7 @@
                 'info-address-label': 'Adresse :',
                 'info-address': 'Oran, Algérie',
                 'services-title1': 'Mes services',
+                'services-title2': 'techniques',
                 'services-sub': 'Mes compétences techniques',
                 'service1-title': 'Développement WPF & .NET',
                 'service1-desc': 'Applications desktop ultra-rapides et robustes.',
@@ -1087,6 +1110,13 @@
                 'service2-desc': 'Interfaces utilisateur interactives et modernes.',
                 'service3-title': 'Bases de données',
                 'service3-desc': 'Intégration parfaite avec SQLite et SQL Server.',
+                'service4-title': "Impression d'étiquettes",
+                'service4-desc': 'Conception et impression d\'étiquettes et codes-barres professionnels.',
+                'service5-title': 'Maintenance matérielle',
+                'service5-desc': 'Diagnostic, maintenance et remplacement de pièces informatiques.',
+                'service6-title': 'Réseaux et serveurs',
+                'service6-desc': 'Installation et configuration de réseaux locaux et de serveurs.',
+                'services-view-all': 'Explorer tous les services',
                 'projects-title1': 'Mes',
                 'projects-title2': 'projets',
                 'projects-sub': 'Mes réalisations techniques',
@@ -1095,6 +1125,10 @@
                 'project3-desc': "Système intégré de gestion des ressources humaines (HR ERP) avec fiscalité algérienne et empreinte ZKTeco.",
                 'project-langs': '3 langues',
                 'project-btn': 'Découvrir les fonctionnalités',
+                'services-card-title': 'Mes Services',
+                'services-card-desc': "Conception de logos, cartes de visite, flyers, développement d'applications desktop et web, solutions de bases de données, maintenance et remplacement de pièces, installation de réseaux, et bien d'autres services techniques et créatifs.",
+                'services-card-tag': 'Tous les services',
+                'services-card-btn': 'Découvrir les services',
                 'novels-title': 'Mes Romans',
                 'novels-sub': 'Trilogie "Battre la langue" – L\'épopée de la souveraineté algérienne',
                 'novels-intro-strong': 'Trilogie "Battre la langue"',
@@ -1136,9 +1170,8 @@
                 'logo-author': 'Saif El Islem Zahaf',
                 'nav-home': 'Home',
                 'nav-about': 'About',
-                'nav-services': 'My Services',
-                'nav-novels': 'My Novels',
                 'nav-projects': 'Projects',
+                'nav-novels': 'My Novels',
                 'nav-skills': 'Skills',
                 'nav-contact': 'Contact',
                 'hero-badge': 'Developer & Novelist',
@@ -1169,6 +1202,7 @@
                 'info-address-label': 'Address:',
                 'info-address': 'Oran, Algeria',
                 'services-title1': 'My Services',
+                'services-title2': 'Technical',
                 'services-sub': 'My technical capabilities',
                 'service1-title': 'WPF & .NET Development',
                 'service1-desc': 'Ultra-fast and robust desktop applications.',
@@ -1176,6 +1210,13 @@
                 'service2-desc': 'Interactive and modern user interfaces.',
                 'service3-title': 'Databases',
                 'service3-desc': 'Perfect integration with SQLite and SQL Server.',
+                'service4-title': 'Label Printing',
+                'service4-desc': 'Design and print professional labels and barcodes.',
+                'service5-title': 'Hardware Maintenance',
+                'service5-desc': 'Diagnostics, maintenance, and replacement of computer parts.',
+                'service6-title': 'Networks & Servers',
+                'service6-desc': 'Installation and configuration of local networks and servers.',
+                'services-view-all': 'Explore all services',
                 'projects-title1': 'My',
                 'projects-title2': 'Projects',
                 'projects-sub': 'My strongest technical works',
@@ -1184,6 +1225,10 @@
                 'project3-desc': 'An integrated Human Resources management system (HR ERP) with Algerian taxation and ZKTeco fingerprint.',
                 'project-langs': '3 Languages',
                 'project-btn': 'Discover Features',
+                'services-card-title': 'My Services',
+                'services-card-desc': 'Logo design, business cards, flyers, desktop and web application development, database solutions, hardware repair and replacement, network installation, and other technical and creative services.',
+                'services-card-tag': 'All services',
+                'services-card-btn': 'Discover Services',
                 'novels-title': 'My Novels',
                 'novels-sub': '"Battre la langue" Trilogy – The epic of Algerian sovereignty',
                 'novels-intro-strong': '"Battre la langue" Trilogy',
@@ -1252,7 +1297,8 @@
                     if (key === 'hero-desc' || key === 'about-desc' || key === 'about-text3' ||
                         key === 'novels-intro-text' || key === 'n1-desc' || key === 'n2-desc' ||
                         key === 'n3-desc' || key === 'footer-text' || key === 'footer-rights' ||
-                        key === 'project1-desc' || key === 'project2-desc' || key === 'project3-desc') {
+                        key === 'project1-desc' || key === 'project2-desc' || key === 'project3-desc' ||
+                        key === 'services-card-desc') {
                         el.innerHTML = translations[lang][key];
                     } else {
                         el.textContent = translations[lang][key];
