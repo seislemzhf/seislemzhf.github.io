@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدماتي | Minsaj DZ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ====== إعدادات عامة ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+            background-attachment: fixed;
+            color: #F8FAFC;
+            line-height: 1.7;
+            transition: 0.3s;
+        }
+        body.en, body.fr {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        :root {
+            --primary: #0F172A;
+            --secondary: #1E293B;
+            --accent: #10B981;
+            --accent2: #06B6D4;
+            --gold: #F59E0B;
+            --purple: #8B5CF6;
+            --pink: #EC4899;
+            --red: #EF4444;
+            --muted: #94a3b8;
+            --light: #F8FAFC;
+        }
+
+        /* ====== الشريط العلوي ====== */
+        header {
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(15px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+        .logo span { color: var(--accent); }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .btn-home {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--accent);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            transition: 0.3s;
+        }
+        .btn-home:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* ====== زر تغيير اللغة ====== */
+        .lang-switcher {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            color: var(--muted);
+            padding: 5px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.75rem;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        /* ====== البطل ====== */
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--muted);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* ====== الأقسام ====== */
+        section { padding: 60px 0; }
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        .section-header h2 span { color: var(--accent); }
+        .section-header p { color: var(--muted); font-size: 1.1rem; }
+
+        /* ====== أقسام الخدمات ====== */
+        .service-category {
+            margin-bottom: 60px;
+        }
+        .service-category:last-child {
+            margin-bottom: 0;
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255,255,255,0.05);
+        }
+        .category-header .cat-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .category-header .cat-icon.design { background: rgba(139, 92, 246, 0.2); color: var(--purple); }
+        .category-header .cat-icon.dev { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
+        .category-header .cat-icon.it { background: rgba(6, 182, 212, 0.2); color: var(--accent2); }
+        .category-header h3 {
+            font-size: 1.7rem;
+            font-weight: 900;
+        }
+        .category-header h3 span.design { color: var(--purple); }
+        .category-header h3 span.dev { color: var(--accent); }
+        .category-header h3 span.it { color: var(--accent2); }
+        .category-header p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-top: 5px;
+        }
+
+        /* ====== بطاقات الخدمات ====== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .service-card {
+            background: var(--secondary);
+            padding: 25px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .service-card.design-card::before { background: var(--purple); }
+        .service-card.dev-card::before { background: var(--accent); }
+        .service-card.it-card::before { background: var(--accent2); }
+
+        .service-card:hover::before { opacity: 1; }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255,255,255,0.15);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        .service-card .icon-wrapper {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.4s;
+            font-size: 1.4rem;
+        }
+        .service-card.design-card .icon-wrapper { background: rgba(139, 92, 246, 0.15); color: var(--purple); }
+        .service-card.dev-card .icon-wrapper { background: rgba(16, 185, 129, 0.15); color: var(--accent); }
+        .service-card.it-card .icon-wrapper { background: rgba(6, 182, 212, 0.15); color: var(--accent2); }
+
+        .service-card:hover .icon-wrapper {
+            transform: scale(1.1) rotateY(180deg);
+        }
+        .service-card h4 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .service-card p {
+            color: var(--muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .service-card .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .service-card .service-tags span {
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+        .service-card.design-card .service-tags span {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--purple);
+        }
+        .service-card.dev-card .service-tags span {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent);
+        }
+        .service-card.it-card .service-tags span {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent2);
+        }
+
+        /* ====== فورم التواصل ====== */
+        .contact-form-wrapper {
+            background: var(--secondary);
+            padding: 45px 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            max-width: 750px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .contact-form-wrapper h3 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .contact-form-wrapper h3 span { color: var(--accent); }
+        .contact-form-wrapper .form-sub {
+            text-align: center;
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        .form-group label span { color: var(--red); }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            color: var(--light);
+            font-size: 0.95rem;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(16,185,129,0.15);
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .form-group select option {
+            background: var(--secondary);
+            color: var(--light);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .btn-submit {
+            display: inline-block;
+            width: 100%;
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+        .btn-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 40px rgba(16,185,129,0.5);
+        }
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: rgba(16,185,129,0.1);
+            border-radius: 16px;
+            border: 1px solid rgba(16,185,129,0.3);
+        }
+        .form-success i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        .form-success h4 {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .form-success p { color: var(--muted); }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 12px 35px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 1rem;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.4);
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn-whatsapp:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 60px rgba(37, 211, 102, 0.6);
+        }
+
+        .contact-extra {
+            text-align: center;
+            margin-top: 25px;
+        }
+        .contact-extra p {
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        /* ====== الفوتر ====== */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--muted);
+            margin-top: 40px;
+        }
+
+        .back-section {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 800;
+            transition: 0.3s;
+        }
+        .back-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(16,185,129,0.5);
+        }
+
+        /* ====== شارة القسم ====== */
+        .section-tag {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .section-tag.design-tag { background: rgba(139, 92, 246, 0.2); color: var(--purple); }
+        .section-tag.dev-tag { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
+        .section-tag.it-tag { background: rgba(6, 182, 212, 0.2); color: var(--accent2); }
+
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2.2rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .contact-form-wrapper { padding: 25px 20px; }
+            .lang-switcher { width: 100%; justify-content: center; }
+            .header-content { justify-content: center; }
+            .header-buttons { justify-content: center; }
+            .category-header { flex-direction: column; text-align: center; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== الشريط العلوي ====== -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">Minsaj <span>DZ</span></div>
+            <div class="header-buttons">
+                <a href="index.html" class="btn-home">
+                    <i class="fas fa-home"></i> <span data-key="home-btn">الرئيسية</span>
+                </a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="ar">🇩🇿 عربي</button>
+                    <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+                    <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== البطل ====== -->
+    <section class="hero">
+        <div class="container">
+            <h1><span data-key="hero-title">خدماتي</span></h1>
+            <p class="subtitle" data-key="hero-desc">ثلاثة محاور رئيسية لتلبية كل احتياجاتك التقنية والإبداعية: التصميم، تطوير التطبيقات، وحلول تقنية المعلومات الشاملة.</p>
+        </div>
+    </section>
+
+    <!-- ====== القسم 1: خدمات التصميم ====== -->
+    <section>
+        <div class="container">
+            <div class="service-category">
+                <div class="category-header">
+                    <div class="cat-icon design"><i class="fas fa-paint-brush"></i></div>
+                    <div>
+                        <h3><span class="design" data-key="cat1-title">خدمات التصميم</span></h3>
+                        <p data-key="cat1-desc">هوية بصرية احترافية تعكس شخصية علامتك التجارية</p>
+                    </div>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card design-card">
+                        <div class="icon-wrapper"><i class="fas fa-crown"></i></div>
+                        <span class="section-tag design-tag" data-key="tag-design">تصميم</span>
+                        <h4 data-key="d1-title">شعارات احترافية (Logo)</h4>
+                        <p data-key="d1-desc">تصميم شعارات فريدة تعكس هوية علامتك التجارية وتترك انطباعاً قوياً.</p>
+                        <div class="service-tags">
+                            <span>Logo</span>
+                            <span>Branding</span>
+                            <span>هوية</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card design-card">
+                        <div class="icon-wrapper"><i class="fas fa-id-card"></i></div>
+                        <span class="section-tag design-tag" data-key="tag-design">تصميم</span>
+                        <h4 data-key="d2-title">بطاقات تعريفية (Visite Card)</h4>
+                        <p data-key="d2-desc">بطاقات أعمال عصرية وأنيقة تعكس احترافية عملك وتترك انطباعاً مميزاً.</p>
+                        <div class="service-tags">
+                            <span>Visite Card</span>
+                            <span>بطاقة أعمال</span>
+                            <span>تصميم</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card design-card">
+                        <div class="icon-wrapper"><i class="fas fa-poster"></i></div>
+                        <span class="section-tag design-tag" data-key="tag-design">تصميم</span>
+                        <h4 data-key="d3-title">إعلانات ومنشورات (Flyers)</h4>
+                        <p data-key="d3-desc">تصميم إعلانات مطبوعة ورقمية، منشورات وسائل التواصل، وملصقات دعائية جذابة.</p>
+                        <div class="service-tags">
+                            <span>Flyer</span>
+                            <span>إعلان</span>
+                            <span>منشور</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card design-card">
+                        <div class="icon-wrapper"><i class="fas fa-palette"></i></div>
+                        <span class="section-tag design-tag" data-key="tag-design">تصميم</span>
+                        <h4 data-key="d4-title">تصميم واجهات (UI/UX)</h4>
+                        <p data-key="d4-desc">تصميم واجهات تطبيقات ومواقع تفاعلية، مع نماذج أولية ونماذج تجريبية.</p>
+                        <div class="service-tags">
+                            <span>UI/UX</span>
+                            <span>Figma</span>
+                            <span>Prototype</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== القسم 2: تطوير التطبيقات ====== -->
+            <div class="service-category">
+                <div class="category-header">
+                    <div class="cat-icon dev"><i class="fas fa-code"></i></div>
+                    <div>
+                        <h3><span class="dev" data-key="cat2-title">تطوير التطبيقات</span></h3>
+                        <p data-key="cat2-desc">حلول برمجية مخصصة تلبي احتياجات عملك بدقة</p>
+                    </div>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card dev-card">
+                        <div class="icon-wrapper"><i class="fas fa-display"></i></div>
+                        <span class="section-tag dev-tag" data-key="tag-dev">تطوير</span>
+                        <h4 data-key="app1-title">تطبيقات سطح المكتب (Desktop)</h4>
+                        <p data-key="app1-desc">تطبيقات ويندوز عالية الأداء باستخدام .NET و WPF و C#، بواجهات سريعة وجذابة.</p>
+                        <div class="service-tags">
+                            <span>C#</span>
+                            <span>.NET</span>
+                            <span>WPF</span>
+                            <span>WinForms</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card dev-card">
+                        <div class="icon-wrapper"><i class="fas fa-globe"></i></div>
+                        <span class="section-tag dev-tag" data-key="tag-dev">تطوير</span>
+                        <h4 data-key="app2-title">تطبيقات الويب (Web)</h4>
+                        <p data-key="app2-desc">مواقع وتطبيقات ويب حديثة متجاوبة مع جميع الأجهزة، باستخدام أحدث التقنيات.</p>
+                        <div class="service-tags">
+                            <span>HTML/CSS</span>
+                            <span>JavaScript</span>
+                            <span>React</span>
+                            <span>ASP.NET</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card dev-card">
+                        <div class="icon-wrapper"><i class="fas fa-database"></i></div>
+                        <span class="section-tag dev-tag" data-key="tag-dev">تطوير</span>
+                        <h4 data-key="app3-title">حلول قواعد البيانات</h4>
+                        <p data-key="app3-desc">تصميم وتطوير قواعد بيانات قوية، وتكامل مثالي مع SQLite و SQL Server و PostgreSQL.</p>
+                        <div class="service-tags">
+                            <span>SQL Server</span>
+                            <span>PostgreSQL</span>
+                            <span>SQLite</span>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card dev-card">
+                        <div class="icon-wrapper"><i class="fas fa-building-columns"></i></div>
+                        <span class="section-tag dev-tag" data-key="tag-dev">تطوير</span>
+                        <h4 data-key="app4-title">حلول المؤسسات (ERP)</h4>
+                        <p data-key="app4-desc">أنظمة متكاملة لإدارة الموارد البشرية، المخزون، المبيعات، والمحاسبة حسب احتياجاتك.</p>
+                        <div class="service-tags">
+                            <span>HR</span>
+                            <span>Inventory</span>
+                            <span>CRM</span>
+                            <span>Analytics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ====== القسم 3: حلول تقنية المعلومات ====== -->
+            <div class="service-category">
+                <div class="category-header">
+                    <div class="cat-icon it"><i class="fas fa-screwdriver-wrench"></i></div>
+                    <div>
+                        <h3><span class="it" data-key="cat3-title">حلول تقنية المعلومات</span></h3>
+                        <p data-key="cat3-desc">صيانة، إصلاح، وتجهيز شامل لأنظمة المعلومات</p>
+                    </div>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card it-card">
+                        <div class="icon-wrapper"><i class="fas fa-desktop"></i></div>
+                        <span class="section-tag it-tag" data-key="tag-it">IT</span>
+                        <h4 data-key="it1-title">تنصيب أنظمة التشغيل</h4>
+                        <p data-key="it1-desc">تنصيب وتحديث Windows و Linux، تهيئة الأجهزة، وتركيب البرامج الأساسية.</p>
+                        <div class="service-tags">
+                            <span>Windows</span>
+                            <span>Linux</span>
+                            <span>تنصيب</span>
+                            <span>تحديث</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card it-card">
+                        <div class="icon-wrapper"><i class="fas fa-microchip"></i></div>
+                        <span class="section-tag it-tag" data-key="tag-it">IT</span>
+                        <h4 data-key="it2-title">صيانة وتبديل القطع</h4>
+                        <p data-key="it2-desc">تبديل المعالجات، الرامات، التخزين، البطاريات، والشاشات. صيانة شاملة للأجهزة.</p>
+                        <div class="service-tags">
+                            <span>CPU</span>
+                            <span>RAM</span>
+                            <span>SSD</span>
+                            <span>بطارية</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card it-card">
+                        <div class="icon-wrapper"><i class="fas fa-stethoscope"></i></div>
+                        <span class="section-tag it-tag" data-key="tag-it">IT</span>
+                        <h4 data-key="it3-title">فحص شامل للأجهزة</h4>
+                        <p data-key="it3-desc">تشخيص دقيق لمشاكل الأجهزة، فحص كامل للمكونات، وتقرير مفصل عن الحالة.</p>
+                        <div class="service-tags">
+                            <span>تشخيص</span>
+                            <span>فحص</span>
+                            <span>تقرير</span>
+                            <span>تحليل</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card it-card">
+                        <div class="icon-wrapper"><i class="fas fa-network-wired"></i></div>
+                        <span class="section-tag it-tag" data-key="tag-it">IT</span>
+                        <h4 data-key="it4-title">تنصيب الشبكات</h4>
+                        <p data-key="it4-desc">تنصيب وتكوين الشبكات المحلية، إعداد السيرفرات، وحلول الاتصال الآمنة.</p>
+                        <div class="service-tags">
+                            <span>شبكات</span>
+                            <span>سيرفر</span>
+                            <span>أمان</span>
+                            <span>اتصال</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== فورم التواصل ====== -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2><span data-key="form-title">تواصل معي</span></h2>
+                <p data-key="form-sub">أرسل لي تفاصيل مشروعك وسأرد عليك في أقرب وقت</p>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <h3><span data-key="form-head">احصل على عرض سعر</span></h3>
+                <p class="form-sub" data-key="form-sub-desc">املأ النموذج وسأتصل بك خلال 24 ساعة</p>
+
+                <form id="contactForm" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-key="form-name">الاسم الكامل <span>*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="أدخل اسمك الكامل">
+                        </div>
+                        <div class="form-group">
+                            <label data-key="form-email">البريد الإلكتروني <span>*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="example@mail.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-key="form-phone">رقم الهاتف</label>
+                        <input type="tel" id="phone" name="phone" placeholder="05XX-XX-XX-XX">
+                    </div>
+
+                    <div class="form-group">
+                        <label data-key="form-service">نوع الخدمة المطلوبة <span>*</span></label>
+                        <select id="service" name="service" required>
+                            <option value="" data-key="form-service-placeholder">-- اختر الخدمة --</option>
+                            <optgroup label="🎨 خدمات التصميم">
+                                <option value="logo" data-key="form-service-logo">شعار احترافي (Logo)</option>
+                                <option value="visite" data-key="form-service-visite">بطاقة تعريفية (Visite Card)</option>
+                                <option value="flyer" data-key="form-service-flyer">إعلان ومنشور (Flyer)</option>
+                                <option value="uiux" data-key="form-service-uiux">تصميم واجهات UI/UX</option>
+                            </optgroup>
+                            <optgroup label="💻 تطوير التطبيقات">
+                                <option value="desktop" data-key="form-service-desktop">تطوير تطبيقات سطح المكتب</option>
+                                <option value="web" data-key="form-service-web">تطوير تطبيقات الويب</option>
+                                <option value="database" data-key="form-service-database">حلول قواعد البيانات</option>
+                                <option value="erp" data-key="form-service-erp">حلول المؤسسات ERP</option>
+                            </optgroup>
+                            <optgroup label="🛠️ حلول تقنية المعلومات">
+                                <option value="os" data-key="form-service-os">تنصيب أنظمة التشغيل</option>
+                                <option value="repair" data-key="form-service-repair">صيانة وتبديل القطع</option>
+                                <option value="diagnostic" data-key="form-service-diagnostic">فحص شامل للأجهزة</option>
+                                <option value="network" data-key="form-service-network">تنصيب الشبكات</option>
+                            </optgroup>
+                            <option value="other" data-key="form-service-other">خدمة أخرى</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label data-key="form-message">تفاصيل المشروع <span>*</span></label>
+                        <textarea id="message" name="message" required placeholder="اكتب تفاصيل مشروعك، متطلباتك، الميزانية، والمدة المتوقعة..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i> <span data-key="form-submit">إرسال الطلب</span>
+                    </button>
+                </form>
+
+                <div class="form-success" id="formSuccess">
+                    <i class="fas fa-check-circle"></i>
+                    <h4 data-key="form-success-title">تم الإرسال بنجاح! ✅</h4>
+                    <p data-key="form-success-desc">شكراً لك! سأتصل بك في أقرب وقت ممكن خلال 24 ساعة.</p>
+                </div>
+
+                <div class="contact-extra">
+                    <p data-key="form-or">أو تواصل معي مباشرة عبر</p>
+                    <a href="https://wa.me/2130657200758" target="_blank" class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> <span data-key="form-whatsapp">واتساب</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== زر العودة ====== -->
+    <div class="back-section">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-right"></i> <span data-key="back-btn">العودة للصفحة الرئيسية</span>
+        </a>
+    </div>
+
+    <!-- ====== الفوتر ====== -->
+    <footer>
+        <div class="container">
+            <p data-key="footer-made">🇩🇿 Made in Algeria with ❤️</p>
+            <p data-key="footer-rights">© 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // ====== البيانات متعددة اللغات ======
+        const translations = {
+            ar: {
+                'home-btn': 'الرئيسية',
+                'hero-title': 'خدماتي',
+                'hero-desc': 'ثلاثة محاور رئيسية لتلبية كل احتياجاتك التقنية والإبداعية: التصميم، تطوير التطبيقات، وحلول تقنية المعلومات الشاملة.',
+                'cat1-title': 'خدمات التصميم',
+                'cat1-desc': 'هوية بصرية احترافية تعكس شخصية علامتك التجارية',
+                'cat2-title': 'تطوير التطبيقات',
+                'cat2-desc': 'حلول برمجية مخصصة تلبي احتياجات عملك بدقة',
+                'cat3-title': 'حلول تقنية المعلومات',
+                'cat3-desc': 'صيانة، إصلاح، وتجهيز شامل لأنظمة المعلومات',
+                'tag-design': 'تصميم',
+                'tag-dev': 'تطوير',
+                'tag-it': 'IT',
+                'd1-title': 'شعارات احترافية (Logo)',
+                'd1-desc': 'تصميم شعارات فريدة تعكس هوية علامتك التجارية وتترك انطباعاً قوياً.',
+                'd2-title': 'بطاقات تعريفية (Visite Card)',
+                'd2-desc': 'بطاقات أعمال عصرية وأنيقة تعكس احترافية عملك وتترك انطباعاً مميزاً.',
+                'd3-title': 'إعلانات ومنشورات (Flyers)',
+                'd3-desc': 'تصميم إعلانات مطبوعة ورقمية، منشورات وسائل التواصل، وملصقات دعائية جذابة.',
+                'd4-title': 'تصميم واجهات (UI/UX)',
+                'd4-desc': 'تصميم واجهات تطبيقات ومواقع تفاعلية، مع نماذج أولية ونماذج تجريبية.',
+                'app1-title': 'تطبيقات سطح المكتب (Desktop)',
+                'app1-desc': 'تطبيقات ويندوز عالية الأداء باستخدام .NET و WPF و C#، بواجهات سريعة وجذابة.',
+                'app2-title': 'تطبيقات الويب (Web)',
+                'app2-desc': 'مواقع وتطبيقات ويب حديثة متجاوبة مع جميع الأجهزة، باستخدام أحدث التقنيات.',
+                'app3-title': 'حلول قواعد البيانات',
+                'app3-desc': 'تصميم وتطوير قواعد بيانات قوية، وتكامل مثالي مع SQLite و SQL Server و PostgreSQL.',
+                'app4-title': 'حلول المؤسسات (ERP)',
+                'app4-desc': 'أنظمة متكاملة لإدارة الموارد البشرية، المخزون، المبيعات، والمحاسبة حسب احتياجاتك.',
+                'it1-title': 'تنصيب أنظمة التشغيل',
+                'it1-desc': 'تنصيب وتحديث Windows و Linux، تهيئة الأجهزة، وتركيب البرامج الأساسية.',
+                'it2-title': 'صيانة وتبديل القطع',
+                'it2-desc': 'تبديل المعالجات، الرامات، التخزين، البطاريات، والشاشات. صيانة شاملة للأجهزة.',
+                'it3-title': 'فحص شامل للأجهزة',
+                'it3-desc': 'تشخيص دقيق لمشاكل الأجهزة، فحص كامل للمكونات، وتقرير مفصل عن الحالة.',
+                'it4-title': 'تنصيب الشبكات',
+                'it4-desc': 'تنصيب وتكوين الشبكات المحلية، إعداد السيرفرات، وحلول الاتصال الآمنة.',
+                'form-title': 'تواصل معي',
+                'form-sub': 'أرسل لي تفاصيل مشروعك وسأرد عليك في أقرب وقت',
+                'form-head': 'احصل على عرض سعر',
+                'form-sub-desc': 'املأ النموذج وسأتصل بك خلال 24 ساعة',
+                'form-name': 'الاسم الكامل',
+                'form-email': 'البريد الإلكتروني',
+                'form-phone': 'رقم الهاتف',
+                'form-service': 'نوع الخدمة المطلوبة',
+                'form-service-placeholder': '-- اختر الخدمة --',
+                'form-service-logo': 'شعار احترافي (Logo)',
+                'form-service-visite': 'بطاقة تعريفية (Visite Card)',
+                'form-service-flyer': 'إعلان ومنشور (Flyer)',
+                'form-service-uiux': 'تصميم واجهات UI/UX',
+                'form-service-desktop': 'تطوير تطبيقات سطح المكتب',
+                'form-service-web': 'تطوير تطبيقات الويب',
+                'form-service-database': 'حلول قواعد البيانات',
+                'form-service-erp': 'حلول المؤسسات ERP',
+                'form-service-os': 'تنصيب أنظمة التشغيل',
+                'form-service-repair': 'صيانة وتبديل القطع',
+                'form-service-diagnostic': 'فحص شامل للأجهزة',
+                'form-service-network': 'تنصيب الشبكات',
+                'form-service-other': 'خدمة أخرى',
+                'form-message': 'تفاصيل المشروع',
+                'form-submit': 'إرسال الطلب',
+                'form-success-title': 'تم الإرسال بنجاح! ✅',
+                'form-success-desc': 'شكراً لك! سأتصل بك في أقرب وقت ممكن خلال 24 ساعة.',
+                'form-or': 'أو تواصل معي مباشرة عبر',
+                'form-whatsapp': 'واتساب',
+                'back-btn': 'العودة للصفحة الرئيسية',
+                'footer-made': '🇩🇿 Made in Algeria with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - جميع الحقوق محفوظة'
+            },
+            fr: {
+                'home-btn': 'Accueil',
+                'hero-title': 'Mes Services',
+                'hero-desc': 'Trois axes principaux pour répondre à tous vos besoins techniques et créatifs: le design, le développement d\'applications, et les solutions informatiques complètes.',
+                'cat1-title': 'Services de Design',
+                'cat1-desc': 'Une identité visuelle professionnelle qui reflète la personnalité de votre marque',
+                'cat2-title': 'Développement d\'applications',
+                'cat2-desc': 'Des solutions logicielles sur mesure qui répondent précisément aux besoins de votre entreprise',
+                'cat3-title': 'Solutions Informatiques',
+                'cat3-desc': 'Maintenance, réparation et équipement complet des systèmes informatiques',
+                'tag-design': 'Design',
+                'tag-dev': 'Développement',
+                'tag-it': 'IT',
+                'd1-title': 'Logo professionnel',
+                'd1-desc': 'Conception de logos uniques qui reflètent l\'identité de votre marque et laissent une impression forte.',
+                'd2-title': 'Cartes de visite (Visite Card)',
+                'd2-desc': 'Cartes de visite modernes et élégantes qui reflètent le professionnalisme de votre entreprise.',
+                'd3-title': 'Flyers et publications',
+                'd3-desc': 'Conception de publicités imprimées et numériques, publications sur les réseaux sociaux et affiches promotionnelles.',
+                'd4-title': 'Design UI/UX',
+                'd4-desc': 'Conception d\'interfaces d\'applications et de sites web interactifs, avec des prototypes et maquettes.',
+                'app1-title': 'Applications Desktop',
+                'app1-desc': 'Applications Windows haute performance avec .NET, WPF et C#, avec des interfaces rapides et attrayantes.',
+                'app2-title': 'Applications Web',
+                'app2-desc': 'Sites et applications web modernes et responsives, utilisant les dernières technologies.',
+                'app3-title': 'Bases de données',
+                'app3-desc': 'Conception et développement de bases de données robustes, intégration parfaite avec SQLite, SQL Server et PostgreSQL.',
+                'app4-title': 'Solutions ERP',
+                'app4-desc': 'Systèmes intégrés de gestion des ressources humaines, stocks, ventes et comptabilité selon vos besoins.',
+                'it1-title': 'Installation des systèmes d\'exploitation',
+                'it1-desc': 'Installation et mise à jour de Windows et Linux, configuration des appareils et installation des logiciels de base.',
+                'it2-title': 'Maintenance et remplacement de pièces',
+                'it2-desc': 'Remplacement des processeurs, RAM, stockage, batteries et écrans. Maintenance complète des appareils.',
+                'it3-title': 'Diagnostic complet',
+                'it3-desc': 'Diagnostic précis des problèmes matériels, inspection complète des composants et rapport détaillé.',
+                'it4-title': 'Installation des réseaux',
+                'it4-desc': 'Installation et configuration des réseaux locaux, mise en place des serveurs et solutions de connexion sécurisée.',
+                'form-title': 'Contactez-moi',
+                'form-sub': 'Envoyez-moi les détails de votre projet et je vous répondrai dans les plus brefs délais',
+                'form-head': 'Obtenez un devis',
+                'form-sub-desc': 'Remplissez le formulaire et je vous contacterai sous 24h',
+                'form-name': 'Nom complet',
+                'form-email': 'Email',
+                'form-phone': 'Téléphone',
+                'form-service': 'Service requis',
+                'form-service-placeholder': '-- Choisissez un service --',
+                'form-service-logo': 'Logo professionnel',
+                'form-service-visite': 'Carte de visite',
+                'form-service-flyer': 'Flyer et publication',
+                'form-service-uiux': 'Design UI/UX',
+                'form-service-desktop': 'Développement Desktop',
+                'form-service-web': 'Développement Web',
+                'form-service-database': 'Bases de données',
+                'form-service-erp': 'Solutions ERP',
+                'form-service-os': 'Installation OS',
+                'form-service-repair': 'Maintenance et réparation',
+                'form-service-diagnostic': 'Diagnostic complet',
+                'form-service-network': 'Installation réseau',
+                'form-service-other': 'Autre service',
+                'form-message': 'Détails du projet',
+                'form-submit': 'Envoyer la demande',
+                'form-success-title': 'Envoyé avec succès! ✅',
+                'form-success-desc': 'Merci! Je vous contacterai dans les plus brefs délais sous 24h.',
+                'form-or': 'Ou contactez-moi directement via',
+                'form-whatsapp': 'WhatsApp',
+                'back-btn': 'Retour à l\'accueil',
+                'footer-made': '🇩🇿 Made in Algeria with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - Tous droits réservés'
+            },
+            en: {
+                'home-btn': 'Home',
+                'hero-title': 'My Services',
+                'hero-desc': 'Three main pillars to meet all your technical and creative needs: Design, Application Development, and Comprehensive IT Solutions.',
+                'cat1-title': 'Design Services',
+                'cat1-desc': 'A professional visual identity that reflects the personality of your brand',
+                'cat2-title': 'Application Development',
+                'cat2-desc': 'Custom software solutions that precisely meet your business needs',
+                'cat3-title': 'IT Solutions',
+                'cat3-desc': 'Maintenance, repair, and comprehensive setup of information systems',
+                'tag-design': 'Design',
+                'tag-dev': 'Development',
+                'tag-it': 'IT',
+                'd1-title': 'Professional Logo Design',
+                'd1-desc': 'Creating unique logos that reflect your brand identity and make a strong impression.',
+                'd2-title': 'Visiting Cards',
+                'd2-desc': 'Modern and elegant business cards that reflect your professionalism and make a lasting impression.',
+                'd3-title': 'Flyers & Advertisements',
+                'd3-desc': 'Design of print and digital ads, social media posts, and attractive promotional materials.',
+                'd4-title': 'UI/UX Design',
+                'd4-desc': 'Design of interactive application and website interfaces, with prototypes and mockups.',
+                'app1-title': 'Desktop Applications',
+                'app1-desc': 'High-performance Windows applications using .NET, WPF and C#, with fast and attractive interfaces.',
+                'app2-title': 'Web Applications',
+                'app2-desc': 'Modern and responsive websites and applications using the latest technologies.',
+                'app3-title': 'Database Solutions',
+                'app3-desc': 'Design and development of robust databases, perfect integration with SQLite, SQL Server and PostgreSQL.',
+                'app4-title': 'ERP Enterprise Solutions',
+                'app4-desc': 'Integrated systems for managing human resources, inventory, sales, and accounting according to your needs.',
+                'it1-title': 'Operating System Installation',
+                'it1-desc': 'Installation and update of Windows and Linux, device setup, and basic software installation.',
+                'it2-title': 'Hardware Repair & Replacement',
+                'it2-desc': 'Replacement of processors, RAM, storage, batteries, and screens. Comprehensive device maintenance.',
+                'it3-title': 'Complete Device Diagnostics',
+                'it3-desc': 'Accurate diagnosis of hardware issues, full component inspection, and detailed condition report.',
+                'it4-title': 'Network Setup',
+                'it4-desc': 'Installation and configuration of local networks, server setup, and secure connectivity solutions.',
+                'form-title': 'Contact Me',
+                'form-sub': 'Send me your project details and I will get back to you as soon as possible',
+                'form-head': 'Get a Quote',
+                'form-sub-desc': 'Fill out the form and I will contact you within 24 hours',
+                'form-name': 'Full Name',
+                'form-email': 'Email',
+                'form-phone': 'Phone Number',
+                'form-service': 'Service Required',
+                'form-service-placeholder': '-- Select a service --',
+                'form-service-logo': 'Professional Logo',
+                'form-service-visite': 'Visiting Card',
+                'form-service-flyer': 'Flyer & Advertisement',
+                'form-service-uiux': 'UI/UX Design',
+                'form-service-desktop': 'Desktop Development',
+                'form-service-web': 'Web Development',
+                'form-service-database': 'Database Solutions',
+                'form-service-erp': 'ERP Solutions',
+                'form-service-os': 'OS Installation',
+                'form-service-repair': 'Hardware Repair',
+                'form-service-diagnostic': 'Complete Diagnostic',
+                'form-service-network': 'Network Setup',
+                'form-service-other': 'Other Service',
+                'form-message': 'Project Details',
+                'form-submit': 'Send Request',
+                'form-success-title': 'Sent Successfully! ✅',
+                'form-success-desc': 'Thank you! I will contact you as soon as possible within 24 hours.',
+                'form-or': 'Or contact me directly via',
+                'form-whatsapp': 'WhatsApp',
+                'back-btn': 'Back to Homepage',
+                'footer-made': '🇩🇿 Made in Algeria with ❤️',
+                'footer-rights': '© 2026 Minsaj DZ - All rights reserved'
+            }
+        };
+
+        // ====== تغيير اللغة ======
+        let currentLang = 'ar';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const html = document.documentElement;
+            if (lang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                document.body.className = '';
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', lang);
+                document.body.className = lang;
+            }
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.dataset.key;
+                if (translations[lang][key] !== undefined) {
+                    if (key === 'hero-desc' || key === 'footer-made' || key === 'footer-rights' || key === 'form-success-desc') {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // تحديث الـ placeholder في الفورم
+            document.querySelectorAll('input, textarea, select').forEach(el => {
+                const key = el.getAttribute('data-placeholder-key');
+                if (key && translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            localStorage.setItem('preferred-lang-services', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeLanguage(btn.dataset.lang);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang-services') || 'ar';
+            changeLanguage(savedLang);
+        });
+
+        // ====== إرسال الفورم للإيميل ======
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // الحصول على اسم الخدمة المختارة
+            const serviceSelect = document.getElementById('service');
+            const serviceText = serviceSelect.options[serviceSelect.selectedIndex].text;
+
+            fetch('https://formsubmit.co/ajax/seislemzhf@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    phone: data.phone || 'غير مدخل',
+                    service: serviceText,
+                    message: data.message,
+                    _subject: `طلب خدمة جديد من ${data.name} - ${serviceText}`,
+                    _captcha: 'false',
+                    _template: 'table'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('contactForm').style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال الطلب';
+            })
+            .catch(error => {
+                alert('حدث خطأ! حاول مرة أخرى أو تواصل عبر واتساب.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال الطلب';
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
