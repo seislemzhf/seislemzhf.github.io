@@ -299,6 +299,23 @@
         }
         .service-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
         .service-card p { color: var(--muted); font-size: 0.9rem; }
+        .service-card .btn-service {
+            display: inline-block;
+            margin-top: 15px;
+            background: rgba(16,185,129,0.15);
+            color: var(--accent);
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            border: 1px solid rgba(16,185,129,0.2);
+        }
+        .service-card .btn-service:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
 
         /* ====== قسم المشاريع ====== */
         .projects-grid {
@@ -514,9 +531,9 @@
             <div class="logo">Minsaj<span>DZ</span></div>
             <nav>
                 <ul id="nav-links">
-                    <li><a href="#home" data-key="nav-home">الرئيسية</a></li>
+                    <li><a href="index.html" data-key="nav-home">الرئيسية</a></li>
                     <li><a href="#about" data-key="nav-about">عني</a></li>
-                    <li><a href="#services" data-key="nav-services">خدماتي</a></li>
+                    <li><a href="services.html" data-key="nav-services">خدماتي</a></li>  <!-- ← رابط services.html -->
                     <li><a href="#projects" data-key="nav-projects">مشاريعي</a></li>
                     <li><a href="#skills" data-key="nav-skills">مهاراتي</a></li>
                     <li><a href="#contact" data-key="nav-contact">اتصل بي</a></li>
@@ -572,14 +589,50 @@
         </div>
     </section>
 
-    <!-- ====== الخدمات ====== -->
+    <!-- ====== الخدمات (مع أزرار طلب الخدمة) ====== -->
     <section class="services" id="services">
         <div class="container">
-            <div class="section-header"><h2><span data-key="services-title1">خدماتي</span></h2><p data-key="services-sub">قدراتي التقنية</p></div>
+            <div class="section-header">
+                <h2><span data-key="services-title1">خدماتي</span></h2>
+                <p data-key="services-sub">قدراتي التقنية - اضغط على "اطلب الخدمة" للتواصل</p>
+            </div>
             <div class="services-grid">
-                <div class="service-card"><i class="fas fa-crown"></i><h3 data-key="service1-title">تطوير WPF & .NET</h3><p data-key="service1-desc">تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.</p></div>
-                <div class="service-card"><i class="fas fa-palette"></i><h3 data-key="service2-title">تصميم UI/UX</h3><p data-key="service2-desc">واجهات مستخدم تفاعلية وعصرية.</p></div>
-                <div class="service-card"><i class="fas fa-database"></i><h3 data-key="service3-title">قواعد البيانات</h3><p data-key="service3-desc">تكامل مثالي مع SQLite و SQL Server.</p></div>
+                <div class="service-card">
+                    <i class="fas fa-crown"></i>
+                    <h3 data-key="service1-title">تطوير WPF & .NET</h3>
+                    <p data-key="service1-desc">تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.</p>
+                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-palette"></i>
+                    <h3 data-key="service2-title">تصميم UI/UX</h3>
+                    <p data-key="service2-desc">واجهات مستخدم تفاعلية وعصرية.</p>
+                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-database"></i>
+                    <h3 data-key="service3-title">قواعد البيانات</h3>
+                    <p data-key="service3-desc">تكامل مثالي مع SQLite و SQL Server.</p>
+                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3 data-key="service4-title">تصميم الشعارات والهوية</h3>
+                    <p data-key="service4-desc">شعارات احترافية، بطاقات تعريف، وإعلانات.</p>
+                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-globe"></i>
+                    <h3 data-key="service5-title">تطوير تطبيقات الويب</h3>
+                    <p data-key="service5-desc">مواقع وتطبيقات ويب حديثة متجاوبة.</p>
+                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-screwdriver-wrench"></i>
+                    <h3 data-key="service6-title">حلول تقنية المعلومات</h3>
+                    <p data-key="service6-desc">صيانة، تنصيب أنظمة، شبكات، وفحص شامل.</p>
+                    <a href="services.html#contact" class="btn-service"><i class="fas fa-paper-plane"></i> <span data-key="service-btn">اطلب الخدمة</span></a>
+                </div>
             </div>
         </div>
     </section>
@@ -715,13 +768,20 @@
                 'info-address-label': 'العنوان:',
                 'info-address': 'Oran, Algeria',
                 'services-title1': 'خدماتي',
-                'services-sub': 'قدراتي التقنية',
+                'services-sub': 'قدراتي التقنية - اضغط على "اطلب الخدمة" للتواصل',
                 'service1-title': 'تطوير WPF & .NET',
                 'service1-desc': 'تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.',
                 'service2-title': 'تصميم UI/UX',
                 'service2-desc': 'واجهات مستخدم تفاعلية وعصرية.',
                 'service3-title': 'قواعد البيانات',
                 'service3-desc': 'تكامل مثالي مع SQLite و SQL Server.',
+                'service4-title': 'تصميم الشعارات والهوية',
+                'service4-desc': 'شعارات احترافية، بطاقات تعريف، وإعلانات.',
+                'service5-title': 'تطوير تطبيقات الويب',
+                'service5-desc': 'مواقع وتطبيقات ويب حديثة متجاوبة.',
+                'service6-title': 'حلول تقنية المعلومات',
+                'service6-desc': 'صيانة، تنصيب أنظمة، شبكات، وفحص شامل.',
+                'service-btn': 'اطلب الخدمة',
                 'projects-title1': 'روائع',
                 'projects-title2': 'مشاريعي',
                 'projects-sub': 'أقوى أعمالي التقنية',
@@ -749,7 +809,7 @@
             fr: {
                 'nav-home': 'Accueil',
                 'nav-about': 'À propos',
-                'nav-services': 'Services',
+                'nav-services': 'Mes Services',
                 'nav-projects': 'Projets',
                 'nav-skills': 'Compétences',
                 'nav-contact': 'Contact',
@@ -777,13 +837,20 @@
                 'info-address-label': 'Adresse :',
                 'info-address': 'Oran, Algérie',
                 'services-title1': 'Mes services',
-                'services-sub': 'Mes compétences techniques',
+                'services-sub': 'Mes compétences techniques - Cliquez sur "Demander le service" pour me contacter',
                 'service1-title': 'Développement WPF & .NET',
                 'service1-desc': 'Applications desktop ultra-rapides et robustes.',
                 'service2-title': 'Design UI/UX',
                 'service2-desc': 'Interfaces utilisateur interactives et modernes.',
                 'service3-title': 'Bases de données',
                 'service3-desc': 'Intégration parfaite avec SQLite et SQL Server.',
+                'service4-title': 'Design de logos et identité',
+                'service4-desc': 'Logos professionnels, cartes de visite et publicités.',
+                'service5-title': 'Développement Web',
+                'service5-desc': 'Sites et applications web modernes et responsives.',
+                'service6-title': 'Solutions informatiques',
+                'service6-desc': 'Maintenance, installation de systèmes, réseaux et diagnostic complet.',
+                'service-btn': 'Demander le service',
                 'projects-title1': 'Mes',
                 'projects-title2': 'projets',
                 'projects-sub': 'Mes réalisations techniques',
@@ -811,7 +878,7 @@
             en: {
                 'nav-home': 'Home',
                 'nav-about': 'About',
-                'nav-services': 'Services',
+                'nav-services': 'My Services',
                 'nav-projects': 'Projects',
                 'nav-skills': 'Skills',
                 'nav-contact': 'Contact',
@@ -839,13 +906,20 @@
                 'info-address-label': 'Address:',
                 'info-address': 'Oran, Algeria',
                 'services-title1': 'My Services',
-                'services-sub': 'My technical capabilities',
+                'services-sub': 'My technical capabilities - Click "Request Service" to contact me',
                 'service1-title': 'WPF & .NET Development',
                 'service1-desc': 'Ultra-fast and robust desktop applications.',
                 'service2-title': 'UI/UX Design',
                 'service2-desc': 'Interactive and modern user interfaces.',
                 'service3-title': 'Databases',
                 'service3-desc': 'Perfect integration with SQLite and SQL Server.',
+                'service4-title': 'Logo & Identity Design',
+                'service4-desc': 'Professional logos, business cards, and advertisements.',
+                'service5-title': 'Web Development',
+                'service5-desc': 'Modern and responsive websites and web applications.',
+                'service6-title': 'IT Solutions',
+                'service6-desc': 'Maintenance, OS installation, networks, and complete diagnostics.',
+                'service-btn': 'Request Service',
                 'projects-title1': 'My',
                 'projects-title2': 'Projects',
                 'projects-sub': 'My strongest technical works',
@@ -878,7 +952,6 @@
         function changeLanguage(lang) {
             currentLang = lang;
             
-            // تحديث الأزرار
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.dataset.lang === lang) {
@@ -886,7 +959,6 @@
                 }
             });
 
-            // تغيير اتجاه الصفحة
             const html = document.documentElement;
             if (lang === 'ar') {
                 html.setAttribute('dir', 'rtl');
@@ -898,12 +970,10 @@
                 document.body.className = lang;
             }
 
-            // تحديث النصوص
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.dataset.key;
                 if (translations[lang][key] !== undefined) {
-                    // إذا كان العنصر يحتوي على HTML (مثل footer)
-                    if (key === 'footer-text' || key === 'about-text3' || key === 'hero-desc') {
+                    if (key === 'footer-text' || key === 'about-text3' || key === 'hero-desc' || key === 'services-sub') {
                         el.innerHTML = translations[lang][key];
                     } else {
                         el.textContent = translations[lang][key];
@@ -911,18 +981,15 @@
                 }
             });
 
-            // حفظ اللغة في localStorage
             localStorage.setItem('preferred-lang', lang);
         }
 
-        // ====== الأزرار ======
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 changeLanguage(btn.dataset.lang);
             });
         });
 
-        // ====== استرجاع اللغة المحفوظة ======
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferred-lang') || 'ar';
             changeLanguage(savedLang);
