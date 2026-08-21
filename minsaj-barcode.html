@@ -19,6 +19,10 @@
             background-color: #0F172A;
             color: #F8FAFC;
             line-height: 1.6;
+            transition: 0.3s;
+        }
+        body.en, body.fr {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .container {
             max-width: 1100px;
@@ -51,12 +55,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .logo {
             font-size: 1.8rem;
             font-weight: 900;
         }
         .logo span { color: var(--accent); }
+
+        /* ====== زر تغيير اللغة ====== */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            color: var(--muted);
+            padding: 6px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
 
         /* ====== قسم البطل ====== */
         .hero {
@@ -202,9 +236,31 @@
             color: var(--muted);
         }
 
+        /* ====== زر العودة ====== */
+        .back-home {
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 30px;
+        }
+        .back-home a {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .back-home a:hover {
+            transform: scale(1.05);
+            background: #059669;
+        }
+
         @media (max-width: 700px) {
             .hero h1 { font-size: 2.2rem; }
             .license-items { flex-direction: column; gap: 15px; }
+            .lang-switcher { width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -214,21 +270,25 @@
     <header>
         <div class="container header-content">
             <div class="logo">Minsaj <span>Barcode</span></div>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="ar">🇩🇿 عربي</button>
+                <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+                <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+            </div>
         </div>
     </header>
 
     <!-- ====== قسم الترحيب والتحميل ====== -->
     <section class="hero">
         <div class="container">
-            <div class="badge"><i class="fas fa-star"></i> صنع في الجزائر 🇩🇿</div>
+            <div class="badge"><i class="fas fa-star"></i> <span data-key="hero-badge">صنع في الجزائر 🇩🇿</span></div>
             <h1>Minsaj <span>Barcode</span></h1>
-            <p class="subtitle">نظام طباعة الملصقات والباركود الاحترافي. وفر وقتك وفلوسك مع ملصقات جاهزة في ثواني.</p>
+            <p class="subtitle" data-key="hero-desc">نظام طباعة الملصقات والباركود الاحترافي. وفر وقتك وفلوسك مع ملصقات جاهزة في ثواني.</p>
             
-            <!-- زر تحميل جوجل درايف -->
             <a href="https://www.mediafire.com/file/3vr3lx0p0qxmyip/Minsaj+Barcode.zip/file" target="_blank" class="btn-download">
-                <i class="fas fa-download"></i> حمل البرنامج (ZIP)
+                <i class="fas fa-download"></i> <span data-key="download-btn">حمل البرنامج (ZIP)</span>
             </a>
-            <p style="color: var(--muted); font-size: 0.9rem; margin-top: 5px;">68.2 ميغابايت</p>
+            <p style="color: var(--muted); font-size: 0.9rem; margin-top: 5px;" data-key="file-size">68.2 ميغابايت</p>
         </div>
     </section>
 
@@ -236,20 +296,20 @@
     <section>
         <div class="container">
             <div class="section-header">
-                <h2>✨ لماذا <span>Minsaj Barcode</span>؟</h2>
-                <p>10 أسباب تجعله أفضل خيار لمحلك</p>
+                <h2>✨ <span data-key="features-title">لماذا Minsaj Barcode</span>؟</h2>
+                <p data-key="features-sub">10 أسباب تجعله أفضل خيار لمحلك</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card"><i class="fas fa-pen-fancy"></i><h3>وداعاً للكتابة اليدوية</h3><p>اطبع ملصقات جاهزة ولاصقة بدون تعب.</p></div>
-                <div class="feature-card"><i class="fas fa-store"></i><h3>شكل احترافي</h3><p>اسم محلك وسعر واضح على كل منتج.</p></div>
-                <div class="feature-card"><i class="fas fa-bolt"></i><h3>سرعة فائقة</h3><p>اطبع 100 ملصق في دقائق معدودة.</p></div>
-                <div class="feature-card"><i class="fas fa-qrcode"></i><h3>باركود جزائري</h3><p>متوافق مع كل السكانير، يبدأ بـ 613.</p></div>
-                <div class="feature-card"><i class="fas fa-chart-simple"></i><h3>إحصائيات دقيقة</h3><p>عرف شحال طبعت اليوم وهذا الشهر.</p></div>
-                <div class="feature-card"><i class="fas fa-wifi-slash"></i><h3>بدون إنترنت</h3><p>يخدم في جهازك، ما يحتاجش سحابة.</p></div>
-                <div class="feature-card"><i class="fas fa-face-smile"></i><h3>سهل جداً</h3><p>واجهة بالعربية، أي واحد يتعلمها في دقائق.</p></div>
-                <div class="feature-card"><i class="fas fa-print"></i><h3>أي طابعة حرارية</h3><p>متوافق مع الطابعات الرخيصة والمقاسات المتعددة.</p></div>
-                <div class="feature-card"><i class="fas fa-lock"></i><h3>أمان تام</h3><p>بياناتك في جهازك، ما تروحش لحد.</p></div>
-                <div class="feature-card"><i class="fas fa-gift"></i><h3>تجربة مجانية</h3><p>جرب كل المميزات لمدة 7 أيام مجاناً.</p></div>
+                <div class="feature-card"><i class="fas fa-pen-fancy"></i><h3 data-key="f1-title">وداعاً للكتابة اليدوية</h3><p data-key="f1-desc">اطبع ملصقات جاهزة ولاصقة بدون تعب.</p></div>
+                <div class="feature-card"><i class="fas fa-store"></i><h3 data-key="f2-title">شكل احترافي</h3><p data-key="f2-desc">اسم محلك وسعر واضح على كل منتج.</p></div>
+                <div class="feature-card"><i class="fas fa-bolt"></i><h3 data-key="f3-title">سرعة فائقة</h3><p data-key="f3-desc">اطبع 100 ملصق في دقائق معدودة.</p></div>
+                <div class="feature-card"><i class="fas fa-qrcode"></i><h3 data-key="f4-title">باركود جزائري</h3><p data-key="f4-desc">متوافق مع كل السكانير، يبدأ بـ 613.</p></div>
+                <div class="feature-card"><i class="fas fa-chart-simple"></i><h3 data-key="f5-title">إحصائيات دقيقة</h3><p data-key="f5-desc">عرف شحال طبعت اليوم وهذا الشهر.</p></div>
+                <div class="feature-card"><i class="fas fa-wifi-slash"></i><h3 data-key="f6-title">بدون إنترنت</h3><p data-key="f6-desc">يخدم في جهازك، ما يحتاجش سحابة.</p></div>
+                <div class="feature-card"><i class="fas fa-face-smile"></i><h3 data-key="f7-title">سهل جداً</h3><p data-key="f7-desc">واجهة بالعربية، أي واحد يتعلمها في دقائق.</p></div>
+                <div class="feature-card"><i class="fas fa-print"></i><h3 data-key="f8-title">أي طابعة حرارية</h3><p data-key="f8-desc">متوافق مع الطابعات الرخيصة والمقاسات المتعددة.</p></div>
+                <div class="feature-card"><i class="fas fa-lock"></i><h3 data-key="f9-title">أمان تام</h3><p data-key="f9-desc">بياناتك في جهازك، ما تروحش لحد.</p></div>
+                <div class="feature-card"><i class="fas fa-gift"></i><h3 data-key="f10-title">تجربة مجانية</h3><p data-key="f10-desc">جرب كل المميزات لمدة 7 أيام مجاناً.</p></div>
             </div>
         </div>
     </section>
@@ -258,20 +318,19 @@
     <section>
         <div class="container">
             <div class="section-header">
-                <h2>🔐 <span>نظام الترخيص</span></h2>
-                <p>ابدأ مجاناً ثم فعّل مدى الحياة</p>
+                <h2>🔐 <span data-key="license-title">نظام الترخيص</span></h2>
+                <p data-key="license-sub">ابدأ مجاناً ثم فعّل مدى الحياة</p>
             </div>
             <div class="license-box">
-                <h3>جرب الآن مجاناً</h3>
+                <h3 data-key="license-head">جرب الآن مجاناً</h3>
                 <div class="license-items">
-                    <div class="license-item"><i class="fas fa-check-circle"></i> 7 أيام <span>تجربة مجانية</span> كاملة</div>
-                    <div class="license-item"><i class="fas fa-check-circle"></i> بعد التجربة: <span>اطلب رمز التفعيل</span></div>
-                    <div class="license-item"><i class="fas fa-infinity"></i> رمز التفعيل = <span>مدى الحياة</span></div>
+                    <div class="license-item"><i class="fas fa-check-circle"></i> <span data-key="license1">7 أيام تجربة مجانية كاملة</span></div>
+                    <div class="license-item"><i class="fas fa-check-circle"></i> <span data-key="license2">بعد التجربة: اطلب رمز التفعيل</span></div>
+                    <div class="license-item"><i class="fas fa-infinity"></i> <span data-key="license3">رمز التفعيل = مدى الحياة</span></div>
                 </div>
-                <p style="color: var(--muted); margin-bottom: 15px;">للحصول على رمز التفعيل، راسلني مباشرة:</p>
-                <!-- زر واتساب -->
+                <p style="color: var(--muted); margin-bottom: 15px;" data-key="license-msg">للحصول على رمز التفعيل، راسلني مباشرة:</p>
                 <a href="https://wa.me/2130657200758" target="_blank" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> راسلني على واتساب لطلب رمز التفعيل
+                    <i class="fab fa-whatsapp"></i> <span data-key="whatsapp-btn">راسلني على واتساب لطلب رمز التفعيل</span>
                 </a>
             </div>
         </div>
@@ -280,15 +339,184 @@
     <!-- ====== الفوتر ====== -->
     <footer>
         <div class="container">
-            <p>🇩🇿 Made in Algeria with ❤️ <br> © 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
+            <p data-key="footer-text">🇩🇿 Made in Algeria with ❤️ <br> © 2026 Minsaj DZ - جميع الحقوق محفوظة</p>
         </div>
     </footer>
 
-<!-- زر العودة للصفحة الرئيسية -->
-<div style="text-align: center; margin-top: 30px; padding-bottom: 30px;">
-    <a href="index.html" style="display: inline-block; background: #10B981; color: white; padding: 12px 35px; border-radius: 50px; font-weight: 700; text-decoration: none; transition: 0.3s;">
-        <i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية
-    </a>
-</div>
+    <!-- ====== زر العودة ====== -->
+    <div class="back-home">
+        <a href="index.html">
+            <i class="fas fa-arrow-right"></i> <span data-key="back-home">العودة للصفحة الرئيسية</span>
+        </a>
+    </div>
+
+    <script>
+        // ====== البيانات متعددة اللغات ======
+        const translations = {
+            ar: {
+                'hero-badge': 'صنع في الجزائر 🇩🇿',
+                'hero-desc': 'نظام طباعة الملصقات والباركود الاحترافي. وفر وقتك وفلوسك مع ملصقات جاهزة في ثواني.',
+                'download-btn': 'حمل البرنامج (ZIP)',
+                'file-size': '68.2 ميغابايت',
+                'features-title': 'لماذا Minsaj Barcode',
+                'features-sub': '10 أسباب تجعله أفضل خيار لمحلك',
+                'f1-title': 'وداعاً للكتابة اليدوية',
+                'f1-desc': 'اطبع ملصقات جاهزة ولاصقة بدون تعب.',
+                'f2-title': 'شكل احترافي',
+                'f2-desc': 'اسم محلك وسعر واضح على كل منتج.',
+                'f3-title': 'سرعة فائقة',
+                'f3-desc': 'اطبع 100 ملصق في دقائق معدودة.',
+                'f4-title': 'باركود جزائري',
+                'f4-desc': 'متوافق مع كل السكانير، يبدأ بـ 613.',
+                'f5-title': 'إحصائيات دقيقة',
+                'f5-desc': 'عرف شحال طبعت اليوم وهذا الشهر.',
+                'f6-title': 'بدون إنترنت',
+                'f6-desc': 'يخدم في جهازك، ما يحتاجش سحابة.',
+                'f7-title': 'سهل جداً',
+                'f7-desc': 'واجهة بالعربية، أي واحد يتعلمها في دقائق.',
+                'f8-title': 'أي طابعة حرارية',
+                'f8-desc': 'متوافق مع الطابعات الرخيصة والمقاسات المتعددة.',
+                'f9-title': 'أمان تام',
+                'f9-desc': 'بياناتك في جهازك، ما تروحش لحد.',
+                'f10-title': 'تجربة مجانية',
+                'f10-desc': 'جرب كل المميزات لمدة 7 أيام مجاناً.',
+                'license-title': 'نظام الترخيص',
+                'license-sub': 'ابدأ مجاناً ثم فعّل مدى الحياة',
+                'license-head': 'جرب الآن مجاناً',
+                'license1': '7 أيام تجربة مجانية كاملة',
+                'license2': 'بعد التجربة: اطلب رمز التفعيل',
+                'license3': 'رمز التفعيل = مدى الحياة',
+                'license-msg': 'للحصول على رمز التفعيل، راسلني مباشرة:',
+                'whatsapp-btn': 'راسلني على واتساب لطلب رمز التفعيل',
+                'footer-text': '🇩🇿 Made in Algeria with ❤️ <br> © 2026 Minsaj DZ - جميع الحقوق محفوظة',
+                'back-home': 'العودة للصفحة الرئيسية'
+            },
+            fr: {
+                'hero-badge': 'Fabriqué en Algérie 🇩🇿',
+                'hero-desc': 'Système professionnel d\'impression d\'étiquettes et de codes-barres. Gagnez du temps et de l\'argent avec des étiquettes prêtes en quelques secondes.',
+                'download-btn': 'Télécharger (ZIP)',
+                'file-size': '68.2 Mo',
+                'features-title': 'Pourquoi Minsaj Barcode',
+                'features-sub': '10 raisons qui en font le meilleur choix pour votre magasin',
+                'f1-title': 'Adieu l\'écriture manuelle',
+                'f1-desc': 'Imprimez des étiquettes prêtes à coller sans effort.',
+                'f2-title': 'Apparence professionnelle',
+                'f2-desc': 'Nom de votre magasin et prix clairs sur chaque produit.',
+                'f3-title': 'Ultra-rapide',
+                'f3-desc': 'Imprimez 100 étiquettes en quelques minutes.',
+                'f4-title': 'Code-barres algérien',
+                'f4-desc': 'Compatible avec tous les scanners, commence par 613.',
+                'f5-title': 'Statistiques précises',
+                'f5-desc': 'Sachez combien vous avez imprimé aujourd\'hui et ce mois-ci.',
+                'f6-title': 'Sans Internet',
+                'f6-desc': 'Fonctionne sur votre ordinateur, pas besoin de cloud.',
+                'f7-title': 'Très facile',
+                'f7-desc': 'Interface en arabe, apprenable en quelques minutes.',
+                'f8-title': 'N\'importe quelle imprimante thermique',
+                'f8-desc': 'Compatible avec les imprimantes bon marché et multiples formats.',
+                'f9-title': 'Sécurité totale',
+                'f9-desc': 'Vos données restent sur votre ordinateur.',
+                'f10-title': 'Essai gratuit',
+                'f10-desc': 'Testez toutes les fonctionnalités gratuitement pendant 7 jours.',
+                'license-title': 'Système de licence',
+                'license-sub': 'Commencez gratuitement puis activez à vie',
+                'license-head': 'Essayez maintenant gratuitement',
+                'license1': '7 jours d\'essai gratuit complet',
+                'license2': 'Après l\'essai : demandez le code d\'activation',
+                'license3': 'Code d\'activation = à vie',
+                'license-msg': 'Pour obtenir le code d\'activation, contactez-moi directement :',
+                'whatsapp-btn': 'Contactez-moi sur WhatsApp pour le code d\'activation',
+                'footer-text': '🇩🇿 Made in Algeria with ❤️ <br> © 2026 Minsaj DZ - Tous droits réservés',
+                'back-home': 'Retour à la page d\'accueil'
+            },
+            en: {
+                'hero-badge': 'Made in Algeria 🇩🇿',
+                'hero-desc': 'Professional label and barcode printing system. Save time and money with ready-to-print labels in seconds.',
+                'download-btn': 'Download (ZIP)',
+                'file-size': '68.2 MB',
+                'features-title': 'Why Minsaj Barcode',
+                'features-sub': '10 reasons why it\'s the best choice for your store',
+                'f1-title': 'Say goodbye to handwriting',
+                'f1-desc': 'Print ready-to-stick labels without effort.',
+                'f2-title': 'Professional look',
+                'f2-desc': 'Your store name and price clearly on every product.',
+                'f3-title': 'Ultra-fast',
+                'f3-desc': 'Print 100 labels in just minutes.',
+                'f4-title': 'Algerian barcode',
+                'f4-desc': 'Compatible with all scanners, starts with 613.',
+                'f5-title': 'Accurate statistics',
+                'f5-desc': 'Know how many you printed today and this month.',
+                'f6-title': 'No Internet needed',
+                'f6-desc': 'Works offline on your device, no cloud required.',
+                'f7-title': 'Very easy',
+                'f7-desc': 'Arabic interface, anyone can learn it in minutes.',
+                'f8-title': 'Any thermal printer',
+                'f8-desc': 'Compatible with cheap printers and multiple sizes.',
+                'f9-title': 'Complete security',
+                'f9-desc': 'Your data stays on your device.',
+                'f10-title': 'Free trial',
+                'f10-desc': 'Try all features for free for 7 days.',
+                'license-title': 'Licensing System',
+                'license-sub': 'Start free then activate for life',
+                'license-head': 'Try it now for free',
+                'license1': '7-day full free trial',
+                'license2': 'After trial: request activation code',
+                'license3': 'Activation code = lifetime',
+                'license-msg': 'To get the activation code, contact me directly:',
+                'whatsapp-btn': 'Contact me on WhatsApp for activation code',
+                'footer-text': '🇩🇿 Made in Algeria with ❤️ <br> © 2026 Minsaj DZ - All rights reserved',
+                'back-home': 'Back to Homepage'
+            }
+        };
+
+        // ====== تغيير اللغة ======
+        let currentLang = 'ar';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            const html = document.documentElement;
+            if (lang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                document.body.className = '';
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', lang);
+                document.body.className = lang;
+            }
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.dataset.key;
+                if (translations[lang][key] !== undefined) {
+                    if (key === 'footer-text' || key === 'hero-desc') {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            localStorage.setItem('preferred-lang-barcode', lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeLanguage(btn.dataset.lang);
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang-barcode') || 'ar';
+            changeLanguage(savedLang);
+        });
+    </script>
 </body>
 </html>
