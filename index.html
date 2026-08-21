@@ -20,6 +20,13 @@
             background-color: #0F172A;
             color: #F8FAFC;
             line-height: 1.6;
+            transition: 0.3s;
+        }
+        body.en {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body.fr {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .container {
             max-width: 1100px;
@@ -82,6 +89,34 @@
             font-size: 1.8rem;
             cursor: pointer;
             color: var(--light);
+        }
+
+        /* ====== زر تغيير اللغة ====== */
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .lang-btn {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            color: var(--muted);
+            padding: 6px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
         }
 
         /* ====== قسم البطل ====== */
@@ -220,6 +255,9 @@
             border: 1px solid rgba(255,255,255,0.05);
             text-align: right;
             margin-bottom: 30px;
+        }
+        body.en .info-grid, body.fr .info-grid {
+            text-align: left;
         }
         .info-item {
             background: rgba(255,255,255,0.05);
@@ -464,6 +502,7 @@
             .info-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
+            .lang-switcher { order: 3; width: 100%; justify-content: center; }
         }
     </style>
 </head>
@@ -475,27 +514,32 @@
             <div class="logo">Minsaj<span>DZ</span></div>
             <nav>
                 <ul id="nav-links">
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#about">عني</a></li>
-                    <li><a href="#services">خدماتي</a></li>
-                    <li><a href="#projects">مشاريعي</a></li>
-                    <li><a href="#skills">مهاراتي</a></li>
-                    <li><a href="#contact">اتصل بي</a></li>
+                    <li><a href="#home" data-key="nav-home">الرئيسية</a></li>
+                    <li><a href="#about" data-key="nav-about">عني</a></li>
+                    <li><a href="#services" data-key="nav-services">خدماتي</a></li>
+                    <li><a href="#projects" data-key="nav-projects">مشاريعي</a></li>
+                    <li><a href="#skills" data-key="nav-skills">مهاراتي</a></li>
+                    <li><a href="#contact" data-key="nav-contact">اتصل بي</a></li>
                 </ul>
                 <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
             </nav>
+            <div class="lang-switcher">
+                <button class="lang-btn active" data-lang="ar">🇩🇿 عربي</button>
+                <button class="lang-btn" data-lang="fr">🇫🇷 Français</button>
+                <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+            </div>
         </div>
     </header>
 
     <!-- ====== قسم البطل ====== -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="badge"><i class="fas fa-rocket"></i> مطور برمجيات</div>
-            <h1>سيف الإسلام <span>زحاف</span></h1>
-            <p class="subtitle">أبني تطبيقات سطح مكتب عالية الأداء باستخدام .NET و WPF، وأصمم تجارب مستخدم مستقبلية.</p>
+            <div class="badge"><i class="fas fa-rocket"></i> <span data-key="hero-badge">مطور برمجيات</span></div>
+            <h1><span data-key="hero-name-first">سيف الإسلام</span> <span data-key="hero-name-last">زحاف</span></h1>
+            <p class="subtitle" data-key="hero-desc">أبني تطبيقات سطح مكتب عالية الأداء باستخدام .NET و WPF، وأصمم تجارب مستخدم مستقبلية.</p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn-primary"><i class="fas fa-crown"></i> اكتشف مشاريعي</a>
-                <a href="#contact" class="btn-outline">تواصل معي</a>
+                <a href="#projects" class="btn-primary"><i class="fas fa-crown"></i> <span data-key="hero-btn1">اكتشف مشاريعي</span></a>
+                <a href="#contact" class="btn-outline"><span data-key="hero-btn2">تواصل معي</span></a>
             </div>
         </div>
     </section>
@@ -503,25 +547,25 @@
     <!-- ====== الإحصائيات ====== -->
     <section class="stats">
         <div class="container stats-grid">
-            <div class="stat-box"><i class="fas fa-calendar-alt"></i><h3>4</h3><p>سنوات الخبرة</p></div>
-            <div class="stat-box"><i class="fas fa-layer-group"></i><h3>15</h3><p>مشاريع مكتملة</p></div>
-            <div class="stat-box"><i class="fas fa-users-gear"></i><h3>25</h3><p>عملاء راضون</p></div>
+            <div class="stat-box"><i class="fas fa-calendar-alt"></i><h3>4</h3><p data-key="stat1">سنوات الخبرة</p></div>
+            <div class="stat-box"><i class="fas fa-layer-group"></i><h3>15</h3><p data-key="stat2">مشاريع مكتملة</p></div>
+            <div class="stat-box"><i class="fas fa-users-gear"></i><h3>25</h3><p data-key="stat3">عملاء راضون</p></div>
         </div>
     </section>
 
     <!-- ====== عني ====== -->
     <section class="about" id="about">
         <div class="container">
-            <div class="section-header"><h2>من <span>أنا؟</span></h2><p>لمحة عن المطور</p></div>
+            <div class="section-header"><h2><span data-key="about-title1">من</span> <span data-key="about-title2">أنا؟</span></h2><p data-key="about-sub">لمحة عن المطور</p></div>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>أنا <span>سيف الإسلام</span>، مهندس برمجيات من الجزائر 🇩🇿</h3>
-                    <p>متخصص في تطوير تطبيقات سطح المكتب القوية بواجهات جذابة، أركز على تجربة المستخدم النهائية.</p>
+                    <h3><span data-key="about-text1">أنا</span> <span data-key="about-text2">سيف الإسلام</span><span data-key="about-text3">، مهندس برمجيات من الجزائر 🇩🇿</span></h3>
+                    <p data-key="about-desc">متخصص في تطوير تطبيقات سطح المكتب القوية بواجهات جذابة، أركز على تجربة المستخدم النهائية.</p>
                     <div class="info-grid">
-                        <div class="info-item"><i class="fas fa-user"></i> <span>الاسم:</span> Saif El Islem Zahaf</div>
-                        <div class="info-item"><i class="fas fa-briefcase"></i> <span>المهنة:</span> Software Developer</div>
-                        <div class="info-item"><i class="fas fa-envelope"></i> <span>البريد:</span> seislemzhf@gmail.com</div>
-                        <div class="info-item"><i class="fas fa-map-location-dot"></i> <span>العنوان:</span> Oran, Algeria</div>
+                        <div class="info-item"><i class="fas fa-user"></i> <span data-key="info-name-label">الاسم:</span> <span data-key="info-name">Saif El Islem Zahaf</span></div>
+                        <div class="info-item"><i class="fas fa-briefcase"></i> <span data-key="info-job-label">المهنة:</span> <span data-key="info-job">Software Developer</span></div>
+                        <div class="info-item"><i class="fas fa-envelope"></i> <span data-key="info-email-label">البريد:</span> <span>seislemzhf@gmail.com</span></div>
+                        <div class="info-item"><i class="fas fa-map-location-dot"></i> <span data-key="info-address-label">العنوان:</span> <span data-key="info-address">Oran, Algeria</span></div>
                     </div>
                 </div>
             </div>
@@ -531,11 +575,11 @@
     <!-- ====== الخدمات ====== -->
     <section class="services" id="services">
         <div class="container">
-            <div class="section-header"><h2><span>خدماتي</span></h2><p>قدراتي التقنية</p></div>
+            <div class="section-header"><h2><span data-key="services-title1">خدماتي</span></h2><p data-key="services-sub">قدراتي التقنية</p></div>
             <div class="services-grid">
-                <div class="service-card"><i class="fas fa-crown"></i><h3>تطوير WPF & .NET</h3><p>تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.</p></div>
-                <div class="service-card"><i class="fas fa-palette"></i><h3>تصميم UI/UX</h3><p>واجهات مستخدم تفاعلية وعصرية.</p></div>
-                <div class="service-card"><i class="fas fa-database"></i><h3>قواعد البيانات</h3><p>تكامل مثالي مع SQLite و SQL Server.</p></div>
+                <div class="service-card"><i class="fas fa-crown"></i><h3 data-key="service1-title">تطوير WPF & .NET</h3><p data-key="service1-desc">تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.</p></div>
+                <div class="service-card"><i class="fas fa-palette"></i><h3 data-key="service2-title">تصميم UI/UX</h3><p data-key="service2-desc">واجهات مستخدم تفاعلية وعصرية.</p></div>
+                <div class="service-card"><i class="fas fa-database"></i><h3 data-key="service3-title">قواعد البيانات</h3><p data-key="service3-desc">تكامل مثالي مع SQLite و SQL Server.</p></div>
             </div>
         </div>
     </section>
@@ -543,16 +587,16 @@
     <!-- ====== المشاريع ====== -->
     <section class="projects" id="projects">
         <div class="container">
-            <div class="section-header"><h2>روائع <span>مشاريعي</span></h2><p>أقوى أعمالي التقنية</p></div>
+            <div class="section-header"><h2><span data-key="projects-title1">روائع</span> <span data-key="projects-title2">مشاريعي</span></h2><p data-key="projects-sub">أقوى أعمالي التقنية</p></div>
             <div class="projects-grid">
                 
                 <div class="project-card">
                     <div class="project-image"><img src="images/fix.jpg" alt="Minsaj Fix"></div>
                     <div class="project-info">
                         <h3>Minsaj Fix</h3>
-                        <p>نظام ذكي متكامل لإدارة ورشات صيانة السيارات وتتبع قطع الغيار.</p>
+                        <p data-key="project1-desc">نظام ذكي متكامل لإدارة ورشات صيانة السيارات وتتبع قطع الغيار.</p>
                         <div class="project-tech"><span>C#</span><span>WPF</span><span>SQLite</span></div>
-                        <a href="minsaj-fix.html" class="btn-outline-small"><i class="fas fa-eye"></i> اكتشف المميزات</a>
+                        <a href="minsaj-fix.html" class="btn-outline-small"><i class="fas fa-eye"></i> <span data-key="project-btn">اكتشف المميزات</span></a>
                     </div>
                 </div>
 
@@ -560,9 +604,9 @@
                     <div class="project-image"><img src="images/barcode.jpg" alt="Minsaj Barcode"></div>
                     <div class="project-info">
                         <h3>Minsaj Barcode</h3>
-                        <p>أداة فاخرة لطباعة ملصقات المنتجات والباركود مع تخصيص لانهائي.</p>
+                        <p data-key="project2-desc">أداة فاخرة لطباعة ملصقات المنتجات والباركود مع تخصيص لانهائي.</p>
                         <div class="project-tech"><span>WPF</span><span>UI/UX</span><span>Printing</span></div>
-                        <a href="minsaj-barcode.html" class="btn-outline-small"><i class="fas fa-eye"></i> عرض المميزات</a>
+                        <a href="minsaj-barcode.html" class="btn-outline-small"><i class="fas fa-eye"></i> <span data-key="project-btn">اكتشف المميزات</span></a>
                     </div>
                 </div>
 
@@ -570,12 +614,12 @@
                     <div class="project-image"><img src="images/fard.jpg" alt="Minsaj Fard"></div>
                     <div class="project-info">
                         <h3>Minsaj Fard</h3>
-                        <p>نظام متكامل لإدارة الموارد البشرية (HR ERP) بضرائب جزائرية وبصمة ZKTeco.</p>
+                        <p data-key="project3-desc">نظام متكامل لإدارة الموارد البشرية (HR ERP) بضرائب جزائرية وبصمة ZKTeco.</p>
                         <div class="project-tech">
                             <span>C#</span><span>WPF</span><span>PostgreSQL</span><span>EF Core</span>
-                            <span>RSA</span><span>PDF</span><span>Excel</span><span>3 لغات</span>
+                            <span>RSA</span><span>PDF</span><span>Excel</span><span data-key="project-langs">3 لغات</span>
                         </div>
-                        <a href="minsaj-fard.html" class="btn-outline-small"><i class="fas fa-eye"></i> عرض المميزات</a>
+                        <a href="minsaj-fard.html" class="btn-outline-small"><i class="fas fa-eye"></i> <span data-key="project-btn">اكتشف المميزات</span></a>
                     </div>
                 </div>
 
@@ -586,22 +630,22 @@
     <!-- ====== المهارات ====== -->
     <section class="skills" id="skills">
         <div class="container">
-            <div class="section-header"><h2><span>المهارات</span></h2><p>دقة وإتقان</p></div>
+            <div class="section-header"><h2><span data-key="skills-title1">المهارات</span></h2><p data-key="skills-sub">دقة وإتقان</p></div>
             <div class="skills-container">
                 <div class="skill-box">
-                    <div class="skill-name"><span>C# & .NET</span><span>95%</span></div>
+                    <div class="skill-name"><span data-key="skill1">C# & .NET</span><span>95%</span></div>
                     <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
                 </div>
                 <div class="skill-box">
-                    <div class="skill-name"><span>WPF (UI/UX)</span><span>90%</span></div>
+                    <div class="skill-name"><span data-key="skill2">WPF (UI/UX)</span><span>90%</span></div>
                     <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
                 </div>
                 <div class="skill-box">
-                    <div class="skill-name"><span>Entity Framework Core</span><span>85%</span></div>
+                    <div class="skill-name"><span data-key="skill3">Entity Framework Core</span><span>85%</span></div>
                     <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
                 </div>
                 <div class="skill-box">
-                    <div class="skill-name"><span>SQLite / SQL Server</span><span>80%</span></div>
+                    <div class="skill-name"><span data-key="skill4">SQLite / SQL Server</span><span>80%</span></div>
                     <div class="progress-bar"><div class="progress" style="width: 80%;"></div></div>
                 </div>
             </div>
@@ -611,15 +655,15 @@
     <!-- ====== التواصل ====== -->
     <section class="contact" id="contact">
         <div class="container">
-            <div class="section-header"><h2>تواصل <span>معي</span></h2><p>لنتحدث عن مشروعك 🚀</p></div>
+            <div class="section-header"><h2><span data-key="contact-title1">تواصل</span> <span data-key="contact-title2">معي</span></h2><p data-key="contact-sub">لنتحدث عن مشروعك 🚀</p></div>
             <div style="text-align: center;">
                 <div class="contact-grid">
-                    <div class="contact-card"><i class="fas fa-location-dot"></i><h4>العنوان</h4><p>Belgaid, Bir El Djir, Oran</p></div>
-                    <div class="contact-card"><i class="fas fa-envelope"></i><h4>البريد</h4><p>seislemzhf@gmail.com</p></div>
-                    <div class="contact-card"><i class="fas fa-phone"></i><h4>الهاتف</h4><p>0657200758</p></div>
+                    <div class="contact-card"><i class="fas fa-location-dot"></i><h4 data-key="contact-address-label">العنوان</h4><p data-key="contact-address">Belgaid, Bir El Djir, Oran</p></div>
+                    <div class="contact-card"><i class="fas fa-envelope"></i><h4 data-key="contact-email-label">البريد</h4><p>seislemzhf@gmail.com</p></div>
+                    <div class="contact-card"><i class="fas fa-phone"></i><h4 data-key="contact-phone-label">الهاتف</h4><p>0657200758</p></div>
                 </div>
                 <a href="https://wa.me/2130657200758" target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> راسلني عبر واتساب
+                    <i class="fab fa-whatsapp"></i> <span data-key="contact-whatsapp">راسلني عبر واتساب</span>
                 </a>
             </div>
         </div>
@@ -628,7 +672,7 @@
     <!-- ====== الفوتر ====== -->
     <footer>
         <div class="container">
-            <p>🇩🇿 Made in Algeria with ❤️<br>&copy; 2026 <strong>Saif El Islem Zahaf</strong>. جميع الحقوق محفوظة.</p>
+            <p data-key="footer-text">🇩🇿 Made in Algeria with ❤️<br>&copy; 2026 <strong>Saif El Islem Zahaf</strong>. جميع الحقوق محفوظة.</p>
             <div class="footer-links">
                 <a href="https://github.com/seislemzhf" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="mailto:seislemzhf@gmail.com"><i class="fas fa-envelope"></i></a>
@@ -638,7 +682,253 @@
     </footer>
 
     <script>
-        // القائمة الجانبية للجوال
+        // ====== البيانات متعددة اللغات ======
+        const translations = {
+            ar: {
+                'nav-home': 'الرئيسية',
+                'nav-about': 'عني',
+                'nav-services': 'خدماتي',
+                'nav-projects': 'مشاريعي',
+                'nav-skills': 'مهاراتي',
+                'nav-contact': 'اتصل بي',
+                'hero-badge': 'مطور برمجيات',
+                'hero-name-first': 'سيف الإسلام',
+                'hero-name-last': 'زحاف',
+                'hero-desc': 'أبني تطبيقات سطح مكتب عالية الأداء باستخدام .NET و WPF، وأصمم تجارب مستخدم مستقبلية.',
+                'hero-btn1': 'اكتشف مشاريعي',
+                'hero-btn2': 'تواصل معي',
+                'stat1': 'سنوات الخبرة',
+                'stat2': 'مشاريع مكتملة',
+                'stat3': 'عملاء راضون',
+                'about-title1': 'من',
+                'about-title2': 'أنا؟',
+                'about-sub': 'لمحة عن المطور',
+                'about-text1': 'أنا',
+                'about-text2': 'سيف الإسلام',
+                'about-text3': '، مهندس برمجيات من الجزائر 🇩🇿',
+                'about-desc': 'متخصص في تطوير تطبيقات سطح المكتب القوية بواجهات جذابة، أركز على تجربة المستخدم النهائية.',
+                'info-name-label': 'الاسم:',
+                'info-name': 'Saif El Islem Zahaf',
+                'info-job-label': 'المهنة:',
+                'info-job': 'Software Developer',
+                'info-email-label': 'البريد:',
+                'info-address-label': 'العنوان:',
+                'info-address': 'Oran, Algeria',
+                'services-title1': 'خدماتي',
+                'services-sub': 'قدراتي التقنية',
+                'service1-title': 'تطوير WPF & .NET',
+                'service1-desc': 'تطبيقات سطح مكتب فائقة السرعة ومحكمة الإغلاق.',
+                'service2-title': 'تصميم UI/UX',
+                'service2-desc': 'واجهات مستخدم تفاعلية وعصرية.',
+                'service3-title': 'قواعد البيانات',
+                'service3-desc': 'تكامل مثالي مع SQLite و SQL Server.',
+                'projects-title1': 'روائع',
+                'projects-title2': 'مشاريعي',
+                'projects-sub': 'أقوى أعمالي التقنية',
+                'project1-desc': 'نظام ذكي متكامل لإدارة ورشات صيانة السيارات وتتبع قطع الغيار.',
+                'project2-desc': 'أداة فاخرة لطباعة ملصقات المنتجات والباركود مع تخصيص لانهائي.',
+                'project3-desc': 'نظام متكامل لإدارة الموارد البشرية (HR ERP) بضرائب جزائرية وبصمة ZKTeco.',
+                'project-langs': '3 لغات',
+                'project-btn': 'اكتشف المميزات',
+                'skills-title1': 'المهارات',
+                'skills-sub': 'دقة وإتقان',
+                'skill1': 'C# & .NET',
+                'skill2': 'WPF (UI/UX)',
+                'skill3': 'Entity Framework Core',
+                'skill4': 'SQLite / SQL Server',
+                'contact-title1': 'تواصل',
+                'contact-title2': 'معي',
+                'contact-sub': 'لنتحدث عن مشروعك 🚀',
+                'contact-address-label': 'العنوان',
+                'contact-address': 'Belgaid, Bir El Djir, Oran',
+                'contact-email-label': 'البريد',
+                'contact-phone-label': 'الهاتف',
+                'contact-whatsapp': 'راسلني عبر واتساب',
+                'footer-text': '🇩🇿 Made in Algeria with ❤️<br>&copy; 2026 <strong>Saif El Islem Zahaf</strong>. جميع الحقوق محفوظة.'
+            },
+            fr: {
+                'nav-home': 'Accueil',
+                'nav-about': 'À propos',
+                'nav-services': 'Services',
+                'nav-projects': 'Projets',
+                'nav-skills': 'Compétences',
+                'nav-contact': 'Contact',
+                'hero-badge': 'Développeur Logiciel',
+                'hero-name-first': 'Saif El Islem',
+                'hero-name-last': 'Zahaf',
+                'hero-desc': 'Je développe des applications desktop haute performance avec .NET et WPF, et je conçois des expériences utilisateur futuristes.',
+                'hero-btn1': 'Découvrez mes projets',
+                'hero-btn2': 'Contactez-moi',
+                'stat1': "Années d'expérience",
+                'stat2': 'Projets réalisés',
+                'stat3': 'Clients satisfaits',
+                'about-title1': 'Qui',
+                'about-title2': 'suis-je ?',
+                'about-sub': 'Un aperçu du développeur',
+                'about-text1': 'Je suis',
+                'about-text2': 'Saif El Islem',
+                'about-text3': ", ingénieur logiciel d'Algérie 🇩🇿",
+                'about-desc': "Spécialisé dans le développement d'applications desktop robustes avec des interfaces attrayantes, je me concentre sur l'expérience utilisateur finale.",
+                'info-name-label': 'Nom :',
+                'info-name': 'Saif El Islem Zahaf',
+                'info-job-label': 'Métier :',
+                'info-job': 'Software Developer',
+                'info-email-label': 'Email :',
+                'info-address-label': 'Adresse :',
+                'info-address': 'Oran, Algérie',
+                'services-title1': 'Mes services',
+                'services-sub': 'Mes compétences techniques',
+                'service1-title': 'Développement WPF & .NET',
+                'service1-desc': 'Applications desktop ultra-rapides et robustes.',
+                'service2-title': 'Design UI/UX',
+                'service2-desc': 'Interfaces utilisateur interactives et modernes.',
+                'service3-title': 'Bases de données',
+                'service3-desc': 'Intégration parfaite avec SQLite et SQL Server.',
+                'projects-title1': 'Mes',
+                'projects-title2': 'projets',
+                'projects-sub': 'Mes réalisations techniques',
+                'project1-desc': 'Système intelligent intégré pour la gestion des ateliers de réparation automobile et le suivi des pièces détachées.',
+                'project2-desc': 'Outil élégant pour imprimer des étiquettes produits et codes-barres avec personnalisation illimitée.',
+                'project3-desc': "Système intégré de gestion des ressources humaines (HR ERP) avec fiscalité algérienne et empreinte ZKTeco.",
+                'project-langs': '3 langues',
+                'project-btn': 'Découvrir les fonctionnalités',
+                'skills-title1': 'Mes compétences',
+                'skills-sub': 'Précision et maîtrise',
+                'skill1': 'C# & .NET',
+                'skill2': 'WPF (UI/UX)',
+                'skill3': 'Entity Framework Core',
+                'skill4': 'SQLite / SQL Server',
+                'contact-title1': 'Contactez-',
+                'contact-title2': 'moi',
+                'contact-sub': 'Parlons de votre projet 🚀',
+                'contact-address-label': 'Adresse',
+                'contact-address': 'Belgaid, Bir El Djir, Oran',
+                'contact-email-label': 'Email',
+                'contact-phone-label': 'Téléphone',
+                'contact-whatsapp': 'Contactez-moi sur WhatsApp',
+                'footer-text': '🇩🇿 Made in Algeria with ❤️<br>&copy; 2026 <strong>Saif El Islem Zahaf</strong>. Tous droits réservés.'
+            },
+            en: {
+                'nav-home': 'Home',
+                'nav-about': 'About',
+                'nav-services': 'Services',
+                'nav-projects': 'Projects',
+                'nav-skills': 'Skills',
+                'nav-contact': 'Contact',
+                'hero-badge': 'Software Developer',
+                'hero-name-first': 'Saif El Islem',
+                'hero-name-last': 'Zahaf',
+                'hero-desc': 'I build high-performance desktop applications using .NET and WPF, and design futuristic user experiences.',
+                'hero-btn1': 'Discover My Projects',
+                'hero-btn2': 'Contact Me',
+                'stat1': 'Years of Experience',
+                'stat2': 'Completed Projects',
+                'stat3': 'Happy Clients',
+                'about-title1': 'Who',
+                'about-title2': 'am I?',
+                'about-sub': 'A glimpse of the developer',
+                'about-text1': "I'm",
+                'about-text2': 'Saif El Islem',
+                'about-text3': ', a software engineer from Algeria 🇩🇿',
+                'about-desc': 'Specialized in developing robust desktop applications with attractive interfaces, I focus on the end-user experience.',
+                'info-name-label': 'Name:',
+                'info-name': 'Saif El Islem Zahaf',
+                'info-job-label': 'Profession:',
+                'info-job': 'Software Developer',
+                'info-email-label': 'Email:',
+                'info-address-label': 'Address:',
+                'info-address': 'Oran, Algeria',
+                'services-title1': 'My Services',
+                'services-sub': 'My technical capabilities',
+                'service1-title': 'WPF & .NET Development',
+                'service1-desc': 'Ultra-fast and robust desktop applications.',
+                'service2-title': 'UI/UX Design',
+                'service2-desc': 'Interactive and modern user interfaces.',
+                'service3-title': 'Databases',
+                'service3-desc': 'Perfect integration with SQLite and SQL Server.',
+                'projects-title1': 'My',
+                'projects-title2': 'Projects',
+                'projects-sub': 'My strongest technical works',
+                'project1-desc': 'An intelligent integrated system for managing car repair workshops and tracking spare parts.',
+                'project2-desc': 'An elegant tool for printing product labels and barcodes with unlimited customization.',
+                'project3-desc': 'An integrated Human Resources management system (HR ERP) with Algerian taxation and ZKTeco fingerprint.',
+                'project-langs': '3 Languages',
+                'project-btn': 'Discover Features',
+                'skills-title1': 'My Skills',
+                'skills-sub': 'Precision and mastery',
+                'skill1': 'C# & .NET',
+                'skill2': 'WPF (UI/UX)',
+                'skill3': 'Entity Framework Core',
+                'skill4': 'SQLite / SQL Server',
+                'contact-title1': 'Contact',
+                'contact-title2': 'Me',
+                'contact-sub': "Let's talk about your project 🚀",
+                'contact-address-label': 'Address',
+                'contact-address': 'Belgaid, Bir El Djir, Oran',
+                'contact-email-label': 'Email',
+                'contact-phone-label': 'Phone',
+                'contact-whatsapp': 'Contact me on WhatsApp',
+                'footer-text': '🇩🇿 Made in Algeria with ❤️<br>&copy; 2026 <strong>Saif El Islem Zahaf</strong>. All rights reserved.'
+            }
+        };
+
+        // ====== تغيير اللغة ======
+        let currentLang = 'ar';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            
+            // تحديث الأزرار
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // تغيير اتجاه الصفحة
+            const html = document.documentElement;
+            if (lang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+                html.setAttribute('lang', 'ar');
+                document.body.className = '';
+            } else {
+                html.setAttribute('dir', 'ltr');
+                html.setAttribute('lang', lang);
+                document.body.className = lang;
+            }
+
+            // تحديث النصوص
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.dataset.key;
+                if (translations[lang][key] !== undefined) {
+                    // إذا كان العنصر يحتوي على HTML (مثل footer)
+                    if (key === 'footer-text' || key === 'about-text3' || key === 'hero-desc') {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // حفظ اللغة في localStorage
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        // ====== الأزرار ======
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                changeLanguage(btn.dataset.lang);
+            });
+        });
+
+        // ====== استرجاع اللغة المحفوظة ======
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang') || 'ar';
+            changeLanguage(savedLang);
+        });
+
+        // ====== القائمة الجانبية للجوال ======
         document.addEventListener('DOMContentLoaded', () => {
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('nav-links');
