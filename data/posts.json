@@ -19,7 +19,8 @@
     "date": "2026-08-22T16:45:54.217Z",
     "status": "published",
     "published": true,
-    "deleted": false
+    "deleted": true,
+    "deletedAt": "2026-08-22T17:48:06.244Z"
   },
   {
     "id": "post_1787418507134",
