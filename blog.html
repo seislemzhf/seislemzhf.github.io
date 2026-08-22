@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المدونة | Minsaj DZ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #0a0a0a;
+            color: #f0ece6;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        :root {
+            --accent: #6c8b9e;
+            --accent-light: #8aadc2;
+            --accent-dark: #4a6a7e;
+            --bg-card: #1a1a1a;
+            --border: rgba(108, 139, 158, 0.08);
+            --text-muted: #6a625a;
+            --text-secondary: #b8b0a8;
+        }
+
+        /* ====== Header ====== */
+        header {
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #f0ece6;
+        }
+        .logo span { color: var(--accent); }
+        .logo .sub {
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            display: block;
+            font-weight: 400;
+        }
+        .btn-home {
+            display: inline-block;
+            background: rgba(108, 139, 158, 0.08);
+            color: var(--accent);
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: 1px solid rgba(108, 139, 158, 0.12);
+            transition: 0.3s;
+        }
+        .btn-home:hover {
+            background: var(--accent);
+            color: #0a0a0a;
+            transform: translateY(-2px);
+        }
+
+        /* ====== Hero ====== */
+        .hero {
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #f0ece6;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* ====== المقالات ====== */
+        .post {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 30px 35px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        .post:hover {
+            border-color: rgba(108, 139, 158, 0.15);
+        }
+        .post .post-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #f0ece6;
+            margin-bottom: 5px;
+        }
+        .post .post-title a { color: #f0ece6; }
+        .post .post-title a:hover { color: var(--accent); }
+        .post .post-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+        .post .post-meta i { color: var(--accent); margin: 0 4px; }
+        .post .post-body {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+        .post .post-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid var(--border);
+        }
+        .post .post-body iframe {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .post .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--accent);
+            font-weight: 700;
+            border: 1px solid rgba(108, 139, 158, 0.12);
+            padding: 6px 20px;
+            border-radius: 30px;
+            transition: 0.3s;
+            font-size: 0.85rem;
+        }
+        .post .read-more:hover {
+            background: var(--accent);
+            color: #0a0a0a;
+        }
+
+        .status-message {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        .status-message i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
+        .status-message .sub-msg { font-size: 0.85rem; opacity: 0.6; margin-top: 10px; }
+
+        /* ====== Footer ====== */
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            margin-top: 20px;
+        }
+        footer .ornament {
+            font-size: 0.7rem;
+            color: var(--accent-dark);
+            letter-spacing: 10px;
+            opacity: 0.2;
+        }
+
+        @media (max-width: 700px) {
+            .post { padding: 20px; }
+            .post .post-title { font-size: 1.3rem; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== Header ====== -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                Minsaj <span>DZ</span>
+                <span class="sub">✦ مدونة البرمجيات والتقنية ✦</span>
+            </div>
+            <a href="https://seislemzhf.github.io" class="btn-home">
+                <i class="fas fa-arrow-right"></i> العودة للرئيسية
+            </a>
+        </div>
+    </header>
+
+    <!-- ====== Hero ====== -->
+    <section class="hero">
+        <div class="container">
+            <h1><span>مدونة</span> Minsaj DZ</h1>
+            <p class="subtitle">برمجيات، تقنية، وتجارب <i class="fas fa-code" style="color: var(--accent);"></i></p>
+        </div>
+    </section>
+
+    <!-- ====== المحتوى ====== -->
+    <section>
+        <div class="container">
+
+            <!-- ====== حاوية المقالات ====== -->
+            <div id="posts-container">
+                <!-- سيتم ملؤها بواسطة JavaScript -->
+                <div class="status-message" id="loading-status">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>جاري تحميل المقالات...</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ====== Footer ====== -->
+    <footer>
+        <div class="container">
+            <div class="ornament">✦ ✦ ✦</div>
+            <p>🇩🇿 صنع في الجزائر بـ ❤️</p>
+            <p>© 2026 <strong>Minsaj DZ</strong> – جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <script>
+        // =========================================================
+        // 🚀 جلب المقالات الحقيقية من Blogger تلقائياً
+        // =========================================================
+        (function() {
+            const container = document.getElementById('posts-container');
+
+            // رابط RSS لمدونتك
+            const BLOG_URL = 'https://minsajdz.blogspot.com/feeds/posts/default';
+            const MAX_POSTS = 20; // عدد المقالات المراد عرضها
+
+            // دالة لاستخراج محتوى HTML من نص المقال (مع الصور والفيديوهات)
+            function extractContent(content) {
+                if (!content) return '';
+                return content;
+            }
+
+            // دالة لتنسيق التاريخ
+            function formatDate(dateStr) {
+                try {
+                    const d = new Date(dateStr);
+                    return d.toLocaleDateString('ar-EG', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                } catch {
+                    return dateStr;
+                }
+            }
+
+            // استخراج التصنيفات (labels)
+            function getLabels(entry) {
+                if (entry.category && entry.category.length > 0) {
+                    return entry.category.map(cat => cat.term).join('، ');
+                }
+                return 'عام';
+            }
+
+            // دالة لعرض المقالات
+            function renderPosts(posts) {
+                if (!posts || posts.length === 0) {
+                    container.innerHTML = `
+                        <div class="status-message">
+                            <i class="fas fa-newspaper" style="color:var(--accent);"></i>
+                            <p>لا توجد مقالات حالياً.</p>
+                            <p class="sub-msg">اكتب مقالاً في مدونتك وسيظهر هنا تلقائياً!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = '';
+                posts.forEach((post) => {
+                    const title = post.title.$t || 'بدون عنوان';
+                    const link = post.link.find(l => l.rel === 'alternate')?.href || '#';
+                    const published = post.published?.$t || new Date().toISOString();
+                    const content = post.content?.$t || post.summary?.$t || 'لا يوجد محتوى.';
+                    const labels = getLabels(post);
+
+                    html += `
+                        <div class="post">
+                            <h2 class="post-title">
+                                <a href="${link}" target="_blank">${title}</a>
+                            </h2>
+                            <div class="post-meta">
+                                <i class="fas fa-calendar"></i> ${formatDate(published)}
+                                <span style="margin:0 8px;">|</span>
+                                <i class="fas fa-tag"></i> ${labels}
+                            </div>
+                            <div class="post-body">
+                                ${extractContent(content)}
+                                <a href="${link}" target="_blank" class="read-more">
+                                    اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+            }
+
+            // جلب البيانات من Blogger
+            function fetchPosts() {
+                const url = `${BLOG_URL}?alt=json&max-results=${MAX_POSTS}`;
+
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) throw new Error('فشل في جلب البيانات');
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.feed && data.feed.entry) {
+                            renderPosts(data.feed.entry);
+                        } else {
+                            // المدونة فارغة
+                            container.innerHTML = `
+                                <div class="status-message">
+                                    <i class="fas fa-newspaper" style="color:var(--accent);"></i>
+                                    <p>لا توجد مقالات حالياً.</p>
+                                    <p class="sub-msg">اكتب مقالاً في مدونتك وسيظهر هنا تلقائياً!</p>
+                                </div>
+                            `;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('خطأ في الجلب:', error);
+                        container.innerHTML = `
+                            <div class="status-message">
+                                <i class="fas fa-exclamation-circle" style="color:#EF4444;"></i>
+                                <p>حدث خطأ في تحميل المقالات.</p>
+                                <p class="sub-msg">تأكد من اتصال الإنترنت أو حاول لاحقاً.</p>
+                            </div>
+                        `;
+                    });
+            }
+
+            // تشغيل الجلب بعد تحميل الصفحة
+            setTimeout(fetchPosts, 300);
+        })();
+    </script>
+
+</body>
+</html>
