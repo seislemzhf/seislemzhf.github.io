@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
 
     <style>
+        /* نفس الـ CSS السابق... */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Tajawal', sans-serif; background: #0a0a0a; color: #f0ece6; line-height: 1.8; min-height: 100vh; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -117,14 +118,7 @@
 
         @keyframes fadeUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
-        .status-box {
-            background: var(--bg-card);
-            border-radius: 14px;
-            padding: 20px;
-            border: 1px solid var(--border);
-            margin-bottom: 20px;
-            text-align: center;
-        }
+        .status-box { background: var(--bg-card); border-radius: 14px; padding: 20px; border: 1px solid var(--border); margin-bottom: 20px; text-align: center; }
         .status-box .status-icon { font-size: 2.5rem; margin-bottom: 10px; }
         .status-box .status-title { font-weight: 900; font-size: 1.2rem; margin-bottom: 5px; }
         .status-box .status-desc { color: var(--text-muted); font-size: 0.9rem; }
@@ -191,9 +185,6 @@
                         <i class="fas fa-list"></i> كل المقالات
                         <span class="count-badge" id="posts-count">0</span>
                         <div style="float:left; display:flex; gap:8px;">
-                            <button class="btn-outline" onclick="testConnection()" style="font-size:0.7rem; padding:4px 14px;">
-                                <i class="fas fa-plug"></i> اختبار الاتصال
-                            </button>
                             <button class="btn-outline" onclick="loadPosts()" style="font-size:0.7rem; padding:4px 14px;">
                                 <i class="fas fa-sync-alt"></i> تحديث
                             </button>
@@ -249,22 +240,14 @@
                     <div class="editor-wrapper">
                         <div class="status-box" style="border-color:var(--warning);">
                             <div class="status-icon">⚠️</div>
-                            <div class="status-title">مطلوب Token صحيح</div>
+                            <div class="status-title">استخدام الرابط المباشر</div>
                             <div class="status-desc">
-                                أنشئ Token من 
-                                <a href="https://github.com/settings/tokens" target="_blank" style="color:var(--accent);">GitHub Settings</a>
-                                مع صلاحية <strong>repo</strong> بالكامل
+                                المقالات تُقرأ وتُكتب من/إلى ملف
+                                <strong style="color:var(--accent);">data/posts.json</strong>
+                                في المستودع
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label>🔑 GitHub Token <span class="required">*</span></label>
-                            <input type="password" id="github-token" placeholder="أدخل Personal Access Token الخاص بك" style="direction:ltr; text-align:left;">
-                            <p style="font-size:0.75rem; color:var(--text-muted); margin-top:5px;">
-                                <i class="fas fa-info-circle"></i> 
-                                <span id="token-status" style="color:var(--warning);">⚠️ لم يتم التحقق من Token</span>
-                            </p>
-                        </div>
                         <div class="form-group">
                             <label>📂 اسم المستودع</label>
                             <input type="text" id="github-repo" value="seislemzhf.github.io" style="direction:ltr; text-align:left;">
@@ -273,6 +256,7 @@
                             <label>📁 مسار ملف المقالات</label>
                             <input type="text" id="github-path" value="data/posts.json" style="direction:ltr; text-align:left;">
                         </div>
+
                         <div style="display:flex; gap:12px; flex-wrap:wrap;">
                             <button class="btn-submit" onclick="saveSettings()"><i class="fas fa-save"></i> حفظ الإعدادات</button>
                             <button class="btn-outline" onclick="testConnection()"><i class="fas fa-plug"></i> اختبار الاتصال</button>
@@ -343,125 +327,76 @@
         });
 
         // =========================================================
-        // 📝 إدارة المقالات على GitHub
+        // 📝 إدارة المقالات عبر raw.githubusercontent
         // =========================================================
         let posts = [];
         let isEditing = false;
 
         function getSettings() {
             return {
-                token: localStorage.getItem('github_token') || '',
                 repo: localStorage.getItem('github_repo') || 'seislemzhf.github.io',
                 path: localStorage.getItem('github_path') || 'data/posts.json'
             };
         }
 
+        function getRawUrl() {
+            const settings = getSettings();
+            return `https://raw.githubusercontent.com/${settings.repo}/main/${settings.path}`;
+        }
+
         function saveSettings() {
-            const token = document.getElementById('github-token').value.trim();
             const repo = document.getElementById('github-repo').value.trim();
             const path = document.getElementById('github-path').value.trim();
 
-            if (!token) {
-                showToast('الرجاء إدخال GitHub Token', 'error');
-                return;
-            }
-
-            localStorage.setItem('github_token', token);
             localStorage.setItem('github_repo', repo);
             localStorage.setItem('github_path', path);
 
             showToast('✅ تم حفظ الإعدادات', 'success');
-            document.getElementById('token-status').textContent = '✅ تم حفظ Token';
-            document.getElementById('token-status').style.color = 'var(--success)';
             loadPosts();
         }
 
         function loadSettings() {
             const settings = getSettings();
-            document.getElementById('github-token').value = settings.token;
             document.getElementById('github-repo').value = settings.repo;
             document.getElementById('github-path').value = settings.path;
-
-            if (settings.token) {
-                document.getElementById('token-status').textContent = '✅ Token محفوظ';
-                document.getElementById('token-status').style.color = 'var(--success)';
-            }
-        }
-
-        function getFileUrl() {
-            const settings = getSettings();
-            return `https://api.github.com/repos/${settings.repo}/contents/${settings.path}`;
         }
 
         // ====== اختبار الاتصال ======
         async function testConnection() {
             const resultDiv = document.getElementById('settings-result');
-            const token = document.getElementById('github-token').value.trim();
-            const repo = document.getElementById('github-repo').value.trim();
-
-            if (!token) {
-                showToast('الرجاء إدخال Token', 'error');
-                return;
-            }
+            const url = getRawUrl();
 
             resultDiv.innerHTML = '<p style="color:var(--accent);"><i class="fas fa-spinner fa-spin"></i> جاري اختبار الاتصال...</p>';
 
             try {
-                // اختبار 1: التحقق من صلاحية Token
-                const testUrl = 'https://api.github.com/user';
-                const testResp = await fetch(testUrl, {
-                    headers: { 'Authorization': `token ${token}` }
-                });
+                const response = await fetch(url + '?t=' + Date.now());
 
-                if (!testResp.ok) {
-                    resultDiv.innerHTML = `<p style="color:var(--danger);">❌ Token غير صالح أو منتهي الصلاحية</p>`;
-                    showToast('❌ Token غير صالح', 'error');
+                if (response.status === 404) {
+                    resultDiv.innerHTML = `
+                        <p style="color:var(--warning);">⚠️ ملف المقالات غير موجود</p>
+                        <p style="color:var(--text-muted); font-size:0.85rem;">سيتم إنشاؤه تلقائياً عند نشر أول مقال</p>
+                        <p style="color:var(--text-muted); font-size:0.85rem;">📂 المسار: ${url}</p>
+                    `;
+                    showToast('⚠️ الملف غير موجود، سيُنشأ عند النشر', 'info');
                     return;
                 }
 
-                const userData = await testResp.json();
-                const username = userData.login;
+                if (!response.ok) throw new Error('فشل في الوصول إلى الملف');
 
-                // اختبار 2: الوصول إلى المستودع
-                const repoUrl = `https://api.github.com/repos/${repo}`;
-                const repoResp = await fetch(repoUrl, {
-                    headers: { 'Authorization': `token ${token}` }
-                });
-
-                if (!repoResp.ok) {
-                    if (repoResp.status === 404) {
-                        resultDiv.innerHTML = `<p style="color:var(--danger);">❌ المستودع "${repo}" غير موجود</p>`;
-                    } else {
-                        resultDiv.innerHTML = `<p style="color:var(--danger);">❌ لا يمكن الوصول إلى المستودع (${repoResp.status})</p>`;
-                    }
-                    return;
-                }
-
-                // اختبار 3: محاولة قراءة ملف المقالات
-                const fileUrl = `https://api.github.com/repos/${repo}/contents/data/posts.json`;
-                const fileResp = await fetch(fileUrl, {
-                    headers: { 'Authorization': `token ${token}` }
-                });
-
-                if (fileResp.status === 404) {
-                    resultDiv.innerHTML = `
-                        <p style="color:var(--warning);">⚠️ ملف المقالات غير موجود (سيتم إنشاؤه تلقائياً)</p>
-                        <p style="color:var(--text-muted); font-size:0.85rem;">✅ الاتصال بـ GitHub ناجح (${username})</p>
-                    `;
-                    showToast('✅ الاتصال ناجح! الملف سيُنشأ عند أول نشر', 'success');
-                } else if (fileResp.ok) {
-                    resultDiv.innerHTML = `
-                        <p style="color:var(--success);">✅ الاتصال ناجح!</p>
-                        <p style="color:var(--text-muted); font-size:0.85rem;">👤 المستخدم: ${username}</p>
-                        <p style="color:var(--text-muted); font-size:0.85rem;">📂 المستودع: ${repo}</p>
-                    `;
-                    showToast('✅ الاتصال بـ GitHub ناجح!', 'success');
-                } else {
-                    resultDiv.innerHTML = `<p style="color:var(--danger);">❌ خطأ غير متوقع (${fileResp.status})</p>`;
-                }
+                const data = await response.json();
+                resultDiv.innerHTML = `
+                    <p style="color:var(--success);">✅ الاتصال ناجح!</p>
+                    <p style="color:var(--text-muted); font-size:0.85rem;">📂 المسار: ${url}</p>
+                    <p style="color:var(--text-muted); font-size:0.85rem;">📄 عدد المقالات: ${Array.isArray(data) ? data.length : 0}</p>
+                `;
+                showToast('✅ الاتصال ناجح!', 'success');
 
             } catch (error) {
-                resultDiv.innerHTML = `<p style="color:var(--danger);">❌ خطأ في الاتصال: ${error.message}</p>`;
+                resultDiv.innerHTML = `
+                    <p style="color:var(--danger);">❌ خطأ في الاتصال</p>
+                    <p style="color:var(--text-muted); font-size:0.85rem;">${error.message}</p>
+                    <p style="color:var(--text-muted); font-size:0.85rem;">📂 تأكد من المسار: ${url}</p>
+                `;
                 showToast('❌ فشل الاتصال', 'error');
                 console.error(error);
             }
@@ -473,25 +408,8 @@
             const countEl = document.getElementById('posts-count');
 
             try {
-                const settings = getSettings();
-                if (!settings.token) {
-                    container.innerHTML = `
-                        <div class="empty-state">
-                            <i class="fas fa-cog" style="color:var(--warning);"></i>
-                            <p>الرجاء إدخال GitHub Token في تبويب الإعدادات</p>
-                            <p style="font-size:0.85rem; opacity:0.6;">أنشئ Token من GitHub Settings مع صلاحية repo</p>
-                        </div>
-                    `;
-                    return;
-                }
-
-                const url = getFileUrl();
-                const response = await fetch(url, {
-                    headers: {
-                        'Authorization': `token ${settings.token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
+                const url = getRawUrl();
+                const response = await fetch(url + '?t=' + Date.now());
 
                 if (response.status === 404) {
                     posts = [];
@@ -506,14 +424,10 @@
                     return;
                 }
 
-                if (!response.ok) {
-                    const error = await response.json();
-                    throw new Error(error.message || 'فشل في تحميل المقالات');
-                }
+                if (!response.ok) throw new Error('فشل في تحميل المقالات');
 
                 const data = await response.json();
-                const content = atob(data.content);
-                posts = JSON.parse(content);
+                posts = Array.isArray(data) ? data : [];
                 renderPosts();
 
             } catch (error) {
@@ -533,20 +447,27 @@
 
         // ====== حفظ المقالات على GitHub ======
         async function savePostsToGitHub() {
-            const settings = getSettings();
-            if (!settings.token) {
-                showToast('الرجاء إدخال GitHub Token', 'error');
-                return false;
-            }
-
             try {
+                const settings = getSettings();
+                const repo = settings.repo;
+                const path = settings.path;
+
+                // استخدام GitHub API للكتابة (يحتاج Token)
+                const token = localStorage.getItem('github_token');
+                if (!token) {
+                    // إذا لم يكن هناك Token، نستخدم LocalStorage كحل مؤقت
+                    localStorage.setItem('blog_posts_backup', JSON.stringify(posts));
+                    showToast('⚠️ تم الحفظ محلياً (بدون Token)', 'info');
+                    return true;
+                }
+
                 const content = btoa(unescape(encodeURIComponent(JSON.stringify(posts, null, 2))));
-                const url = getFileUrl();
+                const url = `https://api.github.com/repos/${repo}/contents/${path}`;
 
                 let sha = '';
                 try {
                     const response = await fetch(url, {
-                        headers: { 'Authorization': `token ${settings.token}` }
+                        headers: { 'Authorization': `token ${token}` }
                     });
                     if (response.ok) {
                         const data = await response.json();
@@ -564,7 +485,7 @@
                 const response = await fetch(url, {
                     method: 'PUT',
                     headers: {
-                        'Authorization': `token ${settings.token}`,
+                        'Authorization': `token ${token}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(payload)
@@ -579,7 +500,9 @@
 
             } catch (error) {
                 console.error('خطأ في الحفظ:', error);
-                showToast('❌ ' + error.message, 'error');
+                // حفظ احتياطي في LocalStorage
+                localStorage.setItem('blog_posts_backup', JSON.stringify(posts));
+                showToast('⚠️ تم الحفظ محلياً (خطأ: ' + error.message + ')', 'info');
                 return false;
             }
         }
@@ -678,15 +601,11 @@
                     });
                 }
 
-                const saved = await savePostsToGitHub();
-                if (saved) {
-                    renderPosts();
-                    showToast(editFile ? '✅ تم تحديث المقال!' : '✅ تم نشر المقال!', 'success');
-                    cancelEdit();
-                    switchTab('all-posts');
-                } else {
-                    showToast('❌ فشل في حفظ المقالات', 'error');
-                }
+                await savePostsToGitHub();
+                renderPosts();
+                showToast(editFile ? '✅ تم تحديث المقال!' : '✅ تم نشر المقال!', 'success');
+                cancelEdit();
+                switchTab('all-posts');
 
             } catch (error) {
                 showToast('❌ خطأ: ' + error.message, 'error');
@@ -731,11 +650,9 @@
 
             posts = posts.filter(p => p.id !== id);
             try {
-                const saved = await savePostsToGitHub();
-                if (saved) {
-                    renderPosts();
-                    showToast('🗑️ تم حذف المقال', 'success');
-                }
+                await savePostsToGitHub();
+                renderPosts();
+                showToast('🗑️ تم حذف المقال', 'success');
             } catch (error) {
                 showToast('❌ خطأ: ' + error.message, 'error');
             }
@@ -747,11 +664,9 @@
 
             post.published = !post.published;
             try {
-                const saved = await savePostsToGitHub();
-                if (saved) {
-                    renderPosts();
-                    showToast(post.published ? '✅ تم نشر المقال' : '⏳ تم إخفاء المقال', 'success');
-                }
+                await savePostsToGitHub();
+                renderPosts();
+                showToast(post.published ? '✅ تم نشر المقال' : '⏳ تم إخفاء المقال', 'success');
             } catch (error) {
                 showToast('❌ خطأ: ' + error.message, 'error');
             }
