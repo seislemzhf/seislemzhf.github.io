@@ -3,10 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-    <title>عرض المقال | Minsaj DZ</title>
+
+    <!-- ====== SEO: العنوان الديناميكي ====== -->
+    <title id="meta-title">المدونة | Minsaj DZ</title>
+
+    <!-- ====== SEO: الوصف والكلمات المفتاحية ====== -->
+    <meta name="description" id="meta-description" content="مدونة برمجيات وتقنية جزائرية">
+    <meta name="keywords" id="meta-keywords" content="برمجيات, تقنية, برمجة, تطوير, جزائر, Minsaj DZ">
+
+    <!-- ====== SEO: الروبوتات والفهرسة ====== -->
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" id="meta-canonical" href="https://seislemzhf.github.io/">
+
+    <!-- ====== Open Graph (فيسبوك، واتساب، تليغرام) ====== -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" id="og-title" content="المدونة | Minsaj DZ">
+    <meta property="og:description" id="og-description" content="مدونة برمجيات وتقنية جزائرية">
+    <meta property="og:url" id="og-url" content="https://seislemzhf.github.io/">
+    <meta property="og:image" id="og-image" content="https://seislemzhf.github.io/images/og-image.jpg">
+    <meta property="og:site_name" content="Minsaj DZ - مدونة البرمجيات والتقنية">
+    <meta property="og:locale" content="ar_AR">
+
+    <!-- ====== Twitter Cards ====== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitter-title" content="المدونة | Minsaj DZ">
+    <meta name="twitter:description" id="twitter-description" content="مدونة برمجيات وتقنية جزائرية">
+    <meta name="twitter:image" id="twitter-image" content="https://seislemzhf.github.io/images/og-image.jpg">
+
+    <!-- ====== JSON-LD (بيانات منظمة لجوجل) ====== -->
+    <script type="application/ld+json" id="json-ld">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "المدونة | Minsaj DZ",
+        "description": "مدونة برمجيات وتقنية جزائرية",
+        "url": "https://seislemzhf.github.io/",
+        "datePublished": "2026-08-22",
+        "dateModified": "2026-08-22",
+        "author": {
+            "@type": "Person",
+            "name": "سيف الإسلام زحاف"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Minsaj DZ",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://seislemzhf.github.io/images/logo.png"
+            }
+        }
+    }
+    </script>
+
+    <!-- ====== أيقونات ====== -->
+    <link rel="icon" href="https://seislemzhf.github.io/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://seislemzhf.github.io/images/apple-touch-icon.png">
+
+    <!-- ====== ستايل ====== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
     <style>
+        /* ====== CSS السابق مع إضافات بسيطة ====== */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body {
             font-family: 'Tajawal', sans-serif;
@@ -31,7 +90,6 @@
             --warning: #F59E0B;
         }
 
-        /* ====== Header ====== */
         header {
             padding: 14px 0;
             background: rgba(10, 10, 10, 0.96);
@@ -64,10 +122,7 @@
         }
         .btn-back:hover { background: var(--accent); color: #0a0a0a; transform: translateY(-2px); }
 
-        /* ====== المحتوى ====== */
-        #post-container {
-            padding: 20px 0 30px;
-        }
+        #post-container { padding: 20px 0 30px; }
 
         .post-full {
             background: var(--bg-card);
@@ -137,7 +192,6 @@
             margin: 15px 0;
         }
 
-        /* ====== أزرار المشاركة ====== */
         .share-section {
             margin: 25px 0 30px;
             padding: 20px 0;
@@ -178,10 +232,7 @@
         .share-btn.copy:hover { background: var(--accent-light); }
         .share-btn i { font-size: 1rem; }
 
-        /* ====== التعليقات ====== */
-        .comments-section {
-            margin-top: 30px;
-        }
+        .comments-section { margin-top: 30px; }
         .comments-section h3 {
             font-size: 1.3rem;
             font-weight: 900;
@@ -277,7 +328,6 @@
             font-size: 0.9rem;
         }
 
-        /* ====== حالة التحميل ====== */
         .status-message {
             text-align: center;
             padding: 60px 20px;
@@ -299,7 +349,6 @@
         }
         .status-message .btn-retry:hover { transform: scale(1.05); }
 
-        /* ====== Toast ====== */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -328,7 +377,6 @@
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        /* ====== Footer ====== */
         footer {
             padding: 25px 0;
             text-align: center;
@@ -380,16 +428,16 @@
 
     <script>
         // =========================================================
-        // 📖 عرض المقالة كاملة مع تعليقات وروابط مشاركة
+        // 📖 عرض المقالة مع SEO كامل
         // =========================================================
 
-        // ====== المسار ======
         const USERNAME = 'seislemzhf';
         const REPO = 'seislemzhf.github.io';
         const PATH = 'data/posts.json';
         const RAW_URL = `https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${PATH}`;
+        const BASE_URL = 'https://seislemzhf.github.io/';
+        const DEFAULT_IMAGE = 'https://seislemzhf.github.io/images/og-image.jpg';
 
-        // ====== متغيرات عامة ======
         let currentPostId = null;
         let currentPost = null;
 
@@ -428,7 +476,116 @@
         }
 
         function getPostTitle() {
-            return currentPost ? currentPost.title : 'مشاركة';
+            return currentPost ? currentPost.title : 'المدونة | Minsaj DZ';
+        }
+
+        function getPostDescription() {
+            if (currentPost) {
+                const text = currentPost.content ? currentPost.content.replace(/<[^>]+>/g, '') : '';
+                return text.substring(0, 160) || 'مدونة برمجيات وتقنية جزائرية';
+            }
+            return 'مدونة برمجيات وتقنية جزائرية';
+        }
+
+        function getPostKeywords() {
+            if (currentPost && currentPost.tags) {
+                return currentPost.tags + ', برمجيات, تقنية, جزائر, Minsaj DZ';
+            }
+            return 'برمجيات, تقنية, برمجة, تطوير, جزائر, Minsaj DZ';
+        }
+
+        function getPostImage() {
+            // محاولة استخراج أول صورة من المحتوى
+            if (currentPost && currentPost.content) {
+                const imgMatch = currentPost.content.match(/<img[^>]+src=["']([^"']+)["']/);
+                if (imgMatch) {
+                    // إذا كانت الصورة نسبية، نضيف الرابط الكامل
+                    if (imgMatch[1].startsWith('http')) {
+                        return imgMatch[1];
+                    } else if (imgMatch[1].startsWith('/')) {
+                        return BASE_URL + imgMatch[1].substring(1);
+                    } else {
+                        return BASE_URL + imgMatch[1];
+                    }
+                }
+            }
+            return DEFAULT_IMAGE;
+        }
+
+        // ====== تحديث SEO ======
+        function updateSEO() {
+            const title = getPostTitle();
+            const description = getPostDescription();
+            const keywords = getPostKeywords();
+            const url = getCurrentURL();
+            const image = getPostImage();
+            const date = currentPost ? new Date(currentPost.date).toISOString() : new Date().toISOString();
+
+            // Title
+            document.title = title;
+
+            // Meta Description
+            const metaDesc = document.getElementById('meta-description');
+            if (metaDesc) metaDesc.content = description;
+
+            // Meta Keywords
+            const metaKeywords = document.getElementById('meta-keywords');
+            if (metaKeywords) metaKeywords.content = keywords;
+
+            // Canonical
+            const canonical = document.getElementById('meta-canonical');
+            if (canonical) canonical.href = url;
+
+            // Open Graph
+            const ogTitle = document.getElementById('og-title');
+            if (ogTitle) ogTitle.content = title;
+
+            const ogDesc = document.getElementById('og-description');
+            if (ogDesc) ogDesc.content = description;
+
+            const ogUrl = document.getElementById('og-url');
+            if (ogUrl) ogUrl.content = url;
+
+            const ogImage = document.getElementById('og-image');
+            if (ogImage) ogImage.content = image;
+
+            // Twitter
+            const twitterTitle = document.getElementById('twitter-title');
+            if (twitterTitle) twitterTitle.content = title;
+
+            const twitterDesc = document.getElementById('twitter-description');
+            if (twitterDesc) twitterDesc.content = description;
+
+            const twitterImage = document.getElementById('twitter-image');
+            if (twitterImage) twitterImage.content = image;
+
+            // JSON-LD
+            const jsonLd = document.getElementById('json-ld');
+            if (jsonLd && currentPost) {
+                const data = {
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": title,
+                    "description": description,
+                    "url": url,
+                    "datePublished": date,
+                    "dateModified": date,
+                    "author": {
+                        "@type": "Person",
+                        "name": "سيف الإسلام زحاف"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Minsaj DZ",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://seislemzhf.github.io/images/logo.png"
+                        }
+                    },
+                    "image": image
+                };
+                jsonLd.textContent = JSON.stringify(data, null, 2);
+            }
         }
 
         // ====== التعليقات ======
@@ -513,11 +670,13 @@
 
                 currentPost = post;
 
-                // جلب التعليقات
+                // ====== تحديث SEO ======
+                updateSEO();
+
+                // ====== عرض المحتوى ======
                 const comments = getComments(postId);
                 const commentsCount = comments.length;
 
-                // بناء HTML
                 const date = formatDate(post.date);
                 const tags = post.tags || 'عام';
                 const content = post.content || 'لا يوجد محتوى.';
@@ -536,7 +695,7 @@
                             ${content}
                         </div>
 
-                        <!-- ====== أزرار المشاركة ====== -->
+                        <!-- ====== المشاركة ====== -->
                         <div class="share-section">
                             <div class="share-label"><i class="fas fa-share-alt"></i> شارك هذا المقال:</div>
                             <div class="share-buttons">
@@ -565,7 +724,6 @@
                                 <span class="count">${commentsCount}</span>
                             </h3>
 
-                            <!-- نموذج إضافة تعليق -->
                             <div class="comment-form">
                                 <div class="form-row">
                                     <input type="text" id="comment-name" placeholder="اسمك (اختياري)">
@@ -623,7 +781,7 @@
             }
         }
 
-        // ====== معالج إضافة تعليق ======
+        // ====== معالج التعليقات ======
         function handleAddComment() {
             if (!currentPostId) {
                 showToast('حدث خطأ، يرجى تحديث الصفحة', 'error');
@@ -643,20 +801,15 @@
                 return;
             }
 
-            // إضافة التعليق
             addComment(currentPostId, nameVal || 'زائر', textVal);
 
-            // إعادة تحميل التعليقات فقط
             if (text) text.value = '';
             if (name) name.value = '';
 
-            // تحديث واجهة التعليقات
             refreshComments();
-
             showToast('✅ تم إضافة تعليقك', 'success');
         }
 
-        // ====== تحديث التعليقات ======
         function refreshComments() {
             if (!currentPostId) return;
 
@@ -692,7 +845,7 @@
             list.innerHTML = html;
         }
 
-        // ====== مشاركة ======
+        // ====== المشاركة ======
         function shareOn(platform) {
             const url = encodeURIComponent(getCurrentURL());
             const title = encodeURIComponent(getPostTitle());
@@ -738,18 +891,18 @@
             document.body.removeChild(textarea);
         }
 
-        // ====== جعل الدوال عامة ======
+        // ====== دوال عامة ======
         window.loadPost = loadPost;
         window.handleAddComment = handleAddComment;
         window.shareOn = shareOn;
         window.copyLink = copyLink;
 
-        // ====== التحميل عند فتح الصفحة ======
+        // ====== التحميل ======
         document.addEventListener('DOMContentLoaded', function() {
             loadPost();
         });
 
-        console.log('📖 View Post Loaded');
+        console.log('📖 View Post Loaded (SEO Ready)');
     </script>
 
 </body>
