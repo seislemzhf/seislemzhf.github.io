@@ -10,8 +10,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
 
     <style>
-        /* ====== CSS كامل مع الوضع الداكن ====== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* ====== CSS كامل ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Tajawal', sans-serif;
             background: #0a0a0a;
@@ -24,13 +28,25 @@
             background: #f5f5f5;
             color: #1a1a1a;
         }
-        body.light-mode .bg-card { background: #ffffff; }
-        body.light-mode .border { border-color: #e0e0e0; }
-        body.light-mode .text-muted { color: #666; }
-        body.light-mode .editor-wrapper { background: #fafafa; }
+        body.light-mode .bg-card {
+            background: #ffffff;
+        }
+        body.light-mode .border {
+            border-color: #e0e0e0;
+        }
+        body.light-mode .text-muted {
+            color: #666;
+        }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        a { text-decoration: none; color: inherit; }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
         :root {
             --accent: #6c8b9e;
@@ -44,23 +60,87 @@
             --danger: #EF4444;
             --warning: #F59E0B;
         }
-        body.light-mode .bg-card { background: #ffffff; }
-        body.light-mode .border { border-color: #e0e0e0; }
 
-        header { padding: 16px 0; background: rgba(10, 10, 10, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
-        body.light-mode header { background: rgba(255,255,255,0.96); }
-        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-        .logo { font-size: 1.5rem; font-weight: 900; color: #f0ece6; }
-        body.light-mode .logo { color: #1a1a1a; }
-        .logo span { color: var(--accent); }
-        .logo .sub { font-size: 0.45rem; color: var(--text-muted); letter-spacing: 4px; display: block; font-weight: 400; }
+        header {
+            padding: 16px 0;
+            background: rgba(10, 10, 10, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        body.light-mode header {
+            background: rgba(255, 255, 255, 0.96);
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #f0ece6;
+        }
+        body.light-mode .logo {
+            color: #1a1a1a;
+        }
+        .logo span {
+            color: var(--accent);
+        }
+        .logo .sub {
+            font-size: 0.45rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            display: block;
+            font-weight: 400;
+        }
 
-        .btn-outline { display: inline-block; background: rgba(108, 139, 158, 0.08); color: var(--accent); padding: 6px 18px; border-radius: 50px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(108, 139, 158, 0.12); transition: 0.3s; cursor: pointer; font-family: inherit; }
-        .btn-outline:hover { background: var(--accent); color: #0a0a0a; transform: translateY(-2px); }
-        body.light-mode .btn-outline:hover { color: #fff; }
+        .btn-outline {
+            display: inline-block;
+            background: rgba(108, 139, 158, 0.08);
+            color: var(--accent);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            border: 1px solid rgba(108, 139, 158, 0.12);
+            transition: 0.3s;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #0a0a0a;
+            transform: translateY(-2px);
+        }
+        body.light-mode .btn-outline:hover {
+            color: #fff;
+        }
+        .btn-danger-outline {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.08);
+            color: var(--danger);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            border: 1px solid rgba(239, 68, 68, 0.12);
+            transition: 0.3s;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-danger-outline:hover {
+            background: var(--danger);
+            color: white;
+            transform: translateY(-2px);
+        }
 
         .theme-toggle {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border);
             color: var(--text-muted);
             padding: 6px 14px;
@@ -70,82 +150,441 @@
             transition: 0.3s;
             font-family: inherit;
         }
-        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
 
-        .login-screen { display: flex; justify-content: center; align-items: center; min-height: 80vh; }
-        .login-box { background: var(--bg-card); border-radius: 20px; padding: 40px 35px; max-width: 420px; width: 100%; border: 1px solid var(--border); text-align: center; }
-        .login-box h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 8px; }
-        .login-box h2 span { color: var(--accent); }
-        .login-box .sub { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; }
-        .login-box .lock-icon { font-size: 3.5rem; color: var(--accent); margin-bottom: 15px; opacity: 0.4; }
-        .login-box input { width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; color: #f0ece6; font-size: 1.1rem; font-family: inherit; text-align: center; transition: 0.3s; margin-bottom: 18px; direction: ltr; }
-        body.light-mode .login-box input { color: #1a1a1a; background: #f5f5f5; }
-        .login-box input:focus { outline: none; border-color: var(--accent); }
-        .login-box .btn-login { width: 100%; background: var(--accent); color: #0a0a0a; padding: 14px; border-radius: 50px; font-weight: 800; font-size: 1.1rem; border: none; cursor: pointer; transition: 0.3s; font-family: inherit; }
-        .login-box .btn-login:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(108, 139, 158, 0.2); }
-        .login-box .error-msg { color: var(--danger); font-size: 0.9rem; margin-top: 12px; display: none; }
+        /* ====== تسجيل الدخول ====== */
+        .login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .login-box {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px 35px;
+            max-width: 420px;
+            width: 100%;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .login-box h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+        .login-box h2 span {
+            color: var(--accent);
+        }
+        .login-box .sub {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        .login-box .lock-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            opacity: 0.4;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: #f0ece6;
+            font-size: 1.1rem;
+            font-family: inherit;
+            text-align: center;
+            transition: 0.3s;
+            margin-bottom: 18px;
+            direction: ltr;
+        }
+        body.light-mode .login-box input {
+            color: #1a1a1a;
+            background: #f5f5f5;
+        }
+        .login-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .login-box .btn-login {
+            width: 100%;
+            background: var(--accent);
+            color: #0a0a0a;
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .login-box .btn-login:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(108, 139, 158, 0.2);
+        }
+        .login-box .error-msg {
+            color: var(--danger);
+            font-size: 0.9rem;
+            margin-top: 12px;
+            display: none;
+        }
 
-        .dashboard-content { display: none; }
-        .dashboard-content.active { display: block; }
+        .dashboard-content {
+            display: none;
+        }
+        .dashboard-content.active {
+            display: block;
+        }
 
-        .hero { padding: 25px 0 15px; text-align: center; }
-        .hero h1 { font-size: 2.2rem; font-weight: 900; color: #f0ece6; }
-        body.light-mode .hero h1 { color: #1a1a1a; }
-        .hero h1 span { color: var(--accent); }
-        .hero .subtitle { font-size: 0.95rem; color: var(--text-muted); margin-top: 3px; }
+        /* ====== الإحصائيات ====== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 18px 15px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+        .stat-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .stat-card .stat-icon {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            font-family: 'Amiri', serif;
+            color: #f0ece6;
+        }
+        body.light-mode .stat-card .stat-number {
+            color: #1a1a1a;
+        }
+        .stat-card .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
 
-        .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
-        .tab-btn { background: transparent; border: none; color: var(--text-muted); padding: 8px 22px; border-radius: 30px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: 0.3s; font-family: inherit; }
-        .tab-btn:hover { color: var(--accent); }
-        .tab-btn.active { background: var(--accent); color: #0a0a0a; }
+        /* ====== الأقسام ====== */
+        .hero {
+            padding: 25px 0 15px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #f0ece6;
+        }
+        body.light-mode .hero h1 {
+            color: #1a1a1a;
+        }
+        .hero h1 span {
+            color: var(--accent);
+        }
+        .hero .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
 
-        .section { display: none; padding: 10px 0 30px; }
-        .section.active { display: block; }
+        .tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px 22px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .tab-btn:hover {
+            color: var(--accent);
+        }
+        .tab-btn.active {
+            background: var(--accent);
+            color: #0a0a0a;
+        }
 
-        .section-title { font-size: 1.3rem; font-weight: 900; color: #f0ece6; margin-bottom: 18px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
-        body.light-mode .section-title { color: #1a1a1a; }
-        .section-title i { color: var(--accent); margin-left: 8px; }
-        .section-title .count-badge { background: var(--accent); color: #0a0a0a; padding: 2px 12px; border-radius: 30px; font-size: 0.8rem; margin-right: 10px; }
+        .section {
+            display: none;
+            padding: 10px 0 30px;
+        }
+        .section.active {
+            display: block;
+        }
 
-        .posts-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-        .post-card { background: var(--bg-card); border-radius: 14px; padding: 18px 22px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; transition: 0.3s; }
-        .post-card:hover { border-color: rgba(108, 139, 158, 0.15); }
-        .post-card .info { flex: 1; min-width: 150px; }
-        .post-card .info h3 { font-size: 1.1rem; font-weight: 800; color: #f0ece6; }
-        body.light-mode .post-card .info h3 { color: #1a1a1a; }
-        .post-card .info .meta { font-size: 0.75rem; color: var(--text-muted); }
-        .post-card .info .meta i { color: var(--accent); margin: 0 3px; }
-        .post-card .info .status-badge { display: inline-block; padding: 1px 12px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; margin-right: 8px; }
-        .status-badge.published { background: rgba(16, 185, 129, 0.15); color: var(--success); }
-        .status-badge.draft { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #f0ece6;
+            margin-bottom: 18px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+        }
+        body.light-mode .section-title {
+            color: #1a1a1a;
+        }
+        .section-title i {
+            color: var(--accent);
+            margin-left: 8px;
+        }
+        .section-title .count-badge {
+            background: var(--accent);
+            color: #0a0a0a;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
 
-        .post-card .actions { display: flex; gap: 6px; flex-wrap: wrap; }
-        .post-card .actions button { padding: 5px 14px; border-radius: 30px; font-weight: 700; font-size: 0.7rem; border: none; cursor: pointer; transition: 0.3s; font-family: inherit; }
-        .btn-edit { background: rgba(108, 139, 158, 0.12); color: var(--accent); }
-        .btn-edit:hover { background: var(--accent); color: #0a0a0a; }
-        .btn-publish { background: rgba(16, 185, 129, 0.12); color: var(--success); }
-        .btn-publish:hover { background: var(--success); color: white; }
-        .btn-delete { background: rgba(239, 68, 68, 0.12); color: var(--danger); }
-        .btn-delete:hover { background: var(--danger); color: white; }
+        /* ====== قائمة المقالات ====== */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+        .post-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 18px 22px;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            transition: 0.3s;
+        }
+        .post-card:hover {
+            border-color: rgba(108, 139, 158, 0.15);
+        }
+        .post-card .info {
+            flex: 1;
+            min-width: 150px;
+        }
+        .post-card .info h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #f0ece6;
+        }
+        body.light-mode .post-card .info h3 {
+            color: #1a1a1a;
+        }
+        .post-card .info .meta {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .post-card .info .meta i {
+            color: var(--accent);
+            margin: 0 3px;
+        }
+        .post-card .info .status-badge {
+            display: inline-block;
+            padding: 1px 12px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            margin-right: 8px;
+        }
+        .status-badge.published {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+        .status-badge.draft {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+        .status-badge.scheduled {
+            background: rgba(6, 182, 212, 0.15);
+            color: #06B6D4;
+        }
 
-        .editor-wrapper { background: var(--bg-card); border-radius: 16px; padding: 25px 30px; border: 1px solid var(--border); }
-        body.light-mode .editor-wrapper { background: #fafafa; }
-        .form-group { margin-bottom: 18px; }
-        .form-group label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--text-secondary); font-size: 0.9rem; }
-        .form-group label .required { color: var(--danger); }
-        .form-group input, .form-group select { width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; color: #f0ece6; font-size: 1rem; font-family: inherit; transition: 0.3s; }
-        body.light-mode .form-group input { color: #1a1a1a; background: #f5f5f5; }
-        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent); }
+        .post-card .actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .post-card .actions button {
+            padding: 5px 14px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .btn-edit {
+            background: rgba(108, 139, 158, 0.12);
+            color: var(--accent);
+        }
+        .btn-edit:hover {
+            background: var(--accent);
+            color: #0a0a0a;
+        }
+        .btn-publish {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--success);
+        }
+        .btn-publish:hover {
+            background: var(--success);
+            color: white;
+        }
+        .btn-delete {
+            background: rgba(239, 68, 68, 0.12);
+            color: var(--danger);
+        }
+        .btn-delete:hover {
+            background: var(--danger);
+            color: white;
+        }
+        .btn-restore {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--warning);
+        }
+        .btn-restore:hover {
+            background: var(--warning);
+            color: white;
+        }
 
-        .form-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 15px; }
-        .btn-submit { background: var(--accent); color: #0a0a0a; padding: 12px 35px; border-radius: 50px; font-weight: 800; font-size: 1rem; border: none; cursor: pointer; transition: 0.3s; font-family: inherit; }
-        .btn-submit:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(108, 139, 158, 0.2); }
-        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-        .btn-cancel { background: rgba(255,255,255,0.04); color: var(--text-muted); padding: 12px 35px; border-radius: 50px; font-weight: 700; font-size: 1rem; border: 1px solid var(--border); cursor: pointer; transition: 0.3s; font-family: inherit; }
-        .btn-cancel:hover { border-color: var(--danger); color: var(--danger); }
-        #edit-indicator { color: var(--accent); font-weight: 700; font-size: 0.9rem; display: none; }
-        #edit-indicator i { margin-left: 6px; }
+        /* ====== محرر المقال ====== */
+        .editor-wrapper {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 25px 30px;
+            border: 1px solid var(--border);
+        }
+        body.light-mode .editor-wrapper {
+            background: #fafafa;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .form-group label .required {
+            color: var(--danger);
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #f0ece6;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        body.light-mode .form-group input,
+        body.light-mode .form-group select {
+            color: #1a1a1a;
+            background: #f5f5f5;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .form-group .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
 
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .btn-submit {
+            background: var(--accent);
+            color: #0a0a0a;
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .btn-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(108, 139, 158, 0.2);
+        }
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-cancel {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-muted);
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .btn-cancel:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        #edit-indicator {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: none;
+        }
+        #edit-indicator i {
+            margin-left: 6px;
+        }
+        #autosave-indicator {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            display: none;
+        }
+
+        /* ====== معاينة ====== */
         .preview-box {
             display: none;
             background: var(--bg-card);
@@ -156,49 +595,190 @@
             max-height: 500px;
             overflow-y: auto;
         }
-        body.light-mode .preview-box { background: #ffffff; }
-        .preview-box.active { display: block; }
+        body.light-mode .preview-box {
+            background: #ffffff;
+        }
+        .preview-box.active {
+            display: block;
+        }
         .preview-box .preview-title {
             font-size: 1.5rem;
             font-weight: 900;
             color: #f0ece6;
             margin-bottom: 5px;
         }
-        body.light-mode .preview-box .preview-title { color: #1a1a1a; }
+        body.light-mode .preview-box .preview-title {
+            color: #1a1a1a;
+        }
         .preview-box .preview-meta {
             font-size: 0.8rem;
             color: var(--text-muted);
             margin-bottom: 15px;
         }
-        .preview-box .preview-content { color: var(--text-secondary); }
-        body.light-mode .preview-box .preview-content { color: #333; }
+        .preview-box .preview-content {
+            color: var(--text-secondary);
+        }
+        body.light-mode .preview-box .preview-content {
+            color: #333;
+        }
 
-        .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); }
-        .empty-state i { font-size: 2.5rem; color: var(--accent); margin-bottom: 12px; opacity: 0.3; }
+        /* ====== سلة المحذوفات ====== */
+        .trash-item {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 15px 20px;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+            opacity: 0.7;
+        }
+        .trash-item:hover {
+            opacity: 1;
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+        .trash-item .info h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #f0ece6;
+        }
+        body.light-mode .trash-item .info h4 {
+            color: #1a1a1a;
+        }
+        .trash-item .info .meta {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
 
-        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--bg-card); border: 1px solid var(--border); padding: 14px 30px; border-radius: 12px; color: #f0ece6; font-weight: 700; z-index: 9999; display: none; box-shadow: 0 10px 40px rgba(0,0,0,0.5); max-width: 90%; text-align: center; }
-        body.light-mode .toast { color: #1a1a1a; background: #ffffff; }
-        .toast.show { display: block; animation: fadeUp 0.3s ease; }
-        .toast.success { border-color: var(--success); }
-        .toast.error { border-color: var(--danger); }
-        .toast.info { border-color: var(--accent); }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+        .empty-state i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 12px;
+            opacity: 0.3;
+        }
 
-        @keyframes fadeUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        /* ====== Toast ====== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 14px 30px;
+            border-radius: 12px;
+            color: #f0ece6;
+            font-weight: 700;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+            text-align: center;
+        }
+        body.light-mode .toast {
+            color: #1a1a1a;
+            background: #ffffff;
+        }
+        .toast.show {
+            display: block;
+            animation: fadeUp 0.3s ease;
+        }
+        .toast.success {
+            border-color: var(--success);
+        }
+        .toast.error {
+            border-color: var(--danger);
+        }
+        .toast.info {
+            border-color: var(--accent);
+        }
 
-        .status-box { background: var(--bg-card); border-radius: 14px; padding: 20px; border: 1px solid var(--border); margin-bottom: 20px; text-align: center; }
-        .status-box .status-icon { font-size: 2.5rem; margin-bottom: 10px; }
-        .status-box .status-title { font-weight: 900; font-size: 1.2rem; margin-bottom: 5px; }
-        .status-box .status-desc { color: var(--text-muted); font-size: 0.9rem; }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .status-box {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .status-box .status-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .status-box .status-title {
+            font-weight: 900;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .status-box .status-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            padding: 25px 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            margin-top: 15px;
+        }
+        footer p {
+            font-size: 0.75rem;
+        }
 
         @media (max-width: 700px) {
-            .post-card { flex-direction: column; align-items: stretch; text-align: center; }
-            .post-card .actions { justify-content: center; }
-            .hero h1 { font-size: 1.8rem; }
-            .tabs { justify-content: center; }
-            .tab-btn { padding: 6px 16px; font-size: 0.8rem; }
-            .login-box { padding: 25px 18px; }
-            .editor-wrapper { padding: 18px 16px; }
-            .form-actions { justify-content: center; }
+            .post-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .post-card .actions {
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .tabs {
+                justify-content: center;
+            }
+            .tab-btn {
+                padding: 6px 16px;
+                font-size: 0.8rem;
+            }
+            .login-box {
+                padding: 25px 18px;
+            }
+            .editor-wrapper {
+                padding: 18px 16px;
+            }
+            .form-actions {
+                justify-content: center;
+            }
+            .form-group .form-row {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -212,14 +792,14 @@
                     <i class="fas fa-moon"></i> <span id="theme-label">وضع داكن</span>
                 </button>
                 <a href="blog.html" class="btn-outline"><i class="fas fa-eye"></i> عرض المدونة</a>
-                <button class="btn-danger-outline" onclick="logout()" id="logoutBtn" style="display:none; background:rgba(239,68,68,0.08); color:#EF4444; padding:6px 18px; border-radius:50px; font-weight:700; font-size:0.75rem; border:1px solid rgba(239,68,68,0.12); cursor:pointer; font-family:inherit;">
+                <button class="btn-danger-outline" onclick="logout()" id="logoutBtn" style="display:none;">
                     <i class="fas fa-sign-out-alt"></i> خروج
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- ====== شاشة تسجيل الدخول ====== -->
+    <!-- ====== تسجيل الدخول ====== -->
     <div class="login-screen" id="loginScreen">
         <div class="container">
             <div class="login-box">
@@ -233,7 +813,7 @@
         </div>
     </div>
 
-    <!-- ====== محتوى لوحة التحكم ====== -->
+    <!-- ====== لوحة التحكم ====== -->
     <div class="dashboard-content" id="dashboardContent">
         <section class="hero">
             <div class="container">
@@ -244,9 +824,36 @@
 
         <section>
             <div class="container">
+
+                <!-- ====== الإحصائيات ====== -->
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="stat-number" id="stat-posts">0</div>
+                        <div class="stat-label">المقالات</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-comment"></i></div>
+                        <div class="stat-number" id="stat-comments">0</div>
+                        <div class="stat-label">التعليقات</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-eye"></i></div>
+                        <div class="stat-number" id="stat-views">0</div>
+                        <div class="stat-label">المشاهدات</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-tags"></i></div>
+                        <div class="stat-number" id="stat-tags">0</div>
+                        <div class="stat-label">الوسوم</div>
+                    </div>
+                </div>
+
+                <!-- ====== التبويبات ====== -->
                 <div class="tabs">
                     <button class="tab-btn active" data-tab="all-posts">📚 كل المقالات</button>
                     <button class="tab-btn" data-tab="new-post">✏️ مقال جديد</button>
+                    <button class="tab-btn" data-tab="trash">🗑️ سلة المحذوفات</button>
                     <button class="tab-btn" data-tab="settings">⚙️ الإعدادات</button>
                 </div>
 
@@ -278,17 +885,39 @@
                                 <label>عنوان المقال <span class="required">*</span></label>
                                 <input type="text" id="post-title" placeholder="أدخل عنوان المقال..." required oninput="updatePreview()">
                             </div>
+
                             <div class="form-group">
-                                <label>التصنيفات (مفصولة بفاصلة)</label>
-                                <input type="text" id="post-tags" placeholder="برمجيات, WPF, C#" oninput="updatePreview()">
+                                <div class="form-row">
+                                    <div>
+                                        <label>التصنيفات</label>
+                                        <input type="text" id="post-tags" placeholder="برمجيات, WPF, C#" oninput="updatePreview()">
+                                    </div>
+                                    <div>
+                                        <label>صورة مميزة (رابط)</label>
+                                        <input type="text" id="post-image" placeholder="https://example.com/image.jpg" oninput="updatePreview()">
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div>
+                                        <label>حالة النشر</label>
+                                        <select id="post-status">
+                                            <option value="published">منشور فوراً</option>
+                                            <option value="draft">مسودة</option>
+                                            <option value="scheduled">جدولة</option>
+                                        </select>
+                                    </div>
+                                    <div id="scheduled-group" style="display:none;">
+                                        <label>تاريخ النشر</label>
+                                        <input type="datetime-local" id="post-schedule">
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label>محتوى المقال <span class="required">*</span></label>
-                                <div class="editor-toolbar" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
-                                    <button type="button" class="active-lang" onclick="setEditorLang('ar')" style="background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--text-muted); padding:4px 14px; border-radius:20px; font-size:0.75rem; cursor:pointer; transition:0.3s; font-family:inherit;">🇩🇿 عربي</button>
-                                    <button type="button" onclick="setEditorLang('en')" style="background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--text-muted); padding:4px 14px; border-radius:20px; font-size:0.75rem; cursor:pointer; transition:0.3s; font-family:inherit;">🇬🇧 English</button>
-                                    <button type="button" onclick="setEditorLang('fr')" style="background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--text-muted); padding:4px 14px; border-radius:20px; font-size:0.75rem; cursor:pointer; transition:0.3s; font-family:inherit;">🇫🇷 Français</button>
-                                </div>
                                 <textarea id="post-content" placeholder="اكتب محتوى المقال هنا..."></textarea>
                             </div>
 
@@ -300,7 +929,7 @@
                             </div>
                             <div class="preview-box" id="preview-box">
                                 <div class="preview-title" id="preview-title">عنوان المقال</div>
-                                <div class="preview-meta" id="preview-meta">التصنيفات: عام</div>
+                                <div class="preview-meta" id="preview-meta">🏷️ التصنيفات: عام</div>
                                 <div class="preview-content" id="preview-content">محتوى المقال سيظهر هنا...</div>
                             </div>
 
@@ -312,12 +941,21 @@
                                     <i class="fas fa-times"></i> إلغاء
                                 </button>
                                 <span id="edit-indicator"><i class="fas fa-edit"></i> جاري التعديل...</span>
-                                <span id="autosave-indicator" style="color:var(--text-muted); font-size:0.8rem; display:none;">
-                                    <i class="fas fa-check-circle"></i> تم الحفظ تلقائياً
-                                </span>
+                                <span id="autosave-indicator"><i class="fas fa-check-circle"></i> تم الحفظ تلقائياً</span>
                             </div>
                             <input type="hidden" id="edit-filename" value="">
                         </form>
+                    </div>
+                </div>
+
+                <!-- ====== سلة المحذوفات ====== -->
+                <div class="section" id="trash">
+                    <div class="section-title"><i class="fas fa-trash"></i> سلة المحذوفات</div>
+                    <div id="trash-list">
+                        <div class="empty-state">
+                            <i class="fas fa-trash-alt"></i>
+                            <p>سلة المحذوفات فارغة</p>
+                        </div>
                     </div>
                 </div>
 
@@ -325,9 +963,9 @@
                 <div class="section" id="settings">
                     <div class="section-title"><i class="fas fa-cog"></i> إعدادات الاتصال بـ GitHub</div>
                     <div class="editor-wrapper">
-                        <div class="status-box" style="border-color:var(--warning);">
-                            <div class="status-icon">⚠️</div>
-                            <div class="status-title">استخدام الرابط المباشر</div>
+                        <div class="status-box">
+                            <div class="status-icon">⚙️</div>
+                            <div class="status-title">إعدادات التخزين</div>
                             <div class="status-desc">المقالات تُقرأ وتُكتب من/إلى ملف <strong style="color:var(--accent);">data/posts.json</strong></div>
                         </div>
                         <div class="form-group">
@@ -349,8 +987,11 @@
             </div>
         </section>
 
-        <footer style="padding:25px 0; text-align:center; border-top:1px solid var(--border); color:var(--text-muted); margin-top:15px;">
-            <div class="container"><p>🇩🇿 صنع في الجزائر بـ ❤️</p><p style="font-size:0.75rem;">© 2026 <strong>Minsaj DZ</strong> – جميع الحقوق محفوظة</p></div>
+        <footer>
+            <div class="container">
+                <p>🇩🇿 صنع في الجزائر بـ ❤️</p>
+                <p style="font-size:0.75rem;">© 2026 <strong>Minsaj DZ</strong> – جميع الحقوق محفوظة</p>
+            </div>
         </footer>
     </div>
 
@@ -358,7 +999,7 @@
 
     <script>
         // =========================================================
-        // 🌓 الوضع الداكن/الفاتح
+        // 🌓 الوضع الداكن
         // =========================================================
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
@@ -384,6 +1025,7 @@
         // =========================================================
         const PASSWORD = 'admin123';
         let posts = [];
+        let trash = [];
         let isEditing = false;
         let editorInitialized = false;
         let autosaveTimer = null;
@@ -459,16 +1101,19 @@
             try {
                 const response = await fetch(url + '?t=' + Date.now());
                 if (response.status === 404) {
-                    resultDiv.innerHTML = `<p style="color:var(--warning);">⚠️ ملف المقالات غير موجود</p><p style="color:var(--text-muted); font-size:0.85rem;">سيتم إنشاؤه تلقائياً عند نشر أول مقال</p>`;
+                    resultDiv.innerHTML =
+                        `<p style="color:var(--warning);">⚠️ ملف المقالات غير موجود</p><p style="color:var(--text-muted); font-size:0.85rem;">سيتم إنشاؤه تلقائياً عند نشر أول مقال</p>`;
                     showToast('⚠️ الملف غير موجود، سيُنشأ عند النشر', 'info');
                     return;
                 }
                 if (!response.ok) throw new Error('فشل في الوصول إلى الملف');
                 const data = await response.json();
-                resultDiv.innerHTML = `<p style="color:var(--success);">✅ الاتصال ناجح!</p><p style="color:var(--text-muted); font-size:0.85rem;">📄 عدد المقالات: ${Array.isArray(data) ? data.length : 0}</p>`;
+                resultDiv.innerHTML =
+                    `<p style="color:var(--success);">✅ الاتصال ناجح!</p><p style="color:var(--text-muted); font-size:0.85rem;">📄 عدد المقالات: ${Array.isArray(data) ? data.length : 0}</p>`;
                 showToast('✅ الاتصال ناجح!', 'success');
             } catch (error) {
-                resultDiv.innerHTML = `<p style="color:var(--danger);">❌ خطأ في الاتصال</p><p style="color:var(--text-muted); font-size:0.85rem;">${error.message}</p>`;
+                resultDiv.innerHTML =
+                    `<p style="color:var(--danger);">❌ خطأ في الاتصال</p><p style="color:var(--text-muted); font-size:0.85rem;">${error.message}</p>`;
                 showToast('❌ فشل الاتصال', 'error');
             }
         }
@@ -482,17 +1127,21 @@
                 const response = await fetch(url + '?t=' + Date.now());
                 if (response.status === 404) {
                     posts = [];
-                    container.innerHTML = `<div class="empty-state"><i class="fas fa-newspaper"></i><p>لا توجد مقالات حالياً.</p><p style="font-size:0.85rem; opacity:0.6;">أنشئ مقالك الأول الآن!</p></div>`;
+                    container.innerHTML =
+                        `<div class="empty-state"><i class="fas fa-newspaper"></i><p>لا توجد مقالات حالياً.</p><p style="font-size:0.85rem; opacity:0.6;">أنشئ مقالك الأول الآن!</p></div>`;
                     if (countEl) countEl.textContent = '0';
+                    updateStats();
                     return;
                 }
                 if (!response.ok) throw new Error('فشل في تحميل المقالات');
                 const data = await response.json();
                 posts = Array.isArray(data) ? data : [];
                 renderPosts();
+                updateStats();
             } catch (error) {
                 console.error('خطأ:', error);
-                container.innerHTML = `<div class="empty-state"><i class="fas fa-exclamation-circle" style="color:var(--danger);"></i><p>حدث خطأ في تحميل المقالات</p><p style="font-size:0.85rem; opacity:0.6;">${error.message}</p></div>`;
+                container.innerHTML =
+                    `<div class="empty-state"><i class="fas fa-exclamation-circle" style="color:var(--danger);"></i><p>حدث خطأ في تحميل المقالات</p><p style="font-size:0.85rem; opacity:0.6;">${error.message}</p></div>`;
             }
         }
 
@@ -510,7 +1159,8 @@
                 let sha = '';
                 try {
                     const response = await fetch(url, { headers: { 'Authorization': `token ${token}` } });
-                    if (response.ok) { const data = await response.json(); sha = data.sha; }
+                    if (response.ok) { const data = await response.json();
+                        sha = data.sha; }
                 } catch (e) {}
                 const payload = { message: 'تحديث المقالات من لوحة التحكم', content: content, branch: 'main' };
                 if (sha) payload.sha = sha;
@@ -519,7 +1169,8 @@
                     headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-                if (!response.ok) { const error = await response.json(); throw new Error(error.message || 'فشل في حفظ المقالات'); }
+                if (!response.ok) { const error = await response.json();
+                    throw new Error(error.message || 'فشل في حفظ المقالات'); }
                 return true;
             } catch (error) {
                 console.error('خطأ في الحفظ:', error);
@@ -532,19 +1183,36 @@
             const container = document.getElementById('posts-list');
             const countEl = document.getElementById('posts-count');
             if (!container) return;
-            if (!posts || posts.length === 0) {
-                container.innerHTML = `<div class="empty-state"><i class="fas fa-newspaper"></i><p>لا توجد مقالات حالياً.</p><p style="font-size:0.85rem; opacity:0.6;">أنشئ مقالك الأول الآن!</p></div>`;
+
+            // فصل المقالات النشطة عن المحذوفة
+            const activePosts = posts.filter(p => !p.deleted);
+            trash = posts.filter(p => p.deleted);
+
+            if (activePosts.length === 0) {
+                container.innerHTML =
+                    `<div class="empty-state"><i class="fas fa-newspaper"></i><p>لا توجد مقالات حالياً.</p><p style="font-size:0.85rem; opacity:0.6;">أنشئ مقالك الأول الآن!</p></div>`;
                 if (countEl) countEl.textContent = '0';
+                renderTrash();
+                updateStats();
                 return;
             }
-            if (countEl) countEl.textContent = posts.length;
+
+            if (countEl) countEl.textContent = activePosts.length;
+
             let html = '<div class="posts-grid">';
-            const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+            const sorted = [...activePosts].sort((a, b) => new Date(b.date) - new Date(a.date));
+
             sorted.forEach(post => {
-                const date = new Date(post.date).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric' });
-                const isPublished = post.published !== false;
-                const statusClass = isPublished ? 'published' : 'draft';
-                const statusText = isPublished ? '✅ منشور' : '⏳ مسودة';
+                const date = new Date(post.date).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short',
+                    day: 'numeric' });
+                const status = post.status || 'published';
+                const isPublished = post.published !== false && status !== 'draft';
+                const isScheduled = status === 'scheduled';
+                let statusClass = isPublished ? 'published' : 'draft';
+                let statusText = isPublished ? '✅ منشور' : '⏳ مسودة';
+                if (isScheduled) { statusClass = 'scheduled';
+                    statusText = '📅 مجدول'; }
+
                 html += `
                     <div class="post-card" data-id="${post.id}">
                         <div class="info">
@@ -554,11 +1222,15 @@
                                 <span style="margin:0 6px;">|</span>
                                 <i class="fas fa-tag"></i> ${post.tags || 'عام'}
                                 <span class="status-badge ${statusClass}">${statusText}</span>
+                                ${post.image ? `<span style="margin:0 6px;">|</span> <i class="fas fa-image"></i>` : ''}
                             </div>
                         </div>
                         <div class="actions">
                             <button class="btn-edit" onclick="editPost('${post.id}')"><i class="fas fa-edit"></i> تعديل</button>
-                            <button class="btn-publish" onclick="togglePublish('${post.id}')"><i class="fas fa-${isPublished ? 'eye-slash' : 'eye'}"></i> ${isPublished ? 'إخفاء' : 'نشر'}</button>
+                            <button class="btn-publish" onclick="togglePublish('${post.id}')">
+                                <i class="fas fa-${isPublished ? 'eye-slash' : 'eye'}"></i>
+                                ${isPublished ? 'إخفاء' : 'نشر'}
+                            </button>
                             <button class="btn-delete" onclick="deletePost('${post.id}')"><i class="fas fa-trash"></i> حذف</button>
                         </div>
                     </div>
@@ -566,9 +1238,155 @@
             });
             html += '</div>';
             container.innerHTML = html;
+            renderTrash();
+            updateStats();
         }
 
-        // ====== معاينة المقال ======
+        function renderTrash() {
+            const container = document.getElementById('trash-list');
+            if (!container) return;
+
+            const trashItems = posts.filter(p => p.deleted);
+
+            if (trashItems.length === 0) {
+                container.innerHTML =
+                    `<div class="empty-state"><i class="fas fa-trash-alt"></i><p>سلة المحذوفات فارغة</p></div>`;
+                return;
+            }
+
+            let html = '';
+            trashItems.forEach(post => {
+                const date = new Date(post.date).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short',
+                    day: 'numeric' });
+                html += `
+                    <div class="trash-item">
+                        <div class="info">
+                            <h4>${post.title || 'بدون عنوان'}</h4>
+                            <div class="meta">
+                                <i class="fas fa-calendar"></i> ${date}
+                                <span style="margin:0 6px;">|</span>
+                                <i class="fas fa-tag"></i> ${post.tags || 'عام'}
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button class="btn-restore" onclick="restorePost('${post.id}')"><i class="fas fa-undo"></i> استعادة</button>
+                            <button class="btn-delete" onclick="permanentDelete('${post.id}')"><i class="fas fa-trash"></i> حذف نهائي</button>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function updateStats() {
+            const activePosts = posts.filter(p => !p.deleted);
+            const published = activePosts.filter(p => p.published !== false && p.status !== 'draft');
+            document.getElementById('stat-posts').textContent = published.length;
+
+            // حساب التعليقات
+            let totalComments = 0;
+            activePosts.forEach(p => {
+                const key = 'blog_comments_' + p.id;
+                try {
+                    const saved = localStorage.getItem(key);
+                    if (saved) {
+                        const comments = JSON.parse(saved);
+                        totalComments += comments.length;
+                    }
+                } catch (e) {}
+            });
+            document.getElementById('stat-comments').textContent = totalComments;
+
+            // حساب المشاهدات
+            let totalViews = 0;
+            activePosts.forEach(p => {
+                const key = 'blog_views_' + p.id;
+                try {
+                    const views = parseInt(localStorage.getItem(key) || '0');
+                    totalViews += views;
+                } catch (e) {}
+            });
+            document.getElementById('stat-views').textContent = totalViews;
+
+            // حساب الوسوم
+            const tags = new Set();
+            activePosts.forEach(p => {
+                if (p.tags) {
+                    p.tags.split(',').forEach(t => tags.add(t.trim()));
+                }
+            });
+            document.getElementById('stat-tags').textContent = tags.size;
+        }
+
+        // ====== الحفظ التلقائي ======
+        function startAutosave() {
+            if (autosaveTimer) clearInterval(autosaveTimer);
+            autosaveTimer = setInterval(function() {
+                const title = document.getElementById('post-title');
+                const tags = document.getElementById('post-tags');
+                const image = document.getElementById('post-image');
+                const content = tinymce.get('post-content');
+                const status = document.getElementById('post-status');
+                const schedule = document.getElementById('post-schedule');
+
+                if (title && title.value.trim()) {
+                    const data = {
+                        title: title.value.trim(),
+                        tags: tags ? tags.value.trim() : '',
+                        image: image ? image.value.trim() : '',
+                        content: content ? content.getContent() : '',
+                        status: status ? status.value : 'published',
+                        schedule: schedule ? schedule.value : ''
+                    };
+                    localStorage.setItem('autosave_post', JSON.stringify(data));
+                    const indicator = document.getElementById('autosave-indicator');
+                    if (indicator) {
+                        indicator.style.display = 'inline';
+                        setTimeout(function() {
+                            indicator.style.display = 'none';
+                        }, 2000);
+                    }
+                }
+            }, 15000);
+        }
+
+        function loadAutosave() {
+            try {
+                const saved = localStorage.getItem('autosave_post');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    if (data.title && !document.getElementById('edit-filename').value) {
+                        document.getElementById('post-title').value = data.title;
+                        document.getElementById('post-tags').value = data.tags || '';
+                        document.getElementById('post-image').value = data.image || '';
+                        if (data.status) document.getElementById('post-status').value = data.status;
+                        if (data.schedule) document.getElementById('post-schedule').value = data.schedule;
+                        if (tinymce.get('post-content')) {
+                            tinymce.get('post-content').setContent(data.content || '');
+                        }
+                        // تحديث حالة الجدولة
+                        toggleScheduleFields(data.status);
+                        showToast('💾 تم استعادة المسودة المحفوظة', 'info');
+                    }
+                }
+            } catch (e) {}
+        }
+
+        // ====== الجدولة ======
+        function toggleScheduleFields(status) {
+            const group = document.getElementById('scheduled-group');
+            if (status === 'scheduled') {
+                group.style.display = 'block';
+            } else {
+                group.style.display = 'none';
+            }
+        }
+
+        document.getElementById('post-status').addEventListener('change', function() {
+            toggleScheduleFields(this.value);
+        });
+
+        // ====== معاينة ======
         function updatePreview() {
             const title = document.getElementById('post-title').value || 'بدون عنوان';
             const tags = document.getElementById('post-tags').value || 'عام';
@@ -586,45 +1404,6 @@
             if (box.classList.contains('active')) updatePreview();
         }
 
-        // ====== الحفظ التلقائي ======
-        function startAutosave() {
-            if (autosaveTimer) clearInterval(autosaveTimer);
-            autosaveTimer = setInterval(function() {
-                const title = document.getElementById('post-title');
-                const tags = document.getElementById('post-tags');
-                const content = tinymce.get('post-content');
-                if (title && title.value.trim()) {
-                    const data = {
-                        title: title.value.trim(),
-                        tags: tags ? tags.value.trim() : '',
-                        content: content ? content.getContent() : ''
-                    };
-                    localStorage.setItem('autosave_post', JSON.stringify(data));
-                    document.getElementById('autosave-indicator').style.display = 'inline';
-                    setTimeout(() => {
-                        document.getElementById('autosave-indicator').style.display = 'none';
-                    }, 2000);
-                }
-            }, 30000);
-        }
-
-        function loadAutosave() {
-            try {
-                const saved = localStorage.getItem('autosave_post');
-                if (saved) {
-                    const data = JSON.parse(saved);
-                    if (data.title && !document.getElementById('edit-filename').value) {
-                        document.getElementById('post-title').value = data.title;
-                        document.getElementById('post-tags').value = data.tags || '';
-                        if (tinymce.get('post-content')) {
-                            tinymce.get('post-content').setContent(data.content || '');
-                        }
-                        showToast('💾 تم استعادة المسودة المحفوظة', 'info');
-                    }
-                }
-            } catch (e) {}
-        }
-
         // ====== نشر وحذف وتعديل ======
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('post-form');
@@ -639,33 +1418,56 @@
         async function handleSubmit() {
             const titleEl = document.getElementById('post-title');
             const tagsEl = document.getElementById('post-tags');
+            const imageEl = document.getElementById('post-image');
             const contentEl = document.getElementById('post-content');
+            const statusEl = document.getElementById('post-status');
+            const scheduleEl = document.getElementById('post-schedule');
             const editFileEl = document.getElementById('edit-filename');
             const submitBtn = document.getElementById('submit-btn');
+
             if (!titleEl || !tagsEl || !contentEl || !editFileEl || !submitBtn) return;
+
             const title = titleEl.value.trim();
             const tags = tagsEl.value.trim();
+            const image = imageEl ? imageEl.value.trim() : '';
             const content = tinymce.get('post-content') ? tinymce.get('post-content').getContent() : '';
+            const status = statusEl ? statusEl.value : 'published';
+            const schedule = scheduleEl ? scheduleEl.value : '';
             const editFile = editFileEl.value;
+
             if (!title || !content || content === '<p><br data-mce-bogus="1"></p>') {
                 showToast('الرجاء ملء جميع الحقول المطلوبة', 'error');
                 return;
             }
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري النشر...';
+
             try {
+                const postData = {
+                    title: title,
+                    tags: tags,
+                    image: image,
+                    content: content,
+                    date: new Date().toISOString(),
+                    status: status,
+                    published: status === 'published'
+                };
+
                 if (editFile) {
                     const index = posts.findIndex(p => p.id === editFile);
                     if (index !== -1) {
-                        posts[index].title = title;
-                        posts[index].tags = tags;
-                        posts[index].content = content;
-                        posts[index].date = new Date().toISOString();
+                        posts[index] = { ...posts[index], ...postData };
                     }
                     isEditing = false;
                 } else {
-                    posts.push({ id: 'post_' + Date.now(), title: title, tags: tags, content: content, date: new Date().toISOString(), published: true });
+                    posts.push({
+                        id: 'post_' + Date.now(),
+                        ...postData,
+                        deleted: false
+                    });
                 }
+
                 await savePostsToGitHub();
                 renderPosts();
                 showToast(editFile ? '✅ تم تحديث المقال!' : '✅ تم نشر المقال!', 'success');
@@ -676,6 +1478,7 @@
                 showToast('❌ خطأ: ' + error.message, 'error');
                 console.error(error);
             }
+
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-save"></i> نشر المقال';
         }
@@ -683,23 +1486,22 @@
         function editPost(id) {
             const post = posts.find(p => p.id === id);
             if (!post) return;
-            const titleEl = document.getElementById('post-title');
-            const tagsEl = document.getElementById('post-tags');
-            const contentEl = document.getElementById('post-content');
-            const editFileEl = document.getElementById('edit-filename');
-            const indicatorEl = document.getElementById('edit-indicator');
-            const editorTitle = document.getElementById('editor-title');
-            const submitText = document.getElementById('submit-text');
-            if (titleEl) titleEl.value = post.title;
-            if (tagsEl) tagsEl.value = post.tags || '';
-            if (contentEl && tinymce.get('post-content')) tinymce.get('post-content').setContent(post.content);
-            if (editFileEl) editFileEl.value = id;
-            if (indicatorEl) indicatorEl.style.display = 'inline';
-            if (editorTitle) editorTitle.textContent = 'تعديل المقال';
-            if (submitText) submitText.textContent = 'تحديث المقال';
+
+            document.getElementById('post-title').value = post.title || '';
+            document.getElementById('post-tags').value = post.tags || '';
+            document.getElementById('post-image').value = post.image || '';
+            document.getElementById('post-status').value = post.status || 'published';
+            if (post.schedule) document.getElementById('post-schedule').value = post.schedule;
+            if (tinymce.get('post-content')) tinymce.get('post-content').setContent(post.content || '');
+            document.getElementById('edit-filename').value = id;
+            document.getElementById('edit-indicator').style.display = 'inline';
+            document.getElementById('editor-title').textContent = 'تعديل المقال';
+            document.getElementById('submit-text').textContent = 'تحديث المقال';
+
+            toggleScheduleFields(post.status || 'published');
+
             isEditing = true;
             switchTab('new-post');
-            // فتح المعاينة تلقائياً
             const box = document.getElementById('preview-box');
             const btn = document.getElementById('preview-btn-text');
             if (box && !box.classList.contains('active')) {
@@ -712,21 +1514,18 @@
 
         function cancelEdit() {
             isEditing = false;
-            const titleEl = document.getElementById('post-title');
-            const tagsEl = document.getElementById('post-tags');
-            const contentEl = document.getElementById('post-content');
-            const editFileEl = document.getElementById('edit-filename');
-            const indicatorEl = document.getElementById('edit-indicator');
-            const editorTitle = document.getElementById('editor-title');
-            const submitText = document.getElementById('submit-text');
-            if (titleEl) titleEl.value = '';
-            if (tagsEl) tagsEl.value = '';
-            if (contentEl && tinymce.get('post-content')) tinymce.get('post-content').setContent('');
-            if (editFileEl) editFileEl.value = '';
-            if (indicatorEl) indicatorEl.style.display = 'none';
-            if (editorTitle) editorTitle.textContent = 'كتابة مقال جديد';
-            if (submitText) submitText.textContent = 'نشر المقال';
-            // إخفاء المعاينة
+            document.getElementById('post-title').value = '';
+            document.getElementById('post-tags').value = '';
+            document.getElementById('post-image').value = '';
+            document.getElementById('post-status').value = 'published';
+            document.getElementById('post-schedule').value = '';
+            if (tinymce.get('post-content')) tinymce.get('post-content').setContent('');
+            document.getElementById('edit-filename').value = '';
+            document.getElementById('edit-indicator').style.display = 'none';
+            document.getElementById('editor-title').textContent = 'كتابة مقال جديد';
+            document.getElementById('submit-text').textContent = 'نشر المقال';
+            toggleScheduleFields('published');
+
             const box = document.getElementById('preview-box');
             const btn = document.getElementById('preview-btn-text');
             if (box) box.classList.remove('active');
@@ -735,29 +1534,69 @@
 
         async function deletePost(id) {
             const post = posts.find(p => p.id === id);
-            if (!post || !confirm(`هل أنت متأكد من حذف "${post.title}"؟`)) return;
+            if (!post || !confirm(`هل أنت متأكد من حذف "${post.title || 'بدون عنوان'}"؟`)) return;
+
+            // نقل إلى سلة المحذوفات بدلاً من الحذف النهائي
+            const index = posts.findIndex(p => p.id === id);
+            if (index !== -1) {
+                posts[index].deleted = true;
+                posts[index].deletedAt = new Date().toISOString();
+                await savePostsToGitHub();
+                renderPosts();
+                showToast('🗑️ تم نقل المقال إلى سلة المحذوفات', 'success');
+            }
+        }
+
+        async function restorePost(id) {
+            const index = posts.findIndex(p => p.id === id);
+            if (index !== -1) {
+                posts[index].deleted = false;
+                delete posts[index].deletedAt;
+                await savePostsToGitHub();
+                renderPosts();
+                showToast('✅ تم استعادة المقال', 'success');
+            }
+        }
+
+        async function permanentDelete(id) {
+            if (!confirm('هل أنت متأكد من الحذف النهائي؟ لا يمكن استعادة المقال بعد ذلك!')) return;
             posts = posts.filter(p => p.id !== id);
-            try { await savePostsToGitHub(); renderPosts(); showToast('🗑️ تم حذف المقال', 'success'); } catch (error) { showToast('❌ خطأ: ' + error.message, 'error'); }
+            await savePostsToGitHub();
+            renderPosts();
+            showToast('🗑️ تم حذف المقال نهائياً', 'success');
         }
 
         async function togglePublish(id) {
             const post = posts.find(p => p.id === id);
             if (!post) return;
+
             post.published = !post.published;
-            try { await savePostsToGitHub(); renderPosts(); showToast(post.published ? '✅ تم نشر المقال' : '⏳ تم إخفاء المقال', 'success'); } catch (error) { showToast('❌ خطأ: ' + error.message, 'error'); }
+            post.status = post.published ? 'published' : 'draft';
+            try {
+                await savePostsToGitHub();
+                renderPosts();
+                showToast(post.published ? '✅ تم نشر المقال' : '⏳ تم إخفاء المقال', 'success');
+            } catch (error) {
+                showToast('❌ خطأ: ' + error.message, 'error');
+            }
         }
 
+        // ====== المحرر ======
         function initEditor() {
             if (editorInitialized) return;
             if (!document.getElementById('post-content')) return;
             if (tinymce.get('post-content')) tinymce.get('post-content').remove();
+
             tinymce.init({
                 selector: '#post-content',
                 language: 'ar',
                 height: 450,
                 menubar: true,
-                plugins: ['advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media', 'table', 'help', 'wordcount'],
-                toolbar: 'undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | image media link',
+                plugins: ['advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                    'insertdatetime', 'media', 'table', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | image media link code',
                 content_style: 'body { font-family: "Tajawal", Arial, sans-serif; font-size:16px; direction:rtl; }',
                 directionality: 'rtl',
                 setup: function(editor) {
@@ -765,22 +1604,11 @@
                     editor.on('change', function() { updatePreview(); });
                 }
             });
-            // تحميل المسودة المحفوظة
-            setTimeout(loadAutosave, 500);
+
+            setTimeout(loadAutosave, 600);
         }
 
-        function setEditorLang(lang) {
-            const editor = tinymce.get('post-content');
-            if (!editor) return;
-            document.querySelectorAll('.editor-toolbar button').forEach(b => b.style.background = 'rgba(255,255,255,0.04)');
-            const btns = document.querySelectorAll('.editor-toolbar button');
-            const map = { 'ar': 0, 'en': 1, 'fr': 2 };
-            if (btns[map[lang]]) btns[map[lang]].style.background = 'var(--accent)';
-            const dir = lang === 'ar' ? 'rtl' : 'ltr';
-            editor.getBody().style.direction = dir;
-            editor.getBody().style.textAlign = dir === 'rtl' ? 'right' : 'left';
-        }
-
+        // ====== التبويبات ======
         function switchTab(tabId) {
             document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -791,16 +1619,18 @@
         }
 
         document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() { const tabId = this.getAttribute('data-tab'); if (tabId) switchTab(tabId); });
+            btn.addEventListener('click', function() { const tabId = this.getAttribute('data-tab'); if (tabId)
+                    switchTab(tabId); });
         });
 
+        // ====== Toast ======
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
             if (!toast) return;
             toast.textContent = message;
             toast.className = 'toast show ' + type;
             clearTimeout(toast._timer);
-            toast._timer = setTimeout(() => toast.classList.remove('show'), 3500);
+            toast._timer = setTimeout(function() { toast.classList.remove('show'); }, 3500);
         }
 
         // ====== تهيئة ======
@@ -828,10 +1658,10 @@
         window.editPost = editPost;
         window.cancelEdit = cancelEdit;
         window.deletePost = deletePost;
+        window.restorePost = restorePost;
+        window.permanentDelete = permanentDelete;
         window.togglePublish = togglePublish;
         window.switchTab = switchTab;
-        window.setEditorLang = setEditorLang;
-        window.showToast = showToast;
         window.toggleTheme = toggleTheme;
         window.updatePreview = updatePreview;
         window.togglePreview = togglePreview;
