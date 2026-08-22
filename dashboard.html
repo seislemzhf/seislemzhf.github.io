@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
 
     <style>
-        /* نفس الـ CSS السابق... */
+        /* ====== CSS كامل ====== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Tajawal', sans-serif; background: #0a0a0a; color: #f0ece6; line-height: 1.8; min-height: 100vh; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -277,6 +277,32 @@
 
     <script>
         // =========================================================
+        // 🛠️ التحقق من وجود جميع العناصر قبل البدء
+        // =========================================================
+        function checkElements() {
+            const requiredIds = [
+                'passwordInput', 'loginError', 'loginScreen', 'dashboardContent',
+                'logoutBtn', 'posts-list', 'posts-count', 'post-title',
+                'post-tags', 'post-content', 'submit-btn', 'submit-text',
+                'edit-filename', 'edit-indicator', 'editor-title', 'cancel-btn',
+                'github-repo', 'github-path', 'settings-result', 'toast'
+            ];
+            
+            let allExist = true;
+            requiredIds.forEach(id => {
+                if (!document.getElementById(id)) {
+                    console.warn('⚠️ عنصر مفقود:', id);
+                    allExist = false;
+                }
+            });
+            
+            if (!allExist) {
+                console.error('❌ بعض العناصر مفقودة في الصفحة!');
+            }
+            return allExist;
+        }
+
+        // =========================================================
         // 🔐 تسجيل الدخول
         // =========================================================
         const PASSWORD = 'admin123';
@@ -284,11 +310,16 @@
         function login() {
             const input = document.getElementById('passwordInput');
             const error = document.getElementById('loginError');
+            if (!input || !error) return;
+            
             if (input.value === PASSWORD) {
                 localStorage.setItem('blog_auth', 'true');
-                document.getElementById('loginScreen').style.display = 'none';
-                document.getElementById('dashboardContent').classList.add('active');
-                document.getElementById('logoutBtn').style.display = 'inline';
+                const loginScreen = document.getElementById('loginScreen');
+                const dashboard = document.getElementById('dashboardContent');
+                const logoutBtn = document.getElementById('logoutBtn');
+                if (loginScreen) loginScreen.style.display = 'none';
+                if (dashboard) dashboard.classList.add('active');
+                if (logoutBtn) logoutBtn.style.display = 'inline';
                 error.style.display = 'none';
                 input.value = '';
                 initEditor();
@@ -303,34 +334,22 @@
         function logout() {
             if (!confirm('هل أنت متأكد من الخروج؟')) return;
             localStorage.removeItem('blog_auth');
-            document.getElementById('loginScreen').style.display = 'flex';
-            document.getElementById('dashboardContent').classList.remove('active');
-            document.getElementById('logoutBtn').style.display = 'none';
+            const loginScreen = document.getElementById('loginScreen');
+            const dashboard = document.getElementById('dashboardContent');
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (loginScreen) loginScreen.style.display = 'flex';
+            if (dashboard) dashboard.classList.remove('active');
+            if (logoutBtn) logoutBtn.style.display = 'none';
             if (tinymce.get('post-content')) tinymce.get('post-content').remove();
             showToast('تم الخروج بنجاح', 'info');
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const isAuth = localStorage.getItem('blog_auth') === 'true';
-            if (isAuth) {
-                document.getElementById('loginScreen').style.display = 'none';
-                document.getElementById('dashboardContent').classList.add('active');
-                document.getElementById('logoutBtn').style.display = 'inline';
-                initEditor();
-                loadPosts();
-            } else {
-                document.getElementById('loginScreen').style.display = 'flex';
-                document.getElementById('dashboardContent').classList.remove('active');
-                document.getElementById('logoutBtn').style.display = 'none';
-            }
-            loadSettings();
-        });
 
         // =========================================================
         // 📝 إدارة المقالات عبر raw.githubusercontent
         // =========================================================
         let posts = [];
         let isEditing = false;
+        let editorInitialized = false;
 
         function getSettings() {
             return {
@@ -345,11 +364,12 @@
         }
 
         function saveSettings() {
-            const repo = document.getElementById('github-repo').value.trim();
-            const path = document.getElementById('github-path').value.trim();
-
-            localStorage.setItem('github_repo', repo);
-            localStorage.setItem('github_path', path);
+            const repo = document.getElementById('github-repo');
+            const path = document.getElementById('github-path');
+            if (!repo || !path) return;
+            
+            localStorage.setItem('github_repo', repo.value.trim());
+            localStorage.setItem('github_path', path.value.trim());
 
             showToast('✅ تم حفظ الإعدادات', 'success');
             loadPosts();
@@ -357,13 +377,17 @@
 
         function loadSettings() {
             const settings = getSettings();
-            document.getElementById('github-repo').value = settings.repo;
-            document.getElementById('github-path').value = settings.path;
+            const repo = document.getElementById('github-repo');
+            const path = document.getElementById('github-path');
+            if (repo) repo.value = settings.repo;
+            if (path) path.value = settings.path;
         }
 
         // ====== اختبار الاتصال ======
         async function testConnection() {
             const resultDiv = document.getElementById('settings-result');
+            if (!resultDiv) return;
+            
             const url = getRawUrl();
 
             resultDiv.innerHTML = '<p style="color:var(--accent);"><i class="fas fa-spinner fa-spin"></i> جاري اختبار الاتصال...</p>';
@@ -406,6 +430,7 @@
         async function loadPosts() {
             const container = document.getElementById('posts-list');
             const countEl = document.getElementById('posts-count');
+            if (!container) return;
 
             try {
                 const url = getRawUrl();
@@ -420,7 +445,7 @@
                             <p style="font-size:0.85rem; opacity:0.6;">أنشئ مقالك الأول الآن!</p>
                         </div>
                     `;
-                    countEl.textContent = '0';
+                    if (countEl) countEl.textContent = '0';
                     return;
                 }
 
@@ -452,11 +477,12 @@
                 const repo = settings.repo;
                 const path = settings.path;
 
-                // استخدام GitHub API للكتابة (يحتاج Token)
+                // حفظ في LocalStorage كنسخة احتياطية
+                localStorage.setItem('blog_posts_backup', JSON.stringify(posts));
+                
+                // محاولة الحفظ عبر GitHub API (يحتاج Token)
                 const token = localStorage.getItem('github_token');
                 if (!token) {
-                    // إذا لم يكن هناك Token، نستخدم LocalStorage كحل مؤقت
-                    localStorage.setItem('blog_posts_backup', JSON.stringify(posts));
                     showToast('⚠️ تم الحفظ محلياً (بدون Token)', 'info');
                     return true;
                 }
@@ -500,8 +526,6 @@
 
             } catch (error) {
                 console.error('خطأ في الحفظ:', error);
-                // حفظ احتياطي في LocalStorage
-                localStorage.setItem('blog_posts_backup', JSON.stringify(posts));
                 showToast('⚠️ تم الحفظ محلياً (خطأ: ' + error.message + ')', 'info');
                 return false;
             }
@@ -510,6 +534,7 @@
         function renderPosts() {
             const container = document.getElementById('posts-list');
             const countEl = document.getElementById('posts-count');
+            if (!container) return;
 
             if (!posts || posts.length === 0) {
                 container.innerHTML = `
@@ -519,11 +544,11 @@
                         <p style="font-size:0.85rem; opacity:0.6;">أنشئ مقالك الأول الآن!</p>
                     </div>
                 `;
-                countEl.textContent = '0';
+                if (countEl) countEl.textContent = '0';
                 return;
             }
 
-            countEl.textContent = posts.length;
+            if (countEl) countEl.textContent = posts.length;
 
             let html = '<div class="posts-grid">';
             const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -563,20 +588,35 @@
         }
 
         // ====== نشر وحذف وتعديل ======
-        document.getElementById('post-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('post-form');
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    await handleSubmit();
+                });
+            }
+        });
 
-            const title = document.getElementById('post-title').value.trim();
-            const tags = document.getElementById('post-tags').value.trim();
-            const content = tinymce.get('post-content').getContent();
-            const editFile = document.getElementById('edit-filename').value;
+        async function handleSubmit() {
+            const titleEl = document.getElementById('post-title');
+            const tagsEl = document.getElementById('post-tags');
+            const contentEl = document.getElementById('post-content');
+            const editFileEl = document.getElementById('edit-filename');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            if (!titleEl || !tagsEl || !contentEl || !editFileEl || !submitBtn) return;
+
+            const title = titleEl.value.trim();
+            const tags = tagsEl.value.trim();
+            const content = tinymce.get('post-content') ? tinymce.get('post-content').getContent() : '';
+            const editFile = editFileEl.value;
 
             if (!title || !content || content === '<p><br data-mce-bogus="1"></p>') {
                 showToast('الرجاء ملء جميع الحقول المطلوبة', 'error');
                 return;
             }
 
-            const submitBtn = document.getElementById('submit-btn');
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري النشر...';
 
@@ -614,34 +654,50 @@
 
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-save"></i> نشر المقال';
-        });
+        }
 
         function editPost(id) {
             const post = posts.find(p => p.id === id);
             if (!post) return;
 
-            isEditing = true;
-            document.getElementById('post-title').value = post.title;
-            document.getElementById('post-tags').value = post.tags || '';
-            tinymce.get('post-content').setContent(post.content);
-            document.getElementById('edit-filename').value = id;
-            document.getElementById('edit-indicator').style.display = 'inline';
-            document.getElementById('editor-title').textContent = 'تعديل المقال';
-            document.getElementById('submit-text').textContent = 'تحديث المقال';
+            const titleEl = document.getElementById('post-title');
+            const tagsEl = document.getElementById('post-tags');
+            const contentEl = document.getElementById('post-content');
+            const editFileEl = document.getElementById('edit-filename');
+            const indicatorEl = document.getElementById('edit-indicator');
+            const editorTitle = document.getElementById('editor-title');
+            const submitText = document.getElementById('submit-text');
 
+            if (titleEl) titleEl.value = post.title;
+            if (tagsEl) tagsEl.value = post.tags || '';
+            if (contentEl && tinymce.get('post-content')) tinymce.get('post-content').setContent(post.content);
+            if (editFileEl) editFileEl.value = id;
+            if (indicatorEl) indicatorEl.style.display = 'inline';
+            if (editorTitle) editorTitle.textContent = 'تعديل المقال';
+            if (submitText) submitText.textContent = 'تحديث المقال';
+
+            isEditing = true;
             switchTab('new-post');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function cancelEdit() {
             isEditing = false;
-            document.getElementById('post-title').value = '';
-            document.getElementById('post-tags').value = '';
-            if (tinymce.get('post-content')) tinymce.get('post-content').setContent('');
-            document.getElementById('edit-filename').value = '';
-            document.getElementById('edit-indicator').style.display = 'none';
-            document.getElementById('editor-title').textContent = 'كتابة مقال جديد';
-            document.getElementById('submit-text').textContent = 'نشر المقال';
+            const titleEl = document.getElementById('post-title');
+            const tagsEl = document.getElementById('post-tags');
+            const contentEl = document.getElementById('post-content');
+            const editFileEl = document.getElementById('edit-filename');
+            const indicatorEl = document.getElementById('edit-indicator');
+            const editorTitle = document.getElementById('editor-title');
+            const submitText = document.getElementById('submit-text');
+
+            if (titleEl) titleEl.value = '';
+            if (tagsEl) tagsEl.value = '';
+            if (contentEl && tinymce.get('post-content')) tinymce.get('post-content').setContent('');
+            if (editFileEl) editFileEl.value = '';
+            if (indicatorEl) indicatorEl.style.display = 'none';
+            if (editorTitle) editorTitle.textContent = 'كتابة مقال جديد';
+            if (submitText) submitText.textContent = 'نشر المقال';
         }
 
         async function deletePost(id) {
@@ -673,6 +729,9 @@
         }
 
         function initEditor() {
+            if (editorInitialized) return;
+            if (!document.getElementById('post-content')) return;
+            
             if (tinymce.get('post-content')) tinymce.get('post-content').remove();
             tinymce.init({
                 selector: '#post-content',
@@ -686,7 +745,12 @@
                 toolbar: 'undo redo | blocks | bold italic backcolor | alignleft aligncenter ' +
                     'alignright alignjustify | bullist numlist outdent indent | removeformat | help | image media link',
                 content_style: 'body { font-family: "Tajawal", Arial, sans-serif; font-size:16px; direction:rtl; }',
-                directionality: 'rtl'
+                directionality: 'rtl',
+                setup: function(editor) {
+                    editor.on('init', function() {
+                        editorInitialized = true;
+                    });
+                }
             });
         }
 
@@ -707,21 +771,54 @@
         function switchTab(tabId) {
             document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
+            const target = document.getElementById(tabId);
+            if (target) target.classList.add('active');
+            const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+            if (btn) btn.classList.add('active');
         }
 
         document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() { switchTab(this.dataset.tab); });
+            btn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                if (tabId) switchTab(tabId);
+            });
         });
 
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
+            if (!toast) return;
+            
             toast.textContent = message;
             toast.className = 'toast show ' + type;
             clearTimeout(toast._timer);
             toast._timer = setTimeout(() => toast.classList.remove('show'), 3500);
         }
+
+        // ====== التهيئة عند تحميل الصفحة ======
+        document.addEventListener('DOMContentLoaded', function() {
+            // التحقق من العناصر
+            if (!checkElements()) {
+                console.warn('⚠️ بعض العناصر مفقودة، قد لا تعمل بعض الوظائف');
+            }
+            
+            const isAuth = localStorage.getItem('blog_auth') === 'true';
+            if (isAuth) {
+                const loginScreen = document.getElementById('loginScreen');
+                const dashboard = document.getElementById('dashboardContent');
+                const logoutBtn = document.getElementById('logoutBtn');
+                if (loginScreen) loginScreen.style.display = 'none';
+                if (dashboard) dashboard.classList.add('active');
+                if (logoutBtn) logoutBtn.style.display = 'inline';
+                initEditor();
+                loadPosts();
+            } else {
+                const loginScreen = document.getElementById('loginScreen');
+                const dashboard = document.getElementById('dashboardContent');
+                if (loginScreen) loginScreen.style.display = 'flex';
+                if (dashboard) dashboard.classList.remove('active');
+            }
+            loadSettings();
+        });
 
         // ====== دوال عامة ======
         window.login = login;
@@ -736,6 +833,7 @@
         window.switchTab = switchTab;
         window.setEditorLang = setEditorLang;
         window.showToast = showToast;
+        window.handleSubmit = handleSubmit;
     </script>
 
 </body>
