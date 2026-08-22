@@ -183,13 +183,16 @@
 
     <script>
         // =========================================================
-        // 📝 جلب المقالات من GitHub (نسخة محسّنة)
+        // 📝 جلب المقالات من GitHub - النسخة النهائية
         // =========================================================
 
-        // ====== إعدادات المسار ======
+        // ====== المسار الصحيح (تأكد من أن اسم المستخدم صحيح) ======
+        const USERNAME = 'seislemzhf';
         const REPO = 'seislemzhf.github.io';
         const PATH = 'data/posts.json';
-        const RAW_URL = `https://raw.githubusercontent.com/${REPO}/main/${PATH}`;
+        const RAW_URL = `https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${PATH}`;
+
+        console.log('📂 المسار:', RAW_URL);
 
         // ====== دوال مساعدة ======
         function stripHtml(html) {
@@ -229,7 +232,7 @@
             const countEl = document.getElementById('post-count');
             if (!container) return;
 
-            // إظهار حالة التحميل
+            // عرض حالة التحميل
             container.innerHTML = `
                 <div class="status-message">
                     <i class="fas fa-spinner fa-spin"></i>
@@ -238,7 +241,6 @@
             `;
 
             try {
-                // إضافة timestamp لتجاوز الكاش
                 const url = RAW_URL + '?t=' + Date.now();
                 console.log('📡 جاري جلب المقالات من:', url);
 
@@ -251,9 +253,9 @@
                             <i class="fas fa-newspaper" style="color:var(--accent);"></i>
                             <p>لا توجد مقالات حالياً.</p>
                             <p class="sub-msg">ترقبوا المقالات القادمة قريباً!</p>
-                            <p class="sub-msg" style="font-size:0.7rem; opacity:0.4;">
-                                ${PATH} (غير موجود)
-                            </p>
+                            <button class="btn-retry" onclick="loadPosts()">
+                                <i class="fas fa-sync-alt"></i> إعادة المحاولة
+                            </button>
                         </div>
                     `;
                     if (countEl) countEl.textContent = '0';
@@ -288,8 +290,11 @@
                             <p>لا توجد مقالات منشورة حالياً.</p>
                             <p class="sub-msg">ترقبوا المقالات القادمة قريباً!</p>
                             <p class="sub-msg" style="font-size:0.7rem; opacity:0.4;">
-                                ${published.length} مقال منشور من ${allPosts.length} إجمالي
+                                ${allPosts.length} مقال في الملف، 0 منشور
                             </p>
+                            <button class="btn-retry" onclick="loadPosts()">
+                                <i class="fas fa-sync-alt"></i> إعادة المحاولة
+                            </button>
                         </div>
                     `;
                     return;
@@ -338,52 +343,21 @@
                         <button class="btn-retry" onclick="loadPosts()">
                             <i class="fas fa-sync-alt"></i> إعادة المحاولة
                         </button>
-                        <p class="sub-msg" style="font-size:0.7rem; opacity:0.4; margin-top:10px;">
-                            ${RAW_URL}
-                        </p>
                     </div>
                 `;
                 showToast('❌ فشل تحميل المقالات: ' + error.message, 'error');
             }
         }
 
-        // ====== التحقق من وجود الملف ======
-        async function checkFileExists() {
-            try {
-                const response = await fetch(RAW_URL + '?t=' + Date.now());
-                if (response.ok) {
-                    console.log('✅ ملف المقالات موجود');
-                    return true;
-                } else if (response.status === 404) {
-                    console.warn('⚠️ ملف المقالات غير موجود (404)');
-                    return false;
-                } else {
-                    console.warn('⚠️ مشكلة في الملف:', response.status);
-                    return false;
-                }
-            } catch (error) {
-                console.error('❌ خطأ في التحقق:', error);
-                return false;
-            }
-        }
-
         // ====== التحميل عند فتح الصفحة ======
         document.addEventListener('DOMContentLoaded', function() {
-            // التحقق من وجود الملف أولاً
-            checkFileExists().then(exists => {
-                if (!exists) {
-                    console.log('📝 الملف غير موجود، سيتم إنشاؤه عند نشر أول مقال');
-                }
-                loadPosts();
-            });
-
+            loadPosts();
             // تحديث تلقائي كل 30 ثانية
             setInterval(loadPosts, 30000);
         });
 
         // ====== جعل الدالة عامة للزر ======
         window.loadPosts = loadPosts;
-        window.checkFileExists = checkFileExists;
 
         console.log('🚀 Blog Loaded');
         console.log('📂 المسار:', RAW_URL);
