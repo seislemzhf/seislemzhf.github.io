@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المدونة | Minsaj DZ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/skins/ui/oxide/skin.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #0a0a0a;
+            color: #f0ece6;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        :root {
+            --accent: #6c8b9e;
+            --accent-light: #8aadc2;
+            --accent-dark: #4a6a7e;
+            --bg-card: #1a1a1a;
+            --border: rgba(108, 139, 158, 0.08);
+            --text-muted: #6a625a;
+            --text-secondary: #b8b0a8;
+        }
+
+        /* ====== Header ====== */
+        header {
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #f0ece6;
+        }
+        .logo span { color: var(--accent); }
+        .logo .sub {
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            letter-spacing: 4px;
+            display: block;
+            font-weight: 400;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background: rgba(108, 139, 158, 0.08);
+            color: var(--accent);
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: 1px solid rgba(108, 139, 158, 0.12);
+            transition: 0.3s;
+        }
+        .btn-outline:hover {
+            background: var(--accent);
+            color: #0a0a0a;
+            transform: translateY(-2px);
+        }
+
+        /* ====== شاشة تسجيل الدخول ====== */
+        .login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+        .login-box {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px 35px;
+            max-width: 420px;
+            width: 100%;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .login-box h2 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+        .login-box h2 span { color: var(--accent); }
+        .login-box .sub {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+        .login-box .lock-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            opacity: 0.4;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: #f0ece6;
+            font-size: 1.1rem;
+            font-family: inherit;
+            text-align: center;
+            transition: 0.3s;
+            margin-bottom: 18px;
+            direction: ltr;
+        }
+        .login-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .login-box .btn-login {
+            width: 100%;
+            background: var(--accent);
+            color: #0a0a0a;
+            padding: 14px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .login-box .btn-login:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(108, 139, 158, 0.2);
+        }
+        .login-box .error-msg {
+            color: #EF4444;
+            font-size: 0.9rem;
+            margin-top: 12px;
+            display: none;
+        }
+        .login-box .hint {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-top: 15px;
+            opacity: 0.4;
+        }
+
+        /* ====== المحتوى الداخلي ====== */
+        .dashboard-content {
+            display: none;
+        }
+        .dashboard-content.active {
+            display: block;
+        }
+
+        .hero {
+            padding: 30px 0 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #f0ece6;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero .subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .section {
+            display: none;
+            padding: 20px 0 40px;
+        }
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #f0ece6;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+        }
+        .section-title i { color: var(--accent); margin-left: 10px; }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .tab-btn:hover {
+            color: var(--accent);
+        }
+        .tab-btn.active {
+            background: var(--accent);
+            color: #0a0a0a;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .post-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px 25px;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            transition: 0.3s;
+        }
+        .post-card:hover {
+            border-color: rgba(108, 139, 158, 0.15);
+        }
+        .post-card .info {
+            flex: 1;
+        }
+        .post-card .info h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #f0ece6;
+        }
+        .post-card .info .meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .post-card .info .meta i { color: var(--accent); margin: 0 4px; }
+        .post-card .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .post-card .actions button {
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .btn-edit {
+            background: rgba(108, 139, 158, 0.15);
+            color: var(--accent);
+        }
+        .btn-edit:hover {
+            background: var(--accent);
+            color: #0a0a0a;
+        }
+        .btn-delete {
+            background: rgba(239, 68, 68, 0.15);
+            color: #EF4444;
+        }
+        .btn-delete:hover {
+            background: #EF4444;
+            color: white;
+        }
+        .btn-publish {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10B981;
+        }
+        .btn-publish:hover {
+            background: #10B981;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #f0ece6;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn-submit {
+            background: var(--accent);
+            color: #0a0a0a;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .btn-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(108, 139, 158, 0.2);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 15px 30px;
+            border-radius: 12px;
+            color: #f0ece6;
+            font-weight: 700;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .toast.show {
+            display: block;
+            animation: fadeUp 0.3s ease;
+        }
+        .toast.success {
+            border-color: #10B981;
+        }
+        .toast.error {
+            border-color: #EF4444;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        .logout-btn {
+            color: #EF4444;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .logout-btn:hover {
+            color: #f87171;
+        }
+
+        @media (max-width: 700px) {
+            .post-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .post-card .actions {
+                justify-content: center;
+            }
+            .hero h1 { font-size: 2rem; }
+            .tabs { justify-content: center; }
+            .tab-btn { padding: 8px 18px; font-size: 0.8rem; }
+            .login-box { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ====== Header ====== -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                Minsaj <span>DZ</span>
+                <span class="sub">✦ لوحة تحكم المدونة ✦</span>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                <a href="https://seislemzhf.github.io" class="btn-outline">
+                    <i class="fas fa-arrow-right"></i> العودة للرئيسية
+                </a>
+                <a href="blog.html" class="btn-outline">
+                    <i class="fas fa-eye"></i> عرض المدونة
+                </a>
+                <span class="logout-btn" onclick="logout()" id="logoutBtn" style="display:none;">
+                    <i class="fas fa-sign-out-alt"></i> خروج
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================= -->
+    <!-- ====== شاشة تسجيل الدخول ====== -->
+    <!-- ========================================= -->
+    <div class="login-screen" id="loginScreen">
+        <div class="container">
+            <div class="login-box">
+                <div class="lock-icon"><i class="fas fa-lock"></i></div>
+                <h2><span>🔐</span> لوحة التحكم</h2>
+                <p class="sub">أدخل كلمة المرور للدخول</p>
+                <input type="password" id="passwordInput" placeholder="••••••••" onkeydown="if(event.key==='Enter') login()">
+                <button class="btn-login" onclick="login()">
+                    <i class="fas fa-arrow-left"></i> دخول
+                </button>
+                <div class="error-msg" id="loginError">
+                    <i class="fas fa-exclamation-circle"></i> كلمة المرور غير صحيحة
+                </div>
+                <div class="hint">🔑 كلمة المرور الافتراضية: <strong style="color:var(--accent);">admin123</strong></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- ====== محتوى لوحة التحكم ====== -->
+    <!-- ========================================= -->
+    <div class="dashboard-content" id="dashboardContent">
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <h1><span>📝</span> لوحة تحكم المدونة</h1>
+                <p class="subtitle">أنشئ، عدّل، واحذف مقالاتك بسهولة</p>
+            </div>
+        </section>
+
+        <!-- المحتوى -->
+        <section>
+            <div class="container">
+
+                <!-- التبويبات -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="all-posts">📚 كل المقالات</button>
+                    <button class="tab-btn" data-tab="new-post">✏️ مقال جديد</button>
+                </div>
+
+                <!-- تبويب: كل المقالات -->
+                <div class="section active" id="all-posts">
+                    <div class="section-title"><i class="fas fa-list"></i> كل المقالات</div>
+                    <div id="posts-list">
+                        <div class="empty-state">
+                            <i class="fas fa-newspaper"></i>
+                            <p>لا توجد مقالات حالياً.</p>
+                            <p style="font-size:0.85rem; opacity:0.6;">أنشئ مقالك الأول الآن!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تبويب: مقال جديد -->
+                <div class="section" id="new-post">
+                    <div class="section-title"><i class="fas fa-pen"></i> كتابة مقال جديد</div>
+                    <form id="post-form">
+                        <div class="form-group">
+                            <label>عنوان المقال <span style="color:#EF4444;">*</span></label>
+                            <input type="text" id="post-title" placeholder="أدخل عنوان المقال..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>التصنيفات (مفصولة بفاصلة)</label>
+                            <input type="text" id="post-tags" placeholder="برمجيات, WPF, C#">
+                        </div>
+                        <div class="form-group">
+                            <label>محتوى المقال <span style="color:#EF4444;">*</span></label>
+                            <textarea id="post-content" placeholder="اكتب محتوى المقال هنا..."></textarea>
+                        </div>
+                        <div style="display:flex; gap:15px; flex-wrap:wrap; align-items:center; margin-top:10px;">
+                            <button type="submit" class="btn-submit" id="submit-btn">
+                                <i class="fas fa-save"></i> نشر المقال
+                            </button>
+                            <button type="button" class="btn-outline" onclick="clearForm()">
+                                <i class="fas fa-times"></i> إلغاء
+                            </button>
+                            <span id="edit-indicator" style="color:var(--accent); display:none;">
+                                <i class="fas fa-edit"></i> جاري التعديل...
+                            </span>
+                        </div>
+                        <input type="hidden" id="edit-filename" value="">
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ====== Footer ====== -->
+        <footer style="padding:30px 0; text-align:center; border-top:1px solid var(--border); color:var(--text-muted); margin-top:20px;">
+            <div class="container">
+                <p>🇩🇿 صنع في الجزائر بـ ❤️</p>
+                <p>© 2026 <strong>Minsaj DZ</strong> – جميع الحقوق محفوظة</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ====== Toast ====== -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // =========================================================
+        // 🔐 نظام تسجيل الدخول
+        // =========================================================
+        const PASSWORD = 'admin123'; // 🔑 غيّر هذه الكلمة إلى ما تريد
+
+        function login() {
+            const input = document.getElementById('passwordInput');
+            const error = document.getElementById('loginError');
+            const password = input.value;
+
+            if (password === PASSWORD) {
+                // تسجيل دخول ناجح
+                localStorage.setItem('blog_auth', 'true');
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboardContent').classList.add('active');
+                document.getElementById('logoutBtn').style.display = 'inline';
+                error.style.display = 'none';
+                input.value = '';
+                // تهيئة المحرر والمقالات
+                initEditor();
+                loadPosts();
+            } else {
+                error.style.display = 'block';
+                input.value = '';
+                input.focus();
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('blog_auth');
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('dashboardContent').classList.remove('active');
+            document.getElementById('logoutBtn').style.display = 'none';
+            // إلغاء تحميل المحرر
+            if (tinymce.get('post-content')) {
+                tinymce.get('post-content').remove();
+            }
+        }
+
+        // التحقق من الجلسة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            const isAuth = localStorage.getItem('blog_auth') === 'true';
+            if (isAuth) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('dashboardContent').classList.add('active');
+                document.getElementById('logoutBtn').style.display = 'inline';
+                initEditor();
+                loadPosts();
+            } else {
+                document.getElementById('loginScreen').style.display = 'flex';
+                document.getElementById('dashboardContent').classList.remove('active');
+                document.getElementById('logoutBtn').style.display = 'none';
+            }
+        });
+
+        // =========================================================
+        // 📝 إدارة المقالات
+        // =========================================================
+        const STORAGE_KEY = 'blog_posts';
+        let posts = [];
+
+        function initEditor() {
+            if (tinymce.get('post-content')) {
+                tinymce.get('post-content').remove();
+            }
+            tinymce.init({
+                selector: '#post-content',
+                language: 'ar',
+                height: 500,
+                menubar: true,
+                plugins: [
+                    'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                    'insertdatetime', 'media', 'table', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | ' +
+                    'bold italic backcolor | alignleft aligncenter ' +
+                    'alignright alignjustify | bullist numlist outdent indent | ' +
+                    'removeformat | help | image media link',
+                content_style: 'body { font-family: "Tajawal", Arial, sans-serif; font-size:16px; direction:rtl; }',
+                directionality: 'rtl',
+            });
+        }
+
+        function loadPosts() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    posts = JSON.parse(saved);
+                } catch {
+                    posts = [];
+                }
+            } else {
+                posts = [
+                    {
+                        id: 'post1',
+                        title: 'مرحباً بكم في مدونتي!',
+                        tags: 'ترحيب, مدونة',
+                        content: '<p>هذه أول مقالة في مدونتي. يمكنك تعديلها أو حذفها.</p>',
+                        date: new Date().toISOString(),
+                        published: true
+                    },
+                    {
+                        id: 'post2',
+                        title: 'كيفية بناء تطبيق WPF',
+                        tags: 'برمجيات, WPF, C#',
+                        content: '<p>في هذا المقال سنتعلم كيفية بناء تطبيق WPF احترافي...</p>',
+                        date: new Date(Date.now() - 86400000).toISOString(),
+                        published: true
+                    }
+                ];
+                savePosts();
+            }
+            renderPosts();
+        }
+
+        function savePosts() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+        }
+
+        function renderPosts() {
+            const container = document.getElementById('posts-list');
+            if (!posts || posts.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-newspaper"></i>
+                        <p>لا توجد مقالات حالياً.</p>
+                        <p style="font-size:0.85rem; opacity:0.6;">أنشئ مقالك الأول الآن!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '<div class="posts-grid">';
+            const sorted = [...posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            sorted.forEach(post => {
+                const date = new Date(post.date).toLocaleDateString('ar-EG', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                const status = post.published ? '✅ منشور' : '⏳ مسودة';
+                const statusColor = post.published ? '#10B981' : '#F59E0B';
+
+                html += `
+                    <div class="post-card" data-id="${post.id}">
+                        <div class="info">
+                            <h3>${post.title}</h3>
+                            <div class="meta">
+                                <i class="fas fa-calendar"></i> ${date}
+                                <span style="margin:0 8px;">|</span>
+                                <i class="fas fa-tag"></i> ${post.tags || 'عام'}
+                                <span style="margin:0 8px;">|</span>
+                                <span style="color:${statusColor};">${status}</span>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button class="btn-edit" onclick="editPost('${post.id}')">
+                                <i class="fas fa-edit"></i> تعديل
+                            </button>
+                            <button class="btn-publish" onclick="togglePublish('${post.id}')">
+                                <i class="fas fa-${post.published ? 'eye-slash' : 'eye'}"></i>
+                                ${post.published ? 'إخفاء' : 'نشر'}
+                            </button>
+                            <button class="btn-delete" onclick="deletePost('${post.id}')">
+                                <i class="fas fa-trash"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // ====== إضافة/تعديل مقال ======
+        document.getElementById('post-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('post-title').value.trim();
+            const tags = document.getElementById('post-tags').value.trim();
+            const content = tinymce.get('post-content').getContent();
+            const editFile = document.getElementById('edit-filename').value;
+
+            if (!title) {
+                showToast('الرجاء إدخال عنوان المقال', 'error');
+                return;
+            }
+            if (!content || content === '<p><br data-mce-bogus="1"></p>') {
+                showToast('الرجاء كتابة محتوى المقال', 'error');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري النشر...';
+
+            if (editFile) {
+                const index = posts.findIndex(p => p.id === editFile);
+                if (index !== -1) {
+                    posts[index].title = title;
+                    posts[index].tags = tags;
+                    posts[index].content = content;
+                    posts[index].date = new Date().toISOString();
+                    savePosts();
+                    renderPosts();
+                    showToast('✅ تم تحديث المقال بنجاح!', 'success');
+                }
+            } else {
+                const newPost = {
+                    id: 'post_' + Date.now(),
+                    title: title,
+                    tags: tags,
+                    content: content,
+                    date: new Date().toISOString(),
+                    published: true
+                };
+                posts.push(newPost);
+                savePosts();
+                renderPosts();
+                showToast('✅ تم نشر المقال بنجاح!', 'success');
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-save"></i> نشر المقال';
+            clearForm();
+            switchTab('all-posts');
+        });
+
+        function editPost(id) {
+            const post = posts.find(p => p.id === id);
+            if (!post) return;
+
+            document.getElementById('post-title').value = post.title;
+            document.getElementById('post-tags').value = post.tags || '';
+            tinymce.get('post-content').setContent(post.content);
+            document.getElementById('edit-filename').value = id;
+            document.getElementById('edit-indicator').style.display = 'inline';
+
+            switchTab('new-post');
+            document.querySelector('#new-post .section-title').innerHTML = '<i class="fas fa-edit"></i> تعديل المقال';
+            document.querySelector('#submit-btn').innerHTML = '<i class="fas fa-save"></i> تحديث المقال';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function deletePost(id) {
+            if (!confirm('هل أنت متأكد من حذف هذا المقال؟')) return;
+            posts = posts.filter(p => p.id !== id);
+            savePosts();
+            renderPosts();
+            showToast('🗑️ تم حذف المقال', 'success');
+        }
+
+        function togglePublish(id) {
+            const post = posts.find(p => p.id === id);
+            if (!post) return;
+            post.published = !post.published;
+            savePosts();
+            renderPosts();
+            showToast(post.published ? '✅ تم نشر المقال' : '⏳ تم إخفاء المقال', 'success');
+        }
+
+        function clearForm() {
+            document.getElementById('post-title').value = '';
+            document.getElementById('post-tags').value = '';
+            tinymce.get('post-content').setContent('');
+            document.getElementById('edit-filename').value = '';
+            document.getElementById('edit-indicator').style.display = 'none';
+            document.querySelector('#new-post .section-title').innerHTML = '<i class="fas fa-pen"></i> كتابة مقال جديد';
+            document.querySelector('#submit-btn').innerHTML = '<i class="fas fa-save"></i> نشر المقال';
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
+            if (tabId === 'all-posts') renderPosts();
+        }
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                switchTab(this.dataset.tab);
+            });
+        });
+
+        // ====== Toast ======
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show ' + type;
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+
+        // ====== تصدير واستيراد ======
+        function exportPosts() {
+            const data = JSON.stringify(posts, null, 2);
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'blog-posts-backup.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('📦 تم تصدير المقالات', 'success');
+        }
+
+        function importPosts() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    try {
+                        const data = JSON.parse(ev.target.result);
+                        if (Array.isArray(data)) {
+                            posts = data;
+                            savePosts();
+                            renderPosts();
+                            showToast('✅ تم استيراد المقالات بنجاح!', 'success');
+                        } else {
+                            showToast('❌ الملف غير صالح', 'error');
+                        }
+                    } catch {
+                        showToast('❌ خطأ في قراءة الملف', 'error');
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+    </script>
+
+</body>
+</html>
