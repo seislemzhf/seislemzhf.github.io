@@ -353,6 +353,23 @@
             margin-right: 2px;
         }
 
+        /* ====== زر عرض المزيد من الوسوم ====== */
+        .tags-filter .show-more-tags {
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            font-size: 0.7rem;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .tags-filter .show-more-tags:hover {
+            background: rgba(108, 139, 158, 0.1);
+        }
+
         /* ====== شريط التحكم ====== */
         .refresh-bar {
             display: flex;
@@ -398,6 +415,40 @@
         }
         body.light-mode .btn-refresh:hover {
             color: #fff;
+        }
+
+        /* ====== فلتر الصفحات ====== */
+        .page-filter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .page-filter label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+        .page-filter select {
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            color: #f0ece6;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        body.light-mode .page-filter select {
+            background: #ffffff;
+            color: #1a1a1a;
+            border-color: #e0e0e0;
+        }
+        .page-filter select:focus {
+            outline: none;
+            border-color: var(--accent);
         }
 
         /* ====== المقالات ====== */
@@ -645,7 +696,8 @@
                 font-size: 1.8rem;
             }
             .refresh-bar,
-            .search-bar {
+            .search-bar,
+            .page-filter {
                 flex-direction: column;
                 text-align: center;
             }
@@ -690,10 +742,19 @@
                 <button class="btn-search" onclick="handleSearch()"><i class="fas fa-search"></i> بحث</button>
             </div>
 
+            <!-- فلتر الصفحات -->
+            <div class="page-filter">
+                <label><i class="fas fa-folder"></i> تصفية حسب القسم:</label>
+                <select id="page-select" onchange="filterByPage(this.value)">
+                    <option value="">كل الأقسام</option>
+                </select>
+            </div>
+
             <!-- تصفية بالوسوم (مصغرة) -->
             <div class="tags-filter" id="tagsFilter">
                 <span class="tags-label"><i class="fas fa-tags"></i></span>
                 <span class="tag-item clear-tag" onclick="filterByTag(null)">🗑️ الكل</span>
+                <!-- الوسوم ستضاف هنا -->
             </div>
 
             <!-- شريط التحكم -->
@@ -736,7 +797,7 @@
 
     <script>
         // =========================================================
-        // 📝 المدونة مع Infinite Scroll + Pagination + Tags
+        // 📝 المدونة مع Infinite Scroll + Pagination + Tags + Page Filter
         // =========================================================
 
         const USERNAME = 'seislemzhf';
@@ -744,6 +805,7 @@
         const PATH = 'data/posts.json';
         const RAW_URL = `https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${PATH}`;
         const POSTS_PER_PAGE = 8;
+        const MAX_VISIBLE_TAGS = 8; // عدد الوسوم الظاهرة قبل "عرض المزيد"
 
         let allPosts = [];
         let filteredPosts = [];
@@ -751,7 +813,9 @@
         let isLoading = false;
         let hasMore = true;
         let currentTag = null;
+        let currentPageFilter = '';
         let searchQuery = '';
+        let showAllTags = false;
 
         // ====== دوال مساعدة ======
         function stripHtml(html) {
@@ -824,6 +888,7 @@
                 });
 
                 extractTags();
+                populatePageFilter();
                 applyFilters();
 
             } catch (error) {
@@ -853,9 +918,14 @@
                     });
                 }
             });
+            window.tagsMap = tagsMap; // تخزين للاستخدام لاحقاً
+            renderTags();
+        }
 
+        function renderTags() {
             const tagsFilter = document.getElementById('tagsFilter');
             if (!tagsFilter) return;
+            const tagsMap = window.tagsMap || {};
 
             // الاحتفاظ بـ "الكل"
             let html = `<span class="tags-label"><i class="fas fa-tags"></i></span>`;
@@ -866,14 +936,52 @@
                 return tagsMap[b] - tagsMap[a];
             });
 
-            sortedTags.forEach(function(tag) {
+            const visibleTags = showAllTags ? sortedTags : sortedTags.slice(0, MAX_VISIBLE_TAGS);
+
+            visibleTags.forEach(function(tag) {
                 const count = tagsMap[tag];
                 const active = currentTag === tag ? 'active' : '';
                 html +=
                     `<span class="tag-item ${active}" onclick="filterByTag('${tag}')">#${tag} <span class="tag-count">${count}</span></span>`;
             });
 
+            // إضافة زر "عرض المزيد" إذا كان هناك وسوم إضافية
+            if (sortedTags.length > MAX_VISIBLE_TAGS) {
+                if (!showAllTags) {
+                    html += `<button class="show-more-tags" onclick="toggleShowAllTags(true)">عرض المزيد (${sortedTags.length - MAX_VISIBLE_TAGS}) <i class="fas fa-chevron-down"></i></button>`;
+                } else {
+                    html += `<button class="show-more-tags" onclick="toggleShowAllTags(false)">عرض أقل <i class="fas fa-chevron-up"></i></button>`;
+                }
+            }
+
             tagsFilter.innerHTML = html;
+        }
+
+        function toggleShowAllTags(show) {
+            showAllTags = show;
+            renderTags();
+        }
+
+        // ====== تعبئة فلتر الصفحات ======
+        function populatePageFilter() {
+            const pageSelect = document.getElementById('page-select');
+            if (!pageSelect) return;
+            const pages = new Set();
+            allPosts.forEach(function(post) {
+                if (post.page) pages.add(post.page.trim());
+                else pages.add('عام');
+            });
+            const currentValue = pageSelect.value;
+            pageSelect.innerHTML = '<option value="">كل الأقسام</option>';
+            [...pages].sort().forEach(function(page) {
+                const opt = document.createElement('option');
+                opt.value = page;
+                opt.textContent = page;
+                pageSelect.appendChild(opt);
+            });
+            if (currentValue && [...pages].includes(currentValue)) {
+                pageSelect.value = currentValue;
+            }
         }
 
         // ====== الفلترة ======
@@ -882,6 +990,10 @@
                 if (currentTag) {
                     const tags = (post.tags || '').split(',').map(function(t) { return t.trim(); });
                     if (!tags.includes(currentTag)) return false;
+                }
+                if (currentPageFilter) {
+                    const page = post.page || 'عام';
+                    if (page !== currentPageFilter) return false;
                 }
                 if (searchQuery) {
                     const query = searchQuery.toLowerCase();
@@ -912,12 +1024,18 @@
             // تحديث حالة الأزرار
             document.querySelectorAll('.tags-filter .tag-item').forEach(function(el) {
                 el.classList.remove('active');
-                if (el.textContent.trim().startsWith('#' + tag)) {
+                if (tag && el.textContent.trim().startsWith('#' + tag)) {
                     el.classList.add('active');
                 }
             });
             applyFilters();
-            // تمرير للأعلى
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ====== فلترة بالصفحة ======
+        function filterByPage(page) {
+            currentPageFilter = page;
+            applyFilters();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -959,6 +1077,7 @@
                 const title = post.title || 'بدون عنوان';
                 const date = post.date || new Date().toISOString();
                 const tags = post.tags || 'عام';
+                const page = post.page || 'عام';
                 const fullText = stripHtml(post.content || '');
                 const excerpt = fullText.length > 250 ? fullText.substring(0, 250) + '...' : fullText;
 
@@ -978,6 +1097,8 @@
                             <i class="fas fa-calendar"></i> ${formatDate(date)}
                             <span style="margin:0 6px;">|</span>
                             <i class="fas fa-tag"></i> ${tags}
+                            <span style="margin:0 6px;">|</span>
+                            <i class="fas fa-folder"></i> ${page}
                             ${post.image ? `<span style="margin:0 6px;">|</span> <i class="fas fa-image"></i>` : ''}
                         </div>
                         <div class="post-excerpt">${excerpt}</div>
@@ -1087,11 +1208,13 @@
 
         window.handleSearch = handleSearch;
         window.filterByTag = filterByTag;
+        window.filterByPage = filterByPage;
+        window.toggleShowAllTags = toggleShowAllTags;
         window.goToPage = goToPage;
         window.loadPosts = loadPosts;
         window.toggleTheme = toggleTheme;
 
-        console.log('📝 Blog Loaded with Tags Filter');
+        console.log('📝 Blog Loaded with Page Filter & Tags Show More');
     </script>
 
 </body>
