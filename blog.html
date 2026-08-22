@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* نفس الـ CSS السابق... */
+        /* ====== CSS سريع (نفس السابق) ====== */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Tajawal', sans-serif; background: #0a0a0a; color: #f0ece6; line-height: 1.8; min-height: 100vh; }
         .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
@@ -81,7 +81,7 @@
         <div class="container">
             <div class="refresh-bar">
                 <span class="info"><i class="fas fa-database"></i> <span id="post-count">0</span> مقال</span>
-                <button class="btn-refresh" id="refresh-btn" onclick="loadPosts()"><i class="fas fa-sync-alt"></i> تحديث</button>
+                <button class="btn-refresh" onclick="loadPosts()"><i class="fas fa-sync-alt"></i> تحديث</button>
             </div>
             <div id="posts-container">
                 <div class="status-message"><i class="fas fa-spinner fa-spin"></i><p>جاري تحميل المقالات...</p></div>
@@ -99,7 +99,7 @@
 
     <script>
         // =========================================================
-        // 📝 جلب المقالات من GitHub
+        // 📝 جلب المقالات من GitHub (باستخدام raw)
         // =========================================================
         const REPO = 'seislemzhf.github.io';
         const PATH = 'data/posts.json';
@@ -122,32 +122,27 @@
         async function loadPosts() {
             const container = document.getElementById('posts-container');
             const countEl = document.getElementById('post-count');
-            const refreshBtn = document.getElementById('refresh-btn');
-
-            refreshBtn.disabled = true;
-            refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري...';
 
             try {
                 const response = await fetch(RAW_URL + '?t=' + Date.now());
-                if (!response.ok) {
-                    if (response.status === 404) {
-                        container.innerHTML = `
-                            <div class="status-message">
-                                <i class="fas fa-newspaper" style="color:var(--accent);"></i>
-                                <p>لا توجد مقالات حالياً.</p>
-                                <p class="sub-msg">ترقبوا المقالات القادمة قريباً!</p>
-                            </div>
-                        `;
-                        countEl.textContent = '0';
-                        return;
-                    }
-                    throw new Error('فشل في تحميل المقالات');
+
+                if (response.status === 404) {
+                    container.innerHTML = `
+                        <div class="status-message">
+                            <i class="fas fa-newspaper" style="color:var(--accent);"></i>
+                            <p>لا توجد مقالات حالياً.</p>
+                            <p class="sub-msg">ترقبوا المقالات القادمة قريباً!</p>
+                        </div>
+                    `;
+                    countEl.textContent = '0';
+                    return;
                 }
+
+                if (!response.ok) throw new Error('فشل في تحميل المقالات');
 
                 const allPosts = await response.json();
                 if (!Array.isArray(allPosts)) throw new Error('بيانات غير صالحة');
 
-                // عرض المنشورات فقط
                 const published = allPosts.filter(p => p.published !== false);
                 countEl.textContent = published.length;
 
@@ -195,12 +190,12 @@
                         <i class="fas fa-exclamation-circle" style="color:#EF4444;"></i>
                         <p>حدث خطأ في تحميل المقالات</p>
                         <p class="sub-msg">${error.message}</p>
+                        <button onclick="loadPosts()" style="background:var(--accent); color:#0a0a0a; padding:8px 24px; border:none; border-radius:30px; font-weight:700; cursor:pointer; margin-top:10px; font-family:inherit;">
+                            <i class="fas fa-sync-alt"></i> إعادة المحاولة
+                        </button>
                     </div>
                 `;
             }
-
-            refreshBtn.disabled = false;
-            refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> تحديث';
         }
 
         // تحميل عند الفتح
@@ -209,7 +204,6 @@
         // تحديث كل 60 ثانية
         setInterval(loadPosts, 60000);
 
-        // جعل الدالة عامة للزر
         window.loadPosts = loadPosts;
     </script>
 
