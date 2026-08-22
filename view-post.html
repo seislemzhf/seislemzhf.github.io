@@ -6,9 +6,8 @@
     <title>عرض المقال | Minsaj DZ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-
     <style>
-        /* ====== إعدادات عامة ====== */
+        /* ====== CSS كامل ====== */
         * {
             margin: 0;
             padding: 0;
@@ -58,9 +57,9 @@
             --success: #10B981;
             --danger: #EF4444;
             --warning: #F59E0B;
+            --gold: #F59E0B;
         }
 
-        /* ====== Header ====== */
         header {
             padding: 14px 0;
             background: rgba(10, 10, 10, 0.96);
@@ -134,11 +133,11 @@
             color: var(--accent);
         }
 
-        /* ====== المحتوى ====== */
         #post-container {
             padding: 20px 0 30px;
         }
 
+        /* ====== المقال ====== */
         .post-full {
             background: var(--bg-card);
             border-radius: 16px;
@@ -213,18 +212,6 @@
             background: rgba(108, 139, 158, 0.04);
             border-radius: 0 8px 8px 0;
             color: var(--accent-light);
-        }
-        .post-full .post-body pre {
-            background: #0a0a0a;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            overflow-x: auto;
-            direction: ltr;
-            text-align: left;
-            font-family: monospace;
-            color: #f0ece6;
-            margin: 15px 0;
         }
 
         /* ====== كود مع زر نسخ ====== */
@@ -307,7 +294,74 @@
             padding: 0;
         }
 
-        /* ====== أزرار المشاركة ====== */
+        /* ====== الإحصائيات ====== */
+        .post-stats {
+            display: flex;
+            gap: 25px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .post-stats .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .post-stats .stat-item i {
+            color: var(--accent);
+        }
+        .post-stats .stat-item .num {
+            font-weight: 700;
+            color: #f0ece6;
+        }
+        body.light-mode .post-stats .stat-item .num {
+            color: #1a1a1a;
+        }
+
+        /* ====== تقييم النجوم ====== */
+        .rating-section {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+        .rating-section .rating-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .stars {
+            display: flex;
+            gap: 4px;
+            direction: ltr;
+        }
+        .stars .star {
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #555;
+            transition: 0.2s;
+            user-select: none;
+        }
+        .stars .star:hover,
+        .stars .star.active {
+            color: var(--gold);
+        }
+        .stars .star.active {
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+        }
+        .rating-result {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+        .rating-result .avg {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        /* ====== المشاركة ====== */
         .share-section {
             margin: 25px 0 30px;
             padding: 20px 0;
@@ -542,6 +596,55 @@
             color: var(--text-muted);
         }
 
+        /* ====== جدول المحتويات ====== */
+        .toc {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            padding: 18px 22px;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+        body.light-mode .toc {
+            background: #f5f5f5;
+        }
+        .toc .toc-title {
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .toc ul {
+            list-style: none;
+            padding-right: 10px;
+        }
+        .toc ul li {
+            padding: 4px 0;
+            font-size: 0.9rem;
+        }
+        .toc ul li a {
+            color: var(--text-secondary);
+            transition: 0.3s;
+        }
+        body.light-mode .toc ul li a {
+            color: #444;
+        }
+        .toc ul li a:hover {
+            color: var(--accent);
+        }
+        .toc ul li .toc-h2 {
+            padding-right: 0;
+        }
+        .toc ul li .toc-h3 {
+            padding-right: 20px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        .toc ul li .toc-h4 {
+            padding-right: 40px;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
         /* ====== حالة التحميل ====== */
         .status-message {
             text-align: center;
@@ -622,7 +725,6 @@
             }
         }
 
-        /* ====== Footer ====== */
         footer {
             padding: 25px 0;
             text-align: center;
@@ -640,7 +742,6 @@
             font-size: 0.75rem;
         }
 
-        /* ====== استجابة الجوال ====== */
         @media (max-width: 700px) {
             .post-full {
                 padding: 18px 16px;
@@ -670,6 +771,13 @@
             .code-wrapper pre {
                 padding: 12px 14px;
                 font-size: 0.75rem;
+            }
+            .post-stats {
+                gap: 12px;
+                justify-content: center;
+            }
+            .stars .star {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -711,29 +819,7 @@
 
     <script>
         // =========================================================
-        // 🌓 الوضع الداكن/الفاتح
-        // =========================================================
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const label = document.getElementById('theme-label');
-            if (document.body.classList.contains('light-mode')) {
-                label.textContent = 'وضع فاتح';
-                localStorage.setItem('theme', 'light');
-            } else {
-                label.textContent = 'وضع داكن';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            if (localStorage.getItem('theme') === 'light') {
-                document.body.classList.add('light-mode');
-                document.getElementById('theme-label').textContent = 'وضع فاتح';
-            }
-        });
-
-        // =========================================================
-        // 📖 عرض المقالة
+        // 📖 عرض المقالة - النسخة النهائية
         // =========================================================
 
         const USERNAME = 'seislemzhf';
@@ -752,9 +838,7 @@
             toast.textContent = message;
             toast.className = 'toast show ' + type;
             clearTimeout(toast._timer);
-            toast._timer = setTimeout(function() {
-                toast.classList.remove('show');
-            }, 3500);
+            toast._timer = setTimeout(function() { toast.classList.remove('show'); }, 3500);
         }
 
         function getPostIdFromURL() {
@@ -765,14 +849,8 @@
         function formatDate(dateStr) {
             try {
                 const d = new Date(dateStr);
-                return d.toLocaleDateString('ar-EG', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            } catch {
-                return dateStr;
-            }
+                return d.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+            } catch { return dateStr; }
         }
 
         function stripHtml(html) {
@@ -790,15 +868,34 @@
             return currentPost ? currentPost.title : 'المدونة | Minsaj DZ';
         }
 
+        // ====== الوضع الداكن ======
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const label = document.getElementById('theme-label');
+            if (document.body.classList.contains('light-mode')) {
+                label.textContent = 'وضع فاتح';
+                localStorage.setItem('theme', 'light');
+            } else {
+                label.textContent = 'وضع داكن';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('theme-label').textContent = 'وضع فاتح';
+            }
+            loadPost();
+        });
+
         // ====== التعليقات ======
         function getComments(postId) {
             const key = 'blog_comments_' + postId;
             try {
                 const saved = localStorage.getItem(key);
                 return saved ? JSON.parse(saved) : [];
-            } catch {
-                return [];
-            }
+            } catch { return []; }
         }
 
         function saveComments(postId, comments) {
@@ -818,7 +915,66 @@
             return comments;
         }
 
-        // ====== معالج الكود (زر نسخ) ======
+        // ====== المشاهدات ======
+        function incrementViews(postId) {
+            const key = 'blog_views_' + postId;
+            try {
+                let views = parseInt(localStorage.getItem(key) || '0');
+                // فقط نزيد المشاهدة مرة واحدة لكل جلسة
+                const sessionKey = 'blog_viewed_' + postId;
+                if (!localStorage.getItem(sessionKey)) {
+                    views++;
+                    localStorage.setItem(key, views.toString());
+                    localStorage.setItem(sessionKey, 'true');
+                }
+                return views;
+            } catch { return 0; }
+        }
+
+        function getViews(postId) {
+            const key = 'blog_views_' + postId;
+            try {
+                return parseInt(localStorage.getItem(key) || '0');
+            } catch { return 0; }
+        }
+
+        // ====== التقييم ======
+        function getRating(postId) {
+            const key = 'blog_rating_' + postId;
+            try {
+                const saved = localStorage.getItem(key);
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    return data;
+                }
+            } catch (e) {}
+            return { total: 0, count: 0, average: 0 };
+        }
+
+        function saveRating(postId, rating) {
+            const key = 'blog_rating_' + postId;
+            localStorage.setItem(key, JSON.stringify(rating));
+        }
+
+        function ratePost(postId, stars) {
+            const rating = getRating(postId);
+            const userKey = 'blog_rated_' + postId;
+            if (localStorage.getItem(userKey)) {
+                showToast('لقد قيمت هذا المقال مسبقاً!', 'info');
+                return rating;
+            }
+
+            rating.total += stars;
+            rating.count++;
+            rating.average = rating.total / rating.count;
+
+            saveRating(postId, rating);
+            localStorage.setItem(userKey, 'true');
+
+            return rating;
+        }
+
+        // ====== معالج الكود ======
         function processCodeBlocks() {
             const container = document.getElementById('post-container');
             if (!container) return;
@@ -837,9 +993,7 @@
                 let lang = 'code';
                 if (code.className) {
                     const match = code.className.match(/language-(\w+)/);
-                    if (match) {
-                        lang = match[1];
-                    }
+                    if (match) { lang = match[1]; }
                 }
 
                 const wrapper = document.createElement('div');
@@ -868,9 +1022,7 @@
                 const clonePre = pre.cloneNode(true);
 
                 const cloneCode = clonePre.querySelector('code');
-                if (cloneCode) {
-                    cloneCode.className = '';
-                }
+                if (cloneCode) { cloneCode.className = ''; }
 
                 wrapper.appendChild(header);
                 wrapper.appendChild(clonePre);
@@ -884,12 +1036,8 @@
 
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(code)
-                    .then(function() {
-                        showCopyFeedback(btn);
-                    })
-                    .catch(function() {
-                        fallbackCopy(code, btn);
-                    });
+                    .then(function() { showCopyFeedback(btn); })
+                    .catch(function() { fallbackCopy(code, btn); });
             } else {
                 fallbackCopy(code, btn);
             }
@@ -923,15 +1071,40 @@
             showToast('✅ تم نسخ الكود', 'success');
         }
 
-        // ====== مراقبة التغييرات ======
-        const observer = new MutationObserver(function() {
-            processCodeBlocks();
-        });
+        // ====== إنشاء جدول المحتويات ======
+        function generateTOC(content) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(content, 'text/html');
+            const headings = doc.querySelectorAll('h2, h3, h4');
 
-        function setupObserver() {
-            const target = document.getElementById('post-container');
-            if (!target) return;
-            observer.observe(target, { childList: true, subtree: true });
+            if (headings.length < 3) return null;
+
+            let tocHtml =
+                `
+                <div class="toc">
+                    <div class="toc-title"><i class="fas fa-list-ul"></i> محتويات المقال</div>
+                    <ul>
+            `;
+
+            headings.forEach(function(h) {
+                const level = h.tagName.toLowerCase();
+                const text = h.textContent.trim();
+                if (!text) return;
+
+                // إنشاء معرف فريد
+                const id = 'section-' + text.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9\u0600-\u06FF\-]/g, '');
+                h.id = id;
+
+                const className = 'toc-' + level;
+                tocHtml += `<li><a href="#${id}" class="${className}">${text}</a></li>`;
+            });
+
+            tocHtml += `</ul></div>`;
+
+            // إضافة المعرفات إلى العناوين في المحتوى
+            const newContent = doc.body.innerHTML;
+
+            return { html: tocHtml, content: newContent };
         }
 
         // ====== عرض المقال ======
@@ -993,20 +1166,43 @@
 
                 currentPost = post;
 
-                // ====== عرض المحتوى ======
+                // زيادة المشاهدات
+                incrementViews(postId);
+
+                // ====== التعليقات ======
                 const comments = getComments(postId);
                 const commentsCount = comments.length;
+
+                // ====== التقييم ======
+                const rating = getRating(postId);
+                const avgRating = rating.average || 0;
+                const ratingCount = rating.count || 0;
+
+                // ====== المشاهدات ======
+                const views = getViews(postId);
+
+                // ====== عرض المحتوى ======
                 const date = formatDate(post.date);
                 const tags = post.tags || 'عام';
-                const content = post.content || 'لا يوجد محتوى.';
+                let content = post.content || 'لا يوجد محتوى.';
                 const title = post.title || 'بدون عنوان';
 
-                // ====== مقالات مشابهة ======
+                // ====== إنشاء جدول المحتويات ======
+                const tocData = generateTOC(content);
+                if (tocData) {
+                    content = tocData.content;
+                }
+
+                // ====== وقت القراءة ======
+                const plainText = stripHtml(content);
+                const wordCount = plainText.split(/\s+/).length;
+                const readingTime = Math.max(1, Math.round(wordCount / 200));
+
+                // ====== المقالات المشابهة ======
                 let relatedHtml = '';
                 const related = data
-                    .filter(function(p) {
-                        return p.id !== postId && p.published !== false;
-                    })
+                    .filter(function(p) { return p.id !== postId && p.published !== false && p.status !== 'draft' &&
+                            !p.deleted; })
                     .sort(function(a, b) {
                         const aTags = (a.tags || '').split(',').map(function(t) { return t.trim(); });
                         const bTags = (b.tags || '').split(',').map(function(t) { return t.trim(); });
@@ -1042,17 +1238,62 @@
                 }
 
                 // ====== بناء HTML كامل ======
-                let html =
-                    `
+                let html = `
                     <div class="post-full">
+
+                        <!-- صورة مميزة -->
+                        ${post.image ? `<img src="${post.image}" alt="${title}" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:20px;" onerror="this.style.display='none'">` : ''}
+
                         <h1 class="post-title">${title}</h1>
+
                         <div class="post-meta">
                             <i class="fas fa-calendar"></i> ${date}
                             <span style="margin:0 10px;">|</span>
                             <i class="fas fa-tag"></i> ${tags}
+                            <span style="margin:0 10px;">|</span>
+                            <i class="fas fa-clock"></i> ${readingTime} دقيقة قراءة
                         </div>
-                        <div class="post-body">${content}</div>
 
+                        <!-- ====== الإحصائيات ====== -->
+                        <div class="post-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span class="num">${views}</span> مشاهدة
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-comment"></i>
+                                <span class="num">${commentsCount}</span> تعليق
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star" style="color:var(--gold);"></i>
+                                <span class="num">${avgRating.toFixed(1)}</span> (${ratingCount} تقييم)
+                            </div>
+                        </div>
+
+                        <!-- ====== التقييم ====== -->
+                        <div class="rating-section">
+                            <div class="rating-label"><i class="fas fa-star" style="color:var(--gold);"></i> قيم هذا المقال:</div>
+                            <div class="stars" id="stars-container">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                            <div class="rating-result" id="rating-result">
+                                <span class="avg">${avgRating.toFixed(1)}</span> / 5 (${ratingCount} تقييم)
+                            </div>
+                        </div>
+
+                        <!-- ====== جدول المحتويات ====== -->
+                        ${tocData ? tocData.html : ''}
+
+                        <!-- ====== المحتوى ====== -->
+                        <div class="post-body">
+                            ${content}
+                        </div>
+
+                        <!-- ====== المشاركة ====== -->
                         <div class="share-section">
                             <div class="share-label"><i class="fas fa-share-alt"></i> شارك هذا المقال:</div>
                             <div class="share-buttons">
@@ -1064,6 +1305,7 @@
                             </div>
                         </div>
 
+                        <!-- ====== التعليقات ====== -->
                         <div class="comments-section">
                             <h3>💬 <span>التعليقات</span> <span class="count">${commentsCount}</span></h3>
                             <div class="comment-form">
@@ -1087,8 +1329,7 @@
                             month: 'short',
                             day: 'numeric'
                         });
-                        html +=
-                            `
+                        html += `
                             <div class="comment">
                                 <div>
                                     <span class="comment-author">${c.name || 'زائر'}</span>
@@ -1109,11 +1350,16 @@
 
                 container.innerHTML = html;
 
-                // معالجة مقتطفات الكود
+                // معالجة الكود
                 setTimeout(function() {
                     processCodeBlocks();
-                    setupObserver();
-                }, 100);
+                }, 200);
+
+                // إعداد التقييم
+                setupRating(postId);
+
+                // إضافة المستمع للتعليقات
+                setupCommentsListener();
 
             } catch (error) {
                 console.error('خطأ:', error);
@@ -1127,6 +1373,71 @@
                     </div>
                 `;
             }
+        }
+
+        // ====== إعداد التقييم ======
+        function setupRating(postId) {
+            const stars = document.querySelectorAll('.star');
+            const ratingResult = document.getElementById('rating-result');
+
+            if (!stars.length) return;
+
+            // تعيين التقييم الحالي إذا كان المستخدم قد قيم سابقاً
+            const userRated = localStorage.getItem('blog_rated_' + postId);
+            if (userRated) {
+                const rating = getRating(postId);
+                // عرض التقييم لكن لا نسمح بالتغيير
+                stars.forEach(function(star) {
+                    star.style.cursor = 'default';
+                    const value = parseInt(star.getAttribute('data-value'));
+                    if (value <= Math.round(rating.average)) {
+                        star.classList.add('active');
+                    }
+                });
+                return;
+            }
+
+            stars.forEach(function(star) {
+                star.addEventListener('mouseenter', function() {
+                    const value = parseInt(this.getAttribute('data-value'));
+                    stars.forEach(function(s) {
+                        const v = parseInt(s.getAttribute('data-value'));
+                        if (v <= value) {
+                            s.classList.add('active');
+                        } else {
+                            s.classList.remove('active');
+                        }
+                    });
+                });
+
+                star.addEventListener('mouseleave', function() {
+                    stars.forEach(function(s) {
+                        s.classList.remove('active');
+                    });
+                });
+
+                star.addEventListener('click', function() {
+                    const value = parseInt(this.getAttribute('data-value'));
+                    const rating = ratePost(postId, value);
+
+                    // تحديث التقييم
+                    if (ratingResult) {
+                        ratingResult.innerHTML =
+                            `<span class="avg">${rating.average.toFixed(1)}</span> / 5 (${rating.count} تقييم)`;
+                    }
+
+                    // تعطيل النجوم
+                    stars.forEach(function(s) {
+                        s.style.cursor = 'default';
+                        const v = parseInt(s.getAttribute('data-value'));
+                        if (v <= value) {
+                            s.classList.add('active');
+                        }
+                    });
+
+                    showToast('⭐ شكراً لتقييمك!', 'success');
+                });
+            });
         }
 
         // ====== التعليقات ======
@@ -1175,8 +1486,7 @@
                     month: 'short',
                     day: 'numeric'
                 });
-                html +=
-                    `
+                html += `
                     <div class="comment">
                         <div>
                             <span class="comment-author">${c.name || 'زائر'}</span>
@@ -1187,6 +1497,23 @@
                 `;
             });
             list.innerHTML = html;
+        }
+
+        // ====== مستمع للتعليقات ======
+        function setupCommentsListener() {
+            // إضافة زر إرسال بالضغط على Enter في حقل التعليق
+            const textarea = document.getElementById('comment-text');
+            if (textarea) {
+                textarea.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && e.shiftKey) {
+                        // Shift+Enter = سطر جديد
+                        return;
+                    } else if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleAddComment();
+                    }
+                });
+            }
         }
 
         // ====== المشاركة ======
@@ -1208,12 +1535,8 @@
             const url = getCurrentURL();
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(url)
-                    .then(function() {
-                        showToast('✅ تم نسخ الرابط', 'success');
-                    })
-                    .catch(function() {
-                        fallbackCopyLink(url);
-                    });
+                    .then(function() { showToast('✅ تم نسخ الرابط', 'success'); })
+                    .catch(function() { fallbackCopyLink(url); });
             } else {
                 fallbackCopyLink(url);
             }
@@ -1242,12 +1565,7 @@
         window.copyLink = copyLink;
         window.toggleTheme = toggleTheme;
 
-        // ====== التحميل ======
-        document.addEventListener('DOMContentLoaded', function() {
-            loadPost();
-        });
-
-        console.log('📖 View Post Loaded (مع مقالات مشابهة ونسخ الكود)');
+        console.log('📖 View Post Loaded - النسخة النهائية مع جميع المميزات');
     </script>
 
 </body>
