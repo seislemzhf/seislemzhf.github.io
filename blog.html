@@ -7,210 +7,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background: #0a0a0a;
-            color: #f0ece6;
-            line-height: 1.8;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
+        /* نفس الـ CSS السابق... */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Tajawal', sans-serif; background: #0a0a0a; color: #f0ece6; line-height: 1.8; min-height: 100vh; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
         a { text-decoration: none; color: inherit; }
+        :root { --accent: #6c8b9e; --accent-light: #8aadc2; --accent-dark: #4a6a7e; --bg-card: #1a1a1a; --border: rgba(108, 139, 158, 0.08); --text-muted: #6a625a; --text-secondary: #b8b0a8; }
 
-        :root {
-            --accent: #6c8b9e;
-            --accent-light: #8aadc2;
-            --accent-dark: #4a6a7e;
-            --bg-card: #1a1a1a;
-            --border: rgba(108, 139, 158, 0.08);
-            --text-muted: #6a625a;
-            --text-secondary: #b8b0a8;
-        }
-
-        /* ====== Header ====== */
-        header {
-            padding: 14px 0;
-            background: rgba(10, 10, 10, 0.96);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .logo {
-            font-size: 1.3rem;
-            font-weight: 900;
-            color: #f0ece6;
-        }
+        header { padding: 14px 0; background: rgba(10, 10, 10, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .logo { font-size: 1.3rem; font-weight: 900; color: #f0ece6; }
         .logo span { color: var(--accent); }
-        .logo .sub {
-            font-size: 0.4rem;
-            color: var(--text-muted);
-            letter-spacing: 4px;
-            display: block;
-            font-weight: 400;
-        }
-        .btn-home {
-            display: inline-block;
-            background: rgba(108, 139, 158, 0.08);
-            color: var(--accent);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            border: 1px solid rgba(108, 139, 158, 0.12);
-            transition: 0.3s;
-        }
-        .btn-home:hover {
-            background: var(--accent);
-            color: #0a0a0a;
-            transform: translateY(-2px);
-        }
+        .logo .sub { font-size: 0.4rem; color: var(--text-muted); letter-spacing: 4px; display: block; font-weight: 400; }
+        .btn-home { display: inline-block; background: rgba(108, 139, 158, 0.08); color: var(--accent); padding: 6px 16px; border-radius: 50px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(108, 139, 158, 0.12); transition: 0.3s; }
+        .btn-home:hover { background: var(--accent); color: #0a0a0a; transform: translateY(-2px); }
 
-        /* ====== Hero ====== */
-        .hero {
-            padding: 30px 0 15px;
-            text-align: center;
-        }
-        .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: #f0ece6;
-        }
+        .hero { padding: 30px 0 15px; text-align: center; }
+        .hero h1 { font-size: 2.2rem; font-weight: 900; color: #f0ece6; }
         .hero h1 span { color: var(--accent); }
-        .hero .subtitle {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
+        .hero .subtitle { font-size: 0.95rem; color: var(--text-muted); margin-top: 4px; }
 
-        /* ====== زر التحديث ====== */
-        .refresh-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 20px;
-            padding: 10px 16px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-        .refresh-bar .info {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
+        .refresh-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; padding: 10px 16px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid var(--border); }
+        .refresh-bar .info { font-size: 0.8rem; color: var(--text-muted); }
         .refresh-bar .info i { color: var(--accent); }
-        .btn-refresh {
-            background: rgba(108, 139, 158, 0.1);
-            color: var(--accent);
-            border: 1px solid rgba(108, 139, 158, 0.15);
-            padding: 6px 18px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: inherit;
-        }
-        .btn-refresh:hover {
-            background: var(--accent);
-            color: #0a0a0a;
-        }
-        .btn-refresh:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+        .btn-refresh { background: rgba(108, 139, 158, 0.1); color: var(--accent); border: 1px solid rgba(108, 139, 158, 0.15); padding: 6px 18px; border-radius: 50px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: 0.3s; font-family: inherit; }
+        .btn-refresh:hover { background: var(--accent); color: #0a0a0a; }
+        .btn-refresh:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        /* ====== المقالات ====== */
-        .post {
-            background: var(--bg-card);
-            border-radius: 14px;
-            padding: 22px 24px;
-            margin-bottom: 24px;
-            border: 1px solid var(--border);
-            transition: 0.3s;
-        }
-        .post:hover {
-            border-color: rgba(108, 139, 158, 0.15);
-        }
-        .post .post-title {
-            font-size: 1.3rem;
-            font-weight: 900;
-            color: #f0ece6;
-            margin-bottom: 4px;
-            line-height: 1.4;
-        }
+        .post { background: var(--bg-card); border-radius: 14px; padding: 22px 24px; margin-bottom: 24px; border: 1px solid var(--border); transition: 0.3s; }
+        .post:hover { border-color: rgba(108, 139, 158, 0.15); }
+        .post .post-title { font-size: 1.3rem; font-weight: 900; color: #f0ece6; margin-bottom: 4px; line-height: 1.4; }
         .post .post-title a { color: #f0ece6; }
         .post .post-title a:hover { color: var(--accent); }
-        .post .post-meta {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
+        .post .post-meta { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; }
         .post .post-meta i { color: var(--accent); margin: 0 3px; }
-        .post .post-excerpt {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.8;
-        }
-        .post .read-more {
-            display: inline-block;
-            margin-top: 12px;
-            color: var(--accent);
-            font-weight: 700;
-            border: 1px solid rgba(108, 139, 158, 0.12);
-            padding: 5px 18px;
-            border-radius: 30px;
-            transition: 0.3s;
-            font-size: 0.8rem;
-        }
-        .post .read-more:hover {
-            background: var(--accent);
-            color: #0a0a0a;
-        }
+        .post .post-excerpt { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8; }
+        .post .read-more { display: inline-block; margin-top: 12px; color: var(--accent); font-weight: 700; border: 1px solid rgba(108, 139, 158, 0.12); padding: 5px 18px; border-radius: 30px; transition: 0.3s; font-size: 0.8rem; }
+        .post .read-more:hover { background: var(--accent); color: #0a0a0a; }
 
-        /* ====== حالة عدم وجود مقالات ====== */
-        .status-message {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
-        }
+        .status-message { text-align: center; padding: 40px 20px; color: var(--text-muted); }
         .status-message i { font-size: 2.2rem; color: var(--accent); margin-bottom: 12px; }
         .status-message .sub-msg { font-size: 0.8rem; opacity: 0.6; margin-top: 8px; }
 
-        /* ====== Footer ====== */
-        footer {
-            padding: 25px 0;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            margin-top: 15px;
-        }
-        footer .ornament {
-            font-size: 0.6rem;
-            color: var(--accent-dark);
-            letter-spacing: 10px;
-            opacity: 0.2;
-        }
+        footer { padding: 25px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); margin-top: 15px; }
+        footer .ornament { font-size: 0.6rem; color: var(--accent-dark); letter-spacing: 10px; opacity: 0.2; }
         footer p { font-size: 0.75rem; }
 
         @media (max-width: 600px) {
@@ -223,20 +63,13 @@
 </head>
 <body>
 
-    <!-- ====== Header ====== -->
     <header>
         <div class="container header-content">
-            <div class="logo">
-                Minsaj <span>DZ</span>
-                <span class="sub">✦ مدونة البرمجيات والتقنية ✦</span>
-            </div>
-            <a href="https://seislemzhf.github.io" class="btn-home">
-                <i class="fas fa-arrow-right"></i> الرئيسية
-            </a>
+            <div class="logo">Minsaj <span>DZ</span><span class="sub">✦ مدونة البرمجيات والتقنية ✦</span></div>
+            <a href="https://seislemzhf.github.io" class="btn-home"><i class="fas fa-arrow-right"></i> الرئيسية</a>
         </div>
     </header>
 
-    <!-- ====== Hero ====== -->
     <section class="hero">
         <div class="container">
             <h1><span>مدونة</span> Minsaj DZ</h1>
@@ -244,32 +77,18 @@
         </div>
     </section>
 
-    <!-- ====== المحتوى ====== -->
     <section>
         <div class="container">
-
-            <!-- شريط التحديث -->
             <div class="refresh-bar">
-                <span class="info">
-                    <i class="fas fa-database"></i>
-                    <span id="post-count">0</span> مقال
-                </span>
-                <button class="btn-refresh" id="refresh-btn" onclick="forceRefresh()">
-                    <i class="fas fa-sync-alt"></i> تحديث
-                </button>
+                <span class="info"><i class="fas fa-database"></i> <span id="post-count">0</span> مقال</span>
+                <button class="btn-refresh" id="refresh-btn" onclick="loadPosts()"><i class="fas fa-sync-alt"></i> تحديث</button>
             </div>
-
             <div id="posts-container">
-                <div class="status-message" id="loading-status">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>جاري تحميل المقالات...</p>
-                </div>
+                <div class="status-message"><i class="fas fa-spinner fa-spin"></i><p>جاري تحميل المقالات...</p></div>
             </div>
-
         </div>
     </section>
 
-    <!-- ====== Footer ====== -->
     <footer>
         <div class="container">
             <div class="ornament">✦ ✦ ✦</div>
@@ -280,60 +99,59 @@
 
     <script>
         // =========================================================
-        // 📝 جلب المقالات من LocalStorage (نسخة محسّنة للجوال)
+        // 📝 جلب المقالات من GitHub
         // =========================================================
-        (function() {
+        const REPO = 'seislemzhf.github.io';
+        const PATH = 'data/posts.json';
+        const RAW_URL = `https://raw.githubusercontent.com/${REPO}/main/${PATH}`;
+
+        function stripHtml(html) {
+            if (!html) return '';
+            const tmp = document.createElement('div');
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || '';
+        }
+
+        function formatDate(dateStr) {
+            try {
+                const d = new Date(dateStr);
+                return d.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+            } catch { return dateStr; }
+        }
+
+        async function loadPosts() {
             const container = document.getElementById('posts-container');
             const countEl = document.getElementById('post-count');
             const refreshBtn = document.getElementById('refresh-btn');
-            const STORAGE_KEY = 'blog_posts';
 
-            function formatDate(dateStr) {
-                try {
-                    const d = new Date(dateStr);
-                    return d.toLocaleDateString('ar-EG', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
-                } catch {
-                    return dateStr;
-                }
-            }
+            refreshBtn.disabled = true;
+            refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري...';
 
-            // استخراج نص عادي من HTML (للمقتطف)
-            function stripHtml(html) {
-                if (!html) return '';
-                const tmp = document.createElement('div');
-                tmp.innerHTML = html;
-                return tmp.textContent || tmp.innerText || '';
-            }
-
-            function getPostsFromStorage() {
-                try {
-                    const saved = localStorage.getItem(STORAGE_KEY);
-                    if (saved) {
-                        const parsed = JSON.parse(saved);
-                        if (Array.isArray(parsed)) {
-                            return parsed;
-                        }
+            try {
+                const response = await fetch(RAW_URL + '?t=' + Date.now());
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        container.innerHTML = `
+                            <div class="status-message">
+                                <i class="fas fa-newspaper" style="color:var(--accent);"></i>
+                                <p>لا توجد مقالات حالياً.</p>
+                                <p class="sub-msg">ترقبوا المقالات القادمة قريباً!</p>
+                            </div>
+                        `;
+                        countEl.textContent = '0';
+                        return;
                     }
-                } catch (e) {
-                    console.warn('خطأ في قراءة localStorage:', e);
+                    throw new Error('فشل في تحميل المقالات');
                 }
-                return [];
-            }
 
-            function renderPosts() {
-                const allPosts = getPostsFromStorage();
+                const allPosts = await response.json();
+                if (!Array.isArray(allPosts)) throw new Error('بيانات غير صالحة');
 
-                // عرض المقالات المنشورة فقط
-                const publishedPosts = allPosts.filter(post => post.published !== false);
+                // عرض المنشورات فقط
+                const published = allPosts.filter(p => p.published !== false);
+                countEl.textContent = published.length;
 
-                // تحديث العداد
-                countEl.textContent = publishedPosts.length;
-
-                if (!publishedPosts || publishedPosts.length === 0) {
+                if (published.length === 0) {
                     container.innerHTML = `
                         <div class="status-message">
                             <i class="fas fa-newspaper" style="color:var(--accent);"></i>
@@ -344,104 +162,55 @@
                     return;
                 }
 
-                // ترتيب من الأحدث إلى الأقدم
-                const sorted = [...publishedPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
+                const sorted = [...published].sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 let html = '';
-                sorted.forEach((post) => {
+                sorted.forEach(post => {
                     const title = post.title || 'بدون عنوان';
                     const date = post.date || new Date().toISOString();
                     const tags = post.tags || 'عام';
-                    const fullText = stripHtml(post.content || 'لا يوجد محتوى.');
+                    const fullText = stripHtml(post.content || '');
                     const excerpt = fullText.length > 200 ? fullText.substring(0, 200) + '...' : fullText;
 
                     html += `
                         <div class="post">
-                            <h2 class="post-title">
-                                <a href="view-post.html?id=${post.id}">${title}</a>
-                            </h2>
+                            <h2 class="post-title"><a href="view-post.html?id=${post.id}">${title}</a></h2>
                             <div class="post-meta">
                                 <i class="fas fa-calendar"></i> ${formatDate(date)}
                                 <span style="margin:0 6px;">|</span>
                                 <i class="fas fa-tag"></i> ${tags}
                             </div>
-                            <div class="post-excerpt">
-                                ${excerpt}
-                            </div>
-                            <a href="view-post.html?id=${post.id}" class="read-more">
-                                اقرأ المزيد <i class="fas fa-arrow-left"></i>
-                            </a>
+                            <div class="post-excerpt">${excerpt}</div>
+                            <a href="view-post.html?id=${post.id}" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
                         </div>
                     `;
                 });
 
                 container.innerHTML = html;
-            }
 
-            // ====== تحميل المقالات ======
-            function loadPosts() {
-                renderPosts();
-                // إعادة ضبط زر التحديث
-                refreshBtn.disabled = false;
-                refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> تحديث';
-            }
-
-            // ====== تحديث قسري (مع إعادة تحميل) ======
-            function forceRefresh() {
-                refreshBtn.disabled = true;
-                refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري...';
-
-                // نضيف تأخير بسيط لإظهار تأثير التحديث
-                setTimeout(function() {
-                    loadPosts();
-                    // رسالة نجاح
-                    const count = getPostsFromStorage().filter(p => p.published !== false).length;
-                    showTemporaryMessage('تم التحديث! ' + count + ' مقال');
-                }, 500);
-            }
-
-            // ====== رسالة مؤقتة ======
-            function showTemporaryMessage(msg) {
-                const oldContainer = container.innerHTML;
-                const tempDiv = document.createElement('div');
-                tempDiv.style.cssText = `
-                    text-align: center;
-                    padding: 15px;
-                    color: var(--accent);
-                    background: rgba(108,139,158,0.06);
-                    border-radius: 12px;
-                    border: 1px solid rgba(108,139,158,0.1);
-                    margin-bottom: 20px;
+            } catch (error) {
+                console.error('خطأ:', error);
+                container.innerHTML = `
+                    <div class="status-message">
+                        <i class="fas fa-exclamation-circle" style="color:#EF4444;"></i>
+                        <p>حدث خطأ في تحميل المقالات</p>
+                        <p class="sub-msg">${error.message}</p>
+                    </div>
                 `;
-                tempDiv.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`;
-                container.prepend(tempDiv);
-                setTimeout(() => {
-                    if (tempDiv.parentNode) tempDiv.remove();
-                }, 3000);
             }
 
-            // ====== الاستماع للتغييرات ======
-            window.addEventListener('storage', function(e) {
-                if (e.key === STORAGE_KEY) {
-                    loadPosts();
-                }
-            });
+            refreshBtn.disabled = false;
+            refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i> تحديث';
+        }
 
-            // ====== التحميل عند فتح الصفحة ======
-            loadPosts();
+        // تحميل عند الفتح
+        loadPosts();
 
-            // إعادة التحميل كل 30 ثانية (للتحديث التلقائي)
-            setInterval(loadPosts, 30000);
+        // تحديث كل 60 ثانية
+        setInterval(loadPosts, 60000);
 
-            // جعل الدالة عامة للزر
-            window.forceRefresh = forceRefresh;
-
-            // ====== تسجيل الدخول للتأكد من localStorage (للمساعدة في التصحيح) ======
-            console.log('🔍 عدد المقالات في localStorage:',
-                getPostsFromStorage().filter(p => p.published !== false).length
-            );
-
-        })();
+        // جعل الدالة عامة للزر
+        window.loadPosts = loadPosts;
     </script>
 
 </body>
