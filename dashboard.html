@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
 
     <style>
+        /* نفس التنسيقات السابقة */
         * {
             margin: 0;
             padding: 0;
@@ -23,8 +24,6 @@
             min-height: 100vh;
             transition: 0.3s;
         }
-
-        /* وضع فاتح */
         body.light-mode {
             background: #f0f4f8;
             color: #1a1a2e;
@@ -710,7 +709,6 @@
             color: #f0ece6;
         }
 
-        /* إضافات جديدة */
         .filter-bar {
             margin-bottom: 15px;
             display: flex;
@@ -1264,7 +1262,7 @@
             }
         }
 
-        async function savePostsToGitHub() {
+        async function savePostsToGitHub(retry = true) {
             try {
                 const settings = getSettings();
                 if (!settings.token) {
@@ -1277,10 +1275,12 @@
                 const content = btoa(unescape(encodeURIComponent(JSON.stringify(posts, null, 2))));
                 const url = `https://api.github.com/repos/${settings.repo}/contents/${settings.path}`;
 
+                // جلب أحدث SHA مع منع التخزين المؤقت
                 let sha = '';
                 try {
                     const response = await fetch(url, {
-                        headers: { 'Authorization': `token ${settings.token}` }
+                        headers: { 'Authorization': `token ${settings.token}` },
+                        cache: 'no-store'
                     });
                     if (response.ok) {
                         const data = await response.json();
@@ -1311,6 +1311,11 @@
 
                 if (!saveResponse.ok) {
                     const error = await saveResponse.json();
+                    // إذا كان الخطأ بسبب عدم تطابق SHA نعيد المحاولة مرة واحدة فقط
+                    if (retry && error.message && error.message.includes('does not match')) {
+                        console.warn('⚠️ SHA mismatch، جاري إعادة المحاولة...');
+                        return await savePostsToGitHub(false);
+                    }
                     throw new Error(error.message || 'فشل في حفظ المقالات');
                 }
                 return true;
@@ -1328,7 +1333,6 @@
 
             const activePosts = posts.filter(p => !p.deleted);
 
-            // تطبيق فلتر الصفحة
             const filterPage = document.getElementById('filter-page')?.value || '';
             let filteredPosts = activePosts;
             if (filterPage) {
