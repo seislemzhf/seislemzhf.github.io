@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
 
     <style>
-        /* ====== CSS كامل (نفس السابق) ====== */
+        /* ====== CSS كامل ====== */
         * {
             margin: 0;
             padding: 0;
@@ -24,19 +24,67 @@
             min-height: 100vh;
             transition: 0.3s;
         }
+
+        /* ====== وضع فاتح (كامل) ====== */
         body.light-mode {
-            background: #f5f5f5;
-            color: #1a1a1a;
+            background: #f0f4f8;
+            color: #1a1a2e;
         }
-        body.light-mode .bg-card {
-            background: #ffffff;
-        }
-        body.light-mode .border {
-            border-color: #e0e0e0;
-        }
-        body.light-mode .text-muted {
-            color: #666;
-        }
+        body.light-mode .bg-card { background: #ffffff; }
+        body.light-mode .border { border-color: #d0dce8; }
+        body.light-mode .text-muted { color: #5a6a7a; }
+        body.light-mode .text-secondary { color: #3a4a5a; }
+        body.light-mode .stat-card { background: #ffffff; }
+        body.light-mode .post-card { background: #ffffff; }
+        body.light-mode .editor-wrapper { background: #ffffff; }
+        body.light-mode .preview-box { background: #ffffff; }
+        body.light-mode .status-box { background: #ffffff; }
+        body.light-mode .login-box { background: #ffffff; }
+        body.light-mode .theme-toggle { background: #e0e8f0; color: #1a1a2e; }
+        body.light-mode .theme-toggle:hover { background: var(--accent); color: #fff; }
+        body.light-mode .btn-outline { background: rgba(74,124,158,0.08); color: var(--accent); }
+        body.light-mode .btn-outline:hover { background: var(--accent); color: #fff; }
+        body.light-mode .btn-danger-outline { background: rgba(239,68,68,0.08); color: var(--danger); }
+        body.light-mode .btn-danger-outline:hover { background: var(--danger); color: #fff; }
+        body.light-mode .btn-submit { color: #fff; }
+        body.light-mode .btn-cancel { background: rgba(0,0,0,0.04); color: #5a6a7a; }
+        body.light-mode .btn-cancel:hover { border-color: var(--danger); color: var(--danger); }
+        body.light-mode .btn-edit { background: rgba(74,124,158,0.12); color: var(--accent); }
+        body.light-mode .btn-edit:hover { background: var(--accent); color: #fff; }
+        body.light-mode .btn-publish { background: rgba(16,185,129,0.12); color: var(--success); }
+        body.light-mode .btn-publish:hover { background: var(--success); color: #fff; }
+        body.light-mode .btn-delete { background: rgba(239,68,68,0.12); color: var(--danger); }
+        body.light-mode .btn-delete:hover { background: var(--danger); color: #fff; }
+        body.light-mode .btn-restore { background: rgba(245,158,11,0.12); color: var(--warning); }
+        body.light-mode .btn-restore:hover { background: var(--warning); color: #fff; }
+        body.light-mode .logo { color: #1a1a2e; }
+        body.light-mode header { background: rgba(255,255,255,0.96); border-color: #d0dce8; }
+        body.light-mode .hero h1 { color: #1a1a2e; }
+        body.light-mode .hero .subtitle { color: #5a6a7a; }
+        body.light-mode .section-title { color: #1a1a2e; }
+        body.light-mode .post-card .info h3 { color: #1a1a2e; }
+        body.light-mode .post-card .info .meta { color: #5a6a7a; }
+        body.light-mode .form-group label { color: #3a4a5a; }
+        body.light-mode .form-group input, body.light-mode .form-group select { color: #1a1a2e; background: #f0f4f8; }
+        body.light-mode .login-box h2 { color: #1a1a2e; }
+        body.light-mode .login-box .sub { color: #5a6a7a; }
+        body.light-mode .login-box input { color: #1a1a2e; background: #f0f4f8; }
+        body.light-mode .toast { color: #1a1a2e; background: #ffffff; border-color: #d0dce8; }
+        body.light-mode .preview-box .preview-title { color: #1a1a2e; }
+        body.light-mode .preview-box .preview-content { color: #3a4a5a; }
+        body.light-mode .stat-card .stat-number { color: #1a1a2e; }
+        body.light-mode .trash-item .info h4 { color: #1a1a2e; }
+        body.light-mode .trash-item .info .meta { color: #5a6a7a; }
+        body.light-mode .empty-state { color: #5a6a7a; }
+        body.light-mode .tab-btn { color: #5a6a7a; }
+        body.light-mode .tab-btn:hover { color: var(--accent); }
+        body.light-mode .tab-btn.active { background: var(--accent); color: #fff; }
+        body.light-mode footer { border-color: #d0dce8; }
+        body.light-mode footer p { color: #5a6a7a; }
+        body.light-mode .status-box .status-desc { color: #5a6a7a; }
+        body.light-mode .edit-indicator { color: var(--accent); }
+        body.light-mode .autosave-indicator { color: #5a6a7a; }
+        body.light-mode .hamburger { color: #1a1a2e; }
 
         .container {
             max-width: 1100px;
@@ -49,11 +97,11 @@
         }
 
         :root {
-            --accent: #6c8b9e;
-            --accent-light: #8aadc2;
-            --accent-dark: #4a6a7e;
+            --accent: #4a7c9e;
+            --accent-light: #6a9cbe;
+            --accent-dark: #2a5a7a;
             --bg-card: #1a1a1a;
-            --border: rgba(108, 139, 158, 0.08);
+            --border: rgba(74, 124, 158, 0.08);
             --text-muted: #6a625a;
             --text-secondary: #b8b0a8;
             --success: #10B981;
@@ -70,9 +118,6 @@
             top: 0;
             z-index: 1000;
         }
-        body.light-mode header {
-            background: rgba(255, 255, 255, 0.96);
-        }
         .header-content {
             display: flex;
             justify-content: space-between;
@@ -84,30 +129,27 @@
             font-size: 1.5rem;
             font-weight: 900;
             color: #f0ece6;
+            letter-spacing: -0.5px;
         }
-        body.light-mode .logo {
-            color: #1a1a1a;
-        }
-        .logo span {
-            color: var(--accent);
-        }
+        .logo span { color: var(--accent); }
         .logo .sub {
             font-size: 0.45rem;
             color: var(--text-muted);
             letter-spacing: 4px;
             display: block;
             font-weight: 400;
+            margin-top: 1px;
         }
 
         .btn-outline {
             display: inline-block;
-            background: rgba(108, 139, 158, 0.08);
+            background: rgba(74, 124, 158, 0.08);
             color: var(--accent);
             padding: 6px 18px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 0.75rem;
-            border: 1px solid rgba(108, 139, 158, 0.12);
+            border: 1px solid rgba(74, 124, 158, 0.12);
             transition: 0.3s;
             cursor: pointer;
             font-family: inherit;
@@ -140,7 +182,7 @@
         }
 
         .theme-toggle {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border);
             color: var(--text-muted);
             padding: 6px 14px;
@@ -149,13 +191,15 @@
             font-size: 0.8rem;
             transition: 0.3s;
             font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         .theme-toggle:hover {
             border-color: var(--accent);
             color: var(--accent);
         }
 
-        /* ====== تسجيل الدخول ====== */
         .login-screen {
             display: flex;
             justify-content: center;
@@ -204,10 +248,6 @@
             margin-bottom: 18px;
             direction: ltr;
         }
-        body.light-mode .login-box input {
-            color: #1a1a1a;
-            background: #f5f5f5;
-        }
         .login-box input:focus {
             outline: none;
             border-color: var(--accent);
@@ -227,7 +267,7 @@
         }
         .login-box .btn-login:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 30px rgba(108, 139, 158, 0.2);
+            box-shadow: 0 8px 30px rgba(74, 124, 158, 0.2);
         }
         .login-box .error-msg {
             color: var(--danger);
@@ -243,7 +283,6 @@
             display: block;
         }
 
-        /* ====== الإحصائيات ====== */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -272,9 +311,6 @@
             font-weight: 900;
             color: #f0ece6;
         }
-        body.light-mode .stat-card .stat-number {
-            color: #1a1a1a;
-        }
         .stat-card .stat-label {
             font-size: 0.75rem;
             color: var(--text-muted);
@@ -289,9 +325,6 @@
             font-size: 2.2rem;
             font-weight: 900;
             color: #f0ece6;
-        }
-        body.light-mode .hero h1 {
-            color: #1a1a1a;
         }
         .hero h1 span {
             color: var(--accent);
@@ -329,6 +362,9 @@
             background: var(--accent);
             color: #0a0a0a;
         }
+        body.light-mode .tab-btn.active {
+            color: #fff;
+        }
 
         .section {
             display: none;
@@ -345,9 +381,6 @@
             margin-bottom: 18px;
             border-bottom: 2px solid var(--border);
             padding-bottom: 10px;
-        }
-        body.light-mode .section-title {
-            color: #1a1a1a;
         }
         .section-title i {
             color: var(--accent);
@@ -380,7 +413,7 @@
             transition: 0.3s;
         }
         .post-card:hover {
-            border-color: rgba(108, 139, 158, 0.15);
+            border-color: rgba(74, 124, 158, 0.15);
         }
         .post-card .info {
             flex: 1;
@@ -390,9 +423,6 @@
             font-size: 1.1rem;
             font-weight: 800;
             color: #f0ece6;
-        }
-        body.light-mode .post-card .info h3 {
-            color: #1a1a1a;
         }
         .post-card .info .meta {
             font-size: 0.75rem;
@@ -439,7 +469,7 @@
             font-family: inherit;
         }
         .btn-edit {
-            background: rgba(108, 139, 158, 0.12);
+            background: rgba(74, 124, 158, 0.12);
             color: var(--accent);
         }
         .btn-edit:hover {
@@ -477,9 +507,6 @@
             padding: 25px 30px;
             border: 1px solid var(--border);
         }
-        body.light-mode .editor-wrapper {
-            background: #fafafa;
-        }
         .form-group {
             margin-bottom: 18px;
         }
@@ -505,11 +532,6 @@
             font-family: inherit;
             transition: 0.3s;
         }
-        body.light-mode .form-group input,
-        body.light-mode .form-group select {
-            color: #1a1a1a;
-            background: #f5f5f5;
-        }
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
@@ -519,6 +541,67 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
+        }
+
+        /* ====== رفع الصور ====== */
+        .image-upload-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .image-upload-area:hover {
+            border-color: var(--accent);
+            background: rgba(74, 124, 158, 0.04);
+        }
+        .image-upload-area .upload-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            opacity: 0.5;
+        }
+        .image-upload-area .upload-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .image-upload-area .file-input {
+            display: none;
+        }
+        .image-preview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin-top: 10px;
+        }
+        .image-preview-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .image-remove-btn {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-remove-btn:hover {
+            transform: scale(1.1);
         }
 
         .form-actions {
@@ -542,7 +625,7 @@
         }
         .btn-submit:hover {
             transform: scale(1.02);
-            box-shadow: 0 8px 30px rgba(108, 139, 158, 0.2);
+            box-shadow: 0 8px 30px rgba(74, 124, 158, 0.2);
         }
         .btn-submit:disabled {
             opacity: 0.5;
@@ -590,9 +673,6 @@
             max-height: 500px;
             overflow-y: auto;
         }
-        body.light-mode .preview-box {
-            background: #ffffff;
-        }
         .preview-box.active {
             display: block;
         }
@@ -602,9 +682,6 @@
             color: #f0ece6;
             margin-bottom: 5px;
         }
-        body.light-mode .preview-box .preview-title {
-            color: #1a1a1a;
-        }
         .preview-box .preview-meta {
             font-size: 0.8rem;
             color: var(--text-muted);
@@ -613,8 +690,11 @@
         .preview-box .preview-content {
             color: var(--text-secondary);
         }
-        body.light-mode .preview-box .preview-content {
-            color: #333;
+        .preview-box .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
 
         .trash-item {
@@ -638,9 +718,6 @@
             font-size: 1rem;
             font-weight: 700;
             color: #f0ece6;
-        }
-        body.light-mode .trash-item .info h4 {
-            color: #1a1a1a;
         }
         .trash-item .info .meta {
             font-size: 0.7rem;
@@ -675,10 +752,6 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
             max-width: 90%;
             text-align: center;
-        }
-        body.light-mode .toast {
-            color: #1a1a1a;
-            background: #ffffff;
         }
         .toast.show {
             display: block;
@@ -738,6 +811,13 @@
             font-size: 0.75rem;
         }
 
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #f0ece6;
+        }
+
         @media (max-width: 700px) {
             .post-card {
                 flex-direction: column;
@@ -772,6 +852,14 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .hamburger {
+                display: block;
+            }
+            .header-content nav {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -782,7 +870,10 @@
             <div class="logo">Minsaj <span>DZ</span><span class="sub">✦ لوحة تحكم المدونة ✦</span></div>
             <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
                 <button class="theme-toggle" onclick="toggleTheme()">
-                    <i class="fas fa-moon"></i> <span id="theme-label">وضع داكن</span>
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <button class="btn-outline" onclick="toggleMobileMenu()" id="hamburger">
+                    <i class="fas fa-bars"></i>
                 </button>
                 <a href="blog.html" class="btn-outline"><i class="fas fa-eye"></i> عرض المدونة</a>
                 <button class="btn-danger-outline" onclick="logout()" id="logoutBtn" style="display:none;">
@@ -886,15 +977,6 @@
                                         <input type="text" id="post-tags" placeholder="برمجيات, WPF, C#" oninput="updatePreview()">
                                     </div>
                                     <div>
-                                        <label>صورة مميزة (رابط)</label>
-                                        <input type="text" id="post-image" placeholder="https://example.com/image.jpg" oninput="updatePreview()">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div>
                                         <label>حالة النشر</label>
                                         <select id="post-status">
                                             <option value="published">منشور فوراً</option>
@@ -902,11 +984,30 @@
                                             <option value="scheduled">جدولة</option>
                                         </select>
                                     </div>
-                                    <div id="scheduled-group" style="display:none;">
-                                        <label>تاريخ النشر</label>
-                                        <input type="datetime-local" id="post-schedule">
-                                    </div>
                                 </div>
+                            </div>
+
+                            <div class="form-group" id="scheduled-group" style="display:none;">
+                                <label>تاريخ النشر</label>
+                                <input type="datetime-local" id="post-schedule">
+                            </div>
+
+                            <!-- ====== رفع الصور ====== -->
+                            <div class="form-group">
+                                <label>صورة مميزة</label>
+                                <div class="image-upload-area" id="uploadArea" onclick="document.getElementById('imageInput').click()">
+                                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                    <span class="upload-text">انقر لاختيار صورة من جهازك</span>
+                                    <span class="upload-text" style="font-size:0.7rem; opacity:0.5;">JPG, PNG, WEBP (حجم أقل من 2MB)</span>
+                                    <input type="file" id="imageInput" class="file-input" accept="image/*" onchange="handleImageUpload(event)">
+                                </div>
+                                <div id="imagePreviewContainer" style="display:none;" class="image-preview-wrapper">
+                                    <img id="imagePreview" class="image-preview" alt="معاينة الصورة">
+                                    <button type="button" class="image-remove-btn" onclick="removeImage()" title="إزالة الصورة">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <input type="hidden" id="post-image" value="">
                             </div>
 
                             <div class="form-group">
@@ -921,6 +1022,7 @@
                                 </button>
                             </div>
                             <div class="preview-box" id="preview-box">
+                                <img id="previewImage" class="preview-image" style="display:none;" alt="صورة المقال">
                                 <div class="preview-title" id="preview-title">عنوان المقال</div>
                                 <div class="preview-meta" id="preview-meta">🏷️ التصنيفات: عام</div>
                                 <div class="preview-content" id="preview-content">محتوى المقال سيظهر هنا...</div>
@@ -992,16 +1094,16 @@
 
     <script>
         // =========================================================
-        // 🌓 الوضع الداكن
+        // 🌓 الوضع الداكن/الفاتح
         // =========================================================
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
-            const label = document.getElementById('theme-label');
+            const icon = document.getElementById('themeIcon');
             if (document.body.classList.contains('light-mode')) {
-                label.textContent = 'وضع فاتح';
+                icon.className = 'fas fa-sun';
                 localStorage.setItem('theme', 'light');
             } else {
-                label.textContent = 'وضع داكن';
+                icon.className = 'fas fa-moon';
                 localStorage.setItem('theme', 'dark');
             }
         }
@@ -1009,7 +1111,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('theme') === 'light') {
                 document.body.classList.add('light-mode');
-                document.getElementById('theme-label').textContent = 'وضع فاتح';
+                document.getElementById('themeIcon').className = 'fas fa-sun';
             }
         });
 
@@ -1022,6 +1124,7 @@
         let isEditing = false;
         let editorInitialized = false;
         let autosaveTimer = null;
+        let uploadedImageData = '';
 
         function login() {
             const input = document.getElementById('passwordInput');
@@ -1051,6 +1154,56 @@
             document.getElementById('logoutBtn').style.display = 'none';
             if (tinymce.get('post-content')) tinymce.get('post-content').remove();
             showToast('تم الخروج بنجاح', 'info');
+        }
+
+        // =========================================================
+        // 📷 رفع الصور
+        // =========================================================
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // التحقق من الحجم (2MB كحد أقصى)
+            if (file.size > 2 * 1024 * 1024) {
+                showToast('❌ حجم الصورة كبير جداً (الحد الأقصى 2MB)', 'error');
+                return;
+            }
+
+            // التحقق من النوع
+            const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+            if (!validTypes.includes(file.type)) {
+                showToast('❌ نوع الصورة غير مدعوم (JPG, PNG, WEBP, GIF)', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result;
+                uploadedImageData = base64;
+                document.getElementById('post-image').value = base64;
+
+                // عرض المعاينة
+                const preview = document.getElementById('imagePreview');
+                const container = document.getElementById('imagePreviewContainer');
+                preview.src = base64;
+                container.style.display = 'block';
+                document.querySelector('.image-upload-area .upload-text').textContent = '✅ تم اختيار الصورة';
+
+                // تحديث معاينة المقال
+                updatePreview();
+                showToast('✅ تم رفع الصورة بنجاح', 'success');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeImage() {
+            uploadedImageData = '';
+            document.getElementById('post-image').value = '';
+            document.getElementById('imagePreviewContainer').style.display = 'none';
+            document.querySelector('.image-upload-area .upload-text').textContent = 'انقر لاختيار صورة من جهازك';
+            document.getElementById('imageInput').value = '';
+            updatePreview();
+            showToast('🗑️ تم إزالة الصورة', 'info');
         }
 
         // =========================================================
@@ -1314,19 +1467,19 @@
                 try {
                     const title = document.getElementById('post-title');
                     const tags = document.getElementById('post-tags');
-                    const image = document.getElementById('post-image');
-                    const content = tinymce.get('post-content');
                     const status = document.getElementById('post-status');
                     const schedule = document.getElementById('post-schedule');
+                    const image = document.getElementById('post-image');
+                    const content = tinymce.get('post-content');
 
                     if (title && title.value.trim()) {
                         const data = {
                             title: title.value.trim(),
                             tags: tags ? tags.value.trim() : '',
-                            image: image ? image.value.trim() : '',
-                            content: content ? content.getContent() : '',
                             status: status ? status.value : 'published',
-                            schedule: schedule ? schedule.value : ''
+                            schedule: schedule ? schedule.value : '',
+                            image: image ? image.value : '',
+                            content: content ? content.getContent() : ''
                         };
                         localStorage.setItem('autosave_post', JSON.stringify(data));
                         const indicator = document.getElementById('autosave-indicator');
@@ -1337,9 +1490,7 @@
                             }, 2000);
                         }
                     }
-                } catch (e) {
-                    // تجاهل الأخطاء في الحفظ التلقائي
-                }
+                } catch (e) {}
             }, 15000);
         }
 
@@ -1349,22 +1500,28 @@
                 if (saved) {
                     const data = JSON.parse(saved);
                     if (data.title && !document.getElementById('edit-filename').value) {
-                        const titleEl = document.getElementById('post-title');
-                        const tagsEl = document.getElementById('post-tags');
-                        const imageEl = document.getElementById('post-image');
-                        const statusEl = document.getElementById('post-status');
-                        const scheduleEl = document.getElementById('post-schedule');
+                        document.getElementById('post-title').value = data.title;
+                        document.getElementById('post-tags').value = data.tags || '';
+                        document.getElementById('post-status').value = data.status || 'published';
+                        if (data.schedule) document.getElementById('post-schedule').value = data.schedule;
 
-                        if (titleEl) titleEl.value = data.title;
-                        if (tagsEl) tagsEl.value = data.tags || '';
-                        if (imageEl) imageEl.value = data.image || '';
-                        if (statusEl) statusEl.value = data.status || 'published';
-                        if (scheduleEl) scheduleEl.value = data.schedule || '';
+                        // استعادة الصورة
+                        if (data.image && data.image.startsWith('data:image')) {
+                            uploadedImageData = data.image;
+                            document.getElementById('post-image').value = data.image;
+                            const preview = document.getElementById('imagePreview');
+                            const container = document.getElementById('imagePreviewContainer');
+                            preview.src = data.image;
+                            container.style.display = 'block';
+                            document.querySelector('.image-upload-area .upload-text').textContent = '✅ تم اختيار الصورة';
+                        }
+
                         if (tinymce.get('post-content')) {
                             tinymce.get('post-content').setContent(data.content || '');
                         }
                         toggleScheduleFields(data.status || 'published');
                         showToast('💾 تم استعادة المسودة المحفوظة', 'info');
+                        updatePreview();
                     }
                 }
             } catch (e) {}
@@ -1392,9 +1549,11 @@
             try {
                 const title = document.getElementById('post-title');
                 const tags = document.getElementById('post-tags');
+                const image = document.getElementById('post-image');
                 const previewTitle = document.getElementById('preview-title');
                 const previewMeta = document.getElementById('preview-meta');
                 const previewContent = document.getElementById('preview-content');
+                const previewImage = document.getElementById('previewImage');
 
                 if (title && previewTitle) {
                     previewTitle.textContent = title.value || 'بدون عنوان';
@@ -1405,6 +1564,14 @@
                 if (previewContent) {
                     const editor = tinymce.get('post-content');
                     previewContent.innerHTML = editor ? editor.getContent() : 'لا يوجد محتوى.';
+                }
+
+                // عرض الصورة في المعاينة
+                if (image && image.value && image.value.startsWith('data:image')) {
+                    previewImage.src = image.value;
+                    previewImage.style.display = 'block';
+                } else {
+                    previewImage.style.display = 'none';
                 }
             } catch (e) {
                 console.warn('⚠️ خطأ في تحديث المعاينة:', e.message);
@@ -1444,10 +1611,10 @@
             try {
                 const titleEl = document.getElementById('post-title');
                 const tagsEl = document.getElementById('post-tags');
-                const imageEl = document.getElementById('post-image');
-                const contentEl = document.getElementById('post-content');
                 const statusEl = document.getElementById('post-status');
                 const scheduleEl = document.getElementById('post-schedule');
+                const imageEl = document.getElementById('post-image');
+                const contentEl = document.getElementById('post-content');
                 const editFileEl = document.getElementById('edit-filename');
                 const submitBtn = document.getElementById('submit-btn');
 
@@ -1455,10 +1622,10 @@
 
                 const title = titleEl.value.trim();
                 const tags = tagsEl.value.trim();
-                const image = imageEl ? imageEl.value.trim() : '';
-                const content = tinymce.get('post-content') ? tinymce.get('post-content').getContent() : '';
                 const status = statusEl ? statusEl.value : 'published';
                 const schedule = scheduleEl ? scheduleEl.value : '';
+                const image = imageEl ? imageEl.value : '';
+                const content = tinymce.get('post-content') ? tinymce.get('post-content').getContent() : '';
                 const editFile = editFileEl.value;
 
                 if (!title || !content || content === '<p><br data-mce-bogus="1"></p>') {
@@ -1472,10 +1639,10 @@
                 const postData = {
                     title: title,
                     tags: tags,
+                    status: status,
                     image: image,
                     content: content,
                     date: new Date().toISOString(),
-                    status: status,
                     published: status === 'published'
                 };
 
@@ -1499,6 +1666,8 @@
                 cancelEdit();
                 switchTab('all-posts');
                 localStorage.removeItem('autosave_post');
+                // إعادة تعيين الصورة
+                uploadedImageData = '';
             } catch (error) {
                 showToast('❌ خطأ: ' + error.message, 'error');
                 console.error(error);
@@ -1516,36 +1685,35 @@
                 const post = posts.find(p => p.id === id);
                 if (!post) return;
 
-                const titleEl = document.getElementById('post-title');
-                const tagsEl = document.getElementById('post-tags');
-                const imageEl = document.getElementById('post-image');
-                const statusEl = document.getElementById('post-status');
-                const scheduleEl = document.getElementById('post-schedule');
-                const editFileEl = document.getElementById('edit-filename');
-                const indicatorEl = document.getElementById('edit-indicator');
-                const editorTitle = document.getElementById('editor-title');
-                const submitText = document.getElementById('submit-text');
+                document.getElementById('post-title').value = post.title || '';
+                document.getElementById('post-tags').value = post.tags || '';
+                document.getElementById('post-status').value = post.status || 'published';
+                if (post.schedule) document.getElementById('post-schedule').value = post.schedule;
 
-                if (titleEl) titleEl.value = post.title || '';
-                if (tagsEl) tagsEl.value = post.tags || '';
-                if (imageEl) imageEl.value = post.image || '';
-                if (statusEl) statusEl.value = post.status || 'published';
-                if (scheduleEl) scheduleEl.value = post.schedule || '';
-                if (editFileEl) editFileEl.value = id;
-                if (indicatorEl) indicatorEl.style.display = 'inline';
-                if (editorTitle) editorTitle.textContent = 'تعديل المقال';
-                if (submitText) submitText.textContent = 'تحديث المقال';
+                // استعادة الصورة
+                if (post.image && post.image.startsWith('data:image')) {
+                    uploadedImageData = post.image;
+                    document.getElementById('post-image').value = post.image;
+                    const preview = document.getElementById('imagePreview');
+                    const container = document.getElementById('imagePreviewContainer');
+                    preview.src = post.image;
+                    container.style.display = 'block';
+                    document.querySelector('.image-upload-area .upload-text').textContent = '✅ تم اختيار الصورة';
+                }
 
                 if (tinymce.get('post-content')) {
                     tinymce.get('post-content').setContent(post.content || '');
                 }
+                document.getElementById('edit-filename').value = id;
+                document.getElementById('edit-indicator').style.display = 'inline';
+                document.getElementById('editor-title').textContent = 'تعديل المقال';
+                document.getElementById('submit-text').textContent = 'تحديث المقال';
 
                 toggleScheduleFields(post.status || 'published');
 
                 isEditing = true;
                 switchTab('new-post');
 
-                // فتح المعاينة تلقائياً
                 const box = document.getElementById('preview-box');
                 const btn = document.getElementById('preview-btn-text');
                 if (box && !box.classList.contains('active')) {
@@ -1562,27 +1730,28 @@
 
         function cancelEdit() {
             try {
-                const title = document.getElementById('post-title');
-                const tags = document.getElementById('post-tags');
-                const image = document.getElementById('post-image');
-                const content = document.getElementById('post-content');
-                const editFile = document.getElementById('edit-filename');
-                const indicator = document.getElementById('edit-indicator');
-                const editorTitle = document.getElementById('editor-title');
-                const submitText = document.getElementById('submit-text');
+                document.getElementById('post-title').value = '';
+                document.getElementById('post-tags').value = '';
+                document.getElementById('post-status').value = 'published';
+                document.getElementById('post-schedule').value = '';
+                document.getElementById('post-image').value = '';
+                document.getElementById('edit-filename').value = '';
+                document.getElementById('edit-indicator').style.display = 'none';
+                document.getElementById('editor-title').textContent = 'كتابة مقال جديد';
+                document.getElementById('submit-text').textContent = 'نشر المقال';
 
-                if (title) title.value = '';
-                if (tags) tags.value = '';
-                if (image) image.value = '';
-                if (content && tinymce.get('post-content')) {
+                // إزالة الصورة
+                uploadedImageData = '';
+                document.getElementById('imagePreviewContainer').style.display = 'none';
+                document.querySelector('.image-upload-area .upload-text').textContent = 'انقر لاختيار صورة من جهازك';
+                document.getElementById('imageInput').value = '';
+
+                if (tinymce.get('post-content')) {
                     tinymce.get('post-content').setContent('');
                 }
-                if (editFile) editFile.value = '';
-                if (indicator) indicator.style.display = 'none';
-                if (editorTitle) editorTitle.textContent = 'كتابة مقال جديد';
-                if (submitText) submitText.textContent = 'نشر المقال';
 
-                // إخفاء المعاينة
+                toggleScheduleFields('published');
+
                 const box = document.getElementById('preview-box');
                 const btn = document.getElementById('preview-btn-text');
                 if (box) box.classList.remove('active');
@@ -1701,6 +1870,11 @@
             }, 3500);
         }
 
+        // ====== القائمة الجانبية للجوال ======
+        function toggleMobileMenu() {
+            // يمكن إضافة قائمة جانبية هنا إذا أردت
+        }
+
         // ====== تهيئة ======
         document.addEventListener('DOMContentLoaded', function() {
             const isAuth = localStorage.getItem('blog_auth') === 'true';
@@ -1717,7 +1891,6 @@
             }
             loadSettings();
 
-            // ربط أحداث تغيير الحالة بالجدولة
             const statusEl = document.getElementById('post-status');
             if (statusEl) {
                 statusEl.addEventListener('change', function() {
@@ -1742,6 +1915,9 @@
         window.toggleTheme = toggleTheme;
         window.updatePreview = updatePreview;
         window.togglePreview = togglePreview;
+        window.handleImageUpload = handleImageUpload;
+        window.removeImage = removeImage;
+        window.toggleMobileMenu = toggleMobileMenu;
     </script>
 
 </body>
