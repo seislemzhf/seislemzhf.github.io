@@ -8,7 +8,8 @@
     "date": "2026-08-22T16:38:33.723Z",
     "status": "published",
     "published": true,
-    "deleted": false
+    "deleted": true,
+    "deletedAt": "2026-08-22T17:48:34.632Z"
   },
   {
     "id": "post_1787412180796",
