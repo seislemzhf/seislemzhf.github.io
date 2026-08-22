@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.3/tinymce.min.js"></script>
 
     <style>
-        /* ====== CSS كامل ====== */
+        /* ====== CSS كامل (نفس السابق) ====== */
         * {
             margin: 0;
             padding: 0;
@@ -270,7 +270,6 @@
         .stat-card .stat-number {
             font-size: 2rem;
             font-weight: 900;
-            font-family: 'Amiri', serif;
             color: #f0ece6;
         }
         body.light-mode .stat-card .stat-number {
@@ -282,7 +281,6 @@
             font-weight: 600;
         }
 
-        /* ====== الأقسام ====== */
         .hero {
             padding: 25px 0 15px;
             text-align: center;
@@ -364,7 +362,6 @@
             margin-right: 10px;
         }
 
-        /* ====== قائمة المقالات ====== */
         .posts-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -474,7 +471,6 @@
             color: white;
         }
 
-        /* ====== محرر المقال ====== */
         .editor-wrapper {
             background: var(--bg-card);
             border-radius: 16px;
@@ -584,7 +580,6 @@
             display: none;
         }
 
-        /* ====== معاينة ====== */
         .preview-box {
             display: none;
             background: var(--bg-card);
@@ -622,7 +617,6 @@
             color: #333;
         }
 
-        /* ====== سلة المحذوفات ====== */
         .trash-item {
             background: var(--bg-card);
             border-radius: 14px;
@@ -665,7 +659,6 @@
             opacity: 0.3;
         }
 
-        /* ====== Toast ====== */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -1184,7 +1177,6 @@
             const countEl = document.getElementById('posts-count');
             if (!container) return;
 
-            // فصل المقالات النشطة عن المحذوفة
             const activePosts = posts.filter(p => !p.deleted);
             trash = posts.filter(p => p.deleted);
 
@@ -1283,7 +1275,6 @@
             const published = activePosts.filter(p => p.published !== false && p.status !== 'draft');
             document.getElementById('stat-posts').textContent = published.length;
 
-            // حساب التعليقات
             let totalComments = 0;
             activePosts.forEach(p => {
                 const key = 'blog_comments_' + p.id;
@@ -1297,7 +1288,6 @@
             });
             document.getElementById('stat-comments').textContent = totalComments;
 
-            // حساب المشاهدات
             let totalViews = 0;
             activePosts.forEach(p => {
                 const key = 'blog_views_' + p.id;
@@ -1308,7 +1298,6 @@
             });
             document.getElementById('stat-views').textContent = totalViews;
 
-            // حساب الوسوم
             const tags = new Set();
             activePosts.forEach(p => {
                 if (p.tags) {
@@ -1322,30 +1311,34 @@
         function startAutosave() {
             if (autosaveTimer) clearInterval(autosaveTimer);
             autosaveTimer = setInterval(function() {
-                const title = document.getElementById('post-title');
-                const tags = document.getElementById('post-tags');
-                const image = document.getElementById('post-image');
-                const content = tinymce.get('post-content');
-                const status = document.getElementById('post-status');
-                const schedule = document.getElementById('post-schedule');
+                try {
+                    const title = document.getElementById('post-title');
+                    const tags = document.getElementById('post-tags');
+                    const image = document.getElementById('post-image');
+                    const content = tinymce.get('post-content');
+                    const status = document.getElementById('post-status');
+                    const schedule = document.getElementById('post-schedule');
 
-                if (title && title.value.trim()) {
-                    const data = {
-                        title: title.value.trim(),
-                        tags: tags ? tags.value.trim() : '',
-                        image: image ? image.value.trim() : '',
-                        content: content ? content.getContent() : '',
-                        status: status ? status.value : 'published',
-                        schedule: schedule ? schedule.value : ''
-                    };
-                    localStorage.setItem('autosave_post', JSON.stringify(data));
-                    const indicator = document.getElementById('autosave-indicator');
-                    if (indicator) {
-                        indicator.style.display = 'inline';
-                        setTimeout(function() {
-                            indicator.style.display = 'none';
-                        }, 2000);
+                    if (title && title.value.trim()) {
+                        const data = {
+                            title: title.value.trim(),
+                            tags: tags ? tags.value.trim() : '',
+                            image: image ? image.value.trim() : '',
+                            content: content ? content.getContent() : '',
+                            status: status ? status.value : 'published',
+                            schedule: schedule ? schedule.value : ''
+                        };
+                        localStorage.setItem('autosave_post', JSON.stringify(data));
+                        const indicator = document.getElementById('autosave-indicator');
+                        if (indicator) {
+                            indicator.style.display = 'inline';
+                            setTimeout(function() {
+                                indicator.style.display = 'none';
+                            }, 2000);
+                        }
                     }
+                } catch (e) {
+                    // تجاهل الأخطاء في الحفظ التلقائي
                 }
             }, 15000);
         }
@@ -1356,16 +1349,21 @@
                 if (saved) {
                     const data = JSON.parse(saved);
                     if (data.title && !document.getElementById('edit-filename').value) {
-                        document.getElementById('post-title').value = data.title;
-                        document.getElementById('post-tags').value = data.tags || '';
-                        document.getElementById('post-image').value = data.image || '';
-                        if (data.status) document.getElementById('post-status').value = data.status;
-                        if (data.schedule) document.getElementById('post-schedule').value = data.schedule;
+                        const titleEl = document.getElementById('post-title');
+                        const tagsEl = document.getElementById('post-tags');
+                        const imageEl = document.getElementById('post-image');
+                        const statusEl = document.getElementById('post-status');
+                        const scheduleEl = document.getElementById('post-schedule');
+
+                        if (titleEl) titleEl.value = data.title;
+                        if (tagsEl) tagsEl.value = data.tags || '';
+                        if (imageEl) imageEl.value = data.image || '';
+                        if (statusEl) statusEl.value = data.status || 'published';
+                        if (scheduleEl) scheduleEl.value = data.schedule || '';
                         if (tinymce.get('post-content')) {
                             tinymce.get('post-content').setContent(data.content || '');
                         }
-                        // تحديث حالة الجدولة
-                        toggleScheduleFields(data.status);
+                        toggleScheduleFields(data.status || 'published');
                         showToast('💾 تم استعادة المسودة المحفوظة', 'info');
                     }
                 }
@@ -1375,33 +1373,60 @@
         // ====== الجدولة ======
         function toggleScheduleFields(status) {
             const group = document.getElementById('scheduled-group');
-            if (status === 'scheduled') {
-                group.style.display = 'block';
-            } else {
-                group.style.display = 'none';
+            if (group) {
+                group.style.display = status === 'scheduled' ? 'block' : 'none';
             }
         }
 
-        document.getElementById('post-status').addEventListener('change', function() {
-            toggleScheduleFields(this.value);
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusEl = document.getElementById('post-status');
+            if (statusEl) {
+                statusEl.addEventListener('change', function() {
+                    toggleScheduleFields(this.value);
+                });
+            }
         });
 
         // ====== معاينة ======
         function updatePreview() {
-            const title = document.getElementById('post-title').value || 'بدون عنوان';
-            const tags = document.getElementById('post-tags').value || 'عام';
-            const content = tinymce.get('post-content') ? tinymce.get('post-content').getContent() : '';
-            document.getElementById('preview-title').textContent = title;
-            document.getElementById('preview-meta').textContent = '🏷️ التصنيفات: ' + tags;
-            document.getElementById('preview-content').innerHTML = content || 'لا يوجد محتوى.';
+            try {
+                const title = document.getElementById('post-title');
+                const tags = document.getElementById('post-tags');
+                const previewTitle = document.getElementById('preview-title');
+                const previewMeta = document.getElementById('preview-meta');
+                const previewContent = document.getElementById('preview-content');
+
+                if (title && previewTitle) {
+                    previewTitle.textContent = title.value || 'بدون عنوان';
+                }
+                if (tags && previewMeta) {
+                    previewMeta.textContent = '🏷️ التصنيفات: ' + (tags.value || 'عام');
+                }
+                if (previewContent) {
+                    const editor = tinymce.get('post-content');
+                    previewContent.innerHTML = editor ? editor.getContent() : 'لا يوجد محتوى.';
+                }
+            } catch (e) {
+                console.warn('⚠️ خطأ في تحديث المعاينة:', e.message);
+            }
         }
 
         function togglePreview() {
-            const box = document.getElementById('preview-box');
-            const btn = document.getElementById('preview-btn-text');
-            box.classList.toggle('active');
-            btn.textContent = box.classList.contains('active') ? 'إخفاء المعاينة' : 'معاينة المقال';
-            if (box.classList.contains('active')) updatePreview();
+            try {
+                const box = document.getElementById('preview-box');
+                const btn = document.getElementById('preview-btn-text');
+                if (box) {
+                    box.classList.toggle('active');
+                    if (btn) {
+                        btn.textContent = box.classList.contains('active') ? 'إخفاء المعاينة' : 'معاينة المقال';
+                    }
+                    if (box.classList.contains('active')) {
+                        updatePreview();
+                    }
+                }
+            } catch (e) {
+                console.warn('⚠️ خطأ في تبديل المعاينة:', e.message);
+            }
         }
 
         // ====== نشر وحذف وتعديل ======
@@ -1416,34 +1441,34 @@
         });
 
         async function handleSubmit() {
-            const titleEl = document.getElementById('post-title');
-            const tagsEl = document.getElementById('post-tags');
-            const imageEl = document.getElementById('post-image');
-            const contentEl = document.getElementById('post-content');
-            const statusEl = document.getElementById('post-status');
-            const scheduleEl = document.getElementById('post-schedule');
-            const editFileEl = document.getElementById('edit-filename');
-            const submitBtn = document.getElementById('submit-btn');
-
-            if (!titleEl || !tagsEl || !contentEl || !editFileEl || !submitBtn) return;
-
-            const title = titleEl.value.trim();
-            const tags = tagsEl.value.trim();
-            const image = imageEl ? imageEl.value.trim() : '';
-            const content = tinymce.get('post-content') ? tinymce.get('post-content').getContent() : '';
-            const status = statusEl ? statusEl.value : 'published';
-            const schedule = scheduleEl ? scheduleEl.value : '';
-            const editFile = editFileEl.value;
-
-            if (!title || !content || content === '<p><br data-mce-bogus="1"></p>') {
-                showToast('الرجاء ملء جميع الحقول المطلوبة', 'error');
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري النشر...';
-
             try {
+                const titleEl = document.getElementById('post-title');
+                const tagsEl = document.getElementById('post-tags');
+                const imageEl = document.getElementById('post-image');
+                const contentEl = document.getElementById('post-content');
+                const statusEl = document.getElementById('post-status');
+                const scheduleEl = document.getElementById('post-schedule');
+                const editFileEl = document.getElementById('edit-filename');
+                const submitBtn = document.getElementById('submit-btn');
+
+                if (!titleEl || !tagsEl || !contentEl || !editFileEl || !submitBtn) return;
+
+                const title = titleEl.value.trim();
+                const tags = tagsEl.value.trim();
+                const image = imageEl ? imageEl.value.trim() : '';
+                const content = tinymce.get('post-content') ? tinymce.get('post-content').getContent() : '';
+                const status = statusEl ? statusEl.value : 'published';
+                const schedule = scheduleEl ? scheduleEl.value : '';
+                const editFile = editFileEl.value;
+
+                if (!title || !content || content === '<p><br data-mce-bogus="1"></p>') {
+                    showToast('الرجاء ملء جميع الحقول المطلوبة', 'error');
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري النشر...';
+
                 const postData = {
                     title: title,
                     tags: tags,
@@ -1477,66 +1502,102 @@
             } catch (error) {
                 showToast('❌ خطأ: ' + error.message, 'error');
                 console.error(error);
+            } finally {
+                const submitBtn = document.getElementById('submit-btn');
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-save"></i> نشر المقال';
+                }
             }
-
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-save"></i> نشر المقال';
         }
 
         function editPost(id) {
-            const post = posts.find(p => p.id === id);
-            if (!post) return;
+            try {
+                const post = posts.find(p => p.id === id);
+                if (!post) return;
 
-            document.getElementById('post-title').value = post.title || '';
-            document.getElementById('post-tags').value = post.tags || '';
-            document.getElementById('post-image').value = post.image || '';
-            document.getElementById('post-status').value = post.status || 'published';
-            if (post.schedule) document.getElementById('post-schedule').value = post.schedule;
-            if (tinymce.get('post-content')) tinymce.get('post-content').setContent(post.content || '');
-            document.getElementById('edit-filename').value = id;
-            document.getElementById('edit-indicator').style.display = 'inline';
-            document.getElementById('editor-title').textContent = 'تعديل المقال';
-            document.getElementById('submit-text').textContent = 'تحديث المقال';
+                const titleEl = document.getElementById('post-title');
+                const tagsEl = document.getElementById('post-tags');
+                const imageEl = document.getElementById('post-image');
+                const statusEl = document.getElementById('post-status');
+                const scheduleEl = document.getElementById('post-schedule');
+                const editFileEl = document.getElementById('edit-filename');
+                const indicatorEl = document.getElementById('edit-indicator');
+                const editorTitle = document.getElementById('editor-title');
+                const submitText = document.getElementById('submit-text');
 
-            toggleScheduleFields(post.status || 'published');
+                if (titleEl) titleEl.value = post.title || '';
+                if (tagsEl) tagsEl.value = post.tags || '';
+                if (imageEl) imageEl.value = post.image || '';
+                if (statusEl) statusEl.value = post.status || 'published';
+                if (scheduleEl) scheduleEl.value = post.schedule || '';
+                if (editFileEl) editFileEl.value = id;
+                if (indicatorEl) indicatorEl.style.display = 'inline';
+                if (editorTitle) editorTitle.textContent = 'تعديل المقال';
+                if (submitText) submitText.textContent = 'تحديث المقال';
 
-            isEditing = true;
-            switchTab('new-post');
-            const box = document.getElementById('preview-box');
-            const btn = document.getElementById('preview-btn-text');
-            if (box && !box.classList.contains('active')) {
-                box.classList.add('active');
-                if (btn) btn.textContent = 'إخفاء المعاينة';
+                if (tinymce.get('post-content')) {
+                    tinymce.get('post-content').setContent(post.content || '');
+                }
+
+                toggleScheduleFields(post.status || 'published');
+
+                isEditing = true;
+                switchTab('new-post');
+
+                // فتح المعاينة تلقائياً
+                const box = document.getElementById('preview-box');
+                const btn = document.getElementById('preview-btn-text');
+                if (box && !box.classList.contains('active')) {
+                    box.classList.add('active');
+                    if (btn) btn.textContent = 'إخفاء المعاينة';
+                }
+                updatePreview();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (e) {
+                console.warn('⚠️ خطأ في تعديل المقال:', e.message);
+                showToast('❌ حدث خطأ أثناء فتح المقال للتعديل', 'error');
             }
-            updatePreview();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function cancelEdit() {
-            isEditing = false;
-            document.getElementById('post-title').value = '';
-            document.getElementById('post-tags').value = '';
-            document.getElementById('post-image').value = '';
-            document.getElementById('post-status').value = 'published';
-            document.getElementById('post-schedule').value = '';
-            if (tinymce.get('post-content')) tinymce.get('post-content').setContent('');
-            document.getElementById('edit-filename').value = '';
-            document.getElementById('edit-indicator').style.display = 'none';
-            document.getElementById('editor-title').textContent = 'كتابة مقال جديد';
-            document.getElementById('submit-text').textContent = 'نشر المقال';
-            toggleScheduleFields('published');
+            try {
+                const title = document.getElementById('post-title');
+                const tags = document.getElementById('post-tags');
+                const image = document.getElementById('post-image');
+                const content = document.getElementById('post-content');
+                const editFile = document.getElementById('edit-filename');
+                const indicator = document.getElementById('edit-indicator');
+                const editorTitle = document.getElementById('editor-title');
+                const submitText = document.getElementById('submit-text');
 
-            const box = document.getElementById('preview-box');
-            const btn = document.getElementById('preview-btn-text');
-            if (box) box.classList.remove('active');
-            if (btn) btn.textContent = 'معاينة المقال';
+                if (title) title.value = '';
+                if (tags) tags.value = '';
+                if (image) image.value = '';
+                if (content && tinymce.get('post-content')) {
+                    tinymce.get('post-content').setContent('');
+                }
+                if (editFile) editFile.value = '';
+                if (indicator) indicator.style.display = 'none';
+                if (editorTitle) editorTitle.textContent = 'كتابة مقال جديد';
+                if (submitText) submitText.textContent = 'نشر المقال';
+
+                // إخفاء المعاينة
+                const box = document.getElementById('preview-box');
+                const btn = document.getElementById('preview-btn-text');
+                if (box) box.classList.remove('active');
+                if (btn) btn.textContent = 'معاينة المقال';
+
+                isEditing = false;
+            } catch (e) {
+                console.warn('⚠️ خطأ في إلغاء التعديل:', e.message);
+            }
         }
 
         async function deletePost(id) {
             const post = posts.find(p => p.id === id);
             if (!post || !confirm(`هل أنت متأكد من حذف "${post.title || 'بدون عنوان'}"؟`)) return;
 
-            // نقل إلى سلة المحذوفات بدلاً من الحذف النهائي
             const index = posts.findIndex(p => p.id === id);
             if (index !== -1) {
                 posts[index].deleted = true;
@@ -1600,12 +1661,15 @@
                 content_style: 'body { font-family: "Tajawal", Arial, sans-serif; font-size:16px; direction:rtl; }',
                 directionality: 'rtl',
                 setup: function(editor) {
-                    editor.on('init', function() { editorInitialized = true; });
-                    editor.on('change', function() { updatePreview(); });
+                    editor.on('init', function() {
+                        editorInitialized = true;
+                        setTimeout(loadAutosave, 500);
+                    });
+                    editor.on('change', function() {
+                        updatePreview();
+                    });
                 }
             });
-
-            setTimeout(loadAutosave, 600);
         }
 
         // ====== التبويبات ======
@@ -1619,8 +1683,10 @@
         }
 
         document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() { const tabId = this.getAttribute('data-tab'); if (tabId)
-                    switchTab(tabId); });
+            btn.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                if (tabId) switchTab(tabId);
+            });
         });
 
         // ====== Toast ======
@@ -1630,7 +1696,9 @@
             toast.textContent = message;
             toast.className = 'toast show ' + type;
             clearTimeout(toast._timer);
-            toast._timer = setTimeout(function() { toast.classList.remove('show'); }, 3500);
+            toast._timer = setTimeout(function() {
+                toast.classList.remove('show');
+            }, 3500);
         }
 
         // ====== تهيئة ======
@@ -1648,8 +1716,17 @@
                 document.getElementById('logoutBtn').style.display = 'none';
             }
             loadSettings();
+
+            // ربط أحداث تغيير الحالة بالجدولة
+            const statusEl = document.getElementById('post-status');
+            if (statusEl) {
+                statusEl.addEventListener('change', function() {
+                    toggleScheduleFields(this.value);
+                });
+            }
         });
 
+        // ====== دوال عامة ======
         window.login = login;
         window.logout = logout;
         window.loadPosts = loadPosts;
