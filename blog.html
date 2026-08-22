@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* ====== CSS كامل ====== */
+        /* ====== CSS ====== */
         * {
             margin: 0;
             padding: 0;
@@ -22,6 +22,8 @@
             min-height: 100vh;
             transition: 0.3s;
         }
+
+        /* ====== وضع فاتح ====== */
         body.light-mode {
             background: #f5f5f5;
             color: #1a1a1a;
@@ -34,6 +36,89 @@
         }
         body.light-mode .text-muted {
             color: #666;
+        }
+
+        /* ====== إصلاح المقالات في الوضع الفاتح ====== */
+        body.light-mode .post {
+            background: #ffffff;
+            border-color: #e0e0e0;
+        }
+        body.light-mode .post .post-title {
+            color: #1a1a1a;
+        }
+        body.light-mode .post .post-title a {
+            color: #1a1a1a;
+        }
+        body.light-mode .post .post-title a:hover {
+            color: var(--accent);
+        }
+        body.light-mode .post .post-excerpt {
+            color: #444;
+        }
+        body.light-mode .post .post-meta {
+            color: #888;
+        }
+        body.light-mode .post .read-more {
+            color: var(--accent);
+            border-color: rgba(108, 139, 158, 0.2);
+        }
+        body.light-mode .post .read-more:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ====== إصلاح شريط البحث في الوضع الفاتح ====== */
+        body.light-mode .search-bar {
+            background: #ffffff;
+        }
+        body.light-mode .search-bar input {
+            color: #1a1a1a;
+            background: #f5f5f5;
+        }
+
+        /* ====== إصلاح التصنيفات في الوضع الفاتح ====== */
+        body.light-mode .tags-filter {
+            background: #ffffff;
+        }
+        body.light-mode .tags-filter .tag-item {
+            background: rgba(108, 139, 158, 0.08);
+            color: var(--accent);
+        }
+        body.light-mode .tags-filter .tag-item:hover {
+            background: rgba(108, 139, 158, 0.15);
+        }
+        body.light-mode .tags-filter .tag-item.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ====== إصلاح شريط التحديث ====== */
+        body.light-mode .refresh-bar {
+            background: #ffffff;
+        }
+        body.light-mode .btn-refresh {
+            background: rgba(108, 139, 158, 0.08);
+            color: var(--accent);
+        }
+        body.light-mode .btn-refresh:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ====== إصلاح الترقيم ====== */
+        body.light-mode .pagination button {
+            background: #ffffff;
+            border-color: #e0e0e0;
+            color: #666;
+        }
+        body.light-mode .pagination button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        body.light-mode .pagination button.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
         }
 
         .container {
@@ -70,6 +155,7 @@
         }
         body.light-mode header {
             background: rgba(255, 255, 255, 0.96);
+            border-color: #e0e0e0;
         }
         .header-content {
             display: flex;
@@ -131,6 +217,10 @@
         .theme-toggle:hover {
             border-color: var(--accent);
             color: var(--accent);
+        }
+        body.light-mode .theme-toggle {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: #e0e0e0;
         }
 
         .hero {
@@ -201,29 +291,43 @@
             transform: scale(1.02);
         }
 
-        /* ====== تصفية بالوسوم ====== */
+        /* ====== تصفية بالوسوم (مدمجة في شريط صغير) ====== */
         .tags-filter {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            align-items: center;
+            gap: 6px;
             margin-bottom: 20px;
-            padding: 10px 16px;
+            padding: 8px 16px;
             background: rgba(255, 255, 255, 0.02);
             border-radius: 12px;
             border: 1px solid var(--border);
         }
+        body.light-mode .tags-filter {
+            background: #ffffff;
+        }
+        .tags-filter .tags-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-left: 6px;
+        }
         .tags-filter .tag-item {
             background: rgba(108, 139, 158, 0.08);
             color: var(--accent);
-            padding: 4px 14px;
+            padding: 2px 12px;
             border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-size: 0.7rem;
+            font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
             border: 1px solid transparent;
+            white-space: nowrap;
         }
         .tags-filter .tag-item:hover {
+            background: rgba(108, 139, 158, 0.15);
+        }
+        body.light-mode .tags-filter .tag-item:hover {
             background: rgba(108, 139, 158, 0.15);
         }
         .tags-filter .tag-item.active {
@@ -231,12 +335,22 @@
             color: #0a0a0a;
             border-color: var(--accent);
         }
+        body.light-mode .tags-filter .tag-item.active {
+            background: var(--accent);
+            color: #fff;
+        }
         .tags-filter .tag-item.clear-tag {
             background: rgba(239, 68, 68, 0.08);
             color: var(--danger);
+            font-size: 0.65rem;
         }
         .tags-filter .tag-item.clear-tag:hover {
             background: rgba(239, 68, 68, 0.15);
+        }
+        .tags-filter .tag-item .tag-count {
+            font-size: 0.55rem;
+            opacity: 0.5;
+            margin-right: 2px;
         }
 
         /* ====== شريط التحكم ====== */
@@ -251,6 +365,9 @@
             background: rgba(255, 255, 255, 0.02);
             border-radius: 12px;
             border: 1px solid var(--border);
+        }
+        body.light-mode .refresh-bar {
+            background: #ffffff;
         }
         .refresh-bar .info {
             font-size: 0.8rem;
@@ -278,6 +395,9 @@
         .btn-refresh:hover {
             background: var(--accent);
             color: #0a0a0a;
+        }
+        body.light-mode .btn-refresh:hover {
+            color: #fff;
         }
 
         /* ====== المقالات ====== */
@@ -324,6 +444,9 @@
             color: var(--text-muted);
             margin-bottom: 12px;
         }
+        body.light-mode .post .post-meta {
+            color: #888;
+        }
         .post .post-meta i {
             color: var(--accent);
             margin: 0 3px;
@@ -351,6 +474,9 @@
             background: var(--accent);
             color: #0a0a0a;
         }
+        body.light-mode .post .read-more:hover {
+            color: #fff;
+        }
 
         @keyframes fadeUp {
             from {
@@ -363,7 +489,6 @@
             }
         }
 
-        /* ====== تحميل ====== */
         .loading-indicator {
             text-align: center;
             padding: 30px 0;
@@ -375,11 +500,10 @@
             margin-left: 8px;
         }
 
-        /* ====== ترقيم الصفحات ====== */
         .pagination {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
             margin-top: 20px;
             padding: 15px 0;
@@ -388,11 +512,11 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border);
             color: var(--text-muted);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: 0.3s;
             font-family: inherit;
         }
@@ -405,9 +529,21 @@
             color: #0a0a0a;
             border-color: var(--accent);
         }
+        body.light-mode .pagination button.active {
+            color: #fff;
+        }
         .pagination button:disabled {
             opacity: 0.3;
             cursor: not-allowed;
+        }
+        body.light-mode .pagination button {
+            background: #ffffff;
+            border-color: #e0e0e0;
+            color: #666;
+        }
+        body.light-mode .pagination button:hover {
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         .status-message {
@@ -462,6 +598,7 @@
         body.light-mode .toast {
             color: #1a1a1a;
             background: #ffffff;
+            border-color: #e0e0e0;
         }
         .toast.show {
             display: block;
@@ -484,6 +621,9 @@
             color: var(--text-muted);
             margin-top: 15px;
         }
+        body.light-mode footer {
+            border-color: #e0e0e0;
+        }
         footer .ornament {
             font-size: 0.6rem;
             color: var(--accent-dark);
@@ -505,14 +645,17 @@
                 font-size: 1.8rem;
             }
             .refresh-bar,
-            .search-bar,
-            .tags-filter {
+            .search-bar {
                 flex-direction: column;
                 text-align: center;
             }
+            .tags-filter {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
             .pagination button {
-                padding: 6px 12px;
-                font-size: 0.75rem;
+                padding: 4px 10px;
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -547,8 +690,11 @@
                 <button class="btn-search" onclick="handleSearch()"><i class="fas fa-search"></i> بحث</button>
             </div>
 
-            <!-- تصفية بالوسوم -->
-            <div class="tags-filter" id="tagsFilter"></div>
+            <!-- تصفية بالوسوم (مصغرة) -->
+            <div class="tags-filter" id="tagsFilter">
+                <span class="tags-label"><i class="fas fa-tags"></i></span>
+                <span class="tag-item clear-tag" onclick="filterByTag(null)">🗑️ الكل</span>
+            </div>
 
             <!-- شريط التحكم -->
             <div class="refresh-bar">
@@ -590,7 +736,7 @@
 
     <script>
         // =========================================================
-        // 📝 المدونة مع Infinite Scroll + Pagination + Tags Filter
+        // 📝 المدونة مع Infinite Scroll + Pagination + Tags
         // =========================================================
 
         const USERNAME = 'seislemzhf';
@@ -677,10 +823,7 @@
                     return p.published !== false && p.status !== 'draft' && !p.deleted;
                 });
 
-                // استخراج الوسوم
                 extractTags();
-
-                // تطبيق الفلترة
                 applyFilters();
 
             } catch (error) {
@@ -699,12 +842,14 @@
 
         // ====== استخراج الوسوم ======
         function extractTags() {
-            const tagsSet = new Set();
+            const tagsMap = {};
             allPosts.forEach(function(post) {
                 if (post.tags) {
                     post.tags.split(',').forEach(function(t) {
                         const tag = t.trim();
-                        if (tag) tagsSet.add(tag);
+                        if (tag) {
+                            tagsMap[tag] = (tagsMap[tag] || 0) + 1;
+                        }
                     });
                 }
             });
@@ -712,11 +857,20 @@
             const tagsFilter = document.getElementById('tagsFilter');
             if (!tagsFilter) return;
 
-            let html =
-                `<span class="tag-item clear-tag" onclick="filterByTag(null)" style="font-size:0.7rem;">🗑️ الكل</span>`;
-            tagsSet.forEach(function(tag) {
+            // الاحتفاظ بـ "الكل"
+            let html = `<span class="tags-label"><i class="fas fa-tags"></i></span>`;
+            html += `<span class="tag-item clear-tag" onclick="filterByTag(null)">🗑️ الكل</span>`;
+
+            // ترتيب الوسوم حسب الأكثر استخداماً
+            const sortedTags = Object.keys(tagsMap).sort(function(a, b) {
+                return tagsMap[b] - tagsMap[a];
+            });
+
+            sortedTags.forEach(function(tag) {
+                const count = tagsMap[tag];
                 const active = currentTag === tag ? 'active' : '';
-                html += `<span class="tag-item ${active}" onclick="filterByTag('${tag}')">#${tag}</span>`;
+                html +=
+                    `<span class="tag-item ${active}" onclick="filterByTag('${tag}')">#${tag} <span class="tag-count">${count}</span></span>`;
             });
 
             tagsFilter.innerHTML = html;
@@ -725,13 +879,10 @@
         // ====== الفلترة ======
         function applyFilters() {
             filteredPosts = allPosts.filter(function(post) {
-                // فلترة حسب الوسم
                 if (currentTag) {
                     const tags = (post.tags || '').split(',').map(function(t) { return t.trim(); });
                     if (!tags.includes(currentTag)) return false;
                 }
-
-                // فلترة حسب البحث
                 if (searchQuery) {
                     const query = searchQuery.toLowerCase();
                     const title = (post.title || '').toLowerCase();
@@ -739,7 +890,6 @@
                     const tags = (post.tags || '').toLowerCase();
                     if (!title.includes(query) && !content.includes(query) && !tags.includes(query)) return false;
                 }
-
                 return true;
             });
 
@@ -762,11 +912,13 @@
             // تحديث حالة الأزرار
             document.querySelectorAll('.tags-filter .tag-item').forEach(function(el) {
                 el.classList.remove('active');
-                if (el.textContent.trim() === '#' + tag) {
+                if (el.textContent.trim().startsWith('#' + tag)) {
                     el.classList.add('active');
                 }
             });
             applyFilters();
+            // تمرير للأعلى
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // ====== عرض الصفحة ======
@@ -795,7 +947,6 @@
 
             if (countEl) countEl.textContent = filteredPosts.length;
 
-            // حساب عدد الصفحات
             const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
             const start = (currentPage - 1) * POSTS_PER_PAGE;
             const end = Math.min(start + POSTS_PER_PAGE, filteredPosts.length);
@@ -803,7 +954,6 @@
 
             if (pageInfoEl) pageInfoEl.textContent = `الصفحة ${currentPage} من ${totalPages}`;
 
-            // بناء HTML للمقالات
             let html = '';
             pagePosts.forEach(function(post) {
                 const title = post.title || 'بدون عنوان';
@@ -812,7 +962,6 @@
                 const fullText = stripHtml(post.content || '');
                 const excerpt = fullText.length > 250 ? fullText.substring(0, 250) + '...' : fullText;
 
-                // صورة مميزة
                 let imageHtml = '';
                 if (post.image) {
                     imageHtml =
@@ -838,11 +987,8 @@
             });
 
             container.innerHTML = html;
-
-            // بناء الترقيم
             renderPagination(totalPages);
 
-            // تحديث حالة التحميل
             hasMore = currentPage < totalPages;
             if (!hasMore) {
                 if (loadingIndicator) loadingIndicator.style.display = 'none';
@@ -860,25 +1006,13 @@
             }
 
             let html = '';
-
-            // زر السابق
             html +=
                 `<button onclick="goToPage(${currentPage - 1})" ${currentPage <= 1 ? 'disabled' : ''}>
                 <i class="fas fa-chevron-right"></i>
             </button>`;
 
-            // أرقام الصفحات
-            const maxVisible = 7;
             let startPage = Math.max(1, currentPage - 3);
             let endPage = Math.min(totalPages, currentPage + 3);
-
-            if (endPage - startPage < maxVisible - 1) {
-                if (startPage === 1) {
-                    endPage = Math.min(totalPages, startPage + maxVisible - 1);
-                } else if (endPage === totalPages) {
-                    startPage = Math.max(1, endPage - maxVisible + 1);
-                }
-            }
 
             if (startPage > 1) {
                 html += `<button onclick="goToPage(1)">1</button>`;
@@ -898,7 +1032,6 @@
                 html += `<button onclick="goToPage(${totalPages})">${totalPages}</button>`;
             }
 
-            // زر التالي
             html +=
                 `<button onclick="goToPage(${currentPage + 1})" ${currentPage >= totalPages ? 'disabled' : ''}>
                 <i class="fas fa-chevron-left"></i>
@@ -907,7 +1040,6 @@
             paginationEl.innerHTML = html;
         }
 
-        // ====== الانتقال إلى صفحة ======
         function goToPage(page) {
             const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
             if (page < 1 || page > totalPages) return;
@@ -925,7 +1057,6 @@
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
 
-            // تحقق من الوصول إلى 80% من الصفحة
             if (scrollTop + windowHeight >= documentHeight * 0.8) {
                 if (!isLoading && hasMore) {
                     loadMore();
@@ -944,7 +1075,6 @@
             const loadingIndicator = document.getElementById('loadingIndicator');
             if (loadingIndicator) loadingIndicator.style.display = 'block';
 
-            // محاكاة تحميل (ننتقل للصفحة التالية)
             setTimeout(function() {
                 currentPage++;
                 renderPage();
@@ -953,17 +1083,15 @@
             }, 500);
         }
 
-        // إضافة مستمع للتمرير
         window.addEventListener('scroll', handleScroll);
 
-        // إعادة التحميل عند تغيير البحث أو التصفية
         window.handleSearch = handleSearch;
         window.filterByTag = filterByTag;
         window.goToPage = goToPage;
         window.loadPosts = loadPosts;
         window.toggleTheme = toggleTheme;
 
-        console.log('📝 Blog Loaded with Infinite Scroll + Pagination');
+        console.log('📝 Blog Loaded with Tags Filter');
     </script>
 
 </body>
