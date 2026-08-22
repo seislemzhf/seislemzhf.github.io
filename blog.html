@@ -37,6 +37,7 @@
             --text-secondary: #b8b0a8;
         }
 
+        /* ====== Header ====== */
         header {
             padding: 20px 0;
             background: rgba(10, 10, 10, 0.96);
@@ -82,7 +83,24 @@
             color: #0a0a0a;
             transform: translateY(-2px);
         }
+        .btn-dashboard {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.08);
+            color: #F59E0B;
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: 1px solid rgba(245, 158, 11, 0.12);
+            transition: 0.3s;
+        }
+        .btn-dashboard:hover {
+            background: #F59E0B;
+            color: #0a0a0a;
+            transform: translateY(-2px);
+        }
 
+        /* ====== Hero ====== */
         .hero {
             padding: 40px 0 20px;
             text-align: center;
@@ -99,6 +117,7 @@
             margin-top: 5px;
         }
 
+        /* ====== المقالات ====== */
         .post {
             background: var(--bg-card);
             border-radius: 16px;
@@ -165,6 +184,7 @@
         .status-message i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
         .status-message .sub-msg { font-size: 0.85rem; opacity: 0.6; margin-top: 10px; }
 
+        /* ====== Footer ====== */
         footer {
             padding: 30px 0;
             text-align: center;
@@ -183,23 +203,31 @@
             .post { padding: 20px; }
             .post .post-title { font-size: 1.3rem; }
             .hero h1 { font-size: 2rem; }
+            .header-content { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ====== Header ====== -->
     <header>
         <div class="container header-content">
             <div class="logo">
                 Minsaj <span>DZ</span>
                 <span class="sub">✦ مدونة البرمجيات والتقنية ✦</span>
             </div>
-            <a href="https://seislemzhf.github.io" class="btn-home">
-                <i class="fas fa-arrow-right"></i> العودة للرئيسية
-            </a>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a href="https://seislemzhf.github.io" class="btn-home">
+                    <i class="fas fa-arrow-right"></i> الرئيسية
+                </a>
+                <a href="dashboard.html" class="btn-dashboard">
+                    <i class="fas fa-cog"></i> لوحة التحكم
+                </a>
+            </div>
         </div>
     </header>
 
+    <!-- ====== Hero ====== -->
     <section class="hero">
         <div class="container">
             <h1><span>مدونة</span> Minsaj DZ</h1>
@@ -207,6 +235,7 @@
         </div>
     </section>
 
+    <!-- ====== المحتوى ====== -->
     <section>
         <div class="container">
             <div id="posts-container">
@@ -218,6 +247,7 @@
         </div>
     </section>
 
+    <!-- ====== Footer ====== -->
     <footer>
         <div class="container">
             <div class="ornament">✦ ✦ ✦</div>
@@ -227,17 +257,12 @@
     </footer>
 
     <script>
+        // =========================================================
+        // 📝 جلب المقالات من LocalStorage (من dashboard.html)
+        // =========================================================
         (function() {
             const container = document.getElementById('posts-container');
-
-            // رابط RSS الخاص بمدونتك
-            const BLOG_URL = 'https://minsajdz.blogspot.com/feeds/posts/default';
-            const MAX_POSTS = 20;
-
-            function extractContent(content) {
-                if (!content) return '';
-                return content;
-            }
+            const STORAGE_KEY = 'blog_posts';
 
             function formatDate(dateStr) {
                 try {
@@ -252,48 +277,41 @@
                 }
             }
 
-            function getLabels(entry) {
-                if (entry.category && entry.category.length > 0) {
-                    return entry.category.map(cat => cat.term).join('، ');
-                }
-                return 'عام';
-            }
-
             function renderPosts(posts) {
-                if (!posts || posts.length === 0) {
+                // تصفية المقالات المنشورة فقط
+                const publishedPosts = posts.filter(post => post.published !== false);
+
+                if (!publishedPosts || publishedPosts.length === 0) {
                     container.innerHTML = `
                         <div class="status-message">
                             <i class="fas fa-newspaper" style="color:var(--accent);"></i>
-                            <p>لا توجد مقالات حالياً.</p>
-                            <p class="sub-msg">اكتب مقالاً في مدونتك وسيظهر هنا تلقائياً!</p>
+                            <p>لا توجد مقالات منشورة حالياً.</p>
+                            <p class="sub-msg">تفقد لوحة التحكم لكتابة مقال جديد.</p>
                         </div>
                     `;
                     return;
                 }
 
+                // ترتيب من الأحدث إلى الأقدم
+                const sorted = [...publishedPosts].sort((a, b) => new Date(b.date) - new Date(a.date));
+
                 let html = '';
-                posts.forEach((post) => {
-                    const title = post.title.$t || 'بدون عنوان';
-                    const link = post.link.find(l => l.rel === 'alternate')?.href || '#';
-                    const published = post.published?.$t || new Date().toISOString();
-                    const content = post.content?.$t || post.summary?.$t || 'لا يوجد محتوى.';
-                    const labels = getLabels(post);
+                sorted.forEach((post) => {
+                    const title = post.title || 'بدون عنوان';
+                    const date = post.date || new Date().toISOString();
+                    const content = post.content || 'لا يوجد محتوى.';
+                    const tags = post.tags || 'عام';
 
                     html += `
                         <div class="post">
-                            <h2 class="post-title">
-                                <a href="${link}" target="_blank">${title}</a>
-                            </h2>
+                            <h2 class="post-title">${title}</h2>
                             <div class="post-meta">
-                                <i class="fas fa-calendar"></i> ${formatDate(published)}
+                                <i class="fas fa-calendar"></i> ${formatDate(date)}
                                 <span style="margin:0 8px;">|</span>
-                                <i class="fas fa-tag"></i> ${labels}
+                                <i class="fas fa-tag"></i> ${tags}
                             </div>
                             <div class="post-body">
-                                ${extractContent(content)}
-                                <a href="${link}" target="_blank" class="read-more">
-                                    اقرأ المزيد <i class="fas fa-arrow-left"></i>
-                                </a>
+                                ${content}
                             </div>
                         </div>
                     `;
@@ -302,43 +320,45 @@
                 container.innerHTML = html;
             }
 
-            function fetchPosts() {
-                const url = `${BLOG_URL}?alt=json&max-results=${MAX_POSTS}`;
-
-                fetch(url)
-                    .then(response => {
-                        if (!response.ok) throw new Error('فشل في جلب البيانات');
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (data.feed && data.feed.entry) {
-                            renderPosts(data.feed.entry);
-                        } else {
-                            container.innerHTML = `
-                                <div class="status-message">
-                                    <i class="fas fa-newspaper" style="color:var(--accent);"></i>
-                                    <p>لا توجد مقالات حالياً.</p>
-                                    <p class="sub-msg">اكتب مقالاً في مدونتك وسيظهر هنا تلقائياً!</p>
-                                </div>
-                            `;
-                        }
-                    })
-                    .catch(error => {
-                        console.error('خطأ في الجلب:', error);
+            function loadPosts() {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    try {
+                        const posts = JSON.parse(saved);
+                        renderPosts(posts);
+                    } catch (e) {
                         container.innerHTML = `
                             <div class="status-message">
                                 <i class="fas fa-exclamation-circle" style="color:#EF4444;"></i>
-                                <p>حدث خطأ في تحميل المقالات.</p>
-                                <p class="sub-msg">تأكد من اتصال الإنترنت أو حاول لاحقاً.</p>
+                                <p>حدث خطأ في قراءة المقالات.</p>
+                                <p class="sub-msg">تأكد من أنك تستخدم أحدث إصدار من لوحة التحكم.</p>
                             </div>
                         `;
-                    });
+                        console.error('خطأ في قراءة المقالات:', e);
+                    }
+                } else {
+                    container.innerHTML = `
+                        <div class="status-message">
+                            <i class="fas fa-newspaper" style="color:var(--accent);"></i>
+                            <p>لا توجد مقالات حالياً.</p>
+                            <p class="sub-msg">اذهب إلى <strong style="color:var(--accent);">لوحة التحكم</strong> لكتابة مقالك الأول!</p>
+                        </div>
+                    `;
+                }
             }
 
-            // محاولة جلب المقالات فوراً، ثم كل 30 ثانية
-            setTimeout(fetchPosts, 500);
-            // إعادة المحاولة كل 30 ثانية للتأكد من ظهور المقالات الجديدة
-            setInterval(fetchPosts, 30000);
+            // تحميل المقالات فوراً
+            loadPosts();
+
+            // الاستماع للتغييرات في LocalStorage (من dashboard)
+            window.addEventListener('storage', function(e) {
+                if (e.key === STORAGE_KEY) {
+                    loadPosts();
+                }
+            });
+
+            // إعادة التحميل كل 5 ثوانٍ للتحديث التلقائي
+            setInterval(loadPosts, 5000);
         })();
     </script>
 
