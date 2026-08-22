@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "post_1787405380249",
+    "title": "test",
+    "tags": "test",
+    "content": "<p>test 123</p>",
+    "date": "2026-08-22T13:29:40.249Z",
+    "published": true
+  }
+]
