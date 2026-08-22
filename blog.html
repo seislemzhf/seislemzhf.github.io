@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* ====== CSS سريع (نفس السابق) ====== */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Tajawal', sans-serif; background: #0a0a0a; color: #f0ece6; line-height: 1.8; min-height: 100vh; }
         .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
         a { text-decoration: none; color: inherit; }
-        :root { --accent: #6c8b9e; --accent-light: #8aadc2; --accent-dark: #4a6a7e; --bg-card: #1a1a1a; --border: rgba(108, 139, 158, 0.08); --text-muted: #6a625a; --text-secondary: #b8b0a8; }
+
+        :root {
+            --accent: #6c8b9e;
+            --accent-light: #8aadc2;
+            --accent-dark: #4a6a7e;
+            --bg-card: #1a1a1a;
+            --border: rgba(108, 139, 158, 0.08);
+            --text-muted: #6a625a;
+            --text-secondary: #b8b0a8;
+            --success: #10B981;
+            --danger: #EF4444;
+            --warning: #F59E0B;
+        }
 
         header { padding: 14px 0; background: rgba(10, 10, 10, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
         .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
@@ -27,14 +38,43 @@
         .hero h1 span { color: var(--accent); }
         .hero .subtitle { font-size: 0.95rem; color: var(--text-muted); margin-top: 4px; }
 
-        .refresh-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; padding: 10px 16px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid var(--border); }
+        .refresh-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 10px 16px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
         .refresh-bar .info { font-size: 0.8rem; color: var(--text-muted); }
         .refresh-bar .info i { color: var(--accent); }
-        .btn-refresh { background: rgba(108, 139, 158, 0.1); color: var(--accent); border: 1px solid rgba(108, 139, 158, 0.15); padding: 6px 18px; border-radius: 50px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: 0.3s; font-family: inherit; }
+        .btn-refresh {
+            background: rgba(108, 139, 158, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(108, 139, 158, 0.15);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
         .btn-refresh:hover { background: var(--accent); color: #0a0a0a; }
         .btn-refresh:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        .post { background: var(--bg-card); border-radius: 14px; padding: 22px 24px; margin-bottom: 24px; border: 1px solid var(--border); transition: 0.3s; }
+        .post {
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 22px 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
         .post:hover { border-color: rgba(108, 139, 158, 0.15); }
         .post .post-title { font-size: 1.3rem; font-weight: 900; color: #f0ece6; margin-bottom: 4px; line-height: 1.4; }
         .post .post-title a { color: #f0ece6; }
@@ -48,10 +88,52 @@
         .status-message { text-align: center; padding: 40px 20px; color: var(--text-muted); }
         .status-message i { font-size: 2.2rem; color: var(--accent); margin-bottom: 12px; }
         .status-message .sub-msg { font-size: 0.8rem; opacity: 0.6; margin-top: 8px; }
+        .status-message .btn-retry {
+            background: var(--accent);
+            color: #0a0a0a;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 12px;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        .status-message .btn-retry:hover { transform: scale(1.05); }
 
         footer { padding: 25px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); margin-top: 15px; }
         footer .ornament { font-size: 0.6rem; color: var(--accent-dark); letter-spacing: 10px; opacity: 0.2; }
         footer p { font-size: 0.75rem; }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 12px 24px;
+            border-radius: 12px;
+            color: #f0ece6;
+            font-weight: 700;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            max-width: 90%;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .toast.show { display: block; animation: fadeUp 0.3s ease; }
+        .toast.success { border-color: var(--success); }
+        .toast.error { border-color: var(--danger); }
+        .toast.info { border-color: var(--accent); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
 
         @media (max-width: 600px) {
             .post { padding: 16px 18px; }
@@ -97,14 +179,19 @@
         </div>
     </footer>
 
+    <div class="toast" id="toast"></div>
+
     <script>
         // =========================================================
-        // 📝 جلب المقالات من GitHub (باستخدام raw)
+        // 📝 جلب المقالات من GitHub (نسخة محسّنة)
         // =========================================================
+
+        // ====== إعدادات المسار ======
         const REPO = 'seislemzhf.github.io';
         const PATH = 'data/posts.json';
         const RAW_URL = `https://raw.githubusercontent.com/${REPO}/main/${PATH}`;
 
+        // ====== دوال مساعدة ======
         function stripHtml(html) {
             if (!html) return '';
             const tmp = document.createElement('div');
@@ -115,52 +202,105 @@
         function formatDate(dateStr) {
             try {
                 const d = new Date(dateStr);
-                return d.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
-            } catch { return dateStr; }
+                return d.toLocaleDateString('ar-EG', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } catch {
+                return dateStr;
+            }
         }
 
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            toast.textContent = message;
+            toast.className = 'toast show ' + type;
+            clearTimeout(toast._timer);
+            toast._timer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // ====== تحميل المقالات ======
         async function loadPosts() {
             const container = document.getElementById('posts-container');
             const countEl = document.getElementById('post-count');
+            if (!container) return;
+
+            // إظهار حالة التحميل
+            container.innerHTML = `
+                <div class="status-message">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>جاري تحميل المقالات...</p>
+                </div>
+            `;
 
             try {
-                const response = await fetch(RAW_URL + '?t=' + Date.now());
+                // إضافة timestamp لتجاوز الكاش
+                const url = RAW_URL + '?t=' + Date.now();
+                console.log('📡 جاري جلب المقالات من:', url);
 
+                const response = await fetch(url);
+
+                // إذا كان الملف غير موجود (404)
                 if (response.status === 404) {
                     container.innerHTML = `
                         <div class="status-message">
                             <i class="fas fa-newspaper" style="color:var(--accent);"></i>
                             <p>لا توجد مقالات حالياً.</p>
                             <p class="sub-msg">ترقبوا المقالات القادمة قريباً!</p>
+                            <p class="sub-msg" style="font-size:0.7rem; opacity:0.4;">
+                                ${PATH} (غير موجود)
+                            </p>
                         </div>
                     `;
-                    countEl.textContent = '0';
+                    if (countEl) countEl.textContent = '0';
                     return;
                 }
 
-                if (!response.ok) throw new Error('فشل في تحميل المقالات');
+                // إذا كان هناك خطأ آخر
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
 
+                // قراءة البيانات
                 const allPosts = await response.json();
-                if (!Array.isArray(allPosts)) throw new Error('بيانات غير صالحة');
+                console.log('📄 تم جلب', Array.isArray(allPosts) ? allPosts.length : '0', 'مقال');
 
+                // التأكد من أن البيانات مصفوفة
+                if (!Array.isArray(allPosts)) {
+                    throw new Error('البيانات المستلمة ليست مصفوفة');
+                }
+
+                // تصفية المقالات المنشورة فقط
                 const published = allPosts.filter(p => p.published !== false);
-                countEl.textContent = published.length;
+                console.log('📄 المقالات المنشورة:', published.length);
 
+                if (countEl) countEl.textContent = published.length;
+
+                // إذا لم توجد مقالات منشورة
                 if (published.length === 0) {
                     container.innerHTML = `
                         <div class="status-message">
                             <i class="fas fa-newspaper" style="color:var(--accent);"></i>
                             <p>لا توجد مقالات منشورة حالياً.</p>
                             <p class="sub-msg">ترقبوا المقالات القادمة قريباً!</p>
+                            <p class="sub-msg" style="font-size:0.7rem; opacity:0.4;">
+                                ${published.length} مقال منشور من ${allPosts.length} إجمالي
+                            </p>
                         </div>
                     `;
                     return;
                 }
 
+                // ترتيب من الأحدث إلى الأقدم
                 const sorted = [...published].sort((a, b) => new Date(b.date) - new Date(a.date));
 
+                // إنشاء HTML
                 let html = '';
-                sorted.forEach(post => {
+                sorted.forEach((post, index) => {
                     const title = post.title || 'بدون عنوان';
                     const date = post.date || new Date().toISOString();
                     const tags = post.tags || 'عام';
@@ -169,42 +309,84 @@
 
                     html += `
                         <div class="post">
-                            <h2 class="post-title"><a href="view-post.html?id=${post.id}">${title}</a></h2>
+                            <h2 class="post-title">
+                                <a href="view-post.html?id=${post.id}">${title}</a>
+                            </h2>
                             <div class="post-meta">
                                 <i class="fas fa-calendar"></i> ${formatDate(date)}
                                 <span style="margin:0 6px;">|</span>
                                 <i class="fas fa-tag"></i> ${tags}
                             </div>
                             <div class="post-excerpt">${excerpt}</div>
-                            <a href="view-post.html?id=${post.id}" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                            <a href="view-post.html?id=${post.id}" class="read-more">
+                                اقرأ المزيد <i class="fas fa-arrow-left"></i>
+                            </a>
                         </div>
                     `;
                 });
 
                 container.innerHTML = html;
+                showToast('✅ تم تحميل ' + published.length + ' مقال', 'success');
 
             } catch (error) {
-                console.error('خطأ:', error);
+                console.error('❌ خطأ في تحميل المقالات:', error);
                 container.innerHTML = `
                     <div class="status-message">
-                        <i class="fas fa-exclamation-circle" style="color:#EF4444;"></i>
+                        <i class="fas fa-exclamation-circle" style="color:var(--danger);"></i>
                         <p>حدث خطأ في تحميل المقالات</p>
                         <p class="sub-msg">${error.message}</p>
-                        <button onclick="loadPosts()" style="background:var(--accent); color:#0a0a0a; padding:8px 24px; border:none; border-radius:30px; font-weight:700; cursor:pointer; margin-top:10px; font-family:inherit;">
+                        <button class="btn-retry" onclick="loadPosts()">
                             <i class="fas fa-sync-alt"></i> إعادة المحاولة
                         </button>
+                        <p class="sub-msg" style="font-size:0.7rem; opacity:0.4; margin-top:10px;">
+                            ${RAW_URL}
+                        </p>
                     </div>
                 `;
+                showToast('❌ فشل تحميل المقالات: ' + error.message, 'error');
             }
         }
 
-        // تحميل عند الفتح
-        loadPosts();
+        // ====== التحقق من وجود الملف ======
+        async function checkFileExists() {
+            try {
+                const response = await fetch(RAW_URL + '?t=' + Date.now());
+                if (response.ok) {
+                    console.log('✅ ملف المقالات موجود');
+                    return true;
+                } else if (response.status === 404) {
+                    console.warn('⚠️ ملف المقالات غير موجود (404)');
+                    return false;
+                } else {
+                    console.warn('⚠️ مشكلة في الملف:', response.status);
+                    return false;
+                }
+            } catch (error) {
+                console.error('❌ خطأ في التحقق:', error);
+                return false;
+            }
+        }
 
-        // تحديث كل 60 ثانية
-        setInterval(loadPosts, 60000);
+        // ====== التحميل عند فتح الصفحة ======
+        document.addEventListener('DOMContentLoaded', function() {
+            // التحقق من وجود الملف أولاً
+            checkFileExists().then(exists => {
+                if (!exists) {
+                    console.log('📝 الملف غير موجود، سيتم إنشاؤه عند نشر أول مقال');
+                }
+                loadPosts();
+            });
 
+            // تحديث تلقائي كل 30 ثانية
+            setInterval(loadPosts, 30000);
+        });
+
+        // ====== جعل الدالة عامة للزر ======
         window.loadPosts = loadPosts;
+        window.checkFileExists = checkFileExists;
+
+        console.log('🚀 Blog Loaded');
+        console.log('📂 المسار:', RAW_URL);
     </script>
 
 </body>
