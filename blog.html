@@ -8,7 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Tajawal', sans-serif; background: #0a0a0a; color: #f0ece6; line-height: 1.8; min-height: 100vh; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: #0a0a0a;
+            color: #f0ece6;
+            line-height: 1.8;
+            min-height: 100vh;
+            transition: 0.3s;
+        }
+        body.light-mode {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+        body.light-mode .bg-card { background: #ffffff; }
+        body.light-mode .border { border-color: #e0e0e0; }
+        body.light-mode .text-muted { color: #666; }
+
         .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
         a { text-decoration: none; color: inherit; }
 
@@ -26,18 +41,73 @@
         }
 
         header { padding: 14px 0; background: rgba(10, 10, 10, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        body.light-mode header { background: rgba(255,255,255,0.96); }
         .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .logo { font-size: 1.3rem; font-weight: 900; color: #f0ece6; }
+        body.light-mode .logo { color: #1a1a1a; }
         .logo span { color: var(--accent); }
         .logo .sub { font-size: 0.4rem; color: var(--text-muted); letter-spacing: 4px; display: block; font-weight: 400; }
         .btn-home { display: inline-block; background: rgba(108, 139, 158, 0.08); color: var(--accent); padding: 6px 16px; border-radius: 50px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(108, 139, 158, 0.12); transition: 0.3s; }
         .btn-home:hover { background: var(--accent); color: #0a0a0a; transform: translateY(-2px); }
+        body.light-mode .btn-home:hover { color: #fff; }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
         .hero { padding: 30px 0 15px; text-align: center; }
         .hero h1 { font-size: 2.2rem; font-weight: 900; color: #f0ece6; }
+        body.light-mode .hero h1 { color: #1a1a1a; }
         .hero h1 span { color: var(--accent); }
         .hero .subtitle { font-size: 0.95rem; color: var(--text-muted); margin-top: 4px; }
 
+        /* ====== بحث ====== */
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 10px 16px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        body.light-mode .search-bar { background: #ffffff; }
+        .search-bar input {
+            flex: 1;
+            padding: 10px 14px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: #f0ece6;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        body.light-mode .search-bar input { color: #1a1a1a; background: #f5f5f5; }
+        .search-bar input:focus { outline: none; border-color: var(--accent); }
+        .search-bar .btn-search {
+            background: var(--accent);
+            color: #0a0a0a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        .search-bar .btn-search:hover { transform: scale(1.02); }
+
+        /* ====== شريط التحكم ====== */
         .refresh-bar {
             display: flex;
             justify-content: space-between;
@@ -65,8 +135,8 @@
             font-family: inherit;
         }
         .btn-refresh:hover { background: var(--accent); color: #0a0a0a; }
-        .btn-refresh:disabled { opacity: 0.5; cursor: not-allowed; }
 
+        /* ====== المقالات ====== */
         .post {
             background: var(--bg-card);
             border-radius: 14px;
@@ -77,13 +147,45 @@
         }
         .post:hover { border-color: rgba(108, 139, 158, 0.15); }
         .post .post-title { font-size: 1.3rem; font-weight: 900; color: #f0ece6; margin-bottom: 4px; line-height: 1.4; }
+        body.light-mode .post .post-title { color: #1a1a1a; }
         .post .post-title a { color: #f0ece6; }
+        body.light-mode .post .post-title a { color: #1a1a1a; }
         .post .post-title a:hover { color: var(--accent); }
         .post .post-meta { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px; }
         .post .post-meta i { color: var(--accent); margin: 0 3px; }
         .post .post-excerpt { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8; }
+        body.light-mode .post .post-excerpt { color: #444; }
         .post .read-more { display: inline-block; margin-top: 12px; color: var(--accent); font-weight: 700; border: 1px solid rgba(108, 139, 158, 0.12); padding: 5px 18px; border-radius: 30px; transition: 0.3s; font-size: 0.8rem; }
         .post .read-more:hover { background: var(--accent); color: #0a0a0a; }
+
+        /* ====== ترقيم الصفحات ====== */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding: 15px 0;
+        }
+        .pagination button {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .pagination button:hover { border-color: var(--accent); color: var(--accent); }
+        .pagination button.active {
+            background: var(--accent);
+            color: #0a0a0a;
+            border-color: var(--accent);
+        }
+        .pagination button:disabled { opacity: 0.3; cursor: not-allowed; }
 
         .status-message { text-align: center; padding: 40px 20px; color: var(--text-muted); }
         .status-message i { font-size: 2.2rem; color: var(--accent); margin-bottom: 12px; }
@@ -102,11 +204,6 @@
         }
         .status-message .btn-retry:hover { transform: scale(1.05); }
 
-        footer { padding: 25px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); margin-top: 15px; }
-        footer .ornament { font-size: 0.6rem; color: var(--accent-dark); letter-spacing: 10px; opacity: 0.2; }
-        footer p { font-size: 0.75rem; }
-
-        /* Toast */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -125,21 +222,24 @@
             text-align: center;
             font-size: 0.9rem;
         }
+        body.light-mode .toast { color: #1a1a1a; background: #ffffff; }
         .toast.show { display: block; animation: fadeUp 0.3s ease; }
         .toast.success { border-color: var(--success); }
         .toast.error { border-color: var(--danger); }
         .toast.info { border-color: var(--accent); }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+        footer { padding: 25px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); margin-top: 15px; }
+        footer .ornament { font-size: 0.6rem; color: var(--accent-dark); letter-spacing: 10px; opacity: 0.2; }
+        footer p { font-size: 0.75rem; }
 
         @media (max-width: 600px) {
             .post { padding: 16px 18px; }
             .post .post-title { font-size: 1.1rem; }
             .hero h1 { font-size: 1.8rem; }
-            .refresh-bar { flex-direction: column; text-align: center; }
+            .refresh-bar, .search-bar { flex-direction: column; text-align: center; }
+            .pagination button { padding: 6px 12px; font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -148,7 +248,12 @@
     <header>
         <div class="container header-content">
             <div class="logo">Minsaj <span>DZ</span><span class="sub">✦ مدونة البرمجيات والتقنية ✦</span></div>
-            <a href="https://seislemzhf.github.io" class="btn-home"><i class="fas fa-arrow-right"></i> الرئيسية</a>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i> <span id="theme-label">وضع داكن</span>
+                </button>
+                <a href="https://seislemzhf.github.io" class="btn-home"><i class="fas fa-arrow-right"></i> الرئيسية</a>
+            </div>
         </div>
     </header>
 
@@ -161,13 +266,27 @@
 
     <section>
         <div class="container">
+
+            <!-- بحث -->
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="🔍 ابحث في المقالات..." oninput="searchPosts()">
+                <button class="btn-search" onclick="searchPosts()"><i class="fas fa-search"></i> بحث</button>
+            </div>
+
+            <!-- شريط التحكم -->
             <div class="refresh-bar">
                 <span class="info"><i class="fas fa-database"></i> <span id="post-count">0</span> مقال</span>
                 <button class="btn-refresh" onclick="loadPosts()"><i class="fas fa-sync-alt"></i> تحديث</button>
             </div>
+
+            <!-- حاوية المقالات -->
             <div id="posts-container">
                 <div class="status-message"><i class="fas fa-spinner fa-spin"></i><p>جاري تحميل المقالات...</p></div>
             </div>
+
+            <!-- ترقيم الصفحات -->
+            <div class="pagination" id="pagination"></div>
+
         </div>
     </section>
 
@@ -183,16 +302,18 @@
 
     <script>
         // =========================================================
-        // 📝 جلب المقالات من GitHub - النسخة النهائية
+        // 📝 جلب المقالات مع بحث وترقيم
         // =========================================================
 
-        // ====== المسار الصحيح (تأكد من أن اسم المستخدم صحيح) ======
         const USERNAME = 'seislemzhf';
         const REPO = 'seislemzhf.github.io';
         const PATH = 'data/posts.json';
         const RAW_URL = `https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${PATH}`;
+        const POSTS_PER_PAGE = 5;
 
-        console.log('📂 المسار:', RAW_URL);
+        let allPosts = [];
+        let currentPage = 1;
+        let filteredPosts = [];
 
         // ====== دوال مساعدة ======
         function stripHtml(html) {
@@ -205,14 +326,8 @@
         function formatDate(dateStr) {
             try {
                 const d = new Date(dateStr);
-                return d.toLocaleDateString('ar-EG', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            } catch {
-                return dateStr;
-            }
+                return d.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+            } catch { return dateStr; }
         }
 
         function showToast(message, type = 'info') {
@@ -221,146 +336,200 @@
             toast.textContent = message;
             toast.className = 'toast show ' + type;
             clearTimeout(toast._timer);
-            toast._timer = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 4000);
+            toast._timer = setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+
+        // ====== الوضع الداكن ======
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const label = document.getElementById('theme-label');
+            if (document.body.classList.contains('light-mode')) {
+                label.textContent = 'وضع فاتح';
+                localStorage.setItem('theme', 'light');
+            } else {
+                label.textContent = 'وضع داكن';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('theme-label').textContent = 'وضع فاتح';
+            }
+        });
+
+        // ====== البحث ======
+        function searchPosts() {
+            const query = document.getElementById('search-input').value.trim().toLowerCase();
+            if (!query) {
+                filteredPosts = allPosts;
+            } else {
+                filteredPosts = allPosts.filter(post => {
+                    const title = (post.title || '').toLowerCase();
+                    const tags = (post.tags || '').toLowerCase();
+                    const content = stripHtml(post.content || '').toLowerCase();
+                    return title.includes(query) || tags.includes(query) || content.includes(query);
+                });
+            }
+            currentPage = 1;
+            renderPage();
         }
 
         // ====== تحميل المقالات ======
         async function loadPosts() {
             const container = document.getElementById('posts-container');
-            const countEl = document.getElementById('post-count');
             if (!container) return;
 
-            // عرض حالة التحميل
-            container.innerHTML = `
-                <div class="status-message">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>جاري تحميل المقالات...</p>
-                </div>
-            `;
+            container.innerHTML = `<div class="status-message"><i class="fas fa-spinner fa-spin"></i><p>جاري تحميل المقالات...</p></div>`;
 
             try {
-                const url = RAW_URL + '?t=' + Date.now();
-                console.log('📡 جاري جلب المقالات من:', url);
+                const response = await fetch(RAW_URL + '?t=' + Date.now());
 
-                const response = await fetch(url);
-
-                // إذا كان الملف غير موجود (404)
                 if (response.status === 404) {
-                    container.innerHTML = `
-                        <div class="status-message">
-                            <i class="fas fa-newspaper" style="color:var(--accent);"></i>
-                            <p>لا توجد مقالات حالياً.</p>
-                            <p class="sub-msg">ترقبوا المقالات القادمة قريباً!</p>
-                            <button class="btn-retry" onclick="loadPosts()">
-                                <i class="fas fa-sync-alt"></i> إعادة المحاولة
-                            </button>
-                        </div>
-                    `;
-                    if (countEl) countEl.textContent = '0';
+                    container.innerHTML = `<div class="status-message"><i class="fas fa-newspaper" style="color:var(--accent);"></i><p>لا توجد مقالات حالياً.</p><p class="sub-msg">ترقبوا المقالات القادمة قريباً!</p></div>`;
                     return;
                 }
 
-                // إذا كان هناك خطأ آخر
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
+                if (!response.ok) throw new Error('فشل في تحميل المقالات');
 
-                // قراءة البيانات
-                const allPosts = await response.json();
-                console.log('📄 تم جلب', Array.isArray(allPosts) ? allPosts.length : '0', 'مقال');
+                const data = await response.json();
+                if (!Array.isArray(data)) throw new Error('بيانات غير صالحة');
 
-                // التأكد من أن البيانات مصفوفة
-                if (!Array.isArray(allPosts)) {
-                    throw new Error('البيانات المستلمة ليست مصفوفة');
-                }
-
-                // تصفية المقالات المنشورة فقط
-                const published = allPosts.filter(p => p.published !== false);
-                console.log('📄 المقالات المنشورة:', published.length);
-
-                if (countEl) countEl.textContent = published.length;
-
-                // إذا لم توجد مقالات منشورة
-                if (published.length === 0) {
-                    container.innerHTML = `
-                        <div class="status-message">
-                            <i class="fas fa-newspaper" style="color:var(--accent);"></i>
-                            <p>لا توجد مقالات منشورة حالياً.</p>
-                            <p class="sub-msg">ترقبوا المقالات القادمة قريباً!</p>
-                            <p class="sub-msg" style="font-size:0.7rem; opacity:0.4;">
-                                ${allPosts.length} مقال في الملف، 0 منشور
-                            </p>
-                            <button class="btn-retry" onclick="loadPosts()">
-                                <i class="fas fa-sync-alt"></i> إعادة المحاولة
-                            </button>
-                        </div>
-                    `;
-                    return;
-                }
-
-                // ترتيب من الأحدث إلى الأقدم
-                const sorted = [...published].sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                // إنشاء HTML
-                let html = '';
-                sorted.forEach((post, index) => {
-                    const title = post.title || 'بدون عنوان';
-                    const date = post.date || new Date().toISOString();
-                    const tags = post.tags || 'عام';
-                    const fullText = stripHtml(post.content || '');
-                    const excerpt = fullText.length > 200 ? fullText.substring(0, 200) + '...' : fullText;
-
-                    html += `
-                        <div class="post">
-                            <h2 class="post-title">
-                                <a href="view-post.html?id=${post.id}">${title}</a>
-                            </h2>
-                            <div class="post-meta">
-                                <i class="fas fa-calendar"></i> ${formatDate(date)}
-                                <span style="margin:0 6px;">|</span>
-                                <i class="fas fa-tag"></i> ${tags}
-                            </div>
-                            <div class="post-excerpt">${excerpt}</div>
-                            <a href="view-post.html?id=${post.id}" class="read-more">
-                                اقرأ المزيد <i class="fas fa-arrow-left"></i>
-                            </a>
-                        </div>
-                    `;
-                });
-
-                container.innerHTML = html;
-                showToast('✅ تم تحميل ' + published.length + ' مقال', 'success');
+                // تصفية المنشورات فقط
+                allPosts = data.filter(p => p.published !== false);
+                filteredPosts = allPosts;
+                currentPage = 1;
+                renderPage();
 
             } catch (error) {
-                console.error('❌ خطأ في تحميل المقالات:', error);
+                console.error('خطأ:', error);
                 container.innerHTML = `
                     <div class="status-message">
                         <i class="fas fa-exclamation-circle" style="color:var(--danger);"></i>
                         <p>حدث خطأ في تحميل المقالات</p>
                         <p class="sub-msg">${error.message}</p>
-                        <button class="btn-retry" onclick="loadPosts()">
-                            <i class="fas fa-sync-alt"></i> إعادة المحاولة
-                        </button>
+                        <button class="btn-retry" onclick="loadPosts()"><i class="fas fa-sync-alt"></i> إعادة المحاولة</button>
                     </div>
                 `;
-                showToast('❌ فشل تحميل المقالات: ' + error.message, 'error');
             }
         }
 
-        // ====== التحميل عند فتح الصفحة ======
+        // ====== عرض الصفحة الحالية ======
+        function renderPage() {
+            const container = document.getElementById('posts-container');
+            const countEl = document.getElementById('post-count');
+
+            if (!container) return;
+
+            if (filteredPosts.length === 0) {
+                container.innerHTML = `
+                    <div class="status-message">
+                        <i class="fas fa-search" style="color:var(--accent);"></i>
+                        <p>لا توجد مقالات تطابق بحثك</p>
+                        <p class="sub-msg">جرب كلمات بحث مختلفة</p>
+                    </div>
+                `;
+                if (countEl) countEl.textContent = '0';
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            }
+
+            if (countEl) countEl.textContent = filteredPosts.length;
+
+            // حساب نطاق الصفحة
+            const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+            const start = (currentPage - 1) * POSTS_PER_PAGE;
+            const end = Math.min(start + POSTS_PER_PAGE, filteredPosts.length);
+            const pagePosts = filteredPosts.slice(start, end);
+
+            // بناء HTML للمقالات
+            let html = '';
+            pagePosts.forEach(post => {
+                const title = post.title || 'بدون عنوان';
+                const date = post.date || new Date().toISOString();
+                const tags = post.tags || 'عام';
+                const fullText = stripHtml(post.content || '');
+                const excerpt = fullText.length > 200 ? fullText.substring(0, 200) + '...' : fullText;
+
+                html += `
+                    <div class="post">
+                        <h2 class="post-title">
+                            <a href="view-post.html?id=${post.id}">${title}</a>
+                        </h2>
+                        <div class="post-meta">
+                            <i class="fas fa-calendar"></i> ${formatDate(date)}
+                            <span style="margin:0 6px;">|</span>
+                            <i class="fas fa-tag"></i> ${tags}
+                        </div>
+                        <div class="post-excerpt">${excerpt}</div>
+                        <a href="view-post.html?id=${post.id}" class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            // بناء الترقيم
+            renderPagination(totalPages);
+        }
+
+        // ====== عرض أزرار الترقيم ======
+        function renderPagination(totalPages) {
+            const paginationEl = document.getElementById('pagination');
+            if (!paginationEl) return;
+
+            if (totalPages <= 1) {
+                paginationEl.innerHTML = '';
+                return;
+            }
+
+            let html = '';
+
+            // زر السابق
+            html += `<button onclick="goToPage(${currentPage - 1})" ${currentPage <= 1 ? 'disabled' : ''}>
+                <i class="fas fa-chevron-right"></i>
+            </button>`;
+
+            // أرقام الصفحات
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === currentPage) {
+                    html += `<button class="active">${i}</button>`;
+                } else if (i === 1 || i === totalPages || Math.abs(i - currentPage) <= 2) {
+                    html += `<button onclick="goToPage(${i})">${i}</button>`;
+                } else if (i === currentPage - 3 || i === currentPage + 3) {
+                    html += `<button disabled>...</button>`;
+                }
+            }
+
+            // زر التالي
+            html += `<button onclick="goToPage(${currentPage + 1})" ${currentPage >= totalPages ? 'disabled' : ''}>
+                <i class="fas fa-chevron-left"></i>
+            </button>`;
+
+            paginationEl.innerHTML = html;
+        }
+
+        // ====== الانتقال إلى صفحة ======
+        function goToPage(page) {
+            const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderPage();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ====== تحميل عند الفتح ======
         document.addEventListener('DOMContentLoaded', function() {
             loadPosts();
-            // تحديث تلقائي كل 30 ثانية
-            setInterval(loadPosts, 30000);
+            setInterval(loadPosts, 60000);
         });
 
-        // ====== جعل الدالة عامة للزر ======
+        // ====== دوال عامة ======
         window.loadPosts = loadPosts;
-
-        console.log('🚀 Blog Loaded');
-        console.log('📂 المسار:', RAW_URL);
+        window.searchPosts = searchPosts;
+        window.goToPage = goToPage;
+        window.toggleTheme = toggleTheme;
     </script>
 
 </body>
