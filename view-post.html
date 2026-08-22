@@ -3,69 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-
-    <!-- ====== SEO: العنوان الديناميكي ====== -->
-    <title id="meta-title">المدونة | Minsaj DZ</title>
-
-    <!-- ====== SEO: الوصف والكلمات المفتاحية ====== -->
-    <meta name="description" id="meta-description" content="مدونة برمجيات وتقنية جزائرية">
-    <meta name="keywords" id="meta-keywords" content="برمجيات, تقنية, برمجة, تطوير, جزائر, Minsaj DZ">
-
-    <!-- ====== SEO: الروبوتات والفهرسة ====== -->
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <link rel="canonical" id="meta-canonical" href="https://seislemzhf.github.io/">
-
-    <!-- ====== Open Graph (فيسبوك، واتساب، تليغرام) ====== -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" id="og-title" content="المدونة | Minsaj DZ">
-    <meta property="og:description" id="og-description" content="مدونة برمجيات وتقنية جزائرية">
-    <meta property="og:url" id="og-url" content="https://seislemzhf.github.io/">
-    <meta property="og:image" id="og-image" content="https://seislemzhf.github.io/images/og-image.jpg">
-    <meta property="og:site_name" content="Minsaj DZ - مدونة البرمجيات والتقنية">
-    <meta property="og:locale" content="ar_AR">
-
-    <!-- ====== Twitter Cards ====== -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" id="twitter-title" content="المدونة | Minsaj DZ">
-    <meta name="twitter:description" id="twitter-description" content="مدونة برمجيات وتقنية جزائرية">
-    <meta name="twitter:image" id="twitter-image" content="https://seislemzhf.github.io/images/og-image.jpg">
-
-    <!-- ====== JSON-LD (بيانات منظمة لجوجل) ====== -->
-    <script type="application/ld+json" id="json-ld">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "المدونة | Minsaj DZ",
-        "description": "مدونة برمجيات وتقنية جزائرية",
-        "url": "https://seislemzhf.github.io/",
-        "datePublished": "2026-08-22",
-        "dateModified": "2026-08-22",
-        "author": {
-            "@type": "Person",
-            "name": "سيف الإسلام زحاف"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Minsaj DZ",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://seislemzhf.github.io/images/logo.png"
-            }
-        }
-    }
-    </script>
-
-    <!-- ====== أيقونات ====== -->
-    <link rel="icon" href="https://seislemzhf.github.io/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="https://seislemzhf.github.io/images/apple-touch-icon.png">
-
-    <!-- ====== ستايل ====== -->
+    <title>عرض المقال | Minsaj DZ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-
     <style>
-        /* ====== CSS السابق مع إضافات بسيطة ====== */
+        /* ====== CSS كامل (مدمج مع جميع الميزات) ====== */
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body {
             font-family: 'Tajawal', sans-serif;
@@ -73,7 +15,16 @@
             color: #f0ece6;
             line-height: 1.8;
             min-height: 100vh;
+            transition: 0.3s;
         }
+        body.light-mode {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+        body.light-mode .bg-card { background: #ffffff; }
+        body.light-mode .border { border-color: #e0e0e0; }
+        body.light-mode .text-muted { color: #666; }
+
         .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
         a { text-decoration: none; color: inherit; }
 
@@ -90,37 +41,29 @@
             --warning: #F59E0B;
         }
 
-        header {
-            padding: 14px 0;
-            background: rgba(10, 10, 10, 0.96);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+        header { padding: 14px 0; background: rgba(10, 10, 10, 0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        body.light-mode header { background: rgba(255,255,255,0.96); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .logo { font-size: 1.3rem; font-weight: 900; color: #f0ece6; }
+        body.light-mode .logo { color: #1a1a1a; }
         .logo span { color: var(--accent); }
         .logo .sub { font-size: 0.4rem; color: var(--text-muted); letter-spacing: 4px; display: block; font-weight: 400; }
-        .btn-back {
-            display: inline-block;
-            background: rgba(108, 139, 158, 0.08);
-            color: var(--accent);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            border: 1px solid rgba(108, 139, 158, 0.12);
-            transition: 0.3s;
-        }
+        .btn-back { display: inline-block; background: rgba(108, 139, 158, 0.08); color: var(--accent); padding: 6px 16px; border-radius: 50px; font-weight: 700; font-size: 0.75rem; border: 1px solid rgba(108, 139, 158, 0.12); transition: 0.3s; }
         .btn-back:hover { background: var(--accent); color: #0a0a0a; transform: translateY(-2px); }
+        body.light-mode .btn-back:hover { color: #fff; }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 
         #post-container { padding: 20px 0 30px; }
 
@@ -131,98 +74,25 @@
             margin-bottom: 30px;
             border: 1px solid var(--border);
         }
-        .post-full .post-title {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #f0ece6;
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-        .post-full .post-meta {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-        }
+        body.light-mode .post-full { background: #ffffff; }
+        .post-full .post-title { font-size: 2rem; font-weight: 900; color: #f0ece6; margin-bottom: 8px; line-height: 1.3; }
+        body.light-mode .post-full .post-title { color: #1a1a1a; }
+        .post-full .post-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
         .post-full .post-meta i { color: var(--accent); margin: 0 4px; }
-        .post-full .post-body {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 2;
-        }
-        .post-full .post-body img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin: 20px 0;
-            border: 1px solid var(--border);
-        }
-        .post-full .post-body iframe {
-            max-width: 100%;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        .post-full .post-body h1, .post-full .post-body h2, .post-full .post-body h3 {
-            color: #f0ece6;
-            margin: 20px 0 10px;
-        }
-        .post-full .post-body ul, .post-full .post-body ol {
-            padding-right: 25px;
-            margin: 10px 0;
-        }
-        .post-full .post-body blockquote {
-            border-right: 3px solid var(--accent);
-            padding: 10px 20px;
-            margin: 15px 0;
-            background: rgba(108, 139, 158, 0.04);
-            border-radius: 0 8px 8px 0;
-            color: var(--accent-light);
-        }
-        .post-full .post-body pre {
-            background: #0a0a0a;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            overflow-x: auto;
-            direction: ltr;
-            text-align: left;
-            font-family: monospace;
-            color: #f0ece6;
-            margin: 15px 0;
-        }
+        .post-full .post-body { color: var(--text-secondary); font-size: 1.05rem; line-height: 2; }
+        body.light-mode .post-full .post-body { color: #333; }
+        .post-full .post-body img { max-width: 100%; height: auto; border-radius: 10px; margin: 20px 0; border: 1px solid var(--border); }
+        .post-full .post-body iframe { max-width: 100%; border-radius: 10px; margin: 20px 0; }
+        .post-full .post-body h1, .post-full .post-body h2, .post-full .post-body h3 { color: #f0ece6; margin: 20px 0 10px; }
+        body.light-mode .post-full .post-body h1, body.light-mode .post-full .post-body h2, body.light-mode .post-full .post-body h3 { color: #1a1a1a; }
+        .post-full .post-body ul, .post-full .post-body ol { padding-right: 25px; margin: 10px 0; }
+        .post-full .post-body blockquote { border-right: 3px solid var(--accent); padding: 10px 20px; margin: 15px 0; background: rgba(108, 139, 158, 0.04); border-radius: 0 8px 8px 0; color: var(--accent-light); }
+        .post-full .post-body pre { background: #0a0a0a; padding: 15px; border-radius: 10px; border: 1px solid var(--border); overflow-x: auto; direction: ltr; text-align: left; font-family: monospace; color: #f0ece6; margin: 15px 0; }
 
-        .share-section {
-            margin: 25px 0 30px;
-            padding: 20px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-        .share-section .share-label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
-        .share-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: inherit;
-            color: white;
-        }
+        .share-section { margin: 25px 0 30px; padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .share-section .share-label { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; font-weight: 700; }
+        .share-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 50px; font-weight: 700; font-size: 0.8rem; border: none; cursor: pointer; transition: 0.3s; font-family: inherit; color: white; }
         .share-btn:hover { transform: scale(1.05); }
         .share-btn.whatsapp { background: #25D366; }
         .share-btn.facebook { background: #1877F2; }
@@ -233,157 +103,80 @@
         .share-btn i { font-size: 1rem; }
 
         .comments-section { margin-top: 30px; }
-        .comments-section h3 {
-            font-size: 1.3rem;
-            font-weight: 900;
-            color: #f0ece6;
-            margin-bottom: 18px;
-        }
+        .comments-section h3 { font-size: 1.3rem; font-weight: 900; color: #f0ece6; margin-bottom: 18px; }
+        body.light-mode .comments-section h3 { color: #1a1a1a; }
         .comments-section h3 span { color: var(--accent); }
-        .comments-section h3 .count {
-            background: var(--accent);
-            color: #0a0a0a;
-            padding: 2px 12px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            margin-right: 8px;
-        }
+        .comments-section h3 .count { background: var(--accent); color: #0a0a0a; padding: 2px 12px; border-radius: 30px; font-size: 0.8rem; margin-right: 8px; }
 
-        .comment-form {
-            background: rgba(255,255,255,0.02);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            margin-bottom: 25px;
-        }
-        .comment-form .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .comment-form input,
-        .comment-form textarea {
-            width: 100%;
-            padding: 10px 14px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: #f0ece6;
-            font-size: 0.9rem;
-            font-family: inherit;
-            transition: 0.3s;
-        }
-        .comment-form input:focus,
-        .comment-form textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-        .comment-form textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        .comment-form .btn-submit {
-            background: var(--accent);
-            color: #0a0a0a;
-            padding: 10px 30px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            border: none;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: inherit;
-            margin-top: 10px;
-        }
+        .comment-form { background: rgba(255,255,255,0.02); padding: 20px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 25px; }
+        body.light-mode .comment-form { background: #f5f5f5; }
+        .comment-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .comment-form input, .comment-form textarea { width: 100%; padding: 10px 14px; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; color: #f0ece6; font-size: 0.9rem; font-family: inherit; transition: 0.3s; }
+        body.light-mode .comment-form input, body.light-mode .comment-form textarea { color: #1a1a1a; background: #ffffff; }
+        .comment-form input:focus, .comment-form textarea:focus { outline: none; border-color: var(--accent); }
+        .comment-form textarea { min-height: 80px; resize: vertical; }
+        .comment-form .btn-submit { background: var(--accent); color: #0a0a0a; padding: 10px 30px; border-radius: 50px; font-weight: 800; font-size: 0.9rem; border: none; cursor: pointer; transition: 0.3s; font-family: inherit; margin-top: 10px; }
         .comment-form .btn-submit:hover { transform: scale(1.02); }
         .comment-form .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        .comment {
-            background: rgba(255,255,255,0.02);
-            padding: 14px 18px;
-            border-radius: 12px;
+        .comment { background: rgba(255,255,255,0.02); padding: 14px 18px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 12px; }
+        body.light-mode .comment { background: #f5f5f5; }
+        .comment .comment-author { font-weight: 800; color: var(--accent-light); font-size: 0.95rem; }
+        .comment .comment-date { font-size: 0.7rem; color: var(--text-muted); margin-right: 10px; }
+        .comment .comment-text { color: var(--text-secondary); font-size: 0.9rem; margin-top: 5px; }
+        body.light-mode .comment .comment-text { color: #333; }
+
+        .no-comments { color: var(--text-muted); text-align: center; padding: 20px; font-size: 0.9rem; }
+
+        /* ====== مقالات مشابهة ====== */
+        .related-posts {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+        }
+        .related-posts h3 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #f0ece6;
+            margin-bottom: 15px;
+        }
+        body.light-mode .related-posts h3 { color: #1a1a1a; }
+        .related-posts h3 i { color: var(--accent); margin-left: 8px; }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .related-item {
+            background: rgba(255,255,255,0.03);
+            padding: 12px 16px;
+            border-radius: 10px;
             border: 1px solid var(--border);
-            margin-bottom: 12px;
-        }
-        .comment .comment-author {
-            font-weight: 800;
-            color: var(--accent-light);
-            font-size: 0.95rem;
-        }
-        .comment .comment-date {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-right: 10px;
-        }
-        .comment .comment-text {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
-
-        .no-comments {
-            color: var(--text-muted);
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-        }
-
-        .status-message {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--text-muted);
-        }
-        .status-message i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
-        .status-message .sub-msg { font-size: 0.85rem; opacity: 0.6; margin-top: 8px; }
-        .status-message .btn-retry {
-            background: var(--accent);
-            color: #0a0a0a;
-            border: none;
-            padding: 8px 24px;
-            border-radius: 30px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 12px;
-            font-family: inherit;
             transition: 0.3s;
         }
+        body.light-mode .related-item { background: #f5f5f5; }
+        .related-item:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .related-item .related-title { font-weight: 700; color: #f0ece6; font-size: 0.95rem; }
+        body.light-mode .related-item .related-title { color: #1a1a1a; }
+        .related-item .related-title:hover { color: var(--accent); }
+        .related-item .related-meta { font-size: 0.7rem; color: var(--text-muted); }
+
+        .status-message { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+        .status-message i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
+        .status-message .sub-msg { font-size: 0.85rem; opacity: 0.6; margin-top: 8px; }
+        .status-message .btn-retry { background: var(--accent); color: #0a0a0a; border: none; padding: 8px 24px; border-radius: 30px; font-weight: 700; cursor: pointer; margin-top: 12px; font-family: inherit; transition: 0.3s; }
         .status-message .btn-retry:hover { transform: scale(1.05); }
 
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 12px 24px;
-            border-radius: 12px;
-            color: #f0ece6;
-            font-weight: 700;
-            z-index: 9999;
-            display: none;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            max-width: 90%;
-            text-align: center;
-            font-size: 0.9rem;
-        }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--bg-card); border: 1px solid var(--border); padding: 12px 24px; border-radius: 12px; color: #f0ece6; font-weight: 700; z-index: 9999; display: none; box-shadow: 0 10px 40px rgba(0,0,0,0.5); max-width: 90%; text-align: center; font-size: 0.9rem; }
+        body.light-mode .toast { color: #1a1a1a; background: #ffffff; }
         .toast.show { display: block; animation: fadeUp 0.3s ease; }
         .toast.success { border-color: var(--success); }
         .toast.error { border-color: var(--danger); }
         .toast.info { border-color: var(--accent); }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
 
-        footer {
-            padding: 25px 0;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            margin-top: 15px;
-        }
+        footer { padding: 25px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); margin-top: 15px; }
         footer .ornament { font-size: 0.6rem; color: var(--accent-dark); letter-spacing: 10px; opacity: 0.2; }
         footer p { font-size: 0.75rem; }
 
@@ -393,6 +186,7 @@
             .comment-form .form-row { grid-template-columns: 1fr; }
             .share-buttons { justify-content: center; }
             .share-btn { padding: 6px 14px; font-size: 0.75rem; }
+            .related-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -401,7 +195,12 @@
     <header>
         <div class="container header-content">
             <div class="logo">Minsaj <span>DZ</span><span class="sub">✦ مدونة البرمجيات والتقنية ✦</span></div>
-            <a href="blog.html" class="btn-back"><i class="fas fa-arrow-right"></i> العودة للمدونة</a>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i> <span id="theme-label">وضع داكن</span>
+                </button>
+                <a href="blog.html" class="btn-back"><i class="fas fa-arrow-right"></i> العودة للمدونة</a>
+            </div>
         </div>
     </header>
 
@@ -428,18 +227,17 @@
 
     <script>
         // =========================================================
-        // 📖 عرض المقالة مع SEO كامل
+        // 📖 عرض المقالة مع تعليقات ومقالات مشابهة
         // =========================================================
 
         const USERNAME = 'seislemzhf';
         const REPO = 'seislemzhf.github.io';
         const PATH = 'data/posts.json';
         const RAW_URL = `https://raw.githubusercontent.com/${USERNAME}/${REPO}/main/${PATH}`;
-        const BASE_URL = 'https://seislemzhf.github.io/';
-        const DEFAULT_IMAGE = 'https://seislemzhf.github.io/images/og-image.jpg';
 
         let currentPostId = null;
         let currentPost = null;
+        let allPosts = [];
 
         // ====== دوال مساعدة ======
         function showToast(message, type = 'info') {
@@ -448,9 +246,7 @@
             toast.textContent = message;
             toast.className = 'toast show ' + type;
             clearTimeout(toast._timer);
-            toast._timer = setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3500);
+            toast._timer = setTimeout(() => toast.classList.remove('show'), 3500);
         }
 
         function getPostIdFromURL() {
@@ -461,14 +257,15 @@
         function formatDate(dateStr) {
             try {
                 const d = new Date(dateStr);
-                return d.toLocaleDateString('ar-EG', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            } catch {
-                return dateStr;
-            }
+                return d.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+            } catch { return dateStr; }
+        }
+
+        function stripHtml(html) {
+            if (!html) return '';
+            const tmp = document.createElement('div');
+            tmp.innerHTML = html;
+            return tmp.textContent || tmp.innerText || '';
         }
 
         function getCurrentURL() {
@@ -479,114 +276,25 @@
             return currentPost ? currentPost.title : 'المدونة | Minsaj DZ';
         }
 
-        function getPostDescription() {
-            if (currentPost) {
-                const text = currentPost.content ? currentPost.content.replace(/<[^>]+>/g, '') : '';
-                return text.substring(0, 160) || 'مدونة برمجيات وتقنية جزائرية';
-            }
-            return 'مدونة برمجيات وتقنية جزائرية';
-        }
-
-        function getPostKeywords() {
-            if (currentPost && currentPost.tags) {
-                return currentPost.tags + ', برمجيات, تقنية, جزائر, Minsaj DZ';
-            }
-            return 'برمجيات, تقنية, برمجة, تطوير, جزائر, Minsaj DZ';
-        }
-
-        function getPostImage() {
-            // محاولة استخراج أول صورة من المحتوى
-            if (currentPost && currentPost.content) {
-                const imgMatch = currentPost.content.match(/<img[^>]+src=["']([^"']+)["']/);
-                if (imgMatch) {
-                    // إذا كانت الصورة نسبية، نضيف الرابط الكامل
-                    if (imgMatch[1].startsWith('http')) {
-                        return imgMatch[1];
-                    } else if (imgMatch[1].startsWith('/')) {
-                        return BASE_URL + imgMatch[1].substring(1);
-                    } else {
-                        return BASE_URL + imgMatch[1];
-                    }
-                }
-            }
-            return DEFAULT_IMAGE;
-        }
-
-        // ====== تحديث SEO ======
-        function updateSEO() {
-            const title = getPostTitle();
-            const description = getPostDescription();
-            const keywords = getPostKeywords();
-            const url = getCurrentURL();
-            const image = getPostImage();
-            const date = currentPost ? new Date(currentPost.date).toISOString() : new Date().toISOString();
-
-            // Title
-            document.title = title;
-
-            // Meta Description
-            const metaDesc = document.getElementById('meta-description');
-            if (metaDesc) metaDesc.content = description;
-
-            // Meta Keywords
-            const metaKeywords = document.getElementById('meta-keywords');
-            if (metaKeywords) metaKeywords.content = keywords;
-
-            // Canonical
-            const canonical = document.getElementById('meta-canonical');
-            if (canonical) canonical.href = url;
-
-            // Open Graph
-            const ogTitle = document.getElementById('og-title');
-            if (ogTitle) ogTitle.content = title;
-
-            const ogDesc = document.getElementById('og-description');
-            if (ogDesc) ogDesc.content = description;
-
-            const ogUrl = document.getElementById('og-url');
-            if (ogUrl) ogUrl.content = url;
-
-            const ogImage = document.getElementById('og-image');
-            if (ogImage) ogImage.content = image;
-
-            // Twitter
-            const twitterTitle = document.getElementById('twitter-title');
-            if (twitterTitle) twitterTitle.content = title;
-
-            const twitterDesc = document.getElementById('twitter-description');
-            if (twitterDesc) twitterDesc.content = description;
-
-            const twitterImage = document.getElementById('twitter-image');
-            if (twitterImage) twitterImage.content = image;
-
-            // JSON-LD
-            const jsonLd = document.getElementById('json-ld');
-            if (jsonLd && currentPost) {
-                const data = {
-                    "@context": "https://schema.org",
-                    "@type": "BlogPosting",
-                    "headline": title,
-                    "description": description,
-                    "url": url,
-                    "datePublished": date,
-                    "dateModified": date,
-                    "author": {
-                        "@type": "Person",
-                        "name": "سيف الإسلام زحاف"
-                    },
-                    "publisher": {
-                        "@type": "Organization",
-                        "name": "Minsaj DZ",
-                        "logo": {
-                            "@type": "ImageObject",
-                            "url": "https://seislemzhf.github.io/images/logo.png"
-                        }
-                    },
-                    "image": image
-                };
-                jsonLd.textContent = JSON.stringify(data, null, 2);
+        // ====== الوضع الداكن ======
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const label = document.getElementById('theme-label');
+            if (document.body.classList.contains('light-mode')) {
+                label.textContent = 'وضع فاتح';
+                localStorage.setItem('theme', 'light');
+            } else {
+                label.textContent = 'وضع داكن';
+                localStorage.setItem('theme', 'dark');
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('theme') === 'light') {
+                document.body.classList.add('light-mode');
+                document.getElementById('theme-label').textContent = 'وضع فاتح';
+            }
+        });
 
         // ====== التعليقات ======
         function getComments(postId) {
@@ -594,9 +302,7 @@
             try {
                 const saved = localStorage.getItem(key);
                 return saved ? JSON.parse(saved) : [];
-            } catch {
-                return [];
-            }
+            } catch { return []; }
         }
 
         function saveComments(postId, comments) {
@@ -606,12 +312,7 @@
 
         function addComment(postId, name, text) {
             const comments = getComments(postId);
-            comments.push({
-                id: 'c_' + Date.now(),
-                name: name || 'زائر',
-                text: text.trim(),
-                date: new Date().toISOString()
-            });
+            comments.push({ id: 'c_' + Date.now(), name: name || 'زائر', text: text.trim(), date: new Date().toISOString() });
             saveComments(postId, comments);
             return comments;
         }
@@ -622,14 +323,7 @@
             const postId = getPostIdFromURL();
 
             if (!postId) {
-                container.innerHTML = `
-                    <div class="status-message">
-                        <i class="fas fa-exclamation-circle" style="color:var(--danger);"></i>
-                        <p>لم يتم تحديد المقال</p>
-                        <p class="sub-msg">الرجاء العودة إلى المدونة واختيار مقال.</p>
-                        <a href="blog.html" class="btn-retry"><i class="fas fa-arrow-right"></i> العودة للمدونة</a>
-                    </div>
-                `;
+                container.innerHTML = `<div class="status-message"><i class="fas fa-exclamation-circle" style="color:var(--danger);"></i><p>لم يتم تحديد المقال</p><p class="sub-msg">الرجاء العودة إلى المدونة واختيار مقال.</p><a href="blog.html" class="btn-retry"><i class="fas fa-arrow-right"></i> العودة للمدونة</a></div>`;
                 return;
             }
 
@@ -639,50 +333,67 @@
                 const response = await fetch(RAW_URL + '?t=' + Date.now());
 
                 if (response.status === 404) {
-                    container.innerHTML = `
-                        <div class="status-message">
-                            <i class="fas fa-newspaper" style="color:var(--accent);"></i>
-                            <p>لا توجد مقالات حالياً.</p>
-                            <p class="sub-msg">ترقبوا المقالات القادمة!</p>
-                            <a href="blog.html" class="btn-retry"><i class="fas fa-arrow-right"></i> العودة للمدونة</a>
-                        </div>
-                    `;
+                    container.innerHTML = `<div class="status-message"><i class="fas fa-newspaper" style="color:var(--accent);"></i><p>لا توجد مقالات حالياً.</p><p class="sub-msg">ترقبوا المقالات القادمة!</p><a href="blog.html" class="btn-retry"><i class="fas fa-arrow-right"></i> العودة للمدونة</a></div>`;
                     return;
                 }
 
                 if (!response.ok) throw new Error('فشل في تحميل المقال');
 
-                const allPosts = await response.json();
-                if (!Array.isArray(allPosts)) throw new Error('بيانات غير صالحة');
+                const data = await response.json();
+                if (!Array.isArray(data)) throw new Error('بيانات غير صالحة');
 
-                const post = allPosts.find(p => p.id === postId);
+                allPosts = data;
+                const post = data.find(p => p.id === postId);
+
                 if (!post) {
-                    container.innerHTML = `
-                        <div class="status-message">
-                            <i class="fas fa-exclamation-circle" style="color:var(--danger);"></i>
-                            <p>المقال غير موجود</p>
-                            <p class="sub-msg">قد يكون تم حذفه أو لم ينشر بعد.</p>
-                            <a href="blog.html" class="btn-retry"><i class="fas fa-arrow-right"></i> العودة للمدونة</a>
-                        </div>
-                    `;
+                    container.innerHTML = `<div class="status-message"><i class="fas fa-exclamation-circle" style="color:var(--danger);"></i><p>المقال غير موجود</p><p class="sub-msg">قد يكون تم حذفه أو لم ينشر بعد.</p><a href="blog.html" class="btn-retry"><i class="fas fa-arrow-right"></i> العودة للمدونة</a></div>`;
                     return;
                 }
 
                 currentPost = post;
 
-                // ====== تحديث SEO ======
-                updateSEO();
-
                 // ====== عرض المحتوى ======
                 const comments = getComments(postId);
                 const commentsCount = comments.length;
-
                 const date = formatDate(post.date);
                 const tags = post.tags || 'عام';
                 const content = post.content || 'لا يوجد محتوى.';
                 const title = post.title || 'بدون عنوان';
-                const url = getCurrentURL();
 
+                // ====== مقالات مشابهة ======
+                let relatedHtml = '';
+                const related = data
+                    .filter(p => p.id !== postId && p.published !== false)
+                    .sort((a, b) => {
+                        // التشابه حسب التصنيفات
+                        const aTags = (a.tags || '').split(',').map(t => t.trim());
+                        const bTags = (b.tags || '').split(',').map(t => t.trim());
+                        const currentTags = (tags || '').split(',').map(t => t.trim());
+                        const aScore = aTags.filter(t => currentTags.includes(t)).length;
+                        const bScore = bTags.filter(t => currentTags.includes(t)).length;
+                        return bScore - aScore;
+                    })
+                    .slice(0, 4);
+
+                if (related.length > 0) {
+                    relatedHtml = `
+                        <div class="related-posts">
+                            <h3><i class="fas fa-link"></i> مقالات مشابهة</h3>
+                            <div class="related-grid">
+                    `;
+                    related.forEach(r => {
+                        const rDate = new Date(r.date).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric' });
+                        relatedHtml += `
+                            <a href="view-post.html?id=${r.id}" class="related-item">
+                                <div class="related-title">${r.title || 'بدون عنوان'}</div>
+                                <div class="related-meta"><i class="fas fa-calendar"></i> ${rDate}</div>
+                            </a>
+                        `;
+                    });
+                    relatedHtml += `</div></div>`;
+                }
+
+                // ====== بناء HTML كامل ======
                 let html = `
                     <div class="post-full">
                         <h1 class="post-title">${title}</h1>
@@ -691,50 +402,29 @@
                             <span style="margin:0 10px;">|</span>
                             <i class="fas fa-tag"></i> ${tags}
                         </div>
-                        <div class="post-body">
-                            ${content}
-                        </div>
+                        <div class="post-body">${content}</div>
 
-                        <!-- ====== المشاركة ====== -->
                         <div class="share-section">
                             <div class="share-label"><i class="fas fa-share-alt"></i> شارك هذا المقال:</div>
                             <div class="share-buttons">
-                                <button class="share-btn whatsapp" onclick="shareOn('whatsapp')">
-                                    <i class="fab fa-whatsapp"></i> واتساب
-                                </button>
-                                <button class="share-btn facebook" onclick="shareOn('facebook')">
-                                    <i class="fab fa-facebook-f"></i> فيسبوك
-                                </button>
-                                <button class="share-btn twitter" onclick="shareOn('twitter')">
-                                    <i class="fab fa-x-twitter"></i> X
-                                </button>
-                                <button class="share-btn telegram" onclick="shareOn('telegram')">
-                                    <i class="fab fa-telegram-plane"></i> تليغرام
-                                </button>
-                                <button class="share-btn copy" onclick="copyLink()">
-                                    <i class="fas fa-link"></i> نسخ الرابط
-                                </button>
+                                <button class="share-btn whatsapp" onclick="shareOn('whatsapp')"><i class="fab fa-whatsapp"></i> واتساب</button>
+                                <button class="share-btn facebook" onclick="shareOn('facebook')"><i class="fab fa-facebook-f"></i> فيسبوك</button>
+                                <button class="share-btn twitter" onclick="shareOn('twitter')"><i class="fab fa-x-twitter"></i> X</button>
+                                <button class="share-btn telegram" onclick="shareOn('telegram')"><i class="fab fa-telegram-plane"></i> تليغرام</button>
+                                <button class="share-btn copy" onclick="copyLink()"><i class="fas fa-link"></i> نسخ الرابط</button>
                             </div>
                         </div>
 
-                        <!-- ====== التعليقات ====== -->
                         <div class="comments-section">
-                            <h3>
-                                💬 <span>التعليقات</span>
-                                <span class="count">${commentsCount}</span>
-                            </h3>
-
+                            <h3>💬 <span>التعليقات</span> <span class="count">${commentsCount}</span></h3>
                             <div class="comment-form">
                                 <div class="form-row">
                                     <input type="text" id="comment-name" placeholder="اسمك (اختياري)">
                                     <input type="text" id="comment-email" placeholder="بريدك (اختياري)">
                                 </div>
                                 <textarea id="comment-text" placeholder="اكتب تعليقك..."></textarea>
-                                <button class="btn-submit" onclick="handleAddComment()">
-                                    <i class="fas fa-paper-plane"></i> إرسال التعليق
-                                </button>
+                                <button class="btn-submit" onclick="handleAddComment()"><i class="fas fa-paper-plane"></i> إرسال التعليق</button>
                             </div>
-
                             <div id="comments-list">
                 `;
 
@@ -743,9 +433,7 @@
                 } else {
                     const sorted = [...comments].reverse();
                     sorted.forEach(c => {
-                        const cDate = new Date(c.date).toLocaleDateString('ar-EG', {
-                            year: 'numeric', month: 'short', day: 'numeric'
-                        });
+                        const cDate = new Date(c.date).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric' });
                         html += `
                             <div class="comment">
                                 <div>
@@ -761,6 +449,7 @@
                 html += `
                             </div>
                         </div>
+                        ${relatedHtml}
                     </div>
                 `;
 
@@ -773,52 +462,37 @@
                         <i class="fas fa-exclamation-circle" style="color:var(--danger);"></i>
                         <p>حدث خطأ في تحميل المقال</p>
                         <p class="sub-msg">${error.message}</p>
-                        <button class="btn-retry" onclick="loadPost()">
-                            <i class="fas fa-sync-alt"></i> إعادة المحاولة
-                        </button>
+                        <button class="btn-retry" onclick="loadPost()"><i class="fas fa-sync-alt"></i> إعادة المحاولة</button>
                     </div>
                 `;
             }
         }
 
-        // ====== معالج التعليقات ======
+        // ====== التعليقات ======
         function handleAddComment() {
-            if (!currentPostId) {
-                showToast('حدث خطأ، يرجى تحديث الصفحة', 'error');
-                return;
-            }
+            if (!currentPostId) { showToast('حدث خطأ، يرجى تحديث الصفحة', 'error'); return; }
 
             const name = document.getElementById('comment-name');
             const text = document.getElementById('comment-text');
-
             if (!text) return;
 
             const nameVal = name ? name.value.trim() : '';
             const textVal = text.value.trim();
-
-            if (!textVal) {
-                showToast('الرجاء كتابة تعليق', 'error');
-                return;
-            }
+            if (!textVal) { showToast('الرجاء كتابة تعليق', 'error'); return; }
 
             addComment(currentPostId, nameVal || 'زائر', textVal);
-
             if (text) text.value = '';
             if (name) name.value = '';
-
             refreshComments();
             showToast('✅ تم إضافة تعليقك', 'success');
         }
 
         function refreshComments() {
             if (!currentPostId) return;
-
             const comments = getComments(currentPostId);
             const list = document.getElementById('comments-list');
             const countEl = document.querySelector('.comments-section .count');
-
             if (!list) return;
-
             if (countEl) countEl.textContent = comments.length;
 
             if (comments.length === 0) {
@@ -829,9 +503,7 @@
             let html = '';
             const sorted = [...comments].reverse();
             sorted.forEach(c => {
-                const cDate = new Date(c.date).toLocaleDateString('ar-EG', {
-                    year: 'numeric', month: 'short', day: 'numeric'
-                });
+                const cDate = new Date(c.date).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric' });
                 html += `
                     <div class="comment">
                         <div>
@@ -849,14 +521,12 @@
         function shareOn(platform) {
             const url = encodeURIComponent(getCurrentURL());
             const title = encodeURIComponent(getPostTitle());
-
             const urls = {
                 whatsapp: `https://wa.me/?text=${title}%0A%0A${url}`,
                 facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
                 twitter: `https://x.com/intent/tweet?text=${title}&url=${url}`,
                 telegram: `https://t.me/share/url?url=${url}&text=${title}`
             };
-
             if (urls[platform]) {
                 window.open(urls[platform], '_blank', 'width=600,height=500');
             }
@@ -865,11 +535,8 @@
         function copyLink() {
             const url = getCurrentURL();
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(url).then(() => {
-                    showToast('✅ تم نسخ الرابط', 'success');
-                }).catch(() => {
-                    fallbackCopyLink(url);
-                });
+                navigator.clipboard.writeText(url).then(() => showToast('✅ تم نسخ الرابط', 'success'))
+                    .catch(() => fallbackCopyLink(url));
             } else {
                 fallbackCopyLink(url);
             }
@@ -896,13 +563,13 @@
         window.handleAddComment = handleAddComment;
         window.shareOn = shareOn;
         window.copyLink = copyLink;
+        window.toggleTheme = toggleTheme;
 
-        // ====== التحميل ======
         document.addEventListener('DOMContentLoaded', function() {
             loadPost();
         });
 
-        console.log('📖 View Post Loaded (SEO Ready)');
+        console.log('📖 View Post Loaded (مع مقالات مشابهة)');
     </script>
 
 </body>
