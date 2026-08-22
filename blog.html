@@ -37,7 +37,6 @@
             --text-secondary: #b8b0a8;
         }
 
-        /* ====== Header ====== */
         header {
             padding: 20px 0;
             background: rgba(10, 10, 10, 0.96);
@@ -84,7 +83,6 @@
             transform: translateY(-2px);
         }
 
-        /* ====== Hero ====== */
         .hero {
             padding: 40px 0 20px;
             text-align: center;
@@ -101,7 +99,6 @@
             margin-top: 5px;
         }
 
-        /* ====== المقالات ====== */
         .post {
             background: var(--bg-card);
             border-radius: 16px;
@@ -168,7 +165,6 @@
         .status-message i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
         .status-message .sub-msg { font-size: 0.85rem; opacity: 0.6; margin-top: 10px; }
 
-        /* ====== Footer ====== */
         footer {
             padding: 30px 0;
             text-align: center;
@@ -192,7 +188,6 @@
 </head>
 <body>
 
-    <!-- ====== Header ====== -->
     <header>
         <div class="container header-content">
             <div class="logo">
@@ -205,7 +200,6 @@
         </div>
     </header>
 
-    <!-- ====== Hero ====== -->
     <section class="hero">
         <div class="container">
             <h1><span>مدونة</span> Minsaj DZ</h1>
@@ -213,23 +207,17 @@
         </div>
     </section>
 
-    <!-- ====== المحتوى ====== -->
     <section>
         <div class="container">
-
-            <!-- ====== حاوية المقالات ====== -->
             <div id="posts-container">
-                <!-- سيتم ملؤها بواسطة JavaScript -->
                 <div class="status-message" id="loading-status">
                     <i class="fas fa-spinner fa-spin"></i>
                     <p>جاري تحميل المقالات...</p>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- ====== Footer ====== -->
     <footer>
         <div class="container">
             <div class="ornament">✦ ✦ ✦</div>
@@ -239,23 +227,18 @@
     </footer>
 
     <script>
-        // =========================================================
-        // 🚀 جلب المقالات الحقيقية من Blogger تلقائياً
-        // =========================================================
         (function() {
             const container = document.getElementById('posts-container');
 
-            // رابط RSS لمدونتك
+            // رابط RSS الخاص بمدونتك
             const BLOG_URL = 'https://minsajdz.blogspot.com/feeds/posts/default';
-            const MAX_POSTS = 20; // عدد المقالات المراد عرضها
+            const MAX_POSTS = 20;
 
-            // دالة لاستخراج محتوى HTML من نص المقال (مع الصور والفيديوهات)
             function extractContent(content) {
                 if (!content) return '';
                 return content;
             }
 
-            // دالة لتنسيق التاريخ
             function formatDate(dateStr) {
                 try {
                     const d = new Date(dateStr);
@@ -269,7 +252,6 @@
                 }
             }
 
-            // استخراج التصنيفات (labels)
             function getLabels(entry) {
                 if (entry.category && entry.category.length > 0) {
                     return entry.category.map(cat => cat.term).join('، ');
@@ -277,7 +259,6 @@
                 return 'عام';
             }
 
-            // دالة لعرض المقالات
             function renderPosts(posts) {
                 if (!posts || posts.length === 0) {
                     container.innerHTML = `
@@ -321,7 +302,6 @@
                 container.innerHTML = html;
             }
 
-            // جلب البيانات من Blogger
             function fetchPosts() {
                 const url = `${BLOG_URL}?alt=json&max-results=${MAX_POSTS}`;
 
@@ -334,7 +314,6 @@
                         if (data.feed && data.feed.entry) {
                             renderPosts(data.feed.entry);
                         } else {
-                            // المدونة فارغة
                             container.innerHTML = `
                                 <div class="status-message">
                                     <i class="fas fa-newspaper" style="color:var(--accent);"></i>
@@ -356,8 +335,10 @@
                     });
             }
 
-            // تشغيل الجلب بعد تحميل الصفحة
-            setTimeout(fetchPosts, 300);
+            // محاولة جلب المقالات فوراً، ثم كل 30 ثانية
+            setTimeout(fetchPosts, 500);
+            // إعادة المحاولة كل 30 ثانية للتأكد من ظهور المقالات الجديدة
+            setInterval(fetchPosts, 30000);
         })();
     </script>
 
